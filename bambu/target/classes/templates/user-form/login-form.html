@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Mi primer Login</title>
+    <title>Login Form</title>
 
     <!--JQUERY-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -27,7 +27,7 @@
                     </div>
                     <form class="col-12" th:action="@{/login}" method="post">
                         <div class="form-group" id="user-group">
-                            <input type="text" class="form-control" placeholder="Nombre de usuario" name="username"/>
+                            <input type="text" class="form-control" placeholder="Correo Electronico" name="email"/>
                         </div>
                         <div class="form-group" id="contrasena-group">
                             <input type="password" class="form-control" placeholder="Contraseña" name="password"/>
@@ -35,17 +35,16 @@
                         <button type="submit" class="btn btn-success"><i class="fas fa-sign-in-alt"></i>  Ingresar </button>
                     </form>
                     <div class="col-12 forgot">
-                        <p><a href="#">Recordar contrasena?</a></p>
+                        <p><a href="#">¿Olvidaste la contraseña?</a></p>
                     </div>
                     <div th:if="${param.error}" class="alert alert-danger" role="alert">
-                        Invalid username and password.
+                        Datos de correo electronico o contraseña no validos.
                     </div>
                     <div th:if="${param.logout}" class="alert alert-success" role="alert">
-                        You have been logged out.
+                        Has cerrado la sesión.
                     </div>
                 </div>
             </div>
     </div>
-    hola
 </body>
 </html>

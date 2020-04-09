@@ -1,88 +1,68 @@
 package com.panda.bambu.model;
 
-import java.io.Serializable;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.Transient;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 
-import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.validator.constraints.Length;
 
-@Entity 
-public class User implements Serializable{
+@Entity
+@Table(name = "auth_user")
+public class User {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "auth_user_id")
+	private int id;
 
+	@NotNull(message="First name is compulsory")
+	@Column(name = "first_name")
+	private String name;
 
-	/**
-     *
-     */
-    private static final long serialVersionUID = -7971070917518689779L;
-
-    @Id
-	@GeneratedValue(strategy=GenerationType.AUTO, generator="native")
-	@GenericGenerator(name="native",strategy="native")
-	private Long id;
-	
-	@Column
-	@NotBlank
-	@Size(min=5,max=8,message="No se cumple las reglas del tamano")
-	private String firstName;
-	@Column
-	@NotBlank
+	@NotNull(message="Last name is compulsory")
+	@Column(name = "last_name")
 	private String lastName;
-	@Column
-	@NotBlank
+
+	@NotNull(message="Email is compulsory")
+	@Email(message = "Email is invalid")
+	@Column(name = "email")
 	private String email;
-	@Column
-	@NotBlank
-	private String username;
-	@Column
-	@NotBlank
+
+	@NotNull(message="Password is compulsory")
+	@Length(min=5, message="Password should be at least 5 characters")
+	@Column(name = "password")
 	private String password;
-	
-	@Transient
-	private String confirmPassword;
-	
-	@Size(min=1)
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "user_roles",
-			joinColumns=@JoinColumn(name="user_id"),
-			inverseJoinColumns=@JoinColumn(name="role_id"))
+
+
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "auth_user_role", joinColumns = @JoinColumn(name = "auth_user_id"), inverseJoinColumns = @JoinColumn(name = "auth_role_id"))
 	private Set<Role> roles;
 
-	public User() {
-		super();
-	}
-
-	public User(Long id) {
-		super();
-		this.id = id;
-	}
-
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public String getName() {
+		return name;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getLastName() {
@@ -101,14 +81,6 @@ public class User implements Serializable{
 		this.email = email;
 	}
 
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
 	public String getPassword() {
 		return password;
 	}
@@ -117,94 +89,12 @@ public class User implements Serializable{
 		this.password = password;
 	}
 
-	public String getConfirmPassword() {
-		return confirmPassword;
-	}
-
-	public void setConfirmPassword(String confirmPassword) {
-		this.confirmPassword = confirmPassword;
-	}
-
 	public Set<Role> getRoles() {
 		return roles;
 	}
 
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
-	}
-
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", username=" + username + ", password=" + password + ", confirmPassword=" + confirmPassword
-				+ ", roles=" + roles + "]";
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((confirmPassword == null) ? 0 : confirmPassword.hashCode());
-		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
-		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + ((roles == null) ? 0 : roles.hashCode());
-		result = prime * result + ((username == null) ? 0 : username.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		User other = (User) obj;
-		if (confirmPassword == null) {
-			if (other.confirmPassword != null)
-				return false;
-		} else if (!confirmPassword.equals(other.confirmPassword))
-			return false;
-		if (email == null) {
-			if (other.email != null)
-				return false;
-		} else if (!email.equals(other.email))
-			return false;
-		if (firstName == null) {
-			if (other.firstName != null)
-				return false;
-		} else if (!firstName.equals(other.firstName))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (lastName == null) {
-			if (other.lastName != null)
-				return false;
-		} else if (!lastName.equals(other.lastName))
-			return false;
-		if (password == null) {
-			if (other.password != null)
-				return false;
-		} else if (!password.equals(other.password))
-			return false;
-		if (roles == null) {
-			if (other.roles != null)
-				return false;
-		} else if (!roles.equals(other.roles))
-			return false;
-		if (username == null) {
-			if (other.username != null)
-				return false;
-		} else if (!username.equals(other.username))
-			return false;
-		return true;
 	}
 
 }
