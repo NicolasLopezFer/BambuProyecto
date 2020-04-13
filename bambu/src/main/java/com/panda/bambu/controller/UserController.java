@@ -22,28 +22,27 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class UserController {
 	
-    
-    /*@GetMapping({"/"})
-	public String index() {
-		return "index";
-	}
-
-	@GetMapping({"/loginForm"})
+	/*@RequestMapping({"/login-form.html"})
 	public String loginForm(){
 		return "./user-form/login-form";
 	}
 
-	@GetMapping({"/RegisterForm"})
+	@RequestMapping({"/register-form.html"})
 	public String registerForm(){
 		return "./user-form/register-form";
-	}*/
+	} */ 
 	
 	@Autowired
 	UserService userService;
 
 	@Autowired
 	RoleRepository roleRepository;
-
+	
+	@RequestMapping({"/"})
+		public String llegada() {
+			return "llegada";
+		}
+	
 	@RequestMapping(value = { "/login" }, method = RequestMethod.GET)
 	public ModelAndView login() {
 		ModelAndView modelAndView = new ModelAndView();
@@ -55,7 +54,9 @@ public class UserController {
 	public ModelAndView register() {
 		ModelAndView modelAndView = new ModelAndView();
 		User user = new User();
-		modelAndView.addObject("roles",roleRepository.findAll());
+		List<Role> rols = roleRepository.findAll();
+		rols.remove(2);
+		modelAndView.addObject("roles",rols);
 		modelAndView.addObject("user", user);
 		modelAndView.setViewName("./user-form/register-form"); // resources/template/register.html
 		return modelAndView;
