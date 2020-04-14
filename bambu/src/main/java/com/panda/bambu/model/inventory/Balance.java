@@ -23,8 +23,8 @@ public class Balance {
     private String code;
     
     @NotNull(message="Quantity is compulsory")
-	@Column(name = "quanity")
-    private String quanity;
+	@Column(name = "quantity")
+    private int quantity;
 
     @NotNull(message="Total Cost is compulsory")
 	@Column(name = "total_cost")
@@ -49,12 +49,12 @@ public class Balance {
         this.code = code;
     }
 
-    public String getQuanity() {
-        return quanity;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setQuanity(String quanity) {
-        this.quanity = quanity;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public double getTotalCost() {
@@ -80,7 +80,7 @@ public class Balance {
         result = prime * result + ((article == null) ? 0 : article.hashCode());
         result = prime * result + ((code == null) ? 0 : code.hashCode());
         result = prime * result + id;
-        result = prime * result + ((quanity == null) ? 0 : quanity.hashCode());
+        result = prime * result + quantity;
         long temp;
         temp = Double.doubleToLongBits(totalCost);
         result = prime * result + (int) (temp ^ (temp >>> 32));
@@ -108,10 +108,7 @@ public class Balance {
             return false;
         if (id != other.id)
             return false;
-        if (quanity == null) {
-            if (other.quanity != null)
-                return false;
-        } else if (!quanity.equals(other.quanity))
+        if (quantity != other.quantity)
             return false;
         if (Double.doubleToLongBits(totalCost) != Double.doubleToLongBits(other.totalCost))
             return false;
@@ -120,9 +117,8 @@ public class Balance {
 
     @Override
     public String toString() {
-        return "Balance [article=" + article + ", code=" + code + ", id=" + id + ", quanity=" + quanity + ", totalCost="
-                + totalCost + "]";
+        return "Balance [article=" + article + ", code=" + code + ", id=" + id + ", quantity=" + quantity
+                + ", totalCost=" + totalCost + "]";
     }
-    
-    
+        
 }

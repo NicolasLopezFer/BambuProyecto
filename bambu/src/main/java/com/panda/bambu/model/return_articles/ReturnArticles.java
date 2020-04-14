@@ -31,13 +31,17 @@ public class ReturnArticles {
     @Column(name = "customer_name")
     private String customer_name;
 
-    @NotNull(message="nit is compulsory")
+    @NotNull(message="id is compulsory")
     @Column(name = "id_customer")
     private String idCustomer;
    
     @NotNull(message="Sale Return is compulsory")
     @Column(name = "sale_return")
     private Boolean saleReturn;
+
+    @NotNull(message="Buy Return is compulsory")
+    @Column(name = "buy_return")
+    private Boolean buyReturn;
 
     @OneToMany()
     private Set<ArticleReturn> articles;
@@ -90,6 +94,14 @@ public class ReturnArticles {
         this.saleReturn = saleReturn;
     }
 
+    public Boolean getBuyReturn() {
+        return buyReturn;
+    }
+
+    public void setBuyReturn(Boolean buyReturn) {
+        this.buyReturn = buyReturn;
+    }
+
     public Set<ArticleReturn> getArticles() {
         return articles;
     }
@@ -103,6 +115,7 @@ public class ReturnArticles {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((articles == null) ? 0 : articles.hashCode());
+        result = prime * result + ((buyReturn == null) ? 0 : buyReturn.hashCode());
         result = prime * result + ((code == null) ? 0 : code.hashCode());
         result = prime * result + ((customer_name == null) ? 0 : customer_name.hashCode());
         result = prime * result + ((date == null) ? 0 : date.hashCode());
@@ -125,6 +138,11 @@ public class ReturnArticles {
             if (other.articles != null)
                 return false;
         } else if (!articles.equals(other.articles))
+            return false;
+        if (buyReturn == null) {
+            if (other.buyReturn != null)
+                return false;
+        } else if (!buyReturn.equals(other.buyReturn))
             return false;
         if (code == null) {
             if (other.code != null)
@@ -158,10 +176,10 @@ public class ReturnArticles {
 
     @Override
     public String toString() {
-        return "ReturnArticles [articles=" + articles + ", code=" + code + ", customer_name=" + customer_name
-                + ", date=" + date + ", id=" + id + ", idCustomer=" + idCustomer + ", saleReturn=" + saleReturn + "]";
+        return "ReturnArticles [articles=" + articles + ", buyReturn=" + buyReturn + ", code=" + code
+                + ", customer_name=" + customer_name + ", date=" + date + ", id=" + id + ", idCustomer=" + idCustomer
+                + ", saleReturn=" + saleReturn + "]";
     }
-
-    
+  
 
 }

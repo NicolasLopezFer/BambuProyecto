@@ -25,8 +25,8 @@ public class Article {
     private String name;
     
     @NotNull(message="Quantity is compulsory")
-	@Column(name = "quanity")
-    private String quanity;
+	@Column(name = "quantity")
+    private int quantity;
     
     @NotNull(message="Unit Cost is compulsory")
 	@Column(name = "unit_cost")
@@ -64,12 +64,12 @@ public class Article {
         this.name = name;
     }
 
-    public String getQuanity() {
-        return quanity;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setQuanity(String quanity) {
-        this.quanity = quanity;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public double getUnitCost() {
@@ -103,7 +103,7 @@ public class Article {
         result = prime * result + ((code == null) ? 0 : code.hashCode());
         result = prime * result + id;
         result = prime * result + ((name == null) ? 0 : name.hashCode());
-        result = prime * result + ((quanity == null) ? 0 : quanity.hashCode());
+        result = prime * result + quantity;
         long temp;
         temp = Double.doubleToLongBits(salePrice);
         result = prime * result + (int) (temp ^ (temp >>> 32));
@@ -135,10 +135,7 @@ public class Article {
                 return false;
         } else if (!name.equals(other.name))
             return false;
-        if (quanity == null) {
-            if (other.quanity != null)
-                return false;
-        } else if (!quanity.equals(other.quanity))
+        if (quantity != other.quantity)
             return false;
         if (Double.doubleToLongBits(salePrice) != Double.doubleToLongBits(other.salePrice))
             return false;
@@ -151,8 +148,9 @@ public class Article {
 
     @Override
     public String toString() {
-        return "Article [code=" + code + ", id=" + id + ", name=" + name + ", quanity=" + quanity + ", salePrice="
+        return "Article [code=" + code + ", id=" + id + ", name=" + name + ", quantity=" + quantity + ", salePrice="
                 + salePrice + ", totalCost=" + totalCost + ", unitCost=" + unitCost + "]";
     }
+    
 
 }

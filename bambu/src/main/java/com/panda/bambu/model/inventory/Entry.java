@@ -33,8 +33,8 @@ public class Entry {
     private String detail;
     
     @NotNull(message="Quantity is compulsory")
-	@Column(name = "quanity")
-    private String quanity;
+	@Column(name = "quantity")
+    private int quantity;
     
     @NotNull(message="Unit Cost is compulsory")
 	@Column(name = "unit_cost")
@@ -79,12 +79,12 @@ public class Entry {
         this.detail = detail;
     }
 
-    public String getQuanity() {
-        return quanity;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setQuanity(String quanity) {
-        this.quanity = quanity;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public double getUnitCost() {
@@ -120,7 +120,7 @@ public class Entry {
         result = prime * result + ((date == null) ? 0 : date.hashCode());
         result = prime * result + ((detail == null) ? 0 : detail.hashCode());
         result = prime * result + id;
-        result = prime * result + ((quanity == null) ? 0 : quanity.hashCode());
+        result = prime * result + quantity;
         long temp;
         temp = Double.doubleToLongBits(totalCost);
         result = prime * result + (int) (temp ^ (temp >>> 32));
@@ -160,10 +160,7 @@ public class Entry {
             return false;
         if (id != other.id)
             return false;
-        if (quanity == null) {
-            if (other.quanity != null)
-                return false;
-        } else if (!quanity.equals(other.quanity))
+        if (quantity != other.quantity)
             return false;
         if (Double.doubleToLongBits(totalCost) != Double.doubleToLongBits(other.totalCost))
             return false;
@@ -175,9 +172,8 @@ public class Entry {
     @Override
     public String toString() {
         return "Entry [article=" + article + ", code=" + code + ", date=" + date + ", detail=" + detail + ", id=" + id
-                + ", quanity=" + quanity + ", totalCost=" + totalCost + ", unitCost=" + unitCost + "]";
+                + ", quantity=" + quantity + ", totalCost=" + totalCost + ", unitCost=" + unitCost + "]";
     }
-    
-    
-     
+   
+         
 }

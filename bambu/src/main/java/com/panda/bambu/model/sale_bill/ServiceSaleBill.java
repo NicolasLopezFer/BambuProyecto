@@ -27,7 +27,7 @@ public class ServiceSaleBill {
     @Column(name = "customer_name")
     private String customer_name;
 
-    @NotNull(message="nit is compulsory")
+    @NotNull(message="Id Customer is compulsory")
     @Column(name = "id_customer")
     private String idCustomer;
     
@@ -44,7 +44,7 @@ public class ServiceSaleBill {
 
     @NotNull(message="Total is compulsory")
     @Column(name = "total")
-    private LocalDate total;
+    private double total;
 
     public int getId() {
         return id;
@@ -102,11 +102,11 @@ public class ServiceSaleBill {
         this.services = services;
     }
 
-    public LocalDate getTotal() {
+    public double getTotal() {
         return total;
     }
 
-    public void setTotal(LocalDate total) {
+    public void setTotal(double total) {
         this.total = total;
     }
 
@@ -121,7 +121,9 @@ public class ServiceSaleBill {
         result = prime * result + id;
         result = prime * result + ((idCustomer == null) ? 0 : idCustomer.hashCode());
         result = prime * result + ((services == null) ? 0 : services.hashCode());
-        result = prime * result + ((total == null) ? 0 : total.hashCode());
+        long temp;
+        temp = Double.doubleToLongBits(total);
+        result = prime * result + (int) (temp ^ (temp >>> 32));
         return result;
     }
 
@@ -166,10 +168,7 @@ public class ServiceSaleBill {
                 return false;
         } else if (!services.equals(other.services))
             return false;
-        if (total == null) {
-            if (other.total != null)
-                return false;
-        } else if (!total.equals(other.total))
+        if (Double.doubleToLongBits(total) != Double.doubleToLongBits(other.total))
             return false;
         return true;
     }
