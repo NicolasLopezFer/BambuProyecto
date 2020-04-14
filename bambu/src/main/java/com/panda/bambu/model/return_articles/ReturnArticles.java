@@ -35,7 +35,7 @@ public class ReturnArticles {
     @Column(name = "id_customer")
     private String idCustomer;
    
-    @NotNull(message="nit is compulsory")
+    @NotNull(message="Sale Return is compulsory")
     @Column(name = "sale_return")
     private Boolean saleReturn;
 

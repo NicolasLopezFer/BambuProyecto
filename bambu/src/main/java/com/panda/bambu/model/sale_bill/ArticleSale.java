@@ -22,8 +22,8 @@ public class ArticleSale {
     private Article article;
             
     @NotNull(message="Quantity is compulsory")
-	@Column(name = "quanity")
-    private String quanity;
+	@Column(name = "quantity")
+    private int quantity;
 
     @NotNull(message="Discount is compulsory")
 	@Column(name = "discount")
@@ -53,12 +53,12 @@ public class ArticleSale {
         this.article = article;
     }
 
-    public String getQuanity() {
-        return quanity;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setQuanity(String quanity) {
-        this.quanity = quanity;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public float getDiscount() {
@@ -92,7 +92,7 @@ public class ArticleSale {
         result = prime * result + ((article == null) ? 0 : article.hashCode());
         result = prime * result + Float.floatToIntBits(discount);
         result = prime * result + id;
-        result = prime * result + ((quanity == null) ? 0 : quanity.hashCode());
+        result = prime * result + quantity;
         result = prime * result + Float.floatToIntBits(tax);
         result = prime * result + Float.floatToIntBits(total);
         return result;
@@ -116,10 +116,7 @@ public class ArticleSale {
             return false;
         if (id != other.id)
             return false;
-        if (quanity == null) {
-            if (other.quanity != null)
-                return false;
-        } else if (!quanity.equals(other.quanity))
+        if (quantity != other.quantity)
             return false;
         if (Float.floatToIntBits(tax) != Float.floatToIntBits(other.tax))
             return false;
@@ -130,10 +127,9 @@ public class ArticleSale {
 
     @Override
     public String toString() {
-        return "ArticleSale [article=" + article + ", discount=" + discount + ", id=" + id + ", quanity=" + quanity
+        return "ArticleSale [article=" + article + ", discount=" + discount + ", id=" + id + ", quantity=" + quantity
                 + ", tax=" + tax + ", total=" + total + "]";
     }
-
-    
+   
  
 }

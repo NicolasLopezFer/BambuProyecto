@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ArticleSaleBillRepository extends JpaRepository<ArticleSaleBill, Long> {
-
+    
 }
