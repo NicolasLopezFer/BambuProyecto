@@ -1,5 +1,7 @@
 package com.panda.bambu.model.inventory;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,6 +23,14 @@ public class Entry {
     @NotNull(message="Code is compulsory")
 	@Column(name = "code")
     private String code;
+
+    @NotNull(message="Date is compulsory")
+    @Column(name = "date")
+    private LocalDate date;
+
+    @NotNull(message="Detail is compulsory")
+    @Column(name = "detail")
+    private String detail;
     
     @NotNull(message="Quantity is compulsory")
 	@Column(name = "quanity")
@@ -36,5 +46,6 @@ public class Entry {
     
     @ManyToOne()
     private Article article;
+    
      
 }
