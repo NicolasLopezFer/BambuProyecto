@@ -67,7 +67,7 @@
                     </div>
                     <!-- Portfolio Item Comprobantes de pago-->
                     <div class="col-sm-6 col-md-3 mb-5">
-                        <div class="portfolio-item mx-auto" data-toggle="modal" >
+                        <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal1">
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><p>Comprobantes de egreso</p></div>
                             </div>
@@ -76,7 +76,7 @@
                     </div>
                     <!-- Portfolio Item Recibos de caja-->
                     <div class="col-sm-6 col-md-3 mb-5">
-                        <div class="portfolio-item mx-auto" data-toggle="modal" onclick="window.location.href='home';">
+                        <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal1">
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><p>Recibos de caja </div>
                             </div>
@@ -85,7 +85,7 @@
                     </div>
                     <!-- Portfolio Item Devoluciones-->
                     <div class="col-sm-6 col-md-3 mb-5">
-                        <div class="portfolio-item mx-auto" data-toggle="modal" >
+                        <div class="portfolio-item mx-auto" data-toggle="modal" onclick="window.location.href='devoluciones';">
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><p>Devoluciones</p></i></div>
                             </div>
@@ -93,8 +93,8 @@
                         </div>
                     </div>
                     <!-- Portfolio Item Reportes-->
-                      <div class="portfolio-item mx-auto" data-toggle="modal" >
-                        <a class="btn btn-primary btn-m js-scroll-trigger" href="">Reportes</a>
+                      <div class="portfolio-item mx-auto" data-toggle="modal">
+                        <a class="btn btn-primary btn-m js-scroll-trigger" href="#portfolioModal1">Reportes</a>
                       </div>
                       
                   </div>
@@ -106,7 +106,7 @@
         <section class="page-section bg-primary text-white mb-0" id="modelos">
             <div class="container">
                 <!-- About Section Heading-->
-                <h2 class="page-section-heading text-center text-uppercase text-white">Modelos</h2>
+                <h2 class="page-section-heading text-center text-uppercase text-white">Informes</h2>
                 <!-- Icon Divider-->
                 <div class="divider-custom divider-light">
                     <div class="divider-custom-line"></div>
@@ -115,12 +115,12 @@
                 </div>
                 <!-- About Section Content-->
                 <div class="row">
-                    <div class="col-lg-4 ml-auto"><p class="lead1">INVENTARIOS</p>
-                        <a class="btn btn-outline-secondary btn-xl js-scroll-trigger" href="">Entrada de inventario</a>
-                        <a class="btn btn-outline-secondary btn-xl js-scroll-trigger" href="">Salida de inventario</a>
+                    <div class="col-lg-4 ml-auto"><p class="lead1"></p>
+                        <a class="btn btn-outline-secondary btn-xl js-scroll-trigger" href="">Manejo de inventario</a>
                         <a class="btn btn-outline-secondary btn-xl js-scroll-trigger" href="">Generación Kardex</a>
+                        <a class="btn btn-outline-secondary btn-xl js-scroll-trigger" href="">Crear articulos</a>
                     </div>
-                    <div class="col-lg-4 mr-auto"><p class="lead1">INFORMES</p>
+                    <div class="col-lg-4 mr-auto"><p class="lead1"></p>
                         <a class="btn btn-outline-secondary btn-xl js-scroll-trigger" href="">Estado de situación financiera</a>
                         <a class="btn btn-outline-secondary btn-xl js-scroll-trigger" href="">Estado de perdidas y ganancias</a>
                     </div>
@@ -136,6 +136,39 @@
         <div class="scroll-to-top d-lg-none position-fixed">
             <a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top"><i class="fa fa-chevron-up"></i></a>
         </div>
+
+        <!-- Portfolio Modals--><!-- Portfolio Modal 1-->
+        <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-labelledby="portfolioModal1Label" aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content">
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="fas fa-times"></i></span>
+                    </button>
+                    <div class="modal-body text-center">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8">
+                                    <!-- Portfolio Modal - Title-->
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">ERROR</h2>
+                                    <!-- Icon Divider-->
+                                    <div class="divider-custom">
+                                        <div class="divider-custom-line"></div>
+                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                        <div class="divider-custom-line"></div>
+                                    </div>
+                                    <!-- Portfolio Modal - Image--><img class="img-fluid rounded mb-5" src="assets/img/portfolio/cabin.png" alt="" /><!-- Portfolio Modal - Text-->
+                                    <p class="mb-5">Esta función todavia no se encuentra disponible, por favor intente más tarde.</p>
+                                    <button class="btn btn-primary" href="#" data-dismiss="modal"><i class="fas fa-times fa-fw"></i>Cerrar ventana</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
         
         <!-- Bootstrap core JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
