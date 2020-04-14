@@ -8,7 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
@@ -26,7 +25,8 @@ public class Inventory {
     @Column(name = "date")
     private LocalDate date;
 
-    @ManyToMany()
+    @NotNull(message="Measure Method is compulsory")
+    @Column(name = "measure_method")
     private MeasureMethod measureMethod;
 
     @OneToMany()
