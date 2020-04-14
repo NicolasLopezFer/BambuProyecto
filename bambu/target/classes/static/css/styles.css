@@ -486,6 +486,11 @@ mark,
   height: auto;
 }
 
+.img-personalized{
+  max-width: 60%;
+  height: auto;
+}
+
 .img-thumbnail {
   padding: 0.25rem;
   background-color: #fff;
@@ -10005,6 +10010,12 @@ h3 {
 .btn-xl {
   padding: 1rem 4rem;
   font-size: 2rem;
+}
+
+.btn-m
+{
+  padding: 0.8rem 3rem;
+  font-size: 1.5rem;
 }
 
 .btn-social {

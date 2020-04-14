@@ -35,7 +35,7 @@
                 <!-- Icon Divider-->
                 <div class="divider-custom divider-light">
                     <div class="divider-custom-line"></div>
-                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                    <div class="divider-custom-icon"><i class="fas fa-square"></i></div>
                     <div class="divider-custom-line"></div>
                 </div>
                 <!-- Masthead Subheading-->
@@ -61,7 +61,7 @@
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><p>Facturas de venta</p></div>
                             </div>
-                            <img class="img-fluid" th:src="@{/img/bill.png}" alt="" />
+                            <img class="img-personalized" th:src="@{/img/bill.png}" alt="" />
                         
                         </div>
                     </div>
@@ -71,7 +71,7 @@
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><p>Comprobantes de egreso</p></div>
                             </div>
-                            <img class="img-fluid" th:src="@{/img/pencil.png}" alt="" />
+                            <img class="img-personalized" th:src="@{/img/pencil.png}" alt="" />
                         </div>
                     </div>
                     <!-- Portfolio Item Recibos de caja-->
@@ -80,7 +80,7 @@
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><p>Recibos de caja </div>
                             </div>
-                            <img class="img-fluid" th:src="@{/img/basket.png}" alt="" />
+                            <img class="img-personalized" th:src="@{/img/basket.png}" alt="" />
                         </div>
                     </div>
                     <!-- Portfolio Item Devoluciones-->
@@ -89,12 +89,12 @@
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><p>Devoluciones</p></i></div>
                             </div>
-                            <img class="img-fluid" th:src="@{/img/return.png}" alt="" />
+                            <img class="img-personalized" th:src="@{/img/return.png}" alt="" />
                         </div>
                     </div>
                     <!-- Portfolio Item Reportes-->
                       <div class="portfolio-item mx-auto" data-toggle="modal" >
-                        <a class="btn btn-primary btn-xl js-scroll-trigger" href="">Reportes</a>
+                        <a class="btn btn-primary btn-m js-scroll-trigger" href="">Reportes</a>
                       </div>
                       
                   </div>
@@ -102,7 +102,31 @@
             </div>
         </section>
        
-
+        <!-- About Section-->
+        <section class="page-section bg-primary text-white mb-0" id="modelos">
+            <div class="container">
+                <!-- About Section Heading-->
+                <h2 class="page-section-heading text-center text-uppercase text-white">Modelos</h2>
+                <!-- Icon Divider-->
+                <div class="divider-custom divider-light">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-circle"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+                <!-- About Section Content-->
+                <div class="row">
+                    <div class="col-lg-4 ml-auto"><p class="lead1">INVENTARIOS</p>
+                        <a class="btn btn-outline-secondary btn-xl js-scroll-trigger" href="">Entrada de inventario</a>
+                        <a class="btn btn-outline-secondary btn-xl js-scroll-trigger" href="">Salida de inventario</a>
+                        <a class="btn btn-outline-secondary btn-xl js-scroll-trigger" href="">Generación Kardex</a>
+                    </div>
+                    <div class="col-lg-4 mr-auto"><p class="lead1">INFORMES</p>
+                        <a class="btn btn-outline-secondary btn-xl js-scroll-trigger" href="">Estado de situación financiera</a>
+                        <a class="btn btn-outline-secondary btn-xl js-scroll-trigger" href="">Estado de perdidas y ganancias</a>
+                    </div>
+                </div>
+            </div>
+        </section>
         
         <!-- Copyright Section-->
         <section class="copyright py-4 text-center text-white">
