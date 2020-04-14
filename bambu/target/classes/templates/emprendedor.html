@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -30,7 +30,7 @@
         <!-- Masthead-->
         <header class="masthead bg-primary text-white text-center">
             <div class="container d-flex align-items-center flex-column">
-                <!-- Masthead Avatar Image--><img class="masthead-avatar mb-5" src="assets/img/bambu.svg" alt="" /><!-- Masthead Heading-->
+                <!-- Masthead Avatar Image--><img class="masthead-avatar mb-5" th:src="@{/img/bambu.svg}" alt="" /><!-- Masthead Heading-->
                 <h1 class="masthead-heading text-uppercase mb-0">Bienvenido Emprendedor</h1>
                 <!-- Icon Divider-->
                 <div class="divider-custom divider-light">
@@ -61,7 +61,8 @@
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><p>Facturas de venta</p></div>
                             </div>
-                            <img class="img-fluid" src="assets/img/portfolio/bill.png" alt="" />
+                            <img class="img-fluid" th:src="@{/img/bill.png}" alt="" />
+                        
                         </div>
                     </div>
                     <!-- Portfolio Item Comprobantes de pago-->
@@ -70,7 +71,7 @@
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><p>Comprobantes de egreso</p></div>
                             </div>
-                            <img class="img-fluid" src="assets/img/portfolio/pencil.png" alt="" />
+                            <img class="img-fluid" th:src="@{/img/pencil.png}" alt="" />
                         </div>
                     </div>
                     <!-- Portfolio Item Recibos de caja-->
@@ -79,7 +80,7 @@
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><p>Recibos de caja </div>
                             </div>
-                            <img class="img-fluid" src="assets/img/portfolio/basket.png" alt="" />
+                            <img class="img-fluid" th:src="@{/img/basket.png}" alt="" />
                         </div>
                     </div>
                     <!-- Portfolio Item Devoluciones-->
@@ -88,7 +89,7 @@
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><p>Devoluciones</p></i></div>
                             </div>
-                            <img class="img-fluid" src="assets/img/portfolio/return.png" alt="" />
+                            <img class="img-fluid" th:src="@{/img/return.png}" alt="" />
                         </div>
                     </div>
                     <!-- Portfolio Item Reportes-->
