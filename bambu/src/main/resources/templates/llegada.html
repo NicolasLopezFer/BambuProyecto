@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Bambú</title>
+  
+	<!--JQUERY-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    <!-- FRAMEWORK BOOTSTRAP para el estilo de la pagina-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    
+    <!-- Los iconos tipo Solid de Fontawesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+    <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+	
+	<!-- Custom styles for this template -->
+	<link href="static/css/scrolling-nav.css" th:href="@{/css/scrolling-nav.css}" rel="stylesheet">
+	
+	<!-- Plugin JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+
+    <!-- Custom JavaScript for this theme -->
+    <script src="js/scrolling-nav.js"></script>
+    
+    <!-- Nuestro css-->
+    <link rel="stylesheet" type="text/css" href="static/css/index.css" th:href="@{/css/index.css}">
+	<link rel="stylesheet" type="text/css" href="static/css/user-form.css" th:href="@{/css/user-form.css}">
+
+</head>
+
+<body id="page-top">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-white bg-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">
+      	<img src="static/img/bambulogo_horiz_sinfondo.png" th:src="@{/img/bambulogo_horiz_sinfondo.png}" width="140" height="70" class="d-inline-block align-top" alt="?">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#Ingreso">Ingreso</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#Conocenos">Conocenos</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+<section id="Ingreso">
+  <header class="bg-success text-white">
+  	<div class="container">
+	  	<div class="row">
+	  		<div class="col-md-6"> 
+	            <h1 class="display-4">Bienvenido a Bambú</h1>
+	            <p class="lead">Software de finanzas y soporte para particulares</p>
+	        </div>
+		    <div class="col-md-6">
+				<div>
+					<p class="h3">Ingresa</p><br>
+				</div>
+				<div>
+				    <!-- Button trigger modal -->
+					<button type="button" id="botonlogin" class="btn btn-primary" onclick="botonlogin()">
+						  Iniciar Sesion
+					</button>
+						
+					<!-- Modal -->
+					<div class="modal fade" id="loginModal">
+							<div class="modal-dialog text-center">
+					            <div class="col-sm-8 main-section">
+					                <div class="modal-content">
+					                	<div class= "modal-body">
+						                    
+						                </div>    
+					                </div>
+					            </div>
+	   					 	</div>
+	    			</div>
+	    			<script>
+	    			function botonlogin(){
+						    $('.modal-body').load('/login',function(){
+						        $('#loginModal').modal({show:true});
+						    });
+	    			}
+					</script>
+	    		</div>
+	    		<div>
+	    			<!-- Button trigger modal -->
+					<button type="button" id="botonregister" class="btn btn-primary" onclick="botonregister()">
+						  Registrarse
+					</button>
+						
+					<!-- Modal -->
+					<div class="modal fade" id="registerModal">
+							<div class="modal-dialog text-center">
+					            <div class="col-sm-8 main-section">
+					                <div class="modal-content">
+						                <div class="modal-body">
+						                </div>
+					                </div>
+					            </div>
+					        </div>
+					</div> 
+					<script>
+					function botonregister(){
+					    $('.modal-body').load('/register',function(){
+					        $('#registerModal').modal({show:true});
+					    });
+    				}
+					</script>
+				</div>               
+			</div>
+		 </div>
+	</div>	 
+  </header>
+</section>
+
+
+  <section id="Conocenos">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <h2>¿Que es Bambú?</h2>
+          <p class="lead">Software contable para el manejo de finanzas personales y pequeñas empresas familiares</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; PANDA 2020</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+
+
+  <!-- Plugin JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+
+  <!-- Custom JavaScript for this theme -->
+  <script src="js/scrolling-nav.js"></script>
+
+</body>
+
+</html>
