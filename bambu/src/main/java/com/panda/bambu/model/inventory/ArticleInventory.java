@@ -25,5 +25,69 @@ public class ArticleInventory {
  
     @OneToMany()
     private Set<Inventory> inventories;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Article getArticle() {
+        return article;
+    }
+
+    public void setArticle(Article article) {
+        this.article = article;
+    }
+
+    public Set<Inventory> getInventories() {
+        return inventories;
+    }
+
+    public void setInventories(Set<Inventory> inventories) {
+        this.inventories = inventories;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((article == null) ? 0 : article.hashCode());
+        result = prime * result + id;
+        result = prime * result + ((inventories == null) ? 0 : inventories.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        ArticleInventory other = (ArticleInventory) obj;
+        if (article == null) {
+            if (other.article != null)
+                return false;
+        } else if (!article.equals(other.article))
+            return false;
+        if (id != other.id)
+            return false;
+        if (inventories == null) {
+            if (other.inventories != null)
+                return false;
+        } else if (!inventories.equals(other.inventories))
+            return false;
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "ArticleInventory [article=" + article + ", id=" + id + ", inventories=" + inventories + "]";
+    }
+    
     
 }
