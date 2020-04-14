@@ -62,6 +62,14 @@ public class UserController {
 		return modelAndView;
 	}
 
+	@RequestMapping(value = "/emprendedor", method = RequestMethod.GET)
+	public ModelAndView emprendedorHome() {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("emprendedor"); // resources/template/emprendedor.html
+		return modelAndView;
+	}
+
+
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public ModelAndView home() {
 		ModelAndView modelAndView = new ModelAndView();
