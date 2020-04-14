@@ -13,7 +13,7 @@ import javax.persistence.OneToOne;
 import com.panda.bambu.model.article.Article;
 
 @Entity
-public class ArticleInvetory {
+public class ArticleInventory {
     
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,6 +24,6 @@ public class ArticleInvetory {
     private Article article;
  
     @OneToMany()
-    private Set<Inventory> roles;
+    private Set<Inventory> inventories;
     
 }
