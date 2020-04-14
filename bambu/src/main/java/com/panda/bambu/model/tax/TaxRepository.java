@@ -1,4 +1,4 @@
-package com.panda.bambu.model.sale_bill;
+package com.panda.bambu.model.tax;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

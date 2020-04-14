@@ -1,4 +1,4 @@
-package com.panda.bambu.model.sale_bill;
+package com.panda.bambu.model.tax;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
