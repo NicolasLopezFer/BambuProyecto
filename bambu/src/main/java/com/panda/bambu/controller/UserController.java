@@ -40,7 +40,7 @@ public class UserController {
 	
 	@RequestMapping({"/"})
 		public String llegada() {
-			return "llegada";
+			return "inventario";
 		}
 	
 	@RequestMapping(value = { "/login" }, method = RequestMethod.GET)
@@ -68,6 +68,13 @@ public class UserController {
 		modelAndView.setViewName("home"); // resources/template/home.html
 		return modelAndView;
 	}
+
+	@RequestMapping(value = "/inventario", method = RequestMethod.GET)
+	public ModelAndView inventarioHome() {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("inventario"); // resources/template/inventario.html
+		return modelAndView;
+	}
 	
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
 	public ModelAndView adminHome() {
@@ -75,6 +82,8 @@ public class UserController {
 		modelAndView.setViewName("admin"); // resources/template/admin.html
 		return modelAndView;
 	}
+
+	
 
 	@RequestMapping(value="/register", method=RequestMethod.POST)
 	public ModelAndView registerUser(@Valid User user, BindingResult bindingResult, ModelMap modelMap) {
