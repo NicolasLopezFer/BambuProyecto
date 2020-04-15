@@ -6,5 +6,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ArticleInventoryRepository extends JpaRepository<ArticleInventory, Long> {
+    public ArticleInventory findByCode(String code);
 
+    public Boolean contains(ArticleInventory article);
+
+    public ArticleInventory merge(ArticleInventory article);
 }
