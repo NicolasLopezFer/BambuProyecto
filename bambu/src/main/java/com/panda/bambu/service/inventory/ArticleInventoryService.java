@@ -23,67 +23,92 @@ public class ArticleInventoryService {
         return articleIRepository.findById(id).get();
     }
         
-    public ArticleInventory findByArticle(Article article){
-         return articleIRepository.findByArticle(article);
+    public ArticleInventory findByCode(Article article){
+         return articleIRepository.findByCode(article.getCode());
     }
     
     public List<ArticleInventory> findAll(){
         return articleIRepository.findAll();        
     }
-    
-    public void create(Article article){
-      
-        if(article !=null){
 
-           ArticleInventory newArticle = new ArticleInventory();
-           newArticle.setArticle(article);    
-           articleIRepository.save(newArticle);            
+    public Boolean create(Article article) {
+       
+        if(articleIRepository.findByCode(article.getCode()) != null){
+            if(article !=null){
+                ArticleInventory newArticle = new ArticleInventory();
+                newArticle.setCode(article.getCode());
+                newArticle.setArticle(article);    
+                articleIRepository.save(newArticle);
+                return true;            
+            }
         }
-      
-    }
+        return false;    
+	}
     
-    public void create(Long articleId){
+    public boolean create(Long articleId){
         
         Article article = articleService.findById(articleId);
 
-        if(article !=null){
-
-            ArticleInventory newArticle = new ArticleInventory();
-            newArticle.setArticle(article);    
-            articleIRepository.save(newArticle);            
-         }
+        if(articleIRepository.findByCode(article.getCode()) != null){
+            if(article !=null){
+                ArticleInventory newArticle = new ArticleInventory();
+                newArticle.setCode(article.getCode());
+                newArticle.setArticle(article);    
+                articleIRepository.save(newArticle);
+                return true;
+            }
+        }
+        return false;
 
     }
 
-    public void create(String codeId){
+    public boolean create(String codeId){
         
         Article article = articleService.findByCode(codeId);
+        if(articleIRepository.findByCode(article.getCode()) != null){
+            if(article !=null){
 
-        if(article !=null){
-
-            ArticleInventory newArticle = new ArticleInventory();
-            newArticle.setArticle(article);    
-            articleIRepository.save(newArticle);            
-         }
+                ArticleInventory newArticle = new ArticleInventory();
+                newArticle.setCode(article.getCode());
+                newArticle.setArticle(article);    
+                articleIRepository.save(newArticle);            
+            }
+            return true;
+        }
+        return false;
 
     }
+    
+    public boolean delete(String code){
+          
+         ArticleInventory article = articleIRepository.findByCode(code);
+         if( article != null){
+             articleIRepository.delete(article);
+             return true;
+         } 
 
-    public void delete(Article article){
+         return false;
+   }
+
+    public boolean delete(Article article){
           
          for (ArticleInventory element: articleIRepository.findAll()){
               if(element.getArticle().equals(article)){
                  articleIRepository.delete(element);
+                 return true;
               }
          }
-         
+         return false;
     }
 
-    public void delete(Long id){
+    public boolean delete(Long id){
 
          ArticleInventory article = findById(id);
          if( article != null){
              articleIRepository.delete(article);
+             return true;
          } 
+         return false;
     }
 
     public void deleteAll(){

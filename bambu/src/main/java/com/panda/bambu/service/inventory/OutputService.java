@@ -32,17 +32,30 @@ public class OutputService {
          return outputRepository.findAll();
      }
 
-     public void create(String code, String detail, int quantity, double unitCost, double totalCost, Article article){
-          
-        if(!code.isEmpty() && quantity >= 0 && unitCost > 0.0 && totalCost > 0.0 && article != null ){
-            Output newOutput = new Output(code, detail, quantity, unitCost, totalCost);
-            newOutput.setArticle(article);
-            outputRepository.save(newOutput);
-        }
+     public boolean isOutputAlreadyPresent(Output output) {
+		Output outputFound = outputRepository.findByCode(output.getCode());
+		if (outputFound==null) 
+			return false;
+		return true;
+     }
+
+     public boolean create(String code, String detail, int quantity, double unitCost, double totalCost, Article article){
+      
+       if(outputRepository.findByCode(code) == null && articleService.isArticleAlreadyPresent(article)){
+           if(!code.isEmpty() && quantity >= 0 && unitCost > 0.0 && totalCost > 0.0 && article != null ){
+               Output newOutput = new Output(code, detail, quantity, unitCost, totalCost);
+               newOutput.setArticle(article);
+               outputRepository.save(newOutput);
+               return true;
+
+            }
+       }
+    
+       return false;
 
      }
 
-    public void create(String code, String detail, int quantity, double unitCost, double totalCost, Long articleId){
+    public boolean create(String code, String detail, int quantity, double unitCost, double totalCost, Long articleId){
             
         Article article = articleService.findById(articleId);
           
@@ -50,11 +63,14 @@ public class OutputService {
             Output newOutput = new Output(code, detail, quantity, unitCost, totalCost);
             newOutput.setArticle(article);
             outputRepository.save(newOutput);
+            return true;
         }
+
+        return false;
 
     }
 
-    public void create(String code, String detail, int quantity, double unitCost, double totalCost, String articleCode){
+    public boolean create(String code, String detail, int quantity, double unitCost, double totalCost, String articleCode){
             
         Article article = articleService.findByCode(articleCode);
       
@@ -62,16 +78,30 @@ public class OutputService {
             Output newOutput = new Output(code, detail, quantity, unitCost, totalCost);
             newOutput.setArticle(article);
             outputRepository.save(newOutput);
+            return true;
         }
 
+        return false;
+
     }
 
-    public void delete(Long id){
-        outputRepository.deleteById(id);
+    public boolean delete(Long id){
+
+        if(outputRepository.findById(id) != null){
+           outputRepository.deleteById(id);
+           return true;
+        }
+        return false;
     }
     
-    public void delete(Output output){
-        outputRepository.delete(output);
+    public boolean delete(Output output){
+
+        if(outputRepository.findById(output.getId()) != null){
+           outputRepository.delete(output);
+           return true;
+        }
+
+        return false;
     }
 
     public void deleteAll(){

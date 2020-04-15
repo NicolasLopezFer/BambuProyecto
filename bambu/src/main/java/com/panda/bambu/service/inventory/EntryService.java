@@ -31,18 +31,28 @@ public class EntryService {
      public List<Entry> findAll(){
          return entryRepository.findAll();
      }
-
-     public void create(String code, String detail, int quantity, double unitCost, double totalCost, Article article){
-          
-        if(!code.isEmpty() && quantity >= 0 && unitCost > 0.0 && totalCost > 0.0 && article != null ){
-            Entry newEntry = new Entry(code, detail, quantity, unitCost, totalCost);
-            newEntry.setArticle(article);
-            entryRepository.save(newEntry);
-        }
-
+     
+     public boolean isEntryAlreadyPresent(Entry entry) {
+		Entry entryFound = entryRepository.findByCode(entry.getCode());
+		if (entryFound==null) 
+			return false;
+		return true;
      }
 
-    public void create(String code, String detail, int quantity, double unitCost, double totalCost, Long articleId){
+     public boolean create(String code, String detail, int quantity, double unitCost, double totalCost, Article article){
+        if(article != null){
+            if(!code.isEmpty() && quantity >= 0 && unitCost > 0.0 && totalCost > 0.0 && articleService.isArticleAlreadyPresent(article)){
+                Entry newEntry = new Entry(code, detail, quantity, unitCost, totalCost);
+                newEntry.setArticle(article);
+                entryRepository.save(newEntry);
+                return true;
+            }
+        }
+
+        return false;
+     }
+
+    public boolean create(String code, String detail, int quantity, double unitCost, double totalCost, Long articleId){
             
         Article article = articleService.findById(articleId);
           
@@ -50,11 +60,14 @@ public class EntryService {
             Entry newEntry = new Entry(code, detail, quantity, unitCost, totalCost);
             newEntry.setArticle(article);
             entryRepository.save(newEntry);
+            return true;
         }
+
+        return false;
 
     }
 
-    public void create(String code, String detail, int quantity, double unitCost, double totalCost, String articleCode){
+    public boolean create(String code, String detail, int quantity, double unitCost, double totalCost, String articleCode){
             
         Article article = articleService.findByCode(articleCode);
       
@@ -62,19 +75,35 @@ public class EntryService {
             Entry newEntry = new Entry(code, detail, quantity, unitCost, totalCost);
             newEntry.setArticle(article);
             entryRepository.save(newEntry);
+            return true;
+        }
+        
+        return false;
+
+    }
+
+    public boolean delete(Long id){
+
+        if(entryRepository.existsById(id)){
+           entryRepository.deleteById(id);
+           return true;
         }
 
-    }
-
-    public void delete(Long id){
-        entryRepository.deleteById(id);
+        return false;
     }
     
-    public void delete(Entry entry){
-        entryRepository.delete(entry);
+    public boolean delete(Entry entry){
+
+        if(entry != null && entryRepository.findByCode(entry.getCode()) != null){
+           entryRepository.delete(entry);
+           return true;
+        }
+
+        return false;
+        
     }
 
-    public void deleteAll(){
+    public void deleteAllEntries(){
         entryRepository.deleteAll();
     }
 
