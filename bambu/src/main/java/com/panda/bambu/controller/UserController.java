@@ -55,12 +55,20 @@ public class UserController {
 		ModelAndView modelAndView = new ModelAndView();
 		User user = new User();
 		List<Role> rols = roleRepository.findAll();
-		rols.remove(2);
+		rols.remove(0);
 		modelAndView.addObject("roles",rols);
 		modelAndView.addObject("user", user);
 		modelAndView.setViewName("./user-form/register-form"); // resources/template/register.html
 		return modelAndView;
 	}
+
+	@RequestMapping(value = "/emprendedor", method = RequestMethod.GET)
+	public ModelAndView emprendedorHome() {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("emprendedor"); // resources/template/emprendedor.html
+		return modelAndView;
+	}
+
 
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public ModelAndView home() {
