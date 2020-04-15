@@ -7,8 +7,9 @@ import org.springframework.stereotype.Repository;
 public interface ArticleRepository extends JpaRepository<Article, Long> {
     public Article findByCode(String code);
 
-    public Boolean contains(Article article);
+    //public Boolean contains(Article article);
+    
 
-    public Article merge(Article article);
+    //public Article merge(Article article);
 }
 

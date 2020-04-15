@@ -5,10 +5,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
 
-@Entity   
+@Entity 
+@Table(
+        uniqueConstraints=
+            @UniqueConstraint(columnNames={"code"})
+    )  
 public class Article {
 
     @Id
@@ -16,9 +22,8 @@ public class Article {
 	@Column(name = "id")
     private int id;
     
-    @Id
     @NotNull(message="Code is compulsory")
-	@Column(name = "code")
+    @Column(name = "code", unique=true)
     private String code;
     
     @NotNull(message="Name is compulsory")

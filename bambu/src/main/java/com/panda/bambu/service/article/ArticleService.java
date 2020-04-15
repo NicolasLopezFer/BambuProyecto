@@ -44,9 +44,9 @@ public class ArticleService {
     }
 
     public Boolean deleteArticle(Article articulo) {
-        if(articuloRepository.contains(articulo)){
+        if(isArticleAlreadyPresent(articulo)){
             articuloRepository.delete(articulo);
-            ArticleInventory articuloInventory=articuloInventoryRepository.findByCode(articulo.getCode());
+            ArticleInventory articuloInventory=articuloInventoryRepository.findByArticle(articulo);
             if(articuloInventory!=null){
                 for(Inventory i:articuloInventory.getInventories()){
                     for(Entry e:i.getEntries()){

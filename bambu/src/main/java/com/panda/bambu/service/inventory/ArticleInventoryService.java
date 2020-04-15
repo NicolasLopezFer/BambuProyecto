@@ -29,17 +29,18 @@ public class ArticleInventoryService {
 	}
 
 	public Boolean isArticleAlreadyPresent(ArticleInventory articuloInventory) {
-		ArticleInventory articleInventoryFound = articuloInventoryRepository.findByCode(articuloInventory.getArticle().getCode());
+		ArticleInventory articleInventoryFound = articuloInventoryRepository.findByArticle(articuloInventory.getArticle());
 		if (articleInventoryFound==null) 
 			return false;
 		return true;
     }
 
     public Boolean deleteArticleInventory(ArticleInventory articuloInventory) {
-        if(articuloInventoryRepository.contains(articuloInventory)){
+        if(isArticleAlreadyPresent(articuloInventory)){
             articuloInventoryRepository.delete(articuloInventory);
-            if (articuloRepository.contains(articuloInventory.getArticle())){
-                articuloRepository.delete(articuloInventory.getArticle());
+            Article articulo=articuloRepository.findByCode(articuloInventory.getArticle().getCode());
+            if (articulo!=null){
+                articuloRepository.delete(articulo);
                 return true;
             }     
         }
@@ -61,7 +62,7 @@ public class ArticleInventoryService {
         item.quantity = newQuantity;*/
         // You don't even need to call save(), JPA provider/Hibernate will do it automatically
 
-        ArticleInventory articleInventoryFound = articuloInventoryRepository.findByCode(articulo_inventory_new.getArticle().getCode());
+        ArticleInventory articleInventoryFound = articuloInventoryRepository.findByArticle(articulo_inventory_new.getArticle());
         if (articleInventoryFound!=null){
             articleInventoryFound.setArticle(articulo_inventory_new.getArticle());
             articleInventoryFound.setInventories(articulo_inventory_new.getInventories());

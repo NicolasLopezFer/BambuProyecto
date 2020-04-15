@@ -6,11 +6,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
 import com.panda.bambu.model.article.Article;
 
 @Entity
+@Table(
+        uniqueConstraints=
+            @UniqueConstraint(columnNames={"code"})
+    )  
 public class Balance {
 
     @Id
@@ -19,7 +25,7 @@ public class Balance {
     private int id;
     
     @NotNull(message="Code is compulsory")
-	@Column(name = "code")
+	@Column(name = "code", unique=true)
     private String code;
     
     @NotNull(message="Quantity is compulsory")
