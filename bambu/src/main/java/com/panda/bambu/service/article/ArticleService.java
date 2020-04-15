@@ -97,5 +97,24 @@ public class ArticleService {
             return true;
         }   
         return false;
+    }
+    
+    public Boolean createArticle(String code,String name,int quantity,double unitCost,double totalCost,double salePrice) {
+        Article articulo=articuloRepository.findByCode(code);
+        if(articulo==null){
+            //Article articulo_new=new Article();
+            if (code.matches(".*[a-z].*")){
+                Article articulo_new=new Article();
+                articulo_new.setCode(code);
+                articulo_new.setName(name);
+                articulo_new.setQuantity(quantity);
+                articulo_new.setUnitCost(unitCost);
+                articulo_new.setTotalCost(totalCost);
+                articulo_new.setSalePrice(salePrice);
+                articuloRepository.save(articulo_new);
+                return true;
+            }
+        }
+        return false;    
 	}
 }

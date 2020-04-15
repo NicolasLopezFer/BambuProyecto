@@ -16,6 +16,7 @@ public class Article {
 	@Column(name = "id")
     private int id;
     
+    @Id
     @NotNull(message="Code is compulsory")
 	@Column(name = "code")
     private String code;
@@ -151,6 +152,22 @@ public class Article {
         return "Article [code=" + code + ", id=" + id + ", name=" + name + ", quantity=" + quantity + ", salePrice="
                 + salePrice + ", totalCost=" + totalCost + ", unitCost=" + unitCost + "]";
     }
+
+    public Article(@NotNull(message = "Code is compulsory") String code,
+            @NotNull(message = "Name is compulsory") String name,
+            @NotNull(message = "Sale Price is compulsory") double salePrice) {
+        this.code = code;
+        this.name = name;
+        this.salePrice = salePrice;
+        this.quantity=0;
+        this.unitCost=0.0;
+        this.totalCost=0.0;
+    }
+
+    public Article() {
+    }
+    
+    
     
 
 }
