@@ -5,6 +5,7 @@ import java.util.List;
 import com.panda.bambu.model.article.Article;
 import com.panda.bambu.model.inventory.ArticleInventory;
 import com.panda.bambu.model.inventory.ArticleInventoryRepository;
+import com.panda.bambu.service.article.ArticleService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,30 +16,56 @@ public class ArticleInventoryService {
     @Autowired
     private ArticleInventoryRepository articleIRepository;
 
-    public ArticleInventory findById(Long id){
+    @Autowired
+	ArticleService articleService;
 
+    public ArticleInventory findById(Long id){
         return articleIRepository.findById(id).get();
     }
         
     public ArticleInventory findByArticle(Article article){
-          
          return articleIRepository.findByArticle(article);
     }
     
     public List<ArticleInventory> findAll(){
-
         return articleIRepository.findAll();        
     }
-
+    
     public void create(Article article){
       
-      if(article !=null){
+        if(article !=null){
 
            ArticleInventory newArticle = new ArticleInventory();
            newArticle.setArticle(article);    
            articleIRepository.save(newArticle);            
-       }
+        }
       
+    }
+    
+    public void create(Long articleId){
+        
+        Article article = articleService.findById(articleId);
+
+        if(article !=null){
+
+            ArticleInventory newArticle = new ArticleInventory();
+            newArticle.setArticle(article);    
+            articleIRepository.save(newArticle);            
+         }
+
+    }
+
+    public void create(String codeId){
+        
+        Article article = articleService.findByCode(codeId);
+
+        if(article !=null){
+
+            ArticleInventory newArticle = new ArticleInventory();
+            newArticle.setArticle(article);    
+            articleIRepository.save(newArticle);            
+         }
+
     }
 
     public void delete(Article article){
@@ -58,5 +85,8 @@ public class ArticleInventoryService {
              articleIRepository.delete(article);
          } 
     }
-         
+
+    public void deleteAll(){
+        articleIRepository.deleteAll();
+    }
 }
