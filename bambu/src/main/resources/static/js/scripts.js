@@ -69,15 +69,14 @@
   
   })(jQuery); // End of use strict
 
-  function alerta()
-  {
 
-    if (confirm ('¿Seguro desea guardar esta información?') )
-    {
-        alert("Inventario actualziado");
-    } 
-    else 
-    {
-      alert("Operación cancelada");
-    }
+  
+  function mensajeConfirmacion()
+  {
+    swal({
+      title: 'Mensaje',
+      text: 'Datos almacenados satisfactoriamente',
+      html: '<p>Mensaje de texto con <strong>formato</strong>.</p>',
+      type: 'success',
+    });
   }
