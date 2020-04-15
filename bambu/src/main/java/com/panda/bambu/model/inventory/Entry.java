@@ -46,6 +46,10 @@ public class Entry {
     
     @ManyToOne()
     private Article article;
+    
+    public Entry(){
+        date = LocalDate.now();
+    }
 
     public int getId() {
         return id;

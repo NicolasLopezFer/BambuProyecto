@@ -1,5 +1,6 @@
 package com.panda.bambu.model.inventory;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -18,19 +19,24 @@ public class ArticleInventory {
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-    private int id;
+    private long id;
     
     @OneToOne()
     private Article article;
  
     @OneToMany()
     private Set<Inventory> inventories;
+    
+    public ArticleInventory(){
+        
+         inventories = new HashSet<Inventory>(); 
+    }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -55,7 +61,7 @@ public class ArticleInventory {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((article == null) ? 0 : article.hashCode());
-        result = prime * result + id;
+        result = prime * result + (int) (id ^ (id >>> 32));
         result = prime * result + ((inventories == null) ? 0 : inventories.hashCode());
         return result;
     }
@@ -88,6 +94,7 @@ public class ArticleInventory {
     public String toString() {
         return "ArticleInventory [article=" + article + ", id=" + id + ", inventories=" + inventories + "]";
     }
+
     
     
 }

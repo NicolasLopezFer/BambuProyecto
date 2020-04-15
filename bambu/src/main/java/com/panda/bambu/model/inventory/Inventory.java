@@ -1,6 +1,7 @@
 package com.panda.bambu.model.inventory;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -37,6 +38,14 @@ public class Inventory {
     
     @OneToMany()
     private Set<Balance> balances;
+    
+    public Inventory(){
+        
+        date = LocalDate.now();
+        outputs = new HashSet<Output>();
+        entries = new HashSet<Entry>();
+        balances = new HashSet<Balance>(); 
+    }
 
     public int getId() {
         return id;
