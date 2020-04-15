@@ -5,10 +5,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
 
-@Entity   
+@Entity 
+@Table(
+        uniqueConstraints=
+            @UniqueConstraint(columnNames={"code"})
+    )  
 public class Article {
 
     @Id
@@ -17,7 +23,7 @@ public class Article {
     private int id;
     
     @NotNull(message="Code is compulsory")
-	@Column(name = "code")
+    @Column(name = "code", unique=true)
     private String code;
     
     @NotNull(message="Name is compulsory")
@@ -151,6 +157,22 @@ public class Article {
         return "Article [code=" + code + ", id=" + id + ", name=" + name + ", quantity=" + quantity + ", salePrice="
                 + salePrice + ", totalCost=" + totalCost + ", unitCost=" + unitCost + "]";
     }
+
+    public Article(@NotNull(message = "Code is compulsory") String code,
+            @NotNull(message = "Name is compulsory") String name,
+            @NotNull(message = "Sale Price is compulsory") double salePrice) {
+        this.code = code;
+        this.name = name;
+        this.salePrice = salePrice;
+        this.quantity=0;
+        this.unitCost=0.0;
+        this.totalCost=0.0;
+    }
+
+    public Article() {
+    }
+    
+    
     
 
 }
