@@ -18,7 +18,7 @@ public class Entry {
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-    private int id;
+    private Long id;
     
     @NotNull(message="Code is compulsory")
 	@Column(name = "code")
@@ -46,16 +46,25 @@ public class Entry {
     
     @ManyToOne()
     private Article article;
+
+    public Entry(String code, String detail, int quantity, double unitCost, double totalCost){
+           this.code = code;
+           date = LocalDate.now();
+           this.detail = detail;
+           this.quantity = quantity;
+           this.unitCost = unitCost;
+           this.totalCost = totalCost;
+    }
     
     public Entry(){
         date = LocalDate.now();
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -123,7 +132,7 @@ public class Entry {
         result = prime * result + ((code == null) ? 0 : code.hashCode());
         result = prime * result + ((date == null) ? 0 : date.hashCode());
         result = prime * result + ((detail == null) ? 0 : detail.hashCode());
-        result = prime * result + id;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + quantity;
         long temp;
         temp = Double.doubleToLongBits(totalCost);
@@ -162,7 +171,10 @@ public class Entry {
                 return false;
         } else if (!detail.equals(other.detail))
             return false;
-        if (id != other.id)
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
             return false;
         if (quantity != other.quantity)
             return false;
@@ -179,5 +191,5 @@ public class Entry {
                 + ", quantity=" + quantity + ", totalCost=" + totalCost + ", unitCost=" + unitCost + "]";
     }
    
-         
+    
 }

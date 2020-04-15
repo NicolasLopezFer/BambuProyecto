@@ -28,6 +28,11 @@ public class Balance {
     
     @ManyToOne()
     private Article article;
+    
+   public Balance(int quantity, double totalCost ){
+       this.quantity = quantity;
+       this.totalCost = totalCost;
+   }
 
     public Long getId() {
         return id;
