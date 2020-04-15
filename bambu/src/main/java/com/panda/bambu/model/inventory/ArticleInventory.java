@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
 
 import com.panda.bambu.model.article.Article;
 
@@ -20,6 +21,11 @@ public class ArticleInventory {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
     private long id;
+
+  
+    @NotNull(message="Quantity is compulsory")
+	@Column(name = "code", unique=true)
+    private String code;
     
     @OneToOne()
     private Article article;
@@ -38,6 +44,14 @@ public class ArticleInventory {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public Article getArticle() {
@@ -61,6 +75,7 @@ public class ArticleInventory {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((article == null) ? 0 : article.hashCode());
+        result = prime * result + ((code == null) ? 0 : code.hashCode());
         result = prime * result + (int) (id ^ (id >>> 32));
         result = prime * result + ((inventories == null) ? 0 : inventories.hashCode());
         return result;
@@ -80,6 +95,11 @@ public class ArticleInventory {
                 return false;
         } else if (!article.equals(other.article))
             return false;
+        if (code == null) {
+            if (other.code != null)
+                return false;
+        } else if (!code.equals(other.code))
+            return false;
         if (id != other.id)
             return false;
         if (inventories == null) {
@@ -89,12 +109,10 @@ public class ArticleInventory {
             return false;
         return true;
     }
-
+   
     @Override
     public String toString() {
-        return "ArticleInventory [article=" + article + ", id=" + id + ", inventories=" + inventories + "]";
+        return "ArticleInventory [article=" + article + ", code=" + code + ", id=" + id + ", inventories=" + inventories
+                + "]";
     }
-
-    
-    
 }

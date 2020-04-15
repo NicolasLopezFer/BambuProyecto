@@ -21,7 +21,7 @@ public class Output {
     private Long id;
     
     @NotNull(message="Code is compulsory")
-	@Column(name = "code")
+	@Column(name = "code", unique=true)
     private String code;
     
     @NotNull(message="Date is compulsory")

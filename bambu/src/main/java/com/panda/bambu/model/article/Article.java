@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
 
@@ -17,7 +18,7 @@ public class Article {
     private Long id;
     
     @NotNull(message="Code is compulsory")
-	@Column(name = "code")
+	@Column(name = "code", unique=true)
     private String code;
     
     @NotNull(message="Name is compulsory")

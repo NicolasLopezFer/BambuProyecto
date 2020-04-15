@@ -7,5 +7,8 @@ import org.springframework.stereotype.Repository;
 public interface ArticleRepository extends JpaRepository<Article, Long> {
          
       public Article findByCode(String code);
+
+     
+
 }
 
