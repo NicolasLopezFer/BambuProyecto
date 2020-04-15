@@ -19,6 +19,7 @@
         }
       }
     });
+
   
     // Scroll to top button appear
     $(document).scroll(function() {
@@ -67,4 +68,16 @@
     });
   
   })(jQuery); // End of use strict
-  
+
+  function alerta()
+  {
+
+    if (confirm ('¿Seguro desea guardar esta información?') )
+    {
+        alert("Inventario actualziado");
+    } 
+    else 
+    {
+      alert("Operación cancelada");
+    }
+  }
