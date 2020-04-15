@@ -19,6 +19,7 @@
         }
       }
     });
+
   
     // Scroll to top button appear
     $(document).scroll(function() {
@@ -67,4 +68,24 @@
     });
   
   })(jQuery); // End of use strict
+
+
   
+  function mensajeConfirmacionSalida() {
+
+    swal({
+      title: 'Confirmacion',
+      text: 'Datos almacenados correctamente',
+      html: '<p><strong>Datos almacenados correctamente</strong>.</p>',
+      type: 'success',
+    });
+  }
+  function mensajeConfirmacion()
+  {
+    swal({
+      title: 'Mensaje',
+      text: 'Datos almacenados satisfactoriamente',
+      html: '<p>Mensaje de texto con <strong>formato</strong>.</p>',
+      type: 'success',
+    });
+  }
