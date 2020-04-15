@@ -40,7 +40,7 @@ public class UserController {
 	
 	@RequestMapping({"/"})
 		public String llegada() {
-			return "inventario";
+			return "salidaInv";
 		}
 	
 	@RequestMapping(value = { "/login" }, method = RequestMethod.GET)
