@@ -55,17 +55,46 @@ public class UserController {
 		ModelAndView modelAndView = new ModelAndView();
 		User user = new User();
 		List<Role> rols = roleRepository.findAll();
-		rols.remove(2);
+		rols.remove(0);
 		modelAndView.addObject("roles",rols);
 		modelAndView.addObject("user", user);
 		modelAndView.setViewName("./user-form/register-form"); // resources/template/register.html
 		return modelAndView;
 	}
 
+	@RequestMapping(value = "/emprendedor", method = RequestMethod.GET)
+	public ModelAndView emprendedorHome() {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("emprendedor"); // resources/template/emprendedor.html
+		return modelAndView;
+	}
+
+
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public ModelAndView home() {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("home"); // resources/template/home.html
+		return modelAndView;
+	}
+
+	@RequestMapping(value = "/inventario", method = RequestMethod.GET)
+	public ModelAndView inventarioHome() {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("inventario"); // resources/template/inventario.html
+		return modelAndView;
+	}
+
+	@RequestMapping(value = "/entradaInv", method = RequestMethod.GET)
+	public ModelAndView entradaInvHome() {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("entradaInv"); // resources/template/entradaInv.html
+		return modelAndView;
+	}
+
+	@RequestMapping(value = "/salidaInv", method = RequestMethod.GET)
+	public ModelAndView salidaInvHome() {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("salidaInv"); // resources/template/entradaInv.html
 		return modelAndView;
 	}
 	
@@ -75,6 +104,8 @@ public class UserController {
 		modelAndView.setViewName("admin"); // resources/template/admin.html
 		return modelAndView;
 	}
+
+	
 
 	@RequestMapping(value="/register", method=RequestMethod.POST)
 	public ModelAndView registerUser(@Valid User user, BindingResult bindingResult, ModelMap modelMap) {
