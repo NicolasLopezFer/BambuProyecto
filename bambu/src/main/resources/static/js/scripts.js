@@ -71,6 +71,15 @@
 
 
   
+  function mensajeConfirmacionSalida() {
+
+    swal({
+      title: 'Confirmacion',
+      text: 'Datos almacenados correctamente',
+      html: '<p><strong>Datos almacenados correctamente</strong>.</p>',
+      type: 'success',
+    });
+  }
   function mensajeConfirmacion()
   {
     swal({
