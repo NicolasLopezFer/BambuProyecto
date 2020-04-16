@@ -36,7 +36,7 @@
                 <!-- Portfolio Section Heading-->
                 <p>  </p>
                 <p>  </p>
-                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">inventarios</h2>
+                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Kardex</h2>
                 <!-- Icon Divider-->
                 <div class="divider-custom">
                     <div class="divider-custom-line"></div>
@@ -51,6 +51,13 @@
                     <div class="form-group pull-right">
                         <input type="text" class="search form-control" placeholder="¿Qué buscas?">
                     </div>
+
+                    <div class="text-center col-md-4"></div>
+                    <div class="text-center col-md-4">
+                        
+                    </div>
+                    <div class="text-center col-md-4"></div>
+
                     <span class="counter pull-right"></span>
                     <table class="table table-hover table-bordered results">
                       <thead>
@@ -58,14 +65,14 @@
                             <th>Código</th>
                             <th>Fecha</th>
                             <th>Detalle</th>
-                            <th>Cantidad</th>
-                            <th>Costo unitario</th>
-                            <th>Costo total</th>
-                            <th>Cantidad</th>
-                            <th>Costo unitario</th>
-                            <th>Costo total</th>
-                            <th>Cantidad</th>
-                            <th>Costo total</th>
+                            <th>Cantidad (Entrada)</th>
+                            <th>Costo unitario (Entrada)</th>
+                            <th>Costo total (Entrada)</th>
+                            <th>Cantidad (Salida)</th>
+                            <th>Costo unitario (Salida)</th>
+                            <th>Costo total (Salida)</th>
+                            <th>Cantidad (Saldos)</th>
+                            <th>Costo total (Saldos)</th>
                         </tr>
                       </thead>
                       <!--Información base de datos-->
@@ -83,10 +90,13 @@
                         <td></td>
                       </tbody>
                     </table>
-                    
-                    <div class="form-group"><button onclick="mensajeConfirmacionKardex()" class="btn btn-primary" id="sendMessageButton" type="button">Aceptar</button></div>
-                      
-                  </div>
+                </div>
+                <div class="row">
+                    <div class="text-center col-md-4"></div>
+                    <div class="text-center col-md-4"></div>
+                    <div class="text-center col-md-4">
+                        <div class="form-group"><button onclick="window.location.href='emprendedor';" class="btn btn-primary" id="sendMessageButton" type="button">Aceptar</button></div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -111,6 +121,8 @@
         <script src="assets/mail/contact_me.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
+        <!-- Core sweet alert -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 
     </body>
 </html>
