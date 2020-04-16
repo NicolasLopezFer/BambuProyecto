@@ -1,6 +1,7 @@
 package com.panda.bambu.model.inventory;
 
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,24 +14,29 @@ import javax.persistence.OneToOne;
 import com.panda.bambu.model.article.Article;
 
 @Entity
-public class ArticleInventory {
+public class ArticleInventory{
     
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-    private int id;
+    private long id;  
     
     @OneToOne()
     private Article article;
  
     @OneToMany()
-    private Set<Inventory> inventories;
+    private List<Inventory> inventories;
+    
+    public ArticleInventory(){
+        
+         inventories = new ArrayList<Inventory>(); 
+    }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -42,11 +48,11 @@ public class ArticleInventory {
         this.article = article;
     }
 
-    public Set<Inventory> getInventories() {
+    public List<Inventory> getInventories() {
         return inventories;
     }
 
-    public void setInventories(Set<Inventory> inventories) {
+    public void setInventories(List<Inventory> inventories) {
         this.inventories = inventories;
     }
 
@@ -55,7 +61,7 @@ public class ArticleInventory {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((article == null) ? 0 : article.hashCode());
-        result = prime * result + id;
+        result = prime * result + (int) (id ^ (id >>> 32));
         result = prime * result + ((inventories == null) ? 0 : inventories.hashCode());
         return result;
     }
@@ -83,11 +89,10 @@ public class ArticleInventory {
             return false;
         return true;
     }
-
+   
     @Override
     public String toString() {
-        return "ArticleInventory [article=" + article + ", id=" + id + ", inventories=" + inventories + "]";
+        return "ArticleInventory [article=" + article + ", id=" + id + ", inventories=" + inventories
+                + "]";
     }
-    
-    
 }

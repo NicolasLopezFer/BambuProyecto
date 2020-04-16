@@ -1,7 +1,8 @@
 package com.panda.bambu.model.return_articles;
 
 import java.time.LocalDate;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,7 +24,7 @@ public class ReturnArticles {
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-    private int id;
+    private Long id;
     
     @NotNull(message="Code is compulsory")
 	@Column(name = "code", unique=true)
@@ -50,13 +51,18 @@ public class ReturnArticles {
     private Boolean buyReturn;
 
     @OneToMany()
-    private Set<ArticleReturn> articles;
+    private List<ArticleReturn> articles;
 
-    public int getId() {
+    public ReturnArticles(){
+        articles = new ArrayList<ArticleReturn>();
+
+    }
+    
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -108,11 +114,11 @@ public class ReturnArticles {
         this.buyReturn = buyReturn;
     }
 
-    public Set<ArticleReturn> getArticles() {
+    public List<ArticleReturn> getArticles() {
         return articles;
     }
 
-    public void setArticles(Set<ArticleReturn> articles) {
+    public void setArticles(List<ArticleReturn> articles) {
         this.articles = articles;
     }
 
@@ -125,7 +131,6 @@ public class ReturnArticles {
         result = prime * result + ((code == null) ? 0 : code.hashCode());
         result = prime * result + ((customer_name == null) ? 0 : customer_name.hashCode());
         result = prime * result + ((date == null) ? 0 : date.hashCode());
-        result = prime * result + id;
         result = prime * result + ((idCustomer == null) ? 0 : idCustomer.hashCode());
         result = prime * result + ((saleReturn == null) ? 0 : saleReturn.hashCode());
         return result;
