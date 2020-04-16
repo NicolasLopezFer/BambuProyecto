@@ -141,13 +141,18 @@ public class UserController {
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/entradaInv", method = RequestMethod.POST)
-	public ModelAndView entradaInventario(@Valid Inventory inventory) {
-		ModelAndView modelAndView = new ModelAndView();
-		//Check for de inventory
-		if(inventoryService.isInventory)
-		modelAndView.setViewName("entradaInv"); // resources/template/entradaInv.html
-		return modelAndView;
-	}
+	//@RequestMapping(value = "/entradaInv", method = RequestMethod.POST)
+	//public ModelAndView entradaInventario(@Valid Inventory inventory) {
+	//	ModelAndView modelAndView = new ModelAndView();
+	//	//Check for de inventory
+	//	if(inventoryService.isInventoryAlredyPresent(inventory)){
+	//		modelAndView.addObject("successMessage", "Error: Este codigo de entrada ya existe");
+	//	} else{
+	//		inventoryService.saveInventory(inventory);
+	//		modelAndView.addObject("successMessage", "Entrada registrada correctamente.");
+	//	}
+	//	modelAndView.setViewName("entradaInv"); // resources/template/entradaInv.html
+	//	return modelAndView;
+	//}
 
 }
