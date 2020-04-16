@@ -109,6 +109,7 @@ public class Entry {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+        this.quantityMethod = quantity;
     }
 
     public int getQuantityMethod() {
