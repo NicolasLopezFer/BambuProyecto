@@ -94,7 +94,7 @@
 
     swal({
       title: 'Mensaje',
-      text: 'Datos almacenados correctamente',
+      text: 'Datos almacenados satisfactoriamente',
       html: '<p><strong>Datos almacenados correctamente</strong>.</p>',
       type: 'success',
     });
