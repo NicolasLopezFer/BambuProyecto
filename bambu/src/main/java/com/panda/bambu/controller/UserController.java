@@ -8,7 +8,10 @@ import javax.validation.Valid;
 import com.panda.bambu.model.Role;
 import com.panda.bambu.model.RoleRepository;
 import com.panda.bambu.model.User;
+import com.panda.bambu.model.inventory.Inventory;
+import com.panda.bambu.model.inventory.InventoryRepository;
 import com.panda.bambu.service.UserService;
+import com.panda.bambu.service.inventory.InventoryService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,6 +40,12 @@ public class UserController {
 
 	@Autowired
 	RoleRepository roleRepository;
+
+	@Autowired
+	InventoryService inventoryService;
+
+	@Autowired
+	InventoryRepository invenRepository;
 	
 	@RequestMapping({"/"})
 		public String llegada() {
@@ -80,6 +89,8 @@ public class UserController {
 	@RequestMapping(value = "/inventario", method = RequestMethod.GET)
 	public ModelAndView inventarioHome() {
 		ModelAndView modelAndView = new ModelAndView();
+		List<Inventory> inven = invenRepository.findAll();
+		modelAndView.addObject("inventory", inven);
 		modelAndView.setViewName("inventario"); // resources/template/inventario.html
 		return modelAndView;
 	}
@@ -87,6 +98,7 @@ public class UserController {
 	@RequestMapping(value = "/entradaInv", method = RequestMethod.GET)
 	public ModelAndView entradaInvHome() {
 		ModelAndView modelAndView = new ModelAndView();
+		Inventory inventory = new Inventory();
 		modelAndView.setViewName("entradaInv"); // resources/template/entradaInv.html
 		return modelAndView;
 	}
@@ -126,6 +138,15 @@ public class UserController {
 		modelAndView.addObject("user", new User());
 		modelAndView.addObject("roles",roleRepository.findAll());
 		modelAndView.setViewName("./user-form/register-form");
+		return modelAndView;
+	}
+
+	@RequestMapping(value = "/entradaInv", method = RequestMethod.POST)
+	public ModelAndView entradaInventario(@Valid Inventory inventory) {
+		ModelAndView modelAndView = new ModelAndView();
+		//Check for de inventory
+		if(inventoryService.isInventory)
+		modelAndView.setViewName("entradaInv"); // resources/template/entradaInv.html
 		return modelAndView;
 	}
 
