@@ -8,14 +8,20 @@ import javax.validation.Valid;
 import com.panda.bambu.model.Role;
 import com.panda.bambu.model.RoleRepository;
 import com.panda.bambu.model.User;
+import com.panda.bambu.model.article.ArticleRepository;
 import com.panda.bambu.service.UserService;
+import com.panda.bambu.service.article.ArticleService;
+import com.panda.bambu.service.return_articles.ArticleReturnService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -37,6 +43,12 @@ public class UserController {
 
 	@Autowired
 	RoleRepository roleRepository;
+	
+	@Autowired
+	ArticleService articleService;
+	
+	@Autowired
+	ArticleRepository articleRepository;
 	
 	@RequestMapping({"/"})
 		public String llegada() {
@@ -68,7 +80,18 @@ public class UserController {
 		modelAndView.setViewName("emprendedor"); // resources/template/emprendedor.html
 		return modelAndView;
 	}
-
+	
+	@RequestMapping(value = "/articulos", method = RequestMethod.GET)
+	public ModelAndView articulos(@RequestParam(defaultValue="0") int page) {
+		ModelAndView modelAndView = new ModelAndView();
+		Pageable paginacion = PageRequest.of(page, 10);
+		modelAndView.addObject("articulosEmpresa",articleRepository.findAll(paginacion));
+		modelAndView.addObject("paginaActual",page);
+		modelAndView.setViewName("articulos"); // resources/template/articulos.html
+		return modelAndView;
+	}
+	
+	
 
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public ModelAndView home() {
