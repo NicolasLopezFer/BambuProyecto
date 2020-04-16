@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
 
@@ -50,6 +49,14 @@ public class Article {
          quantity = 0;
          unitCost = 0.0;
          totalCost = 0.0;
+
+    }
+
+    public Article(){
+         
+        quantity = 0;
+        unitCost = 0.0;
+        totalCost = 0.0;
 
     }
 

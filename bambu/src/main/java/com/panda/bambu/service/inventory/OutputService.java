@@ -41,8 +41,8 @@ public class OutputService {
 
      public boolean create(String code, String detail, int quantity, double unitCost, double totalCost, Article article){
       
-       if(outputRepository.findByCode(code) == null && articleService.isArticleAlreadyPresent(article)){
-           if(!code.isEmpty() && quantity >= 0 && unitCost > 0.0 && totalCost > 0.0 && article != null ){
+       if(outputRepository.findByCode(code) == null && article != null && articleService.isArticleAlreadyPresent(article)){
+           if(!code.isEmpty() && quantity >= 0 && unitCost > 0.0 && totalCost > 0.0 && articleService.isArticleAlreadyPresent(article)){
                Output newOutput = new Output(code, detail, quantity, unitCost, totalCost);
                newOutput.setArticle(article);
                outputRepository.save(newOutput);
@@ -55,32 +55,13 @@ public class OutputService {
 
      }
 
-    public boolean create(String code, String detail, int quantity, double unitCost, double totalCost, Long articleId){
-            
-        Article article = articleService.findById(articleId);
-          
-        if(!code.isEmpty() && quantity >= 0 && unitCost > 0.0 && totalCost > 0.0 && article != null ){
-            Output newOutput = new Output(code, detail, quantity, unitCost, totalCost);
-            newOutput.setArticle(article);
-            outputRepository.save(newOutput);
+     public boolean create(Output output){
+                 
+        if(output != null && outputRepository.findByCode(output.getCode()) == null && articleService.isArticleAlreadyPresent(output.getArticle())){
+            outputRepository.save(output);
             return true;
         }
-
-        return false;
-
-    }
-
-    public boolean create(String code, String detail, int quantity, double unitCost, double totalCost, String articleCode){
-            
-        Article article = articleService.findByCode(articleCode);
-      
-        if(!code.isEmpty() && quantity >= 0 && unitCost > 0.0 && totalCost > 0.0 && article != null ){
-            Output newOutput = new Output(code, detail, quantity, unitCost, totalCost);
-            newOutput.setArticle(article);
-            outputRepository.save(newOutput);
-            return true;
-        }
-
+        
         return false;
 
     }
@@ -102,6 +83,17 @@ public class OutputService {
         }
 
         return false;
+    }
+    
+    public boolean save(Output output){
+       
+        if(output != null && outputRepository.findByCode(output.getCode()) != null){
+            outputRepository.save(output);
+            return true;
+         }
+
+        return false;
+
     }
 
     public void deleteAll(){

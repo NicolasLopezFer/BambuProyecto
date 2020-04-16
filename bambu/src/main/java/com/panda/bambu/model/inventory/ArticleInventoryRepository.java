@@ -8,8 +8,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ArticleInventoryRepository extends JpaRepository<ArticleInventory, Long> {
-              
-       public ArticleInventory findByCode(String code);
 
        public ArticleInventory findByArticle(Article article);
        

@@ -56,6 +56,11 @@ public class Output {
         this.totalCost = totalCost;
     }
 
+    public Output(){
+        date = LocalDate.now();
+
+    }
+
     public Long getId() {
         return id;
     }

@@ -35,6 +35,10 @@ public class Entry {
     @NotNull(message="Quantity is compulsory")
 	@Column(name = "quantity")
     private int quantity;
+
+    @NotNull(message="Quantity Method is compulsory")
+	@Column(name = "quantity_method")
+    private int quantityMethod;
     
     @NotNull(message="Unit Cost is compulsory")
 	@Column(name = "unit_cost")
@@ -54,6 +58,7 @@ public class Entry {
            this.quantity = quantity;
            this.unitCost = unitCost;
            this.totalCost = totalCost;
+           this.quantityMethod = quantity;
     }
     
     public Entry(){
@@ -100,6 +105,14 @@ public class Entry {
         this.quantity = quantity;
     }
 
+    public int getQuantityMethod() {
+        return quantityMethod;
+    }
+
+    public void setQuantityMethod(int quantityMethod) {
+        this.quantityMethod = quantityMethod;
+    }
+
     public double getUnitCost() {
         return unitCost;
     }
@@ -134,6 +147,7 @@ public class Entry {
         result = prime * result + ((detail == null) ? 0 : detail.hashCode());
         result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + quantity;
+        result = prime * result + quantityMethod;
         long temp;
         temp = Double.doubleToLongBits(totalCost);
         result = prime * result + (int) (temp ^ (temp >>> 32));
@@ -178,6 +192,8 @@ public class Entry {
             return false;
         if (quantity != other.quantity)
             return false;
+        if (quantityMethod != other.quantityMethod)
+            return false;
         if (Double.doubleToLongBits(totalCost) != Double.doubleToLongBits(other.totalCost))
             return false;
         if (Double.doubleToLongBits(unitCost) != Double.doubleToLongBits(other.unitCost))
@@ -188,8 +204,8 @@ public class Entry {
     @Override
     public String toString() {
         return "Entry [article=" + article + ", code=" + code + ", date=" + date + ", detail=" + detail + ", id=" + id
-                + ", quantity=" + quantity + ", totalCost=" + totalCost + ", unitCost=" + unitCost + "]";
+                + ", quantity=" + quantity + ", quantityMethod=" + quantityMethod + ", totalCost=" + totalCost
+                + ", unitCost=" + unitCost + "]";
     }
-   
-    
+        
 }

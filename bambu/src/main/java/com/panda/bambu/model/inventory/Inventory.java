@@ -1,8 +1,9 @@
 package com.panda.bambu.model.inventory;
 
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,7 +21,7 @@ public class Inventory {
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-    private int id;
+    private long id;
     
     @NotNull(message="Date is compulsory")
     @Column(name = "date")
@@ -28,30 +29,30 @@ public class Inventory {
 
     @NotNull(message="Measure Method is compulsory")
     @Column(name = "measure_method")
-    private MeasureMethod measureMethod;
+    private String measureMethod;
 
     @OneToMany()
-    private Set<Entry> entries;
+    private List<Entry> entries;
     
     @OneToMany()
-    private Set<Output> outputs;
+    private List<Output> outputs;
     
     @OneToMany()
-    private Set<Balance> balances;
+    private List<Balance> balances;
     
     public Inventory(){
         
         date = LocalDate.now();
-        outputs = new HashSet<Output>();
-        entries = new HashSet<Entry>();
-        balances = new HashSet<Balance>(); 
+        outputs = new ArrayList<Output>();
+        entries = new ArrayList<Entry>();
+        balances = new ArrayList<Balance>(); 
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -63,35 +64,35 @@ public class Inventory {
         this.date = date;
     }
 
-    public MeasureMethod getMeasureMethod() {
+    public String getMeasureMethod() {
         return measureMethod;
     }
 
-    public void setMeasureMethod(MeasureMethod measureMethod) {
+    public void setMeasureMethod(String measureMethod) {
         this.measureMethod = measureMethod;
     }
 
-    public Set<Entry> getEntries() {
+    public List<Entry> getEntries() {
         return entries;
     }
 
-    public void setEntries(Set<Entry> entries) {
+    public void setEntries(List<Entry> entries) {
         this.entries = entries;
     }
 
-    public Set<Output> getOutputs() {
+    public List<Output> getOutputs() {
         return outputs;
     }
 
-    public void setOutputs(Set<Output> outputs) {
+    public void setOutputs(List<Output> outputs) {
         this.outputs = outputs;
     }
 
-    public Set<Balance> getBalances() {
+    public List<Balance> getBalances() {
         return balances;
     }
 
-    public void setBalances(Set<Balance> balances) {
+    public void setBalances(List<Balance> balances) {
         this.balances = balances;
     }
 
@@ -102,7 +103,7 @@ public class Inventory {
         result = prime * result + ((balances == null) ? 0 : balances.hashCode());
         result = prime * result + ((date == null) ? 0 : date.hashCode());
         result = prime * result + ((entries == null) ? 0 : entries.hashCode());
-        result = prime * result + id;
+        result = prime * result + (int) (id ^ (id >>> 32));
         result = prime * result + ((measureMethod == null) ? 0 : measureMethod.hashCode());
         result = prime * result + ((outputs == null) ? 0 : outputs.hashCode());
         return result;
@@ -134,7 +135,10 @@ public class Inventory {
             return false;
         if (id != other.id)
             return false;
-        if (measureMethod != other.measureMethod)
+        if (measureMethod == null) {
+            if (other.measureMethod != null)
+                return false;
+        } else if (!measureMethod.equals(other.measureMethod))
             return false;
         if (outputs == null) {
             if (other.outputs != null)
@@ -150,6 +154,5 @@ public class Inventory {
                 + ", measureMethod=" + measureMethod + ", outputs=" + outputs + "]";
     }
 
-    
 
 }

@@ -35,6 +35,17 @@ public class BalanceService {
 		return true;
     }
 
+    public boolean create(Balance balance, Article article){
+        
+        if(articleService.findById(article.getId()) != null){
+           balance.setArticle(article);
+           balanceRepository.save(balance);
+           return true;
+        }
+
+        return false;
+    }
+
     public boolean create(int quantity, double totalCost, Article article){
       
         if(article != null){
@@ -47,20 +58,6 @@ public class BalanceService {
         }
         return false;
 
-    }
-
-    public boolean create(int quantity, double totalCost, Long articleId){
-        
-        Article article = articleService.findById(articleId);
-
-        if(quantity >= 0 && totalCost >= 0 && article != null){
-           Balance newBalance = new Balance(quantity,totalCost);
-           newBalance.setArticle(article);
-           balanceRepository.save(newBalance);
-           return true;
-        }
-
-        return false;
     }
 
     public boolean create(int quantity, double totalCost, String articleCode){
