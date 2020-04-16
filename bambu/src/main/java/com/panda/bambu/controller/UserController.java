@@ -95,10 +95,13 @@ public class UserController {
 	@RequestMapping(value = "/articulos-salvar", method = RequestMethod.POST)
 	public ModelAndView salvarArticulo(Article a) {
 		ModelAndView modelAndView = new ModelAndView();
+		//articleRepository.save(a);
 		if(articleService.saveArticle(a)) {
 			modelAndView.addObject("responseMessage", "Articulo guardado Exitosamente!");	
+			System.out.println("Articulo guardado Exitosamente!");
 		}else {
 			modelAndView.addObject("responseMessage", "Existen errores al guardar el articulo");
+			System.out.println("NO SE GUARDO");
 		}
 		modelAndView.setViewName("articulos");
 		return modelAndView;

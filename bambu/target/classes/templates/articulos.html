@@ -78,17 +78,17 @@
 			<div class="row">
 				<div class="text-center col-md-12">
 					<!-- Portfolio Item Nuevo Articulo-->
-					<!--<a class="btn btn-primary btn-m js-scroll-trigger nBtn"><i
-						class="fas fa-plus"></i> Nuevo Articulo </a>-->
+					<a class="btn btn-primary btn-m js-scroll-trigger nBtn"><i
+						class="fas fa-plus"></i> Nuevo Articulo </a>
 					<!-- Button trigger modal -->
-					<button type="button" id="botonNuevoArticulo" class="btn btn-primary" onclick="botonArticulo()">
+					<!--<button type="button" id="botonNuevoArticulo" class="btn btn-primary" onclick="botonArticulo()">
 						  Nuevo Articulo
 					</button>
 	    			<script>
 	    			function botonArticulo(){
 	    				location.href = "/nuevoArticulo";
 	    			}
-					</script>
+					</script>-->
 				</div>
 
 				<!-- Portfolio tabla Busqueda-->
@@ -113,13 +113,13 @@
 					<!--Información base de datos-->
 					<tbody>
 						<tr th:each="articulo : ${articulosEmpresa.content}">
-							<td th:text="{articulo.code"></td>
-							<td th:text="{articulo.name"></td>
-							<td th:text="{articulo.quantity"></td>
-							<td th:text="{articulo.unit_cost"></td>
-							<td th:text="{articulo.total_cost"></td>
-							<td th:text="{articulo.sale_price"></td>
-							<td><a th:href="@{articulos-encontraruno/(code=${articulo.code})}" class="btn btn-primary eBtn"></a></td>
+							<td th:text="${articulo.code}"></td>
+							<td th:text="${articulo.name}"></td>
+							<td th:text="${articulo.quantity}"></td>
+							<td th:text="${articulo.unitCost}"></td>
+							<td th:text="${articulo.totalCost}"></td>
+							<td th:text="${articulo.salePrice}"></td>
+							<td><a th:href="@{articulos-encontraruno/(code=${articulo.code})}" class="btn btn-primary eBtn">Editar</a></td>
 						</tr>
 					</tbody>
 				</table>
@@ -158,23 +158,23 @@
 								</div>
 								<div class="form-group">
 									<label for="quantity" class="col-form-label">Cantidad:</label>
-									<input type="text" class="form-control" id="quantity"
+									<input type="number" class="form-control" id="quantity"
 										name="quantity" value="" />
 								</div>
 								<div class="form-group">
-									<label for="unit_cost" class="col-form-label">Costo
-										Unitario:</label> <input type="text" class="form-control"
-										id="unit_cost" name="unit_cost" value="" />
+									<label for="unitCost" class="col-form-label">Costo
+										Unitario:</label> <input type="number" class="form-control"
+										id="unitCost" name="unitCost" value="" />
 								</div>
 								<div class="form-group">
-									<label for="total_cost" class="col-form-label">Costo
-										Total:</label> <input type="text" class="form-control" id="total_cost"
-										name="total_cost" value="" />
+									<label for="totalCost" class="col-form-label">Costo
+										Total:</label> <input type="number" class="form-control" id="totalCost"
+										name="totalCost" value="" />
 								</div>
 								<div class="form-group">
-									<label for="sale_price" class="col-form-label">Precio
-										de venta:</label> <input type="text" class="form-control"
-										id="sale_price" name="sale_price" value="" />
+									<label for="salePrice" class="col-form-label">Precio
+										de venta:</label> <input type="number" class="form-control"
+										id="salePrice" name="salePrice" value="" />
 								</div>
 							</div>
 							<div class="modal-footer">
@@ -212,12 +212,12 @@
 										name="name" value="" />
 								</div>
 								<div class="form-group">
-									<label for="sale_price" class="col-form-label">Precio
-										de venta:</label> <input type="text" class="form-control"
-										id="sale_price" name="sale_price" value="" />
+									<label for="salePrice" class="col-form-label">Precio
+										de venta:</label> <input type="number" class="form-control"
+										id="salePrice" name="salePrice" value="" />
 								</div>
 							</div>
-							<span th:utext="${responseMessage}"></span>
+							
 							<div class="modal-footer">
 								<button type="button" class="btn btn-secondary"
 									data-dismiss="modal">Close</button>
