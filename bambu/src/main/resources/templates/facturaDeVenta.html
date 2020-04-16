@@ -68,15 +68,17 @@
                         </div>
                     </div>
                     <div class="text-center col-md-6">
+                        Fecha
                         <div class="control-group">
                             <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                                <label>Fecha</label><input class="form-control" id="fechaFacturaDeVenta" type="date" placeholder="Fecha" required="required" data-validation-required-message="Por favor ingrese fecha." />
+                                <label></label><input class="form-control" id="fechaFacturaDeVenta" type="date" required="required" data-validation-required-message="Por favor ingrese fecha." />
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
+                        Vencimiento
                         <div class="control-group">
                             <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                                <label>Vencimiento</label><input class="form-control" id="fechaVencimiento" type="date" placeholder="Vencimiento" required="required" data-validation-required-message="Por favor ingrese fecha." />
+                                <label></label><input class="form-control" id="fechaVencimiento" type="date" placeholder="Vencimiento"/>
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
@@ -104,10 +106,26 @@
                       <!--Información base de datos-->
                       <tbody>
                         <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                       </tbody>
                     </table>
                       
                   </div>
+                </div>
+                <!-- Portfolio total y aceptar-->
+                <div class="row">
+                    <div class="text-center col-md-4"></div>
+                    <div class="text-center col-md-4"></div>
+                    <div class="text-center col-md-4">
+                        <p class="masthead-subheading font-weight-light mb-0">Total</p>
+                        <p>  </p>
+                        <div class="form-group"><button onclick="mensajeConfirmacionFacturaDeVenta()" class="btn btn-primary" id="sendMessageButton" type="button">Aceptar</button></div>
+                    </div>
                 </div>
             </div>
         </section>

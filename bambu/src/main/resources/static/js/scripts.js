@@ -74,9 +74,9 @@
   function mensajeConfirmacionSalida() {
 
     swal({
-      title: 'Confirmacion',
-      text: 'Datos almacenados correctamente',
-      html: '<p><strong>Datos almacenados correctamente</strong>.</p>',
+      title: 'Mensaje',
+      text: 'Datos almacenados satisfactoriamente',
+      html: '<p>Mensaje de texto con <strong>formato</strong>.</p>',
       type: 'success',
     });
   }
@@ -86,6 +86,16 @@
       title: 'Mensaje',
       text: 'Datos almacenados satisfactoriamente',
       html: '<p>Mensaje de texto con <strong>formato</strong>.</p>',
+      type: 'success',
+    });
+  }
+
+  function mensajeConfirmacionFacturaDeVenta() {
+
+    swal({
+      title: 'Mensaje',
+      text: 'Datos almacenados correctamente',
+      html: '<p><strong>Datos almacenados correctamente</strong>.</p>',
       type: 'success',
     });
   }
