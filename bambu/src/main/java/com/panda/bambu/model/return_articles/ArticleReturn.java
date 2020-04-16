@@ -16,7 +16,7 @@ public class ArticleReturn {
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-    private int id;
+    private Long id;
             
     @NotNull(message="Quantity is compulsory")
 	@Column(name = "quantity")
@@ -37,11 +37,15 @@ public class ArticleReturn {
     @ManyToOne()
     private Article article;
 
-    public int getId() {
+    public ArticleReturn(){
+
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -90,7 +94,6 @@ public class ArticleReturn {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((article == null) ? 0 : article.hashCode());
-        result = prime * result + id;
         result = prime * result + ((motive == null) ? 0 : motive.hashCode());
         result = prime * result + ((nSale == null) ? 0 : nSale.hashCode());
         result = prime * result + quantity;
