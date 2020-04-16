@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import com.panda.bambu.model.Role;
 import com.panda.bambu.model.RoleRepository;
 import com.panda.bambu.model.User;
+import com.panda.bambu.model.article.Article;
 import com.panda.bambu.model.article.ArticleRepository;
 import com.panda.bambu.service.UserService;
 import com.panda.bambu.service.article.ArticleService;
@@ -22,6 +23,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -84,15 +86,49 @@ public class UserController {
 	@RequestMapping(value = "/articulos", method = RequestMethod.GET)
 	public ModelAndView articulos(@RequestParam(defaultValue="0") int page) {
 		ModelAndView modelAndView = new ModelAndView();
-		Pageable paginacion = PageRequest.of(page, 10);
-		modelAndView.addObject("articulosEmpresa",articleRepository.findAll(paginacion));
+		modelAndView.addObject("articulosEmpresa",articleRepository.findAll(PageRequest.of(page, 10)));
 		modelAndView.addObject("paginaActual",page);
 		modelAndView.setViewName("articulos"); // resources/template/articulos.html
 		return modelAndView;
 	}
 	
+	@RequestMapping(value = "/articulos-salvar", method = RequestMethod.POST)
+	public ModelAndView salvarArticulo(Article a) {
+		ModelAndView modelAndView = new ModelAndView();
+		if(articleService.saveArticle(a)) {
+			modelAndView.addObject("responseMessage", "Articulo guardado Exitosamente!");	
+		}else {
+			modelAndView.addObject("responseMessage", "Existen errores al guardar el articulo");
+		}
+		modelAndView.setViewName("articulos");
+		return modelAndView;
+	}
 	
-
+	@RequestMapping(value = "/articulos-borrar", method = RequestMethod.POST)
+	public ModelAndView borrarArticulo(Article a) {
+		ModelAndView modelAndView = new ModelAndView();
+		if(articleService.deleteArticle(a)) {
+			modelAndView.addObject("responseMessage", "Articulo borrado Exitosamente!");	
+		}else {
+			modelAndView.addObject("responseMessage", "Existen errores al guardar el articulo");
+		}
+		modelAndView.setViewName("articulos");
+		return modelAndView;
+	}
+	
+	@RequestMapping(value = "/articulos-encontraruno", method = RequestMethod.POST)
+	@ResponseBody
+	public Article encontrarArticulo(String code) {
+		return articleRepository.findByCode(code);
+	}
+	
+	@RequestMapping(value = { "/nuevoArticulo" }, method = RequestMethod.GET)
+	public ModelAndView nuevoArticulo() {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("./crearArticulo"); // resources/template/login.html
+		return modelAndView;
+	}
+	
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public ModelAndView home() {
 		ModelAndView modelAndView = new ModelAndView();

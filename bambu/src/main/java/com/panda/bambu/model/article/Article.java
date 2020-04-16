@@ -169,7 +169,10 @@ public class Article {
         this.totalCost=0.0;
     }
 
-    public Article() {
+	public Article() {
+		this.quantity = 0;
+		this.unitCost = 0.0;
+		this.totalCost = 0.0;
     }
     
     

@@ -7,18 +7,28 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 <title>Articulos</title>
+
+<!--JQUERY-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
 <!-- Font Awesome icons (free version)-->
 <script src="https://use.fontawesome.com/releases/v5.12.1/js/all.js"
 	crossorigin="anonymous"></script>
+	
 <!-- Google fonts-->
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet" type="text/css" />
 <link
 	href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic"
 	rel="stylesheet" type="text/css" />
+	
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="css/styles.css" rel="stylesheet" />
+
+<!-- Nuestro JS articulos -->
+<script type="text/javascript" th:src="@{/js/articulos.js}" src="static/js/articulos.js"></script>
 </head>
+
 <body id="page-top">
 	<!-- Navigation-->
 	<nav
@@ -68,9 +78,17 @@
 			<div class="row">
 				<div class="text-center col-md-12">
 					<!-- Portfolio Item Nuevo Articulo-->
-					<a class="btn btn-primary btn-m js-scroll-trigger"><i
-						class="fas fa-plus"></i> Nuevo Articulo </a>
-
+					<!--<a class="btn btn-primary btn-m js-scroll-trigger nBtn"><i
+						class="fas fa-plus"></i> Nuevo Articulo </a>-->
+					<!-- Button trigger modal -->
+					<button type="button" id="botonNuevoArticulo" class="btn btn-primary" onclick="botonArticulo()">
+						  Nuevo Articulo
+					</button>
+	    			<script>
+	    			function botonArticulo(){
+	    				location.href = "/nuevoArticulo";
+	    			}
+					</script>
 				</div>
 
 				<!-- Portfolio tabla Busqueda-->
@@ -84,7 +102,8 @@
 					<thead>
 						<tr>
 							<th>Código</th>
-							<th>Articulo</th>
+							<th>Nombre Articulo</th>
+							<th>Cantidad</th>
 							<th>Costo Unitario</th>
 							<th>Costo Total</th>
 							<th>Precio de venta</th>
@@ -93,58 +112,125 @@
 					</thead>
 					<!--Información base de datos-->
 					<tbody>
-						<tr th:each="articulo : ${articulosEmpresa}">
-							<td th:text= "{articulo.code"></td>
-							<td th:text= "{articulo.name"></td>
-							<td th:text= "{articulo.unit_cost"></td>
-							<td th:text= "{articulo.total_cost"></td>
-							<td th:text= "{articulo.sale_price"></td>
+						<tr th:each="articulo : ${articulosEmpresa.content}">
+							<td th:text="{articulo.code"></td>
+							<td th:text="{articulo.name"></td>
+							<td th:text="{articulo.quantity"></td>
+							<td th:text="{articulo.unit_cost"></td>
+							<td th:text="{articulo.total_cost"></td>
+							<td th:text="{articulo.sale_price"></td>
+							<td><a th:href="@{articulos-encontraruno/(code=${articulo.code})}" class="btn btn-primary eBtn"></a></td>
 						</tr>
 					</tbody>
 				</table>
-				<!--<ul class="nav nav-pills">
-				<li class="nav-item" th:each="i : ${#numbers.sequence(0,articulosEmpresa.totalPages)"></li>
-				</ul>-->
-
+				<ul class="nav nav-pills">
+					<li class="nav-item"
+						th:each="i: ${#numbers.sequence(0,articulosEmpresa.totalPages-1)}">
+						<a th:href="@{/(page=${i})}" th:text="@{i}" class="nav-link"
+						th:classappend="${paginaActual}==${i}?'active':''"></a>
+					</li>
+				</ul>
 			</div>
 		</div>
-		<div>
-			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-				aria-labelledby="exampleModalLabel" aria-hidden="true">
-				<div class="modal-dialog" role="document">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title" id="exampleModalLabel">New message</h5>
-							<button type="button" class="close" data-dismiss="modal"
-								aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-						</div>
-						<div class="modal-body">
-							<form>
+		<div class="editForm">
+			<form th:action="@{/articulos-salvar}" method="post">
+				<div class="modal fade" id="editModal" tabindex="-1" role="dialog"
+					aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLabel">Editar</h5>
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
 								<div class="form-group">
-									<label for="recipient-name" class="col-form-label">Recipient:</label>
-									<input type="text" class="form-control" id="recipient-name">
+									<label for="code" class="col-form-label">Codigo:</label> <input
+										type="text" class="form-control" id="code" name="code"
+										value="" />
 								</div>
 								<div class="form-group">
-									<label for="message-text" class="col-form-label">Message:</label>
-									<textarea class="form-control" id="message-text"></textarea>
+									<label for="name" class="col-form-label">Nombre
+										Articulo:</label> <input type="text" class="form-control" id="name"
+										name="name" value="" />
 								</div>
-							</form>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary"
-								data-dismiss="modal">Close</button>
-							<button type="button" class="btn btn-primary">Send
-								message</button>
+								<div class="form-group">
+									<label for="quantity" class="col-form-label">Cantidad:</label>
+									<input type="text" class="form-control" id="quantity"
+										name="quantity" value="" />
+								</div>
+								<div class="form-group">
+									<label for="unit_cost" class="col-form-label">Costo
+										Unitario:</label> <input type="text" class="form-control"
+										id="unit_cost" name="unit_cost" value="" />
+								</div>
+								<div class="form-group">
+									<label for="total_cost" class="col-form-label">Costo
+										Total:</label> <input type="text" class="form-control" id="total_cost"
+										name="total_cost" value="" />
+								</div>
+								<div class="form-group">
+									<label for="sale_price" class="col-form-label">Precio
+										de venta:</label> <input type="text" class="form-control"
+										id="sale_price" name="sale_price" value="" />
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary"
+									data-dismiss="modal">Close</button>
+								<input type="submit" class="btn btn-primary " value="Guardar" />
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
+			</form>
+		</div>
+		<div class="saveForm">
+			<form th:action="@{/articulos-salvar}" method="post">
+				<div class="modal fade" id="saveModal" tabindex="-1" role="dialog"
+					aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLabel">Nuevo Articulo</h5>
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<div class="form-group">
+									<label for="code" class="col-form-label">Codigo:</label> <input
+										type="text" class="form-control" id="code" name="code"
+										value="" />
+								</div>
+								<div class="form-group">
+									<label for="name" class="col-form-label">Nombre
+										Articulo:</label> <input type="text" class="form-control" id="name"
+										name="name" value="" />
+								</div>
+								<div class="form-group">
+									<label for="sale_price" class="col-form-label">Precio
+										de venta:</label> <input type="text" class="form-control"
+										id="sale_price" name="sale_price" value="" />
+								</div>
+							</div>
+							<span th:utext="${responseMessage}"></span>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary"
+									data-dismiss="modal">Close</button>
+								<input type="submit" class="btn btn-primary " value="Guardar" />
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
 		</div>
 
 	</section>
-
+	
 
 	<!-- Copyright Section-->
 	<section class="copyright py-4 text-center text-white">
