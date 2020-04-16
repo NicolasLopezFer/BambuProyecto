@@ -20,10 +20,10 @@ public class Article {
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-    private int id;
+    private Long id;
     
     @NotNull(message="Code is compulsory")
-    @Column(name = "code", unique=true)
+	@Column(name = "code", unique=true)
     private String code;
     
     @NotNull(message="Name is compulsory")
@@ -45,12 +45,32 @@ public class Article {
     @NotNull(message="Sale Price is compulsory")
 	@Column(name = "sale_price")
     private double salePrice;
+    
+    public Article(String code, String name, double salePrice){
+         
+         this.code = code;
+         this.name = name;
+         this.salePrice = salePrice;
 
-    public int getId() {
+         quantity = 0;
+         unitCost = 0.0;
+         totalCost = 0.0;
+
+    }
+
+    public Article(){
+         
+        quantity = 0;
+        unitCost = 0.0;
+        totalCost = 0.0;
+
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -107,7 +127,7 @@ public class Article {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((code == null) ? 0 : code.hashCode());
-        result = prime * result + id;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((name == null) ? 0 : name.hashCode());
         result = prime * result + quantity;
         long temp;
@@ -134,7 +154,10 @@ public class Article {
                 return false;
         } else if (!code.equals(other.code))
             return false;
-        if (id != other.id)
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
             return false;
         if (name == null) {
             if (other.name != null)
@@ -151,31 +174,11 @@ public class Article {
             return false;
         return true;
     }
-
+     
     @Override
     public String toString() {
         return "Article [code=" + code + ", id=" + id + ", name=" + name + ", quantity=" + quantity + ", salePrice="
                 + salePrice + ", totalCost=" + totalCost + ", unitCost=" + unitCost + "]";
     }
-
-    public Article(@NotNull(message = "Code is compulsory") String code,
-            @NotNull(message = "Name is compulsory") String name,
-            @NotNull(message = "Sale Price is compulsory") double salePrice) {
-        this.code = code;
-        this.name = name;
-        this.salePrice = salePrice;
-        this.quantity=0;
-        this.unitCost=0.0;
-        this.totalCost=0.0;
-    }
-
-	public Article() {
-		this.quantity = 0;
-		this.unitCost = 0.0;
-		this.totalCost = 0.0;
-    }
-    
-    
-    
 
 }
