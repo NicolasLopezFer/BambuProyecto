@@ -41,7 +41,7 @@ public class ArticleSaleService {
 		return true;
     }
 
-    public ArticleSale createArticle(String code,int quantity,float descuento, Set<Tax> impuestos,float total) {
+    public ArticleSale createArticleSale(String code,int quantity,float descuento, Set<Tax> impuestos,float total) {
         float totalImpuestos=0;
         for(Tax i:impuestos)
             totalImpuestos+=i.getValue();
