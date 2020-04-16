@@ -1,74 +1,177 @@
 package com.panda.bambu.service.inventory;
 
+import java.util.List;
+import java.util.TimerTask;
+
 import com.panda.bambu.model.article.Article;
-import com.panda.bambu.model.article.ArticleRepository;
 import com.panda.bambu.model.inventory.ArticleInventory;
 import com.panda.bambu.model.inventory.ArticleInventoryRepository;
+import com.panda.bambu.model.inventory.Balance;
+import com.panda.bambu.model.inventory.Entry;
+import com.panda.bambu.model.inventory.Inventory;
+import com.panda.bambu.model.inventory.Output;
 import com.panda.bambu.service.article.ArticleService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-public class ArticleInventoryService {
+@Service
+public class ArticleInventoryService extends TimerTask{
+
+    @Autowired
+    private ArticleInventoryRepository articleIRepository;
+
+    @Autowired
+    ArticleService articleService;
     
     @Autowired
-	ArticleInventoryRepository articuloInventoryRepository;
-
+    InventoryService inventoryService;
+    
     @Autowired
-	ArticleRepository articuloRepository;
+    EntryService entryService;
+    
+    @Autowired
+	OutputService outputService;
 
-	public Boolean saveArticleInventory(String code) {
-        Article articulo=articuloRepository.findByCode(code);
-        if(articulo!=null){
-            ArticleInventory articuloInventory=new ArticleInventory();
-            articuloInventory.setArticle(articulo);
-            articuloInventoryRepository.save(articuloInventory);
-            return true;
-        }
-        return false;
+    public ArticleInventory findById(Long id){
+        return articleIRepository.findById(id).get();
+    }
         
-	}
-
-	public Boolean isArticleAlreadyPresent(ArticleInventory articuloInventory) {
-		ArticleInventory articleInventoryFound = articuloInventoryRepository.findByArticle(articuloInventory.getArticle());
-		if (articleInventoryFound==null) 
-			return false;
-		return true;
+    public ArticleInventory findByArticle(Article article){
+         return articleIRepository.findByArticle(article);
+    }
+    
+    public List<ArticleInventory> findAll(){
+        return articleIRepository.findAll();        
     }
 
-    public Boolean deleteArticleInventory(ArticleInventory articuloInventory) {
-        if(isArticleAlreadyPresent(articuloInventory)){
-            articuloInventoryRepository.delete(articuloInventory);
-            Article articulo=articuloRepository.findByCode(articuloInventory.getArticle().getCode());
-            if (articulo!=null){
-                articuloRepository.delete(articulo);
-                return true;
-            }     
+    public Boolean create(Article article) {
+       
+        if(articleService.isArticleAlreadyPresent(article) == true){
+            if(article !=null){
+                ArticleInventory newArticle = new ArticleInventory();
+                newArticle.setArticle(article);    
+                articleIRepository.save(newArticle);
+                newArticle.getInventories().add(inventoryService.create());
+                return true;            
+            }
         }
-        return false;
+        return false;    
+	}
+    
+    public boolean create(Long articleId){
         
+        Article article = articleService.findById(articleId);
+
+        if(article !=null){
+            ArticleInventory newArticle = new ArticleInventory();
+            newArticle.setArticle(article);    
+            articleIRepository.save(newArticle);
+            return true;
+        }
+        
+        return false;
+
+    }
+    
+    public boolean delete(ArticleInventory article){
+
+        if( article != null && articleIRepository.existsById(article.getId())){
+            articleIRepository.delete(article);
+            return true;
+        } 
+        return false;
     }
 
+    public boolean delete(Long id){
 
-    public Boolean modifyArticleInventory(ArticleInventory articulo_inventory_new) {
-        // ....
-        // EntityManager em;
-        // ....
+         ArticleInventory article = findById(id);
+         if( article != null){
+             articleIRepository.delete(article);
+             return true;
+         } 
+         return false;
+    }
 
-        // Get 'item' into 'managed' state
-        /*if(!articuloRepository.contains(articulo_new)){
-            articulo_new = articuloRepository.merge(articulo_new);
-        }
-        /*articulo_new.price = articulo_new.get;
-        item.quantity = newQuantity;*/
-        // You don't even need to call save(), JPA provider/Hibernate will do it automatically
+    public boolean save(ArticleInventory article){
 
-        ArticleInventory articleInventoryFound = articuloInventoryRepository.findByArticle(articulo_inventory_new.getArticle());
-        if (articleInventoryFound!=null){
-            articleInventoryFound.setArticle(articulo_inventory_new.getArticle());
-            articleInventoryFound.setInventories(articulo_inventory_new.getInventories());
-            articuloInventoryRepository.save(articleInventoryFound);
+        ArticleInventory articleF = articleIRepository.findByArticle(article.getArticle());
+        articleF = articleIRepository.findById(article.getId()).get();
+        if( articleF != null || articleIRepository.existsById(article.getId()) == true){
+            articleIRepository.save(article);
             return true;
-        }   
+        } 
         return false;
-	}
+    }
+
+    public void deleteAll(){
+        articleIRepository.deleteAll();
+    }
+
+    public boolean addEntry(ArticleInventory articleInventory, Entry entry){
+        
+          entry.setArticle(articleInventory.getArticle());
+          if(articleIRepository.existsById(articleInventory.getId()) == true && !entryService.create(entry)){
+             if(articleInventory.getInventories().isEmpty()){
+                articleInventory.getInventories().add(inventoryService.create());
+             }
+             entry.setArticle(articleInventory.getArticle());
+             entryService.create(entry);
+
+             articleInventory.getArticle().setUnitCost(inventoryService.addEntryInventory(articleInventory.getInventories().get(articleInventory.getInventories().size()-1), entry));
+             articleService.save(articleInventory.getArticle());
+             return true;
+          }
+
+          return false;
+    }
+
+    
+    public boolean addOuput(ArticleInventory articleInventory, Output output){
+        
+        output.setArticle(articleInventory.getArticle());
+        if(articleIRepository.existsById(articleInventory.getId()) == true && !outputService.create(output)){
+            if(articleInventory.getInventories().isEmpty()){
+                articleInventory.getInventories().add(inventoryService.create());
+                articleIRepository.save(articleInventory);
+             }
+             output.setArticle(articleInventory.getArticle());
+             outputService.create(output);   
+            
+             articleInventory.getArticle().setUnitCost(inventoryService.addOutputInventory(articleInventory.getInventories().get(articleInventory.getInventories().size()-1), output));
+             articleService.save(articleInventory.getArticle());
+             return true;
+        }
+
+        return false;
+    }
+
+      @Override
+      public void run() {
+            createInventory();
+      }
+
+      public void createInventory(){
+
+             for(ArticleInventory article: articleIRepository.findAll()){
+                 Inventory inventory = inventoryService.create();
+                 List<Inventory> inventories = article.getInventories();
+                 List<Balance> balances = inventories.get(inventories.size()-1).getBalances();
+                 Balance balance = balances.get(balances.size()-1);
+                 
+                 if(balance.getQuantity() == 0 && balance.getTotalCost() == 0){
+                    if(!inventoryService.addBalanceInventory(inventory,balance,article.getArticle())){
+                        article.getInventories().add(inventory);
+                        articleIRepository.save(article);
+                    }
+                  
+                 }
+                 else{
+                    article.getInventories().add(inventory);
+                    articleIRepository.save(article);
+                 }
+                 
+             }
+             
+      }
 }

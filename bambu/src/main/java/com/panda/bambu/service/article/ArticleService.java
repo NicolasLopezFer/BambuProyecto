@@ -1,66 +1,119 @@
 package com.panda.bambu.service.article;
 
-import com.panda.bambu.model.Role;
-import com.panda.bambu.model.User;
-import com.panda.bambu.model.UserRepository;
+
 import com.panda.bambu.model.article.Article;
 import com.panda.bambu.model.article.ArticleRepository;
 import com.panda.bambu.model.inventory.ArticleInventory;
-import com.panda.bambu.model.inventory.ArticleInventoryRepository;
 import com.panda.bambu.model.inventory.Balance;
 import com.panda.bambu.model.inventory.Entry;
 import com.panda.bambu.model.inventory.Inventory;
 import com.panda.bambu.model.inventory.Output;
+import com.panda.bambu.service.inventory.ArticleInventoryService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class ArticleService {
+public class ArticleService{
+      
+    @Autowired
+    private ArticleRepository articleRepository;  
     
     @Autowired
-    ArticleRepository articuloRepository;
+    ArticleInventoryService articleInventoryService;
     
-    @Autowired
-	ArticleInventoryRepository articuloInventoryRepository;
+    
+    public Article findById(Long id){
+        return articleRepository.findById(id).get();
+    }
 
-	public Boolean saveArticle(Article articulo) {
-        if(!isArticleAlreadyPresent(articulo)){
-            //Article articulo_new=new Article();
-            if (articulo.getCode().matches(".*[a-z].*")){
-                articuloRepository.save(articulo);
+    public Article findByCode(String code){
+        return articleRepository.findByCode(code);
+    }
+
+    public Boolean create(String code, String name, double salePrice) {
+        Article article=articleRepository.findByCode(code);
+        if(article==null){
+            if (code.matches(".*[a-z].*")){
+                Article newArticle = new Article(code,name,salePrice);
+                articleRepository.save(newArticle);
+                articleInventoryService.create(newArticle);
+                return true;
+            }
+        }
+        return false;    
+    }
+    
+    public Boolean create(Article article) {
+        Article articleF=articleRepository.findByCode(article.getCode());
+        if(articleF==null){
+            if (article.getCode().matches(".*[a-z].*")){
+                articleRepository.save(article);
+                articleInventoryService.create(article);
                 return true;
             }
         }
         return false;    
 	}
-
-	public boolean isArticleAlreadyPresent(Article articulo) {
-		Article articleFound = articuloRepository.findByCode(articulo.getCode());
+    
+	public boolean isArticleAlreadyPresent(Article article) {
+		Article articleFound = articleRepository.findByCode(article.getCode());
 		if (articleFound==null) 
 			return false;
 		return true;
     }
+       
+    public Boolean modify(Article articulo_new) {
+ 
+        Article articleFound = articleRepository.findByCode(articulo_new.getCode());
+        if (articleFound!=null){
+            articleFound.setName(articulo_new.getName());
+            articleFound.setQuantity(articulo_new.getQuantity());
+            articleFound.setSalePrice(articulo_new.getSalePrice());
+            articleFound.setTotalCost(articulo_new.getTotalCost());
+            articleFound.setUnitCost(articulo_new.getUnitCost());
+            articleRepository.save(articleFound);
+            return true;
+        }   
+        return false;
+    }
 
-    public Boolean deleteArticle(Article articulo) {
-        if(isArticleAlreadyPresent(articulo)){
-            articuloRepository.delete(articulo);
-            ArticleInventory articuloInventory=articuloInventoryRepository.findByArticle(articulo);
+    public Boolean modify(String code, String name, int quantity, double unitCost, double totalCost, double salePrice) {
+        
+        Article articleFound = articleRepository.findByCode(code);
+        if(articleFound != null){
+            if(!code.isEmpty() && !name.isEmpty() && quantity > 0 && unitCost > 0.0 && totalCost > 0.0 && salePrice > 0.0){
+                articleFound.setName(name);
+                articleFound.setQuantity(quantity);
+                articleFound.setSalePrice(unitCost);
+                articleFound.setTotalCost(totalCost);
+                articleFound.setUnitCost(salePrice);
+                articleRepository.save(articleFound);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public Boolean delete(Article article) {
+        if(articleRepository.existsById(article.getId())){
+            articleRepository.delete(article);
+            ArticleInventory articuloInventory=articleInventoryService.findByArticle(article);
             if(articuloInventory!=null){
                 for(Inventory i:articuloInventory.getInventories()){
                     for(Entry e:i.getEntries()){
-                        if(e.getArticle().getCode().equals(articulo.getCode())){
+                        if(e.getArticle().getCode().equals(article.getCode())){
                             i.getEntries().remove(e);
                         }
                     }
                     for(Output o:i.getOutputs()){
-                        if(o.getArticle().getCode().equals(articulo.getCode())){
+                        if(o.getArticle().getCode().equals(article.getCode())){
                             i.getOutputs().remove(o);
                         }
                     }
                     for(Balance b:i.getBalances()){
-                        if(b.getArticle().getCode().equals(articulo.getCode())){
+                        if(b.getArticle().getCode().equals(article.getCode())){
                             i.getBalances().remove(b);
                         }
                     }
@@ -71,50 +124,20 @@ public class ArticleService {
         }
         return false;
     }
-
-
-    public Boolean modifyArticle(Article articulo_new) {
-        // ....
-        // EntityManager em;
-        // ....
-
-        // Get 'item' into 'managed' state
-        /*if(!articuloRepository.contains(articulo_new)){
-            articulo_new = articuloRepository.merge(articulo_new);
-        }
-        /*articulo_new.price = articulo_new.get;
-        item.quantity = newQuantity;*/
-        // You don't even need to call save(), JPA provider/Hibernate will do it automatically
-
-        Article articleFound = articuloRepository.findByCode(articulo_new.getCode());
-        if (articleFound!=null){
-            articleFound.setName(articulo_new.getName());
-            articleFound.setQuantity(articulo_new.getQuantity());
-            articleFound.setSalePrice(articulo_new.getSalePrice());
-            articleFound.setTotalCost(articulo_new.getTotalCost());
-            articleFound.setUnitCost(articulo_new.getUnitCost());
-            articuloRepository.save(articleFound);
-            return true;
-        }   
-        return false;
-    }
     
-    public Boolean createArticle(String code,String name,int quantity,double unitCost,double totalCost,double salePrice) {
-        Article articulo=articuloRepository.findByCode(code);
-        if(articulo==null){
-            //Article articulo_new=new Article();
-            if (code.matches(".*[a-z].*")){
-                Article articulo_new=new Article();
-                articulo_new.setCode(code);
-                articulo_new.setName(name);
-                articulo_new.setQuantity(quantity);
-                articulo_new.setUnitCost(unitCost);
-                articulo_new.setTotalCost(totalCost);
-                articulo_new.setSalePrice(salePrice);
-                articuloRepository.save(articulo_new);
+    public Boolean save(Article article) {
+        if(!isArticleAlreadyPresent(article)){
+            if (article.getCode().matches(".*[a-z].*")){
+                articleRepository.save(article);
                 return true;
             }
         }
         return false;    
-	}
+    }
+
+    public void deleteAllArticles(){
+        articleRepository.deleteAll();
+    }
+
+
 }
