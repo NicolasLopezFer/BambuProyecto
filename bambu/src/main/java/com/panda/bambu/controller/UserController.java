@@ -97,6 +97,13 @@ public class UserController {
 		modelAndView.setViewName("salidaInv"); // resources/template/entradaInv.html
 		return modelAndView;
 	}
+
+	@RequestMapping(value = "/kardex", method = RequestMethod.GET)
+	public ModelAndView kardexHome() {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("kardex"); // resources/template/kardex.html
+		return modelAndView;
+	}
 	
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
 	public ModelAndView adminHome() {
