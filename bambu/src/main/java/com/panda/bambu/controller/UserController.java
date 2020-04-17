@@ -15,6 +15,7 @@ import com.panda.bambu.model.inventory.Inventory;
 import com.panda.bambu.model.inventory.InventoryRepository;
 import com.panda.bambu.model.inventory.Output;
 import com.panda.bambu.model.inventory.Entry;
+import com.panda.bambu.model.return_articles.ArticleReturn;
 import com.panda.bambu.model.return_articles.ReturnArticles;
 import com.panda.bambu.service.UserService;
 import com.panda.bambu.service.article.ArticleService;
@@ -122,10 +123,10 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/devoluciones", method = RequestMethod.POST)
-	public ModelAndView crearDevolucion(@Valid ReturnArticles ra, BindingResult bindingResult) {
+	public ModelAndView crearDevolucion(ReturnArticles returnArt) {
 		ModelAndView modelAndView = new ModelAndView();
-		System.out.println(ra.getCode());
-		if(returnArticlesService.create(ra))
+		ArticleReturn articleRet = new ArticleReturn();
+		if(returnArticlesService.create(returnArt) && returnArticlesService.addInventoryEntry(articleRet))
 		{
 			modelAndView.addObject("responseMessage", "Articulo guardado Exitosamente!");	
 			System.out.println("Articulo guardado Exitosamente!");
