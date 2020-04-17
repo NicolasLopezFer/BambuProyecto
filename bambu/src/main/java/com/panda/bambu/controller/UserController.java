@@ -13,6 +13,7 @@ import com.panda.bambu.model.article.ArticleRepository;
 import com.panda.bambu.model.inventory.ArticleInventory;
 import com.panda.bambu.model.inventory.Inventory;
 import com.panda.bambu.model.inventory.InventoryRepository;
+import com.panda.bambu.model.inventory.Output;
 import com.panda.bambu.model.inventory.Entry;
 import com.panda.bambu.service.UserService;
 import com.panda.bambu.service.article.ArticleService;
@@ -172,11 +173,10 @@ public class UserController {
 
 
 	@RequestMapping(value = "/entradaInventario", method = RequestMethod.POST)
-	public ModelAndView entradaInventario(Article arti) {
+	public ModelAndView entradaInventario() {
 		ModelAndView modelAndView = new ModelAndView();
 		ArticleInventory arinven = new ArticleInventory();
 		Entry entry = new Entry();
-		arinven.setArticle(arti);
 		if(articleInventoryService.addEntry(arinven,entry)) {
 			modelAndView.addObject("responseMessage", "Entrada exitosa!");	
 			System.out.println("Entrada exitosa!");
@@ -184,7 +184,7 @@ public class UserController {
 			modelAndView.addObject("responseMessage", "Existen errores");
 			System.out.println("No entrada");
 		}
-		modelAndView.setViewName("redirect:/inventarios");
+		modelAndView.setViewName("redirect:/inventario");
 		return modelAndView;
 	}
 
@@ -192,10 +192,19 @@ public class UserController {
 
 
 	
-	@RequestMapping(value = "/salidaInv", method = RequestMethod.GET)
-	public ModelAndView salidaInvHome() {
+	@RequestMapping(value = "/salidaInventario", method = RequestMethod.POST)
+	public ModelAndView salidaInventario() {
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("salidaInv"); // resources/template/entradaInv.html
+		ArticleInventory arinven = new ArticleInventory();
+		Output entry = new Output();
+		if(articleInventoryService.addOuput(arinven,entry)) {
+			modelAndView.addObject("responseMessage", "Entrada exitosa!");	
+			System.out.println("Entrada exitosa!");
+		}else {
+			modelAndView.addObject("responseMessage", "Existen errores");
+			System.out.println("No entrada");
+		}
+		modelAndView.setViewName("redirect:/inventario");
 		return modelAndView;
 	}
 	
