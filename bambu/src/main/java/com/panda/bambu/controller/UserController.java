@@ -95,21 +95,21 @@ public class UserController {
 	public ModelAndView salvarArticulo(Article a) {
 		ModelAndView modelAndView = new ModelAndView();
 		//articleRepository.save(a);
-		if(articleService.saveArticle(a)) {
+		if(articleService.create(a)) {
 			modelAndView.addObject("responseMessage", "Articulo guardado Exitosamente!");	
 			System.out.println("Articulo guardado Exitosamente!");
 		}else {
 			modelAndView.addObject("responseMessage", "Existen errores al guardar el articulo");
 			System.out.println("NO SE GUARDO");
 		}
-		modelAndView.setViewName("articulos");
+		modelAndView.setViewName("redirect:/articulos");
 		return modelAndView;
 	}
 	
 	@RequestMapping(value = "/articulos-borrar", method = RequestMethod.POST)
 	public ModelAndView borrarArticulo(Article a) {
 		ModelAndView modelAndView = new ModelAndView();
-		if(articleService.deleteArticle(a)) {
+		if(articleService.delete(a)) {
 			modelAndView.addObject("responseMessage", "Articulo borrado Exitosamente!");	
 		}else {
 			modelAndView.addObject("responseMessage", "Existen errores al guardar el articulo");

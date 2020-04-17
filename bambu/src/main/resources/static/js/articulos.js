@@ -11,9 +11,9 @@ $(document).ready(function() {
 			$('.editForm #code').val(articulo.code);
 			$('.editForm #name').val(articulo.name);
 			$('.editForm #quantity').val(articulo.quantity);
-			$('.editForm #unit_cost').val(articulo.unit_cost);
-			$('.editForm #total_cost').val(articulo.total_cost);
-			$('.editForm #sale_price').val(articulo.sale_price);
+			$('.editForm #unitCost').val(articulo.unit_cost);
+			$('.editForm #totalCost').val(articulo.total_cost);
+			$('.editForm #salePrice').val(articulo.sale_price);
 		});
 		$('.editForm #editModal').modal();
 	})
@@ -25,7 +25,7 @@ $(document).ready(function() {
 		var href = $(this).attr('href');
 		$('.saveForm #code').val('');
 		$('.saveForm #name').val('');
-		$('.saveForm #sale_price').val('');
+		$('.saveForm #salePrice').val('');
 		$('.saveForm #saveModal').modal();
 	})
 });

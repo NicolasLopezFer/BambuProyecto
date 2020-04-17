@@ -112,7 +112,7 @@
 					</thead>
 					<!--Información base de datos-->
 					<tbody>
-						<tr th:each="articulo : ${articulosEmpresa.content}">
+						<tr th:each="articulo : ${articulosEmpresa}">
 							<td th:text="${articulo.code}"></td>
 							<td th:text="${articulo.name}"></td>
 							<td th:text="${articulo.quantity}"></td>
