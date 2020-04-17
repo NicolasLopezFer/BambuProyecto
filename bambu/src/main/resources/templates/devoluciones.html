@@ -46,11 +46,14 @@
                     <div class="divider-custom-line"></div>
                 </div>
 <!-- -------------------------------------------------------------------------------------------------------------------------------------------------------->
-                <form name="formularioNuevo" th:action="@{/devoluciones-crear}" th:object="${ra}" method="post">
-                    <input type="text" id="id"></input>
-                    <input type="text" id="code"></input>
-                    <input type="text" id="date"></input>
-                    <input type="text" id="idCustomer"></input>
+                <form name="formularioNuevo" th:action="@{/devoluciones}" method="post">
+                    <input type="text" id="code">code</input>
+                    <input type="text" id="date">date</input>
+                    <input type="text" id="customer_name">customer_name</input>
+                    <input type="text" id="idCustomer">idCustomer</input>
+                    <input type="text" id="saleReturn">saleReturn</input>
+                    <input type="text" id="buyReturn">buyReturn</input>
+                    <input type="text" id="articles">articles</input>
                 </form>
 <!-- -------------------------------------------------------------------------------------------------------------------------------------------------------->
 
@@ -137,7 +140,7 @@
                     <div class="text-center col-md-4"></div>
                     <div class="text-center col-md-4">
                         <p>  </p>
-                        <div class="form-group"><button  class="btn btn-primary " id="sendMessageButton" type="button">Aceptar</button></div>
+                        <input type="submit" class="btn btn-primary " value="Aceptar" />
                     </div>
                 </div>
 
