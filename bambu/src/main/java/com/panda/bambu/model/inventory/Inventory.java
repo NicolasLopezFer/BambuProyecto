@@ -11,7 +11,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.validation.constraints.NotNull;
 
 
 
@@ -23,11 +22,9 @@ public class Inventory {
 	@Column(name = "id")
     private long id;
     
-    @NotNull(message="Date is compulsory")
     @Column(name = "date")
     private LocalDate date;
 
-    @NotNull(message="Measure Method is compulsory")
     @Column(name = "measure_method")
     private String measureMethod;
 

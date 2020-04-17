@@ -109,47 +109,57 @@ public class ArticleInventoryService extends TimerTask{
     }
 
     public boolean addEntry(ArticleInventory articleInventory, Entry entry){
-        
-          entry.setArticle(articleInventory.getArticle());
-          if(articleIRepository.existsById(articleInventory.getId()) == true && !entryService.create(entry)){
-             if(articleInventory.getInventories().isEmpty()){
-                articleInventory.getInventories().add(inventoryService.create());
-             }
-             entry.setArticle(articleInventory.getArticle());
-             entryService.create(entry);
+                
+        if(entry != null && entry.getQuantity() > 0){
+            entry.setArticle(articleInventory.getArticle());
 
-             articleInventory.getArticle().setUnitCost(inventoryService.addEntryInventory(articleInventory.getInventories().get(articleInventory.getInventories().size()-1), entry));
-             articleService.save(articleInventory.getArticle());
+            Article article = articleInventory.getArticle();
+            article.setQuantity(entry.getQuantity()+article.getQuantity());
+            articleService.save(article);
+
+            if(articleIRepository.existsById(articleInventory.getId()) == true && !entryService.create(entry)){
+                if(articleInventory.getInventories().isEmpty()){
+                   articleInventory.getInventories().add(inventoryService.create());
+                }
+                articleInventory.getArticle().setUnitCost(inventoryService.addEntryInventory(articleInventory.getInventories().get(articleInventory.getInventories().size()-1), entry));
+                articleService.save(articleInventory.getArticle());
              return true;
-          }
-
-          return false;
+            }
+        }
+        return false;
     }
 
     
     public boolean addOuput(ArticleInventory articleInventory, Output output){
         
-        output.setArticle(articleInventory.getArticle());
-        if(articleIRepository.existsById(articleInventory.getId()) == true && !outputService.create(output)){
-            if(articleInventory.getInventories().isEmpty()){
-                articleInventory.getInventories().add(inventoryService.create());
-                articleIRepository.save(articleInventory);
-             }
-             output.setArticle(articleInventory.getArticle());
-             outputService.create(output);   
+        Article article = articleInventory.getArticle();
+        if(output != null && output.getQuantity() > 0 && output.getQuantity()<article.getQuantity()){
+            output.setArticle(articleInventory.getArticle());
+           
+            article.setQuantity(article.getQuantity()-output.getQuantity());
+            articleService.save(article);
+
+            if(articleIRepository.existsById(articleInventory.getId()) == true && !outputService.create(output)){
+                if(articleInventory.getInventories().isEmpty()){
+                    articleInventory.getInventories().add(inventoryService.create());
+                    articleIRepository.save(articleInventory);
+                }
+                output.setArticle(articleInventory.getArticle());
+                outputService.create(output);   
             
-             articleInventory.getArticle().setUnitCost(inventoryService.addOutputInventory(articleInventory.getInventories().get(articleInventory.getInventories().size()-1), output));
-             articleService.save(articleInventory.getArticle());
-             return true;
+                articleInventory.getArticle().setUnitCost(inventoryService.addOutputInventory(articleInventory.getInventories().get(articleInventory.getInventories().size()-1), output));
+                articleService.save(articleInventory.getArticle());
+                return true;
+            }
         }
 
         return false;
     }
 
-      @Override
-      public void run() {
-            createInventory();
-      }
+    @Override
+    public void run() {
+          createInventory();
+    }
 
       public void createInventory(){
 

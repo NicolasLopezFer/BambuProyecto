@@ -6,7 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotNull;
+
 
 import com.panda.bambu.model.article.Article;
 
@@ -18,19 +18,15 @@ public class ArticleReturn {
 	@Column(name = "id")
     private Long id;
             
-    @NotNull(message="Quantity is compulsory")
 	@Column(name = "quantity")
     private int quantity;
 
-    @NotNull(message="Motive is compulsory")
     @Column(name = "motive")
     private String motive;
 
-    @NotNull(message="Value is compulsory")
     @Column(name = "value")
     private double value;
 
-    @NotNull(message="Number Sale Bill is compulsory")
 	@Column(name = "n_sale")
     private String nSale;
 
