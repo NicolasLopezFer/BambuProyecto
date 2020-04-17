@@ -70,7 +70,7 @@ public class UserController {
 	
 	@RequestMapping({"/"})
 		public String llegada() {
-			return "kardex";
+			return "llegada";
 		}
 	
 	@RequestMapping(value = { "/login" }, method = RequestMethod.GET)
@@ -251,10 +251,10 @@ public class UserController {
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/facturaDeVenta", method = RequestMethod.GET)
+	@RequestMapping(value = "/facturadeventa", method = RequestMethod.GET)
 	public ModelAndView facturaDeVentaHome() {
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("facturaDeVEnta"); // resources/template/facturaDeVenta.html
+		modelAndView.setViewName("facturadeventa"); // resources/template/facturaDeVenta.html
 		return modelAndView;
 	}
 

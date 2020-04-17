@@ -1,57 +1,57 @@
-C:\Users\David López\Desktop\ProyectoIngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\sale_bill\ServiceSaleBill.java
-C:\Users\David López\Desktop\ProyectoIngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\service\inventory\EntryService.java
-C:\Users\David López\Desktop\ProyectoIngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\inventory\Entry.java
-C:\Users\David López\Desktop\ProyectoIngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\service\inventory\ArticleInventoryService.java
-C:\Users\David López\Desktop\ProyectoIngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\tax\Tax.java
-C:\Users\David López\Desktop\ProyectoIngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\inventory\ArticleInventory.java
-C:\Users\David López\Desktop\ProyectoIngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\WebMvcConfig.java
-C:\Users\David López\Desktop\ProyectoIngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\return_articles\ArticleReturnRepository.java
-C:\Users\David López\Desktop\ProyectoIngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\RoleRepository.java
-C:\Users\David López\Desktop\ProyectoIngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\article\Article.java
-C:\Users\David López\Desktop\ProyectoIngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\service\inventory\MeasureMethodService.java
-C:\Users\David López\Desktop\ProyectoIngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\return_articles\ReturnArticles.java
-C:\Users\David López\Desktop\ProyectoIngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\inventory\MeasureMethod.java
-C:\Users\David López\Desktop\ProyectoIngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\service\sale_bill\ArticleSaleService.java
-C:\Users\David López\Desktop\ProyectoIngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\sale_bill\ArticleSaleRepository.java
-C:\Users\David López\Desktop\ProyectoIngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\sale_bill\ServiceSale.java
-C:\Users\David López\Desktop\ProyectoIngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\inventory\OutputRepository.java
-C:\Users\David López\Desktop\ProyectoIngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\sale_bill\ServiceSaleRepository.java
-C:\Users\David López\Desktop\ProyectoIngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\sale_bill\ArticleSaleBillRepository.java
-C:\Users\David López\Desktop\ProyectoIngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\inventory\Balance.java
-C:\Users\David López\Desktop\ProyectoIngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\service\return_articles\ReturnArticlesService.java
-C:\Users\David López\Desktop\ProyectoIngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\UserRepository.java
-C:\Users\David López\Desktop\ProyectoIngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\return_articles\ArticleReturn.java
-C:\Users\David López\Desktop\ProyectoIngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\service\return_articles\ArticleReturnService.java
-C:\Users\David López\Desktop\ProyectoIngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\service\sale_bill\ServiceSaleBillService.java
-C:\Users\David López\Desktop\ProyectoIngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\service\UserService.java
-C:\Users\David López\Desktop\ProyectoIngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\tax\TaxRepository.java
-C:\Users\David López\Desktop\ProyectoIngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\service\inventory\InventoryService.java
-C:\Users\David López\Desktop\ProyectoIngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\inventory\MeasureMethodRepository.java
-C:\Users\David López\Desktop\ProyectoIngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\controller\UserController.java
-C:\Users\David López\Desktop\ProyectoIngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\sale_bill\ArticleSaleBill.java
-C:\Users\David López\Desktop\ProyectoIngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\service\tax\TaxService.java
-C:\Users\David López\Desktop\ProyectoIngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\SecurityConfiguration.java
-C:\Users\David López\Desktop\ProyectoIngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\service\sale_bill\ServiceSaleService.java
-C:\Users\David López\Desktop\ProyectoIngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\inventory\BalanceRepository.java
-C:\Users\David López\Desktop\ProyectoIngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\ServletInitializer.java
-C:\Users\David López\Desktop\ProyectoIngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\inventory\EntryRepository.java
-C:\Users\David López\Desktop\ProyectoIngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\CustomLoginSuccessHandler.java
-C:\Users\David López\Desktop\ProyectoIngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\service\article\ArticleService.java
-C:\Users\David López\Desktop\ProyectoIngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\service\sale_bill\ArticleSaleBillService.java
-C:\Users\David López\Desktop\ProyectoIngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\inventory\ArticleInventoryRepository.java
-C:\Users\David López\Desktop\ProyectoIngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\inventory\Output.java
-C:\Users\David López\Desktop\ProyectoIngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\return_articles\ReturnArticlesRepository.java
-C:\Users\David López\Desktop\ProyectoIngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\service\UserServiceImp.java
-C:\Users\David López\Desktop\ProyectoIngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\User.java
-C:\Users\David López\Desktop\ProyectoIngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\service\inventory\BalanceService.java
-C:\Users\David López\Desktop\ProyectoIngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\inventory\InventoryRepository.java
-C:\Users\David López\Desktop\ProyectoIngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\sale_bill\ArticleSale.java
-C:\Users\David López\Desktop\ProyectoIngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\service\inventory\OutputService.java
-C:\Users\David López\Desktop\ProyectoIngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\famiempresa\FamiEmpresa.java
-C:\Users\David López\Desktop\ProyectoIngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\sale_bill\ServiceSaleBillRepository.java
-C:\Users\David López\Desktop\ProyectoIngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\BambuApplication.java
-C:\Users\David López\Desktop\ProyectoIngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\famiempresa\FamiEmpresaRepository.java
-C:\Users\David López\Desktop\ProyectoIngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\inventory\Inventory.java
-C:\Users\David López\Desktop\ProyectoIngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\service\famiempresa\FamiEmpresaService.java
-C:\Users\David López\Desktop\ProyectoIngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\Role.java
-C:\Users\David López\Desktop\ProyectoIngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\article\ArticleRepository.java
+C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\SecurityConfiguration.java
+C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\service\inventory\InventoryService.java
+C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\WebMvcConfig.java
+C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\sale_bill\ServiceSale.java
+C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\sale_bill\ArticleSaleBillRepository.java
+C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\service\inventory\BalanceService.java
+C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\User.java
+C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\inventory\EntryRepository.java
+C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\return_articles\ArticleReturnRepository.java
+C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\famiempresa\FamiEmpresaRepository.java
+C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\sale_bill\ArticleSaleRepository.java
+C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\tax\Tax.java
+C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\service\inventory\ArticleInventoryService.java
+C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\controller\UserController.java
+C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\inventory\OutputRepository.java
+C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\Role.java
+C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\inventory\ArticleInventoryRepository.java
+C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\return_articles\ReturnArticles.java
+C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\tax\TaxRepository.java
+C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\service\inventory\EntryService.java
+C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\ServletInitializer.java
+C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\service\famiempresa\FamiEmpresaService.java
+C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\return_articles\ArticleReturn.java
+C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\service\sale_bill\ArticleSaleService.java
+C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\inventory\MeasureMethodRepository.java
+C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\inventory\Balance.java
+C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\sale_bill\ArticleSale.java
+C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\inventory\ArticleInventory.java
+C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\BambuApplication.java
+C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\article\ArticleRepository.java
+C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\sale_bill\ServiceSaleBillRepository.java
+C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\service\tax\TaxService.java
+C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\return_articles\ReturnArticlesRepository.java
+C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\service\return_articles\ReturnArticlesService.java
+C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\inventory\Inventory.java
+C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\service\sale_bill\ServiceSaleBillService.java
+C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\UserRepository.java
+C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\service\article\ArticleService.java
+C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\article\Article.java
+C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\inventory\Output.java
+C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\inventory\InventoryRepository.java
+C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\sale_bill\ServiceSaleRepository.java
+C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\service\inventory\OutputService.java
+C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\famiempresa\FamiEmpresa.java
+C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\service\inventory\MeasureMethodService.java
+C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\RoleRepository.java
+C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\service\UserService.java
+C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\service\sale_bill\ArticleSaleBillService.java
+C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\CustomLoginSuccessHandler.java
+C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\service\UserServiceImp.java
+C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\inventory\MeasureMethod.java
+C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\sale_bill\ArticleSaleBill.java
+C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\service\return_articles\ArticleReturnService.java
+C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\service\sale_bill\ServiceSaleService.java
+C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\inventory\BalanceRepository.java
+C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\inventory\Entry.java
+C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\sale_bill\ServiceSaleBill.java
