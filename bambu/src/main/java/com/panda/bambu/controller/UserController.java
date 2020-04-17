@@ -54,7 +54,6 @@ public class UserController {
 	@Autowired
 	ArticleInventoryService articleInventoryService;
 
-	
 	@Autowired
 	ArticleService articleService;
 	
