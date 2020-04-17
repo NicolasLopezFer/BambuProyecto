@@ -10,9 +10,14 @@ import com.panda.bambu.model.RoleRepository;
 import com.panda.bambu.model.User;
 import com.panda.bambu.model.article.Article;
 import com.panda.bambu.model.article.ArticleRepository;
+import com.panda.bambu.model.inventory.ArticleInventory;
+import com.panda.bambu.model.inventory.Inventory;
+import com.panda.bambu.model.inventory.InventoryRepository;
 import com.panda.bambu.service.UserService;
 import com.panda.bambu.service.article.ArticleService;
 import com.panda.bambu.service.return_articles.ArticleReturnService;
+import com.panda.bambu.service.inventory.ArticleInventoryService;
+import com.panda.bambu.service.inventory.InventoryService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -45,7 +50,10 @@ public class UserController {
 
 	@Autowired
 	RoleRepository roleRepository;
-	
+
+	@Autowired
+	ArticleInventoryService articleInventoryService;
+
 	@Autowired
 	ArticleService articleService;
 	
@@ -152,6 +160,7 @@ public class UserController {
 	@RequestMapping(value = "/inventario", method = RequestMethod.GET)
 	public ModelAndView inventarioHome() {
 		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("inventory", articleInventoryService.findAll());
 		modelAndView.setViewName("inventario"); // resources/template/inventario.html
 		return modelAndView;
 	}
@@ -159,6 +168,7 @@ public class UserController {
 	@RequestMapping(value = "/entradaInv", method = RequestMethod.GET)
 	public ModelAndView entradaInvHome() {
 		ModelAndView modelAndView = new ModelAndView();
+		Inventory inventory = new Inventory();
 		modelAndView.setViewName("entradaInv"); // resources/template/entradaInv.html
 		return modelAndView;
 	}
@@ -200,5 +210,19 @@ public class UserController {
 		modelAndView.setViewName("./user-form/register-form");
 		return modelAndView;
 	}
+
+	//@RequestMapping(value = "/entradaInv", method = RequestMethod.POST)
+	//public ModelAndView entradaInventario(@Valid Inventory inventory) {
+	//	ModelAndView modelAndView = new ModelAndView();
+	//	//Check for de inventory
+	//	if(inventoryService.isInventoryAlredyPresent(inventory)){
+	//		modelAndView.addObject("successMessage", "Error: Este codigo de entrada ya existe");
+	//	} else{
+	//		inventoryService.saveInventory(inventory);
+	//		modelAndView.addObject("successMessage", "Entrada registrada correctamente.");
+	//	}
+	//	modelAndView.setViewName("entradaInv"); // resources/template/entradaInv.html
+	//	return modelAndView;
+	//}
 
 }

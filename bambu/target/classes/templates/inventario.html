@@ -80,9 +80,15 @@
                       </thead>
                       <!--Información base de datos-->
                       <tbody>
-                        <td><input type="checkbox" ></td>
-                        <td>Info de la bd</td>
-                        <td>no sabemos como</td>
+                          <tr th:each="i :${inventory}">
+                            <td><input type="checkbox" ></td>
+                            <td th:text="${i.getArticle().getCode()}"></td>
+                            <td th:text="${i.getArticle().getName()}"></td>
+                            <td th:text="${i.getArticle().getQuantity()}"></td>
+                            <td th:text="${i.getArticle().getUnitCost()}"></td>
+                            <td th:text="${i.getArticle().getTotalCost()}"></td>
+                            <td th:text="${i.getArticle().getSalePrice()}"></td>
+                          </tr>
                       </tbody>
                     </table>
                       
