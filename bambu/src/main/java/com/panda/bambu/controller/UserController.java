@@ -111,6 +111,25 @@ public class UserController {
 		modelAndView.setViewName("devoluciones"); // resources/template/devoluciones.html
 		return modelAndView;
 	}
+
+
+	/*
+	@RequestMapping(value = "/inventario", method = RequestMethod.GET)
+	public ModelAndView inventarioHome() {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("inventory", articleInventoryService.findAll());
+		modelAndView.setViewName("inventario"); // resources/template/inventario.html
+		return modelAndView;
+	}
+	*/
+
+	@RequestMapping(value = "/devoluciones", method = RequestMethod.POST)
+	public ModelAndView returnarticles() {
+		ModelAndView modelAndView = new ModelAndView();
+		
+		modelAndView.setViewName("devoluciones"); // resources/template/devoluciones.html
+		return modelAndView;
+	}
 	
 
 	@RequestMapping(value="/register", method=RequestMethod.POST)
