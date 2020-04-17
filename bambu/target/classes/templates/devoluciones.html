@@ -13,6 +13,8 @@
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+        <!--<script type="text/javascript" th:src="@{/js/devoluciones.js}"
+	        src="static/js/devoluciones.js"></script>-->
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -43,51 +45,61 @@
                     <div class="divider-custom-icon"><i class="fas fa-circle"></i></div>
                     <div class="divider-custom-line"></div>
                 </div>
-
+<!-- -------------------------------------------------------------------------------------------------------------------------------------------------------->
+                <form name="formularioNuevo" th:action="@{/devoluciones-crear}" th:object="${ra}" method="post">
+                    <input type="text" id="id"></input>
+                    <input type="text" id="code"></input>
+                    <input type="text" id="date"></input>
+                    <input type="text" id="idCustomer"></input>
+                </form>
+<!-- -------------------------------------------------------------------------------------------------------------------------------------------------------->
 
                 <!-- Portfolio Grid Items-->
-                <div class="row">
-                    <div class="text-center col-md-6">
-                        <div class="control-group">
-                            <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                                <label>Número</label><input class="form-control" id="numeroFacturaDeVenta" type="number" placeholder="Número" required="required" data-validation-required-message="Por favor ingrese número factura de venta"/>
-                                <p class="help-block text-danger"></p>
+                    <div class="row">
+                        
+                        <div class="text-center col-md-6">
+                            <div class="control-group">
+                                <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                    <label>Número</label><input class="form-control" id="numeroFacturaDeVenta" type="number" placeholder="Número" required="required" data-validation-required-message="Por favor ingrese número factura de venta"/>
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                    <label>Cliente</label><input class="form-control" id="clienteFacturaDeVenta" type="message" placeholder="Cliente" required="required" data-validation-required-message="Por favor ingrese cliente"/>
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                    <label>NIT o C.C</label><input class="form-control" id="nitFacturaDeVenta" type="number" placeholder="NIT O C.C" required="required" data-validation-required-message="Por favor ingrese NIT o CC"/>
+                                    <p class="help-block text-danger"></p>
+                                </div>
                             </div>
                         </div>
-                        <div class="control-group">
-                            <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                                <label>Cliente</label><input class="form-control" id="clienteFacturaDeVenta" type="message" placeholder="Cliente" required="required" data-validation-required-message="Por favor ingrese cliente"/>
-                                <p class="help-block text-danger"></p>
+                        <div class="text-center col-md-6">
+                            Fecha
+                            <div class="control-group">
+                                <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                    <label></label><input class="form-control" id="fechaFacturaDeVenta" type="date" required="required" data-validation-required-message="Por favor ingrese fecha." />
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <p></p>
+                            <p></p>
+                            <div class="form-check">
+                                <input type="checkbox" class="resizedTextbox" id="checkDevolucionDeCompra">
+                                <label class="form-check-label" for="exampleCheck1"><p style="font-size:30px">Devolución de compra</p></label>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" class="resizedTextbox" id="checkDevolucionDeCompra">
+                                <label class="form-check-label" for="exampleCheck1"><p style="font-size:30px">Devolución de venta</p></label>
                             </div>
                         </div>
-                        <div class="control-group">
-                            <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                                <label>NIT o C.C</label><input class="form-control" id="nitFacturaDeVenta" type="number" placeholder="NIT O C.C" required="required" data-validation-required-message="Por favor ingrese NIT o CC"/>
-                                <p class="help-block text-danger"></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text-center col-md-6">
-                        Fecha
-                        <div class="control-group">
-                            <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                                <label></label><input class="form-control" id="fechaFacturaDeVenta" type="date" required="required" data-validation-required-message="Por favor ingrese fecha." />
-                                <p class="help-block text-danger"></p>
-                            </div>
-                        </div>
-                        <p></p>
-                        <p></p>
-                        <div class="form-check">
-                            <input type="checkbox" class="resizedTextbox" id="checkDevolucionDeCompra">
-                            <label class="form-check-label" for="exampleCheck1"><p style="font-size:30px">Devolución de compra</p></label>
-                          </div>
-                          <div class="form-check">
-                            <input type="checkbox" class="resizedTextbox" id="checkDevolucionDeCompra">
-                            <label class="form-check-label" for="exampleCheck1"><p style="font-size:30px">Devolución de venta</p></label>
-                          </div>
+
                     </div>
 
-                </div>
+                    
                     <!-- Portfolio tabla Busqueda-->
                     <div class="form-group pull-right">
                         <input type="text" class="search form-control" placeholder="¿Qué buscas?">
@@ -107,12 +119,13 @@
 
                       <!--Información base de datos-->
                       <tbody>
-                        <td><input type="text" id="codigoDevoluciones" ><br></td>
-                        <td><input type="text" id="articuloDevoluciones" ><br></td>
-                        <td><input type="text" id="cantidadDevoluciones" ><br></td>
-                        <td><input type="text" id="motivoDevoluciones" ><br></td>
-                        <td><input type="text" id="valorDevoluciones" ><br></td>
-                        <td><input type="text" id="noFacturaDevoluciones" ><br></td>
+                        <form name="formularioNuevo" th:action="@{/devoluciones}" th:object="${ra}" method="post">
+                            <td><input type="text" id="code" ><br></td>
+                            <td><input type="text" id="" ><br></td>
+                            <td><input type="text" id="" ><br></td>
+                            <td><input type="text" id="" ><br></td>
+                            <td><input type="text" id="" ><br></td>
+                            <td><input type="text" id="" ><br></td>
                       </tbody>
                     </table>
                       
@@ -124,13 +137,39 @@
                     <div class="text-center col-md-4"></div>
                     <div class="text-center col-md-4">
                         <p>  </p>
-                        <div class="form-group"><button onclick="mensajeConfirmacionDevoluciones()" class="btn btn-primary" id="sendMessageButton" type="button">Aceptar</button></div>
+                        <div class="form-group"><button  class="btn btn-primary " id="sendMessageButton" type="button">Aceptar</button></div>
                     </div>
                 </div>
+
+               
 
                 
             </div>
         </section>
+        <section>        
+            <div class="row">
+            <div class="text-center col-md-12">
+                <form action="#" th:action="@{/devoluciones-crear}" th:object="${ra}" method="post">
+                    <table>
+                        <tr>
+                            <td>ID:</td>
+                            <td><input type="text" th:field="*{id}" /></td>
+                            <td th:if="${#fields.hasErrors('name')}" th:errors="*{id}">Name Error</td>
+                        </tr>
+                        <tr>
+                            <td>Codigo:</td>
+                            <td><input type="text" th:field="*{code}" /></td>
+                            <td th:if="${#fields.hasErrors('code')}" th:errors="*{code}">Age Error</td>
+                        </tr>
+                        <tr>
+                            <td><button type="submit">Submit</button></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </section>
+
         
         <!-- Copyright Section-->
         <section class="copyright py-4 text-center text-white">

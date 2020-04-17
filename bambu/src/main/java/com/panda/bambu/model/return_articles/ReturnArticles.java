@@ -18,7 +18,7 @@ public class ReturnArticles {
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-    private Long id;
+    private Long id; 
     
     @NotNull(message="Code is compulsory")
 	@Column(name = "code", unique=true)

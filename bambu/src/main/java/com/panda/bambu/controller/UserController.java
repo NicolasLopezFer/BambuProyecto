@@ -17,6 +17,7 @@ import com.panda.bambu.model.return_articles.ReturnArticles;
 import com.panda.bambu.service.UserService;
 import com.panda.bambu.service.article.ArticleService;
 import com.panda.bambu.service.return_articles.ArticleReturnService;
+import com.panda.bambu.service.return_articles.ReturnArticlesService;
 import com.panda.bambu.service.inventory.ArticleInventoryService;
 import com.panda.bambu.service.inventory.InventoryService;
 
@@ -60,6 +61,9 @@ public class UserController {
 	
 	@Autowired
 	ArticleRepository articleRepository;
+
+	@Autowired
+	ReturnArticlesService returnArticlesService;
 	
 	@RequestMapping({"/"})
 		public String llegada() {
@@ -104,7 +108,6 @@ public class UserController {
 	@RequestMapping(value = "/articulos-crear", method = RequestMethod.POST)
 	public ModelAndView crearArticulo(Article a) {
 		ModelAndView modelAndView = new ModelAndView();
-		//articleRepository.save(a);
 		if(articleService.create(a)) {
 			modelAndView.addObject("responseMessage", "Articulo guardado Exitosamente!");	
 			System.out.println("Articulo guardado Exitosamente!");
@@ -115,14 +118,22 @@ public class UserController {
 		modelAndView.setViewName("redirect:/articulos");
 		return modelAndView;
 	}
-/*
+
 	@RequestMapping(value = "/devoluciones", method = RequestMethod.POST)
-	public ModelAndView crearDevolucion(ReturnArticles ra) {
+	public ModelAndView crearDevolucion(@Valid ReturnArticles ra, BindingResult bindingResult) {
 		ModelAndView modelAndView = new ModelAndView();
-		
+		System.out.println(ra.getCode());
+		if(returnArticlesService.create(ra))
+		{
+			modelAndView.addObject("responseMessage", "Articulo guardado Exitosamente!");	
+			System.out.println("Articulo guardado Exitosamente!");
+		}else {
+			modelAndView.addObject("responseMessage", "Existen errores al guardar el articulo");
+			System.out.println("NO SE GUARDO");
+		}
 		modelAndView.setViewName("devoluciones"); // resources/template/devoluciones.html
 		return modelAndView;
-	}*/
+	}
 	
 	@RequestMapping(value = "/articulos-modificar", method = RequestMethod.POST)
 	public ModelAndView modificarArticulo(Article a) {
