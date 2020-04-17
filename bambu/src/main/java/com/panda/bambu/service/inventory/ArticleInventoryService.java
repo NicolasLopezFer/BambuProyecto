@@ -135,7 +135,9 @@ public class ArticleInventoryService extends TimerTask{
         Article article = articleInventory.getArticle();
         if(output != null && output.getQuantity() > 0 && output.getQuantity()<article.getQuantity()){
             output.setArticle(articleInventory.getArticle());
-           
+            output.setUnitCost(articleInventory.getArticle().getUnitCost());
+            output.setTotalCost(output.getQuantity()*output.getUnitCost());
+
             article.setQuantity(article.getQuantity()-output.getQuantity());
             articleService.save(article);
 

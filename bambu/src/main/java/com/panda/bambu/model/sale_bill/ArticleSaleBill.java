@@ -1,6 +1,7 @@
 package com.panda.bambu.model.sale_bill;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -45,6 +46,11 @@ public class ArticleSaleBill{
     @NotNull(message="Total is compulsory")
     @Column(name = "total")
     private double total;
+    
+    public ArticleSaleBill(){
+         date = LocalDate.now();
+         articles = new HashSet<ArticleSale>();
+    }
 
     public Long getId() {
         return id;
