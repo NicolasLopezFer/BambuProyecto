@@ -1,5 +1,6 @@
 package com.panda.bambu.service.article;
 
+import java.util.List;
 
 import com.panda.bambu.model.article.Article;
 import com.panda.bambu.model.article.ArticleRepository;
@@ -30,6 +31,10 @@ public class ArticleService{
     public Article findByCode(String code){
         return articleRepository.findByCode(code);
     }
+    
+    public List<Article> findAll(){
+        return articleRepository.findAll();
+    }
 
     public Boolean create(String code, String name, double salePrice) {
         Article article=articleRepository.findByCode(code);
@@ -47,11 +52,11 @@ public class ArticleService{
     public Boolean create(Article article) {
         Article articleF=articleRepository.findByCode(article.getCode());
         if(articleF==null){
-            if (article.getCode().matches(".*[a-z].*")){
+            //if (article.getCode().matches(".*[a-z].*")){
                 articleRepository.save(article);
                 articleInventoryService.create(article);
                 return true;
-            }
+            //}
         }
         return false;    
 	}
@@ -98,7 +103,7 @@ public class ArticleService{
 
     public Boolean delete(Article article) {
         if(articleRepository.existsById(article.getId())){
-            articleRepository.delete(article);
+            
             ArticleInventory articuloInventory=articleInventoryService.findByArticle(article);
             if(articuloInventory!=null){
                 for(Inventory i:articuloInventory.getInventories()){
@@ -118,6 +123,8 @@ public class ArticleService{
                         }
                     }
                 }
+                articleInventoryService.delete(articleInventoryService.findByArticle(article));
+                articleRepository.delete(article);
                 return true;
             }
             

@@ -80,15 +80,55 @@
       type: 'success',
     });
   }
+
   function mensajeConfirmacion()
   {
-    swal({
-      title: 'Mensaje',
-      text: 'Datos almacenados satisfactoriamente',
-      html: '<p>Mensaje de texto con <strong>formato</strong>.</p>',
-      type: 'success',
+    $('.entradaBtn').on('click', function(event){
+      event.preventDefault();
+
+      $('.myForm #fecha').val('');
+      $('.myForm #codigo').val('');
+      $('.myForm #detalles').val('');
+      $('.myForm #cantidad').val('');
+      $('.myForm #costoUnitario').val('');
+      $('.myForm #costoTotal').val('');
+      $(',myForm #exampleModal').modal();
+
+      swal({
+        title: 'Mensaje',
+        text: 'Datos almacenados satisfactoriamente',
+        html: '<p>Mensaje de texto con <strong>formato</strong>.</p>',
+        type: 'success',
+      });
     });
   }
+
+  $(document).ready(function() {
+    $('.eBtn').on('click', function(event) {
+          event.preventDefault();
+          
+          var href = $(this).attr('href');
+          $.get(href, function(articulo, status){
+              $('.entradaForm #nombre').val(articulo.name);
+              $('.entradaForm #costoUnitario').val(articulo.unit_cost);
+          });
+          $('.entradaForm #entradaModal').modal();
+    });
+  });
+
+  $(document).ready(function() {
+    $('.sBtn').on('click', function(event) {
+          event.preventDefault();
+          
+          var href = $(this).attr('href');
+          $.get(href, function(articulo, status){
+              $('.salidaForm #nombre').val(articulo.name);
+              $('.salidaForm #costoUnitario').val(articulo.unit_cost);
+          });
+          $('.salidaForm #salidaModal').modal();
+    });
+  });
+
   
   function mensajeConfirmacionKardex()
   {
