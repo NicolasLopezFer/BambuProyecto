@@ -8,13 +8,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
-import javax.validation.constraints.NotNull;
 
 import com.panda.bambu.model.article.Article;
 
-@Entity  
+@Entity
 public class Entry {
     
     @Id
@@ -22,31 +19,24 @@ public class Entry {
 	@Column(name = "id")
     private Long id;
     
-    @NotNull(message="Code is compulsory")
 	@Column(name = "code", unique=true)
     private String code;
 
-    @NotNull(message="Date is compulsory")
     @Column(name = "date")
     private LocalDate date;
 
-    @NotNull(message="Detail is compulsory")
     @Column(name = "detail")
     private String detail;
     
-    @NotNull(message="Quantity is compulsory")
 	@Column(name = "quantity")
     private int quantity;
 
-    @NotNull(message="Quantity Method is compulsory")
 	@Column(name = "quantity_method")
     private int quantityMethod;
-    
-    @NotNull(message="Unit Cost is compulsory")
+
 	@Column(name = "unit_cost")
     private double unitCost;
 
-    @NotNull(message="Total Cost is compulsory")
 	@Column(name = "total_cost")
     private double totalCost;
     

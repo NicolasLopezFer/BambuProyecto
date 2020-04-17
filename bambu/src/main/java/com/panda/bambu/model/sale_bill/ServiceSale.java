@@ -5,22 +5,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
 
 @Entity
-@Table(
-        uniqueConstraints=
-            @UniqueConstraint(columnNames={"code"})
-    )  
 public class ServiceSale {
 
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-    private int id;
+    private Long id;
     
     @NotNull(message="Code is compulsory")
 	@Column(name = "code", unique=true)
@@ -38,11 +32,11 @@ public class ServiceSale {
 	@Column(name = "price")
     private double price;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -83,7 +77,6 @@ public class ServiceSale {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((code == null) ? 0 : code.hashCode());
-        result = prime * result + id;
         result = prime * result + ((name == null) ? 0 : name.hashCode());
         long temp;
         temp = Double.doubleToLongBits(price);
