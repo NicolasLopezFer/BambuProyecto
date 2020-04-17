@@ -47,11 +47,11 @@ public class ArticleService{
     public Boolean create(Article article) {
         Article articleF=articleRepository.findByCode(article.getCode());
         if(articleF==null){
-            if (article.getCode().matches(".*[a-z].*")){
+            //if (article.getCode().matches(".*[a-z].*")){
                 articleRepository.save(article);
                 articleInventoryService.create(article);
                 return true;
-            }
+            //}
         }
         return false;    
 	}
