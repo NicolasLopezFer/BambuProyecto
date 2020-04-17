@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import com.panda.bambu.model.Role;
 import com.panda.bambu.model.RoleRepository;
 import com.panda.bambu.model.User;
+import com.panda.bambu.model.inventory.ArticleInventory;
 import com.panda.bambu.model.inventory.Inventory;
 import com.panda.bambu.model.inventory.InventoryRepository;
 import com.panda.bambu.service.UserService;
@@ -86,8 +87,7 @@ public class UserController {
 	@RequestMapping(value = "/inventario", method = RequestMethod.GET)
 	public ModelAndView inventarioHome() {
 		ModelAndView modelAndView = new ModelAndView();
-		List<Inventory> inven = ArticleInventoryService.findAll();
-		modelAndView.addObject("inventory", inven);
+		modelAndView.addObject("inventory", articleInventoryService.findAll());
 		modelAndView.setViewName("inventario"); // resources/template/inventario.html
 		return modelAndView;
 	}

@@ -80,10 +80,14 @@
                       </thead>
                       <!--Información base de datos-->
                       <tbody>
-                          <tr th:each = "inventario :${inventory}">
+                          <tr th:each="i :${inventory}">
                             <td><input type="checkbox" ></td>
-                            <td th:text=inventario.id></td>
-                            <td>no sabemos como</td>
+                            <td th:text="${i.id}"></td>
+                            <td th:text="${i.name}"></td>
+                            <td th:text="${i.quantity}"></td>
+                            <td th:text="${i.unit_cost}"></td>
+                            <td th:text="${i.total_cost}"></td>
+                            <td th:text="${i.sale_price}"></td>
                           </tr>
                       </tbody>
                     </table>
