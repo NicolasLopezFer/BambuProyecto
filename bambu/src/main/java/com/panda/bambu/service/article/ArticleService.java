@@ -1,5 +1,6 @@
 package com.panda.bambu.service.article;
 
+import java.util.List;
 
 import com.panda.bambu.model.article.Article;
 import com.panda.bambu.model.article.ArticleRepository;
@@ -29,6 +30,10 @@ public class ArticleService{
 
     public Article findByCode(String code){
         return articleRepository.findByCode(code);
+    }
+    
+    public List<Article> findAll(){
+        return articleRepository.findAll();
     }
 
     public Boolean create(String code, String name, double salePrice) {
