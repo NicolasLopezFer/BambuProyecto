@@ -13,10 +13,7 @@ import javax.validation.constraints.NotNull;
 import com.panda.bambu.model.article.Article;
 
 @Entity
-@Table(
-        uniqueConstraints=
-            @UniqueConstraint(columnNames={"code"})
-    )  
+
 public class Balance {
 
     @Id

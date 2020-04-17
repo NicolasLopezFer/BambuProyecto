@@ -10,6 +10,7 @@ import com.panda.bambu.model.User;
 import com.panda.bambu.model.inventory.Inventory;
 import com.panda.bambu.model.inventory.InventoryRepository;
 import com.panda.bambu.service.UserService;
+import com.panda.bambu.service.inventory.ArticleInventoryService;
 import com.panda.bambu.service.inventory.InventoryService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,10 +42,7 @@ public class UserController {
 	RoleRepository roleRepository;
 
 	@Autowired
-	InventoryService inventoryService;
-
-	@Autowired
-	InventoryRepository invenRepository;
+	ArticleInventoryService articleInventoryService;
 	
 	@RequestMapping({"/"})
 		public String llegada() {
@@ -88,7 +86,7 @@ public class UserController {
 	@RequestMapping(value = "/inventario", method = RequestMethod.GET)
 	public ModelAndView inventarioHome() {
 		ModelAndView modelAndView = new ModelAndView();
-		List<Inventory> inven = invenRepository.findAll();
+		List<Inventory> inven = ArticleInventoryService.findAll();
 		modelAndView.addObject("inventory", inven);
 		modelAndView.setViewName("inventario"); // resources/template/inventario.html
 		return modelAndView;
