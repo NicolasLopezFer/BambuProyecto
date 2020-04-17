@@ -12,8 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
-import net.bytebuddy.asm.Advice.Local;
-
 @Entity
 public class ArticleSaleBill{
      
