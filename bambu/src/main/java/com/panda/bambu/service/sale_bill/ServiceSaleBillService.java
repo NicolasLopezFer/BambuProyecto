@@ -24,8 +24,6 @@ public class ServiceSaleBillService {
     
     @Autowired
     ArticleInventoryRepository articuloInventRepository;
-
-    
     
     public Boolean saveArticleSaleBill(String id_factura, String nombre_cliente, String id_cliente,LocalDate fecha, LocalDate fecha_expiracion,float total,Set<ArticleSale> articulos) {
         ArticleSaleBill articuloSaleBill = articuloSaleBillRepository.findByCode(id_factura);
