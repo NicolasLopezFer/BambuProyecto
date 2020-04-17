@@ -6,29 +6,20 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
-import javax.validation.constraints.NotNull;
 
 import com.panda.bambu.model.article.Article;
 
 @Entity
-@Table(
-        uniqueConstraints=
-            @UniqueConstraint(columnNames={"code"})
-    )  
 public class Balance {
 
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
     private Long id;
-    
-    @NotNull(message="Quantity is compulsory")
+   
 	@Column(name = "quantity")
     private int quantity;
 
-    @NotNull(message="Total Cost is compulsory")
 	@Column(name = "total_cost")
     private double totalCost;
     

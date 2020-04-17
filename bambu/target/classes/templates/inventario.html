@@ -13,6 +13,10 @@
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+
+        <!-- Nuestro Iniventario-->
+        <script type="text/javascript" th:src="@{/js/inventario.js}"
+	        src="static/js/inventario.js"></script>
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -31,7 +35,7 @@
 
 
         <!-- Portfolio Section-->
-        <section class="page-section portfolio" id="modulos">
+        <section class="page-section portfolio">
             <div class="container">
                 <!-- Portfolio Section Heading-->
                 <p>  </p>
@@ -46,11 +50,6 @@
                 <!-- Portfolio Grid Items-->
                 <div class="row">
                     <div class="text-center col-md-12">
-                    <!-- Portfolio Item Entradas-->
-                        <a class="btn btn-primary btn-m js-scroll-trigger" th:href="@{ entradaInv}">Entradas</a>
-                    
-                    <!-- Portfolio Item Salidas-->
-                        <a class="btn btn-primary btn-m js-scroll-trigger" th:href="@{ salidaInv}">Salidas</a>
                     
                     <!-- Portfolio Item Kardex-->
                         <a class="btn btn-primary btn-m js-scroll-trigger" href="kardex">Kardex</a>
@@ -69,26 +68,158 @@
                     <table class="table table-hover table-bordered results">
                       <thead>
                         <tr>
-                            <th></th>
                             <th>Código</th>
                             <th>Articulo</th>
                             <th>Cantidad disponible</th>
                             <th>Costo unitario</th>
                             <th>Costo total</th>
                             <th>Precio de venta</th>
+                            <th>Acciones</th>
                         </tr>
                       </thead>
                       <!--Información base de datos-->
                       <tbody>
-                        <td><input type="checkbox" ></td>
-                        <td>Info de la bd</td>
-                        <td>no sabemos como</td>
+                          <tr th:each="i :${inventory}">
+                            <td th:text="${i.getArticle().getCode()}"></td>
+                            <td th:text="${i.getArticle().getName()}"></td>
+                            <td th:text="${i.getArticle().getQuantity()}"></td>
+                            <td th:text="${i.getArticle().getUnitCost()}"></td>
+                            <td th:text="${i.getArticle().getTotalCost()}"></td>
+                            <td th:text="${i.getArticle().getSalePrice()}"></td>
+                            <td>
+                                <a th:href="@{articulos-encontraruno/(id=${i.getArticle().getId()})}" class="btn btn-primary eBtn" >Entrada</a>
+                                <a th:href="@{articulos-encontraruno/(id=${i.getArticle().getId()})}" class="btn btn-primary sBtn" >Salida</a>
+                            </td>
+                          </tr>
                       </tbody>
                     </table>
-                      
                   </div>
                 </div>
             </div>
+
+            <div class="entradaForm">
+                <form th:action="@{/entradaInventario}" method="post">
+                    <div class="modal fade" id="entradaModal" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Entrada Inventario</h5>
+                                    <button type="button" class="close" data-dismiss="modal"
+                                        aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="nombre" class="col-form-label">Nombre Articulo:</label> <input
+                                            type="text" class="form-control" id="nombre" name="nombre"
+                                            value="" readonly/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="date" class="col-form-label">Fecha:</label> <input
+                                            type="date" class="form-control" id="date" name="date"
+                                            value=""/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="code" class="col-form-label">Codigo:
+                                            </label> <input type="text" class="form-control" id="code"
+                                            name="code" value="" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="detalle" class="col-form-label">Detalles: 
+                                            </label> <input type="message" class="form-control"
+                                            id="detalle" name="detalle" value="" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="cantidad" class="col-form-label">Cantidad: 
+                                            </label> <input type="text" class="form-control"
+                                            id="cantidad" name="cantidad" value="" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="costoUnitario" class="col-form-label">Costo Unitario: 
+                                            </label> <input type="text" class="form-control"
+                                            id="costoUnitario" name="costoUnitario" value="" readonly/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="costoTotal" class="col-form-label">Costo Total: 
+                                            </label> <input type="text" class="form-control"
+                                            id="costoTotal" name="costoTotal" value="" readonly/>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-dismiss="modal">Close</button>
+                                    <input type="submit" class="btn btn-primary " value="Guardar" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+
+            <div class="salidaForm">
+                <form th:action="@{/salidaInventario}" method="post">
+                    <div class="modal fade" id="salidaModal" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Salida Inventario</h5>
+                                    <button type="button" class="close" data-dismiss="modal"
+                                        aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="nombres" class="col-form-label">Nombre Articulo:</label> <input
+                                            type="text" class="form-control" id="nombres" name="nombres"
+                                            value="" readonly/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="dates" class="col-form-label">Fecha:</label> <input
+                                            type="date" class="form-control" id="dates" name="dates"
+                                            value=""/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="codes" class="col-form-label">Codigo:
+                                            </label> <input type="text" class="form-control" id="codes"
+                                            name="codes" value="" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="detalles" class="col-form-label">Detalles: 
+                                            </label> <input type="message" class="form-control"
+                                            id="detalles" name="detalles" value="" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="cantidads" class="col-form-label">Cantidad: 
+                                            </label> <input type="text" class="form-control"
+                                            id="cantidads" name="cantidads" value="" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="costoUnitarios" class="col-form-label">Costo Unitario: 
+                                            </label> <input type="text" class="form-control"
+                                            id="costoUnitarios" name="costoUnitarios" value="" readonly/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="costoTotals" class="col-form-label">Costo Total: 
+                                            </label> <input type="text" class="form-control"
+                                            id="costoTotals" name="costoTotals" value="" readonly/>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-dismiss="modal">Close</button>
+                                    <input type="submit" class="btn btn-primary " value="Guardar" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
         </section>
         
         <!-- Copyright Section-->
