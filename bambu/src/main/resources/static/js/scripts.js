@@ -103,6 +103,16 @@
     });
   }
 
+  function mensajeConfirmacionFacturaDeVenta() {
+
+    swal({
+      title: 'Mensaje',
+      text: 'Datos almacenados satisfactoriamente',
+      html: '<p><strong>Datos almacenados correctamente</strong>.</p>',
+      type: 'success',
+    });
+  }
+
   $(document).ready(function() {
     $('.eBtn').on('click', function(event) {
           event.preventDefault();

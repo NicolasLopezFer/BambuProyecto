@@ -222,6 +222,13 @@ public class UserController {
 		return modelAndView;
 	}
 
+	@RequestMapping(value = "/facturaDeVenta", method = RequestMethod.GET)
+	public ModelAndView facturaDeVentaHome() {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("facturaDeVEnta"); // resources/template/facturaDeVenta.html
+		return modelAndView;
+	}
+
 	
 
 	@RequestMapping(value="/register", method=RequestMethod.POST)
