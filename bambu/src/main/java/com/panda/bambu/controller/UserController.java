@@ -104,6 +104,13 @@ public class UserController {
 		return modelAndView;
 	}
 
+
+	@RequestMapping(value = "/devoluciones", method = RequestMethod.GET)
+	public ModelAndView devolucionesHome() {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("devoluciones"); // resources/template/devoluciones.html
+		return modelAndView;
+	}
 	
 
 	@RequestMapping(value="/register", method=RequestMethod.POST)
