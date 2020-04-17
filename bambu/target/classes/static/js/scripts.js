@@ -89,3 +89,13 @@
       type: 'success',
     });
   }
+  
+  function mensajeConfirmacionDevoluciones()
+  {
+    swal({
+      title: 'Mensaje',
+      text: 'Datos almacenados satisfactoriamente',
+      html: '<p>Mensaje de texto con <strong>formato</strong>.</p>',
+      type: 'success',
+    });
+  }

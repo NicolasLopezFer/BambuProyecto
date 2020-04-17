@@ -295,6 +295,11 @@ input[type=month] {
   -webkit-appearance: listbox;
 }
 
+.resizedTextbox{
+  width: 100px; 
+  height: 20px;
+}
+
 textarea {
   overflow: auto;
   resize: vertical;
