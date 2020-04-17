@@ -103,7 +103,7 @@ public class ArticleService{
 
     public Boolean delete(Article article) {
         if(articleRepository.existsById(article.getId())){
-            articleRepository.delete(article);
+            
             ArticleInventory articuloInventory=articleInventoryService.findByArticle(article);
             if(articuloInventory!=null){
                 for(Inventory i:articuloInventory.getInventories()){
@@ -123,6 +123,8 @@ public class ArticleService{
                         }
                     }
                 }
+                articleInventoryService.delete(articleInventoryService.findByArticle(article));
+                articleRepository.delete(article);
                 return true;
             }
             
