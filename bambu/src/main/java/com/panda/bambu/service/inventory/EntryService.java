@@ -52,7 +52,7 @@ public class EntryService {
 
     }
     
-    public boolean create(Entry entry){
+    public boolean createEntry(Entry entry){
                  
         if(entry != null && entryRepository.findByCode(entry.getCode()) == null && articleService.isArticleAlreadyPresent(entry.getArticle())){
             entryRepository.save(entry);

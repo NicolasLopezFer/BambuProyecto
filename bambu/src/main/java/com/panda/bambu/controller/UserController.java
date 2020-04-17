@@ -10,6 +10,7 @@ import com.panda.bambu.model.RoleRepository;
 import com.panda.bambu.model.User;
 import com.panda.bambu.model.article.Article;
 import com.panda.bambu.model.article.ArticleRepository;
+import com.panda.bambu.model.return_articles.ReturnArticles;
 import com.panda.bambu.service.UserService;
 import com.panda.bambu.service.article.ArticleService;
 import com.panda.bambu.service.return_articles.ArticleReturnService;
@@ -106,6 +107,14 @@ public class UserController {
 		modelAndView.setViewName("redirect:/articulos");
 		return modelAndView;
 	}
+/*
+	@RequestMapping(value = "/devoluciones", method = RequestMethod.POST)
+	public ModelAndView crearDevolucion(ReturnArticles ra) {
+		ModelAndView modelAndView = new ModelAndView();
+		
+		modelAndView.setViewName("devoluciones"); // resources/template/devoluciones.html
+		return modelAndView;
+	}*/
 	
 	@RequestMapping(value = "/articulos-modificar", method = RequestMethod.POST)
 	public ModelAndView modificarArticulo(Article a) {
@@ -185,24 +194,6 @@ public class UserController {
 		return modelAndView;
 	}
 
-
-	/*
-	@RequestMapping(value = "/inventario", method = RequestMethod.GET)
-	public ModelAndView inventarioHome() {
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("inventory", articleInventoryService.findAll());
-		modelAndView.setViewName("inventario"); // resources/template/inventario.html
-		return modelAndView;
-	}
-	*/
-
-	@RequestMapping(value = "/devoluciones", method = RequestMethod.POST)
-	public ModelAndView returnarticles() {
-		ModelAndView modelAndView = new ModelAndView();
-		
-		modelAndView.setViewName("devoluciones"); // resources/template/devoluciones.html
-		return modelAndView;
-	}
 	
 
 	@RequestMapping(value="/register", method=RequestMethod.POST)
