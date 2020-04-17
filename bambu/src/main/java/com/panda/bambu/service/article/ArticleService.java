@@ -53,11 +53,11 @@ public class ArticleService{
     public Boolean create(Article article) {
         Article articleF=articleRepository.findByCode(article.getCode());
         if(articleF==null){
-            if (article.getCode().matches(".*[a-z].*")){
+            //if (article.getCode().matches(".*[a-z].*")){
                 articleRepository.save(article);
                 articleInventoryService.create(article);
                 return true;
-            }
+            //}
         }
         return false;    
 	}
@@ -104,6 +104,7 @@ public class ArticleService{
 
     public Boolean delete(Article article) {
         if(articleRepository.existsById(article.getId())){
+            
             ArticleInventory articuloInventory=articleInventoryService.findByArticle(article);
             if(articuloInventory!=null){
                 articleInventoryService.delete(articuloInventory);
@@ -125,6 +126,8 @@ public class ArticleService{
                         }
                     }
                 }
+                articleInventoryService.delete(articleInventoryService.findByArticle(article));
+                articleRepository.delete(article);
                 return true;
             }
             
