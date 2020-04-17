@@ -171,11 +171,13 @@ public class UserController {
 	}
 
 
-	@RequestMapping(value = "/entradaInventario_agregar", method = RequestMethod.POST)
-	public ModelAndView entradaInventario_a(Article a) {
+	@RequestMapping(value = "/entradaInventario", method = RequestMethod.POST)
+	public ModelAndView entradaInventario(Article arti) {
 		ModelAndView modelAndView = new ModelAndView();
-		//articleRepository.save(a);
-		if(articleService.modify(a)) {
+		ArticleInventory arinven = new ArticleInventory();
+		Entry entry = new Entry();
+		arinven.setArticle(arti);
+		if(articleInventoryService.addEntry(arinven,entry)) {
 			modelAndView.addObject("responseMessage", "Entrada exitosa!");	
 			System.out.println("Entrada exitosa!");
 		}else {
@@ -185,23 +187,6 @@ public class UserController {
 		modelAndView.setViewName("redirect:/inventarios");
 		return modelAndView;
 	}
-
-	@RequestMapping(value = "/salidaInventario_agregar", method = RequestMethod.POST)
-	public ModelAndView modificarArticulo(Article a) {
-		ModelAndView modelAndView = new ModelAndView();
-		//articleRepository.save(a);
-		if(articleService.modify(a)) {
-			modelAndView.addObject("responseMessage", "Articulo editado Exitosamente!");	
-			System.out.println("Articulo guardado Exitosamente!");
-		}else {
-			modelAndView.addObject("responseMessage", "Existen errores al editado el articulo");
-			System.out.println("NO SE GUARDO");
-		}
-		modelAndView.setViewName("redirect:/articulos");
-		return modelAndView;
-	}
-
-
 
 
 

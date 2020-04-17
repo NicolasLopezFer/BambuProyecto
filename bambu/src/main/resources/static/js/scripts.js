@@ -102,3 +102,29 @@
       });
     });
   }
+
+  $(document).ready(function() {
+    $('.eBtn').on('click', function(event) {
+          event.preventDefault();
+          
+          var href = $(this).attr('href');
+          $.get(href, function(articulo, status){
+              $('.entradaForm #nombre').val(articulo.name);
+              $('.entradaForm #costoUnitario').val(articulo.unit_cost);
+          });
+          $('.entradaForm #entradaModal').modal();
+    });
+  });
+
+  $(document).ready(function() {
+    $('.sBtn').on('click', function(event) {
+          event.preventDefault();
+          
+          var href = $(this).attr('href');
+          $.get(href, function(articulo, status){
+              $('.salidaForm #nombre').val(articulo.name);
+              $('.salidaForm #costoUnitario').val(articulo.unit_cost);
+          });
+          $('.salidaForm #salidaModal').modal();
+    });
+  });

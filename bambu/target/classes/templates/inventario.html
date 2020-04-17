@@ -87,19 +87,18 @@
                             <td th:text="${i.getArticle().getTotalCost()}"></td>
                             <td th:text="${i.getArticle().getSalePrice()}"></td>
                             <td>
-                                <a class="btn btn-primary eBtn" th:href="@{articulos-encontraruno/(id=${i.getArticle().getId()})}">Entrada</a>
-                                <a class="btn btn-primary sBtn" th:href="@{articulos-encontraruno/(id=${i.getArticle().getId()})}">Salida</a>
+                                <a th:href="@{articulos-encontraruno/(id=${i.getArticle().getId()})}" class="btn btn-primary eBtn" >Entrada</a>
+                                <a th:href="@{articulos-encontraruno/(id=${i.getArticle().getId()})}" class="btn btn-primary sBtn" >Salida</a>
                             </td>
                           </tr>
                       </tbody>
                     </table>
-                      
                   </div>
                 </div>
             </div>
 
             <div class="entradaForm">
-                <form th:action="@{/entradaInventario_agregar}" method="post">
+                <form th:action="@{/entradaInventario}" method="post">
                     <div class="modal fade" id="entradaModal" tabindex="-1" role="dialog"
                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
@@ -113,37 +112,37 @@
                                 </div>
                                 <div class="modal-body">
                                     <div class="form-group">
-                                        <label for="code" class="col-form-label">Nombre Articulo:</label> <input
-                                            type="date" class="form-control" id="nombre" name="nombre"
+                                        <label for="nombre" class="col-form-label">Nombre Articulo:</label> <input
+                                            type="text" class="form-control" id="nombre" name="nombre"
                                             value="" readonly/>
                                     </div>
                                     <div class="form-group">
-                                        <label for="code" class="col-form-label">Fecha:</label> <input
+                                        <label for="date" class="col-form-label">Fecha:</label> <input
                                             type="date" class="form-control" id="date" name="date"
                                             value=""/>
                                     </div>
                                     <div class="form-group">
-                                        <label for="name" class="col-form-label">Codigo:
+                                        <label for="code" class="col-form-label">Codigo:
                                             </label> <input type="text" class="form-control" id="code"
                                             name="code" value="" />
                                     </div>
                                     <div class="form-group">
-                                        <label for="salePrice" class="col-form-label">Detalles: 
+                                        <label for="detalle" class="col-form-label">Detalles: 
                                             </label> <input type="message" class="form-control"
                                             id="detalle" name="detalle" value="" />
                                     </div>
                                     <div class="form-group">
-                                        <label for="salePrice" class="col-form-label">Cantidad: 
+                                        <label for="cantidad" class="col-form-label">Cantidad: 
                                             </label> <input type="text" class="form-control"
                                             id="cantidad" name="cantidad" value="" />
                                     </div>
                                     <div class="form-group">
-                                        <label for="salePrice" class="col-form-label">Costo Unitario: 
+                                        <label for="costoUnitario" class="col-form-label">Costo Unitario: 
                                             </label> <input type="text" class="form-control"
                                             id="costoUnitario" name="costoUnitario" value="" readonly/>
                                     </div>
                                     <div class="form-group">
-                                        <label for="salePrice" class="col-form-label">Costo Total: 
+                                        <label for="costoTotal" class="col-form-label">Costo Total: 
                                             </label> <input type="text" class="form-control"
                                             id="costoTotal" name="costoTotal" value="" readonly/>
                                     </div>
@@ -161,8 +160,8 @@
 
 
             <div class="salidaForm">
-                <form th:action="@{/salidaInventario_agregar}" method="post">
-                    <div class="modal fade" id="entradaModal" tabindex="-1" role="dialog"
+                <form th:action="@{/salidaInventario}" method="post">
+                    <div class="modal fade" id="salidaModal" tabindex="-1" role="dialog"
                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -175,34 +174,39 @@
                                 </div>
                                 <div class="modal-body">
                                     <div class="form-group">
-                                        <label for="code" class="col-form-label">Fecha:</label> <input
-                                            type="date" class="form-control" id="code" name="code"
+                                        <label for="nombres" class="col-form-label">Nombre Articulo:</label> <input
+                                            type="text" class="form-control" id="nombres" name="nombres"
+                                            value="" readonly/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="dates" class="col-form-label">Fecha:</label> <input
+                                            type="date" class="form-control" id="dates" name="dates"
                                             value=""/>
                                     </div>
                                     <div class="form-group">
-                                        <label for="name" class="col-form-label">Codigo:
-                                            </label> <input type="text" class="form-control" id="name"
-                                            name="name" value="" />
+                                        <label for="codes" class="col-form-label">Codigo:
+                                            </label> <input type="text" class="form-control" id="codes"
+                                            name="codes" value="" />
                                     </div>
                                     <div class="form-group">
-                                        <label for="salePrice" class="col-form-label">Detalles: 
+                                        <label for="detalles" class="col-form-label">Detalles: 
                                             </label> <input type="message" class="form-control"
-                                            id="salePrice" name="salePrice" value="" />
+                                            id="detalles" name="detalles" value="" />
                                     </div>
                                     <div class="form-group">
-                                        <label for="salePrice" class="col-form-label">Cantidad: 
+                                        <label for="cantidads" class="col-form-label">Cantidad: 
                                             </label> <input type="text" class="form-control"
-                                            id="salePrice" name="salePrice" value="" />
+                                            id="cantidads" name="cantidads" value="" />
                                     </div>
                                     <div class="form-group">
-                                        <label for="salePrice" class="col-form-label">Costo Unitario: 
+                                        <label for="costoUnitarios" class="col-form-label">Costo Unitario: 
                                             </label> <input type="text" class="form-control"
-                                            id="salePrice" name="salePrice" value="" readonly/>
+                                            id="costoUnitarios" name="costoUnitarios" value="" readonly/>
                                     </div>
                                     <div class="form-group">
-                                        <label for="salePrice" class="col-form-label">Costo Total: 
+                                        <label for="costoTotals" class="col-form-label">Costo Total: 
                                             </label> <input type="text" class="form-control"
-                                            id="salePrice" name="salePrice" value="" readonly/>
+                                            id="costoTotals" name="costoTotals" value="" readonly/>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
