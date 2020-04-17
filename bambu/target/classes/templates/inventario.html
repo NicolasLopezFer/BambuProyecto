@@ -82,12 +82,12 @@
                       <tbody>
                           <tr th:each="i :${inventory}">
                             <td><input type="checkbox" ></td>
-                            <td th:text="${i.id}"></td>
-                            <td th:text="${i.name}"></td>
-                            <td th:text="${i.quantity}"></td>
-                            <td th:text="${i.unit_cost}"></td>
-                            <td th:text="${i.total_cost}"></td>
-                            <td th:text="${i.sale_price}"></td>
+                            <td th:text="${i.getArticle().getCode()}"></td>
+                            <td th:text="${i.getArticle().getName()}"></td>
+                            <td th:text="${i.getArticle().getQuantity()}"></td>
+                            <td th:text="${i.getArticle().getUnitCost()}"></td>
+                            <td th:text="${i.getArticle().getTotalCost()}"></td>
+                            <td th:text="${i.getArticle().getSalePrice()}"></td>
                           </tr>
                       </tbody>
                     </table>

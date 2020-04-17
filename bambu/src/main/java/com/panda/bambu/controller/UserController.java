@@ -44,6 +44,7 @@ public class UserController {
 
 	@Autowired
 	ArticleInventoryService articleInventoryService;
+
 	
 	@RequestMapping({"/"})
 		public String llegada() {
