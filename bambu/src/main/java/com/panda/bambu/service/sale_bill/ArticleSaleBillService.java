@@ -2,12 +2,10 @@ package com.panda.bambu.service.sale_bill;
 
 import java.util.List;
 
-import com.panda.bambu.model.inventory.Entry;
 import com.panda.bambu.model.inventory.Output;
 import com.panda.bambu.model.sale_bill.ArticleSale;
 import com.panda.bambu.model.sale_bill.ArticleSaleBill;
 import com.panda.bambu.model.sale_bill.ArticleSaleBillRepository;
-import com.panda.bambu.model.sale_bill.ArticleSaleRepository;
 import com.panda.bambu.service.inventory.ArticleInventoryService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +23,6 @@ public class ArticleSaleBillService {
      @Autowired
      private ArticleInventoryService articleInventoryService;
 
-     
 
      public ArticleSaleBill findById(Long id){   
            return articleSaleBillRepository.findById(id).get();
@@ -58,8 +55,12 @@ public class ArticleSaleBillService {
            if(articleSaleBillRepository.findByCode(articleBill.getCode()) == null){
               if(!articleBill.getArticles().isEmpty()){
                   for(ArticleSale article: articleBill.getArticles()){
-                      if(article == null && isRepeatCode(articleBill, article)){
+                      if(article == null || isRepeatCode(articleBill, article)){
                          return false;   
+                      }
+
+                      if(articleSaleService.create(article) == false){
+                         return false;
                       }
 
                       articleSaleService.create(article);
