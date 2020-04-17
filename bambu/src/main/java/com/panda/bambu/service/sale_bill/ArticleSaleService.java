@@ -1,12 +1,10 @@
 package com.panda.bambu.service.sale_bill;
 
 import java.util.Set;
-import java.util.List;
 
 import com.panda.bambu.model.article.Article;
 import com.panda.bambu.model.article.ArticleRepository;
 import com.panda.bambu.model.sale_bill.ArticleSale;
-import com.panda.bambu.model.sale_bill.ArticleSaleBill;
 import com.panda.bambu.model.sale_bill.ArticleSaleBillRepository;
 import com.panda.bambu.model.sale_bill.ArticleSaleRepository;
 import com.panda.bambu.model.tax.Tax;

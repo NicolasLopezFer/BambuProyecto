@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
 public interface ArticleSaleRepository extends JpaRepository<ArticleSale, Long> {
     
     ArticleSale findByArticle(Article articulo);
-    ArticleSale findById(int id);
+
 }
