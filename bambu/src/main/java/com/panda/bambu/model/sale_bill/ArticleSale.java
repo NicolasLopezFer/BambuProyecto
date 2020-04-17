@@ -6,7 +6,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotNull;
 
 import com.panda.bambu.model.article.Article;
 
@@ -16,32 +15,28 @@ public class ArticleSale {
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-    private int id;
+    private Long id;
 
     @ManyToOne()
     private Article article;
             
-    @NotNull(message="Quantity is compulsory")
 	@Column(name = "quantity")
     private int quantity;
 
-    @NotNull(message="Discount is compulsory")
 	@Column(name = "discount")
     private float discount;
 
-    @NotNull(message="Tax is compulsory")
-	@Column(name = "tax")
+   	@Column(name = "tax")
     private float tax;
 
-    @NotNull(message="Total is compulsory")
 	@Column(name = "total")
     private float total;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -91,7 +86,6 @@ public class ArticleSale {
         int result = 1;
         result = prime * result + ((article == null) ? 0 : article.hashCode());
         result = prime * result + Float.floatToIntBits(discount);
-        result = prime * result + id;
         result = prime * result + quantity;
         result = prime * result + Float.floatToIntBits(tax);
         result = prime * result + Float.floatToIntBits(total);

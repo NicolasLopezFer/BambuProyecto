@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
 
 
 @Entity 
@@ -16,7 +15,6 @@ public class MeasureMethod {
 	@Column(name = "id")
     private Long id;
     
-    @NotNull(message="Name is compulsory")
 	@Column(name = "name", unique=true)
     private String name;
     
