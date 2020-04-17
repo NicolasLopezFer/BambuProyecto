@@ -5,6 +5,7 @@ import java.util.List;
 import com.panda.bambu.model.article.Article;
 import com.panda.bambu.model.article.ArticleRepository;
 import com.panda.bambu.model.inventory.ArticleInventory;
+import com.panda.bambu.model.inventory.ArticleInventoryRepository;
 import com.panda.bambu.model.inventory.Balance;
 import com.panda.bambu.model.inventory.Entry;
 import com.panda.bambu.model.inventory.Inventory;
@@ -106,6 +107,8 @@ public class ArticleService{
             
             ArticleInventory articuloInventory=articleInventoryService.findByArticle(article);
             if(articuloInventory!=null){
+                articleInventoryService.delete(articuloInventory);
+                articleRepository.delete(article);
                 for(Inventory i:articuloInventory.getInventories()){
                     for(Entry e:i.getEntries()){
                         if(e.getArticle().getCode().equals(article.getCode())){

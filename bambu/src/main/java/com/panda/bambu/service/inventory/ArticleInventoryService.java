@@ -117,7 +117,7 @@ public class ArticleInventoryService extends TimerTask{
             article.setQuantity(entry.getQuantity()+article.getQuantity());
             articleService.save(article);
 
-            if(articleIRepository.existsById(articleInventory.getId()) == true && !entryService.create(entry)){
+            if(articleIRepository.existsById(articleInventory.getId()) == true && !entryService.createEntry(entry)){
                 if(articleInventory.getInventories().isEmpty()){
                    articleInventory.getInventories().add(inventoryService.create());
                 }

@@ -15,9 +15,12 @@ import com.panda.bambu.model.inventory.Inventory;
 import com.panda.bambu.model.inventory.InventoryRepository;
 import com.panda.bambu.model.inventory.Output;
 import com.panda.bambu.model.inventory.Entry;
+import com.panda.bambu.model.return_articles.ArticleReturn;
+import com.panda.bambu.model.return_articles.ReturnArticles;
 import com.panda.bambu.service.UserService;
 import com.panda.bambu.service.article.ArticleService;
 import com.panda.bambu.service.return_articles.ArticleReturnService;
+import com.panda.bambu.service.return_articles.ReturnArticlesService;
 import com.panda.bambu.service.inventory.ArticleInventoryService;
 import com.panda.bambu.service.inventory.InventoryService;
 
@@ -61,6 +64,9 @@ public class UserController {
 	
 	@Autowired
 	ArticleRepository articleRepository;
+
+	@Autowired
+	ReturnArticlesService returnArticlesService;
 	
 	@RequestMapping({"/"})
 		public String llegada() {
@@ -105,7 +111,6 @@ public class UserController {
 	@RequestMapping(value = "/articulos-crear", method = RequestMethod.POST)
 	public ModelAndView crearArticulo(Article a) {
 		ModelAndView modelAndView = new ModelAndView();
-		//articleRepository.save(a);
 		if(articleService.create(a)) {
 			modelAndView.addObject("responseMessage", "Articulo guardado Exitosamente!");	
 			System.out.println("Articulo guardado Exitosamente!");
@@ -114,6 +119,22 @@ public class UserController {
 			System.out.println("NO SE GUARDO");
 		}
 		modelAndView.setViewName("redirect:/articulos");
+		return modelAndView;
+	}
+
+	@RequestMapping(value = "/devoluciones", method = RequestMethod.POST)
+	public ModelAndView crearDevolucion(ReturnArticles returnArt) {
+		ModelAndView modelAndView = new ModelAndView();
+		ArticleReturn articleRet = new ArticleReturn();
+		if(returnArticlesService.create(returnArt) && returnArticlesService.addInventoryEntry(articleRet))
+		{
+			modelAndView.addObject("responseMessage", "Articulo guardado Exitosamente!");	
+			System.out.println("Articulo guardado Exitosamente!");
+		}else {
+			modelAndView.addObject("responseMessage", "Existen errores al guardar el articulo");
+			System.out.println("NO SE GUARDO");
+		}
+		modelAndView.setViewName("devoluciones"); // resources/template/devoluciones.html
 		return modelAndView;
 	}
 	
@@ -219,6 +240,14 @@ public class UserController {
 	public ModelAndView adminHome() {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("admin"); // resources/template/admin.html
+		return modelAndView;
+	}
+
+
+	@RequestMapping(value = "/devoluciones", method = RequestMethod.GET)
+	public ModelAndView devolucionesHome() {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("devoluciones"); // resources/template/devoluciones.html
 		return modelAndView;
 	}
 
