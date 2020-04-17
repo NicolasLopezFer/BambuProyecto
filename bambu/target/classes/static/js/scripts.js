@@ -80,6 +80,7 @@
       type: 'success',
     });
   }
+
   function mensajeConfirmacion()
   {
     $('.entradaBtn').on('click', function(event){

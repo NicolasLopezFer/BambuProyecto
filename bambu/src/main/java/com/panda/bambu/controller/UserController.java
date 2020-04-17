@@ -13,6 +13,7 @@ import com.panda.bambu.model.article.ArticleRepository;
 import com.panda.bambu.model.inventory.ArticleInventory;
 import com.panda.bambu.model.inventory.Inventory;
 import com.panda.bambu.model.inventory.InventoryRepository;
+import com.panda.bambu.model.inventory.Entry;
 import com.panda.bambu.service.UserService;
 import com.panda.bambu.service.article.ArticleService;
 import com.panda.bambu.service.return_articles.ArticleReturnService;
@@ -157,6 +158,10 @@ public class UserController {
 		return modelAndView;
 	}
 
+
+
+
+
 	@RequestMapping(value = "/inventario", method = RequestMethod.GET)
 	public ModelAndView inventarioHome() {
 		ModelAndView modelAndView = new ModelAndView();
@@ -165,14 +170,43 @@ public class UserController {
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/entradaInv", method = RequestMethod.GET)
-	public ModelAndView entradaInvHome() {
+
+	@RequestMapping(value = "/entradaInventario_agregar", method = RequestMethod.POST)
+	public ModelAndView entradaInventario_a(Article a) {
 		ModelAndView modelAndView = new ModelAndView();
-		Inventory inventory = new Inventory();
-		modelAndView.setViewName("entradaInv"); // resources/template/entradaInv.html
+		//articleRepository.save(a);
+		if(articleService.modify(a)) {
+			modelAndView.addObject("responseMessage", "Entrada exitosa!");	
+			System.out.println("Entrada exitosa!");
+		}else {
+			modelAndView.addObject("responseMessage", "Existen errores");
+			System.out.println("No entrada");
+		}
+		modelAndView.setViewName("redirect:/inventarios");
 		return modelAndView;
 	}
 
+	@RequestMapping(value = "/salidaInventario_agregar", method = RequestMethod.POST)
+	public ModelAndView modificarArticulo(Article a) {
+		ModelAndView modelAndView = new ModelAndView();
+		//articleRepository.save(a);
+		if(articleService.modify(a)) {
+			modelAndView.addObject("responseMessage", "Articulo editado Exitosamente!");	
+			System.out.println("Articulo guardado Exitosamente!");
+		}else {
+			modelAndView.addObject("responseMessage", "Existen errores al editado el articulo");
+			System.out.println("NO SE GUARDO");
+		}
+		modelAndView.setViewName("redirect:/articulos");
+		return modelAndView;
+	}
+
+
+
+
+
+
+	
 	@RequestMapping(value = "/salidaInv", method = RequestMethod.GET)
 	public ModelAndView salidaInvHome() {
 		ModelAndView modelAndView = new ModelAndView();
