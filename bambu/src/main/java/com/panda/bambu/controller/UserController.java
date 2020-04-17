@@ -13,6 +13,8 @@ import com.panda.bambu.model.article.ArticleRepository;
 import com.panda.bambu.model.inventory.ArticleInventory;
 import com.panda.bambu.model.inventory.Inventory;
 import com.panda.bambu.model.inventory.InventoryRepository;
+import com.panda.bambu.model.inventory.Output;
+import com.panda.bambu.model.inventory.Entry;
 import com.panda.bambu.model.return_articles.ReturnArticles;
 import com.panda.bambu.service.UserService;
 import com.panda.bambu.service.article.ArticleService;
@@ -177,6 +179,10 @@ public class UserController {
 		return modelAndView;
 	}
 
+
+
+
+
 	@RequestMapping(value = "/inventario", method = RequestMethod.GET)
 	public ModelAndView inventarioHome() {
 		ModelAndView modelAndView = new ModelAndView();
@@ -185,18 +191,40 @@ public class UserController {
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/entradaInv", method = RequestMethod.GET)
-	public ModelAndView entradaInvHome() {
+
+	@RequestMapping(value = "/entradaInventario", method = RequestMethod.POST)
+	public ModelAndView entradaInventario() {
 		ModelAndView modelAndView = new ModelAndView();
-		Inventory inventory = new Inventory();
-		modelAndView.setViewName("entradaInv"); // resources/template/entradaInv.html
+		ArticleInventory arinven = new ArticleInventory();
+		Entry entry = new Entry();
+		if(articleInventoryService.addEntry(arinven,entry)) {
+			modelAndView.addObject("responseMessage", "Entrada exitosa!");	
+			System.out.println("Entrada exitosa!");
+		}else {
+			modelAndView.addObject("responseMessage", "Existen errores");
+			System.out.println("No entrada");
+		}
+		modelAndView.setViewName("redirect:/inventario");
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/salidaInv", method = RequestMethod.GET)
-	public ModelAndView salidaInvHome() {
+
+
+
+	
+	@RequestMapping(value = "/salidaInventario", method = RequestMethod.POST)
+	public ModelAndView salidaInventario() {
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("salidaInv"); // resources/template/entradaInv.html
+		ArticleInventory arinven = new ArticleInventory();
+		Output entry = new Output();
+		if(articleInventoryService.addOuput(arinven,entry)) {
+			modelAndView.addObject("responseMessage", "Entrada exitosa!");	
+			System.out.println("Entrada exitosa!");
+		}else {
+			modelAndView.addObject("responseMessage", "Existen errores");
+			System.out.println("No entrada");
+		}
+		modelAndView.setViewName("redirect:/inventario");
 		return modelAndView;
 	}
 	
