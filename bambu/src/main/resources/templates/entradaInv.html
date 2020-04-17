@@ -44,49 +44,51 @@
                     <div class="divider-custom-line"></div>
                 </div>
                 <!-- Contact Section Form-->
-                <div class="row">
+                <div class="myForm">
                     <div class="col-lg-8 mx-auto">
                         <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19.-->
-                        <form id="contactForm" name="sentMessage" novalidate="novalidate">
-                            <div class="control-group">
-                                <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                                    <label>Fecha</label><input class="form-control" id="fecha" type="date" placeholder="fecha" required="required" data-validation-required-message="Por favor ingrese fecha." />
-                                    <p class="help-block text-danger"></p>
+                        <form id="entryForm" name="sentEntry" novalidate="novalidate">
+                            <div class="modal fade" id="exampleModal">
+                                <div class="control-group">
+                                    <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                        <label>Fecha</label><input class="form-control" id="fecha" type="date" placeholder="fecha" required="required" data-validation-required-message="Por favor ingrese fecha." />
+                                        <p class="help-block text-danger"></p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="control-group">
-                                <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                                    <label>Código</label><input class="form-control" id="codigo" type="name" placeholder="Código" required="required" data-validation-required-message="Por favor ingrese código." />
-                                    <p class="help-block text-danger"></p>
+                                <div class="control-group">
+                                    <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                        <label>Código</label><input class="form-control" id="codigo" type="name" placeholder="Código" required="required" data-validation-required-message="Por favor ingrese código." />
+                                        <p class="help-block text-danger"></p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="control-group">
-                                <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                                    <label>Detalles</label><input class="form-control" id="detalles" type="message" placeholder="Detalles" />
-                                    <p class="help-block text-danger"></p>
+                                <div class="control-group">
+                                    <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                        <label>Detalles</label><input class="form-control" id="detalles" type="message" placeholder="Detalles" />
+                                        <p class="help-block text-danger"></p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="control-group">
-                                <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                                    <label>Cantidad</label><input class="form-control" id="cantidad" type="number" placeholder="Cantidad" required="required" data-validation-required-message="Por favor ingrese cantidad."/>
-                                    <p class="help-block text-danger"></p>
+                                <div class="control-group">
+                                    <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                        <label>Cantidad</label><input class="form-control" id="cantidad" type="number" placeholder="Cantidad" required="required" data-validation-required-message="Por favor ingrese cantidad."/>
+                                        <p class="help-block text-danger"></p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="control-group">
-                                <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                                    <label>Costo unitario</label><input class="form-control" id="costoUnitario " type="number" placeholder="Costo unitario" required="required" data-validation-required-message="Por favor ingrese costo unitario."/>
-                                    <p class="help-block text-danger"></p>
+                                <div class="control-group">
+                                    <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                        <label>Costo unitario</label><input class="form-control" id="costoUnitario " type="number" placeholder="Costo unitario" required="required" data-validation-required-message="Por favor ingrese costo unitario."/>
+                                        <p class="help-block text-danger"></p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="control-group">
-                                <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                                    <label>Costo total</label><input class="form-control" id="costoTotal " type="number" placeholder="Costo Unitario" required="required" data-validation-required-message="Por favor ingrese costo total."/>
-                                    <p class="help-block text-danger"></p>
+                                <div class="control-group">
+                                    <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                        <label>Costo total</label><input class="form-control" id="costoTotal " type="number" placeholder="Costo Unitario" required="required" data-validation-required-message="Por favor ingrese costo total."/>
+                                        <p class="help-block text-danger"></p>
+                                    </div>
                                 </div>
+                                <br />
+                                <div id="success"></div>
+                                <div class="form-group"><button onclick="mensajeConfirmacion()" class="btn btn-primary entradaBtn" id="sendMessageButton" type="button">Aceptar</button></div>
                             </div>
-                            <br />
-                            <div id="success"></div>
-                            <div class="form-group"><button onclick="mensajeConfirmacion()" class="btn btn-primary entradaBtn" id="sendMessageButton" type="button">Aceptar</button></div>
                         </form>
                     </div>
                 </div>

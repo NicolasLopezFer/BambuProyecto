@@ -85,7 +85,13 @@
     $('.entradaBtn').on('click', function(event){
       event.preventDefault();
 
-      
+      $('.myForm #fecha').val('');
+      $('.myForm #codigo').val('');
+      $('.myForm #detalles').val('');
+      $('.myForm #cantidad').val('');
+      $('.myForm #costoUnitario').val('');
+      $('.myForm #costoTotal').val('');
+      $(',myForm #exampleModal').modal();
 
       swal({
         title: 'Mensaje',
