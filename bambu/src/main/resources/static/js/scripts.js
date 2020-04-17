@@ -74,8 +74,8 @@
   function mensajeConfirmacionSalida() {
 
     swal({
-      title: 'Confirmacion',
-      text: 'Datos almacenados correctamente',
+      title: 'Mensaje',
+      text: 'Datos almacenados satisfactoriamente',
       html: '<p><strong>Datos almacenados correctamente</strong>.</p>',
       type: 'success',
     });
@@ -128,3 +128,14 @@
           $('.salidaForm #salidaModal').modal();
     });
   });
+
+  
+  function mensajeConfirmacionKardex()
+  {
+    swal({
+      title: 'Mensaje',
+      text: 'Datos almacenados satisfactoriamente',
+      html: '<p>Mensaje de texto con <strong>formato</strong>.</p>',
+      type: 'success',
+    });
+  }

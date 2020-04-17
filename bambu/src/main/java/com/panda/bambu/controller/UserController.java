@@ -64,7 +64,7 @@ public class UserController {
 	
 	@RequestMapping({"/"})
 		public String llegada() {
-			return "llegada";
+			return "kardex";
 		}
 	
 	@RequestMapping(value = { "/login" }, method = RequestMethod.GET)
@@ -205,6 +205,13 @@ public class UserController {
 			System.out.println("No entrada");
 		}
 		modelAndView.setViewName("redirect:/inventario");
+		return modelAndView;
+	}
+
+	@RequestMapping(value = "/kardex", method = RequestMethod.GET)
+	public ModelAndView kardexHome() {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("kardex"); // resources/template/kardex.html
 		return modelAndView;
 	}
 	
