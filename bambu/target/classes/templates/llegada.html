@@ -50,7 +50,7 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#Ingreso">Ingreso</a>
+            <a class="nav-link js-scroll-trigger" href="#Ingreso">Ingresar</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#Conocenos">Conocenos</a>
@@ -68,7 +68,7 @@
 	            <h1 class="display-4">Bienvenido a Bambú</h1>
 	            <p class="lead">Software de finanzas y soporte para particulares</p>
 	        </div>
-		    <div class="col-md-6">
+		    <div class="col-md-6 " align="center">
 				<div>
 					<p class="h3">Ingresa</p><br>
 				</div>
@@ -77,24 +77,9 @@
 					<button type="button" id="botonlogin" class="btn btn-primary" onclick="botonlogin()">
 						  Iniciar Sesion
 					</button>
-						
-					<!-- Modal -->
-					<div class="modal fade" id="loginModal">
-							<div class="modal-dialog text-center">
-					            <div class="col-sm-8 main-section">
-					                <div class="modal-content">
-					                	<div class= "modal-body">
-						                    
-						                </div>    
-					                </div>
-					            </div>
-	   					 	</div>
-	    			</div>
 	    			<script>
 	    			function botonlogin(){
-						    $('.modal-body').load('/login',function(){
-						        $('#loginModal').modal({show:true});
-						    });
+	    				location.href = "/login";
 	    			}
 					</script>
 	    		</div>
@@ -103,23 +88,9 @@
 					<button type="button" id="botonregister" class="btn btn-primary" onclick="botonregister()">
 						  Registrarse
 					</button>
-						
-					<!-- Modal -->
-					<div class="modal fade" id="registerModal">
-							<div class="modal-dialog text-center">
-					            <div class="col-sm-8 main-section">
-					                <div class="modal-content">
-						                <div class="modal-body">
-						                </div>
-					                </div>
-					            </div>
-					        </div>
-					</div> 
 					<script>
 					function botonregister(){
-					    $('.modal-body').load('/register',function(){
-					        $('#registerModal').modal({show:true});
-					    });
+						location.href = "/register";
     				}
 					</script>
 				</div>               
