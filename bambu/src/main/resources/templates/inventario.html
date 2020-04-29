@@ -14,9 +14,34 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
 
-        <!-- Nuestro Iniventario-->
-        <script type="text/javascript" th:src="@{/js/inventario.js}"
-	        src="static/js/inventario.js"></script>
+        <!-- DataTables CSS -->
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
+        
+        <!-- Inventory CSS -->
+        <link href="css/inventory/inventory.css" rel="stylesheet" type="text/css"  />
+        
+        <!--JQUERY-->
+        <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+        
+        <!--JQUERY DataTable-->       
+        <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+       
+   
+        <!-- DataTable JS -->
+        <script type="text/javascript" th:src="@{/js/table/datatable.js}" src="static/js/table/datatable.js"></script>
+          
+        <!-- Modal Entry JS -->
+        <script type="text/javascript" th:src="@{/js/inventory/inventory.js}" src="static/js/inventory/inventory.js"></script>
+            
+       
+      
+
+            
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -40,122 +65,57 @@
                 <!-- Portfolio Section Heading-->
                 <p>  </p>
                 <p>  </p>
-                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">inventarios</h2>
+                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0" id="title">inventarios</h2>
                 <!-- Icon Divider-->
-                <div class="divider-custom">
+                <div class="divider-custom" id="container-design">
                     <div class="divider-custom-line"></div>
-                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                    <div class="divider-custom-icon" id="container-star"><i class="fas fa-star" id="icon-star"></i></div>
                     <div class="divider-custom-line"></div>
                 </div>
                 <!-- Portfolio Grid Items-->
-                <div class="row">
-                    <div class="text-center col-md-12">
-                    
-                    <!-- Portfolio Item Kardex-->
-                        <a class="btn btn-primary btn-m js-scroll-trigger" href="kardex">Kardex</a>
-                    
+                <div class="row" >
+                    <div class="col-md-12">                   
                     <!-- Portfolio Item Medidas-->
-                        <a class="btn btn-primary btn-m js-scroll-trigger" href="metodosMedicion">Métodos de medición</a>
+                        <a class="btn btn-primary btn-m js-scroll-trigger" id="btn-methods" href="metodosMedicion">Métodos de medición</a>
                     </div>
-
-
-                    <!-- Portfolio tabla Busqueda-->
                     
-                    <div class="form-group pull-right">
-                        <input type="text" class="search form-control" placeholder="¿Qué buscas?">
+                    <div class="content" style="width:100%">
+                        <table id="table-information" class="table table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Código</th>
+                                    <th>Articulo</th>
+                                    <th>Cantidad disponible</th>
+                                    <th>Costo unitario</th>
+                                    <th>Costo total</th>
+                                    <th>Precio de venta</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead> 
+                            <tbody>
+                                <tr th:each="i :${inventory}">
+                                    <td th:text="${i.getArticle().getCode()}"></td>
+                                    <td th:text="${i.getArticle().getName()}"></td>
+                                    <td th:text="${i.getArticle().getQuantity()}"></td>
+                                    <td th:text="${i.getArticle().getUnitCost()}"></td>
+                                    <td th:text="${i.getArticle().getTotalCost()}"></td>
+                                    <td th:text="${i.getArticle().getSalePrice()}"></td>
+                                    <td>
+                                        <a th:href="@{articulos-encontraruno/(id=${i.getArticle().getId()})}" class="btn btn-primary eBtn" >Entrada</a>
+                                        <a th:href="@{articulos-encontraruno/(id=${i.getArticle().getId()})}" class="btn btn-primary sBtn" >Salida</a>
+                                        <a th:href="@{articulos-encontraruno/(id=${i.getArticle().getId()})}" class="btn btn-primary sBtn" >Kardex</a>
+                                    </td>
+                                  </tr>                               
+                            </tbody>
+                        </table>
                     </div>
-                    <span class="counter pull-right"></span>
-                    <table class="table table-hover table-bordered results">
-                      <thead>
-                        <tr>
-                            <th>Código</th>
-                            <th>Articulo</th>
-                            <th>Cantidad disponible</th>
-                            <th>Costo unitario</th>
-                            <th>Costo total</th>
-                            <th>Precio de venta</th>
-                            <th>Acciones</th>
-                        </tr>
-                      </thead>
-                      <!--Información base de datos-->
-                      <tbody>
-                          <tr th:each="i :${inventory}">
-                            <td th:text="${i.getArticle().getCode()}"></td>
-                            <td th:text="${i.getArticle().getName()}"></td>
-                            <td th:text="${i.getArticle().getQuantity()}"></td>
-                            <td th:text="${i.getArticle().getUnitCost()}"></td>
-                            <td th:text="${i.getArticle().getTotalCost()}"></td>
-                            <td th:text="${i.getArticle().getSalePrice()}"></td>
-                            <td>
-                                <a th:href="@{articulos-encontraruno/(id=${i.getArticle().getId()})}" class="btn btn-primary eBtn" >Entrada</a>
-                                <a th:href="@{articulos-encontraruno/(id=${i.getArticle().getId()})}" class="btn btn-primary sBtn" >Salida</a>
-                            </td>
-                          </tr>
-                      </tbody>
-                    </table>
+                 
                   </div>
                 </div>
             </div>
 
-            <div class="entradaForm">
-                <form th:action="@{/entradaInventario}" method="post">
-                    <div class="modal fade" id="entradaModal" tabindex="-1" role="dialog"
-                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Entrada Inventario</h5>
-                                    <button type="button" class="close" data-dismiss="modal"
-                                        aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="form-group">
-                                        <label for="nombre" class="col-form-label">Nombre Articulo:</label> <input
-                                            type="text" class="form-control" id="nombre" name="nombre"
-                                            value="" readonly/>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="date" class="col-form-label">Fecha:</label> <input
-                                            type="date" class="form-control" id="date" name="date"
-                                            value=""/>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="code" class="col-form-label">Codigo:
-                                            </label> <input type="text" class="form-control" id="code"
-                                            name="code" value="" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="detalle" class="col-form-label">Detalles: 
-                                            </label> <input type="message" class="form-control"
-                                            id="detalle" name="detalle" value="" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="cantidad" class="col-form-label">Cantidad: 
-                                            </label> <input type="text" class="form-control"
-                                            id="cantidad" name="cantidad" value="" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="costoUnitario" class="col-form-label">Costo Unitario: 
-                                            </label> <input type="text" class="form-control"
-                                            id="costoUnitario" name="costoUnitario" value="" readonly/>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="costoTotal" class="col-form-label">Costo Total: 
-                                            </label> <input type="text" class="form-control"
-                                            id="costoTotal" name="costoTotal" value="" readonly/>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-dismiss="modal">Close</button>
-                                    <input type="submit" class="btn btn-primary " value="Guardar" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
+            <div class="container-modal-entry">
+
             </div>
 
 
@@ -223,8 +183,8 @@
         </section>
         
         <!-- Copyright Section-->
-        <section class="copyright py-4 text-center text-white">
-            <div class="container"><small>Copyright © BAMBÚ 2020</small></div>
+        <section class="copyright py-4 text-center text-white" id="section-copyright">
+            <div class="container" id="container-copyright"><small>Copyright © BAMBÚ 2020</small></div>
         </section>
         <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes)-->
         <div class="scroll-to-top d-lg-none position-fixed">
@@ -232,15 +192,6 @@
         </div>
 
         
-        <!-- Bootstrap core JS-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-        <!-- Third party plugin JS-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-        <!-- Contact form JS-->
-        <script src="assets/mail/jqBootstrapValidation.js"></script>
-        <script src="assets/mail/contact_me.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
+    
     </body>
 </html>

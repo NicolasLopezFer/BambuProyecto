@@ -180,38 +180,6 @@ public class UserController {
 		return modelAndView;
 	}
 
-
-
-
-
-	@RequestMapping(value = "/inventario", method = RequestMethod.GET)
-	public ModelAndView inventarioHome() {
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("inventory", articleInventoryService.findAll());
-		modelAndView.setViewName("inventario"); // resources/template/inventario.html
-		return modelAndView;
-	}
-
-
-	@RequestMapping(value = "/entradaInventario", method = RequestMethod.POST)
-	public ModelAndView entradaInventario() {
-		ModelAndView modelAndView = new ModelAndView();
-		ArticleInventory arinven = new ArticleInventory();
-		Entry entry = new Entry();
-		if(articleInventoryService.addEntry(arinven,entry)) {
-			modelAndView.addObject("responseMessage", "Entrada exitosa!");	
-			System.out.println("Entrada exitosa!");
-		}else {
-			modelAndView.addObject("responseMessage", "Existen errores");
-			System.out.println("No entrada");
-		}
-		modelAndView.setViewName("redirect:/inventario");
-		return modelAndView;
-	}
-
-
-
-
 	
 	@RequestMapping(value = "/salidaInventario", method = RequestMethod.POST)
 	public ModelAndView salidaInventario() {
