@@ -1,5 +1,5 @@
 package com.panda.bambu.model;
-
+import com.panda.bambu.service.companyService;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -49,6 +49,15 @@ public class User {
 	@JoinTable(name = "auth_user_role", joinColumns = @JoinColumn(name = "auth_user_id"), inverseJoinColumns = @JoinColumn(name = "auth_role_id"))
 	private Set<Role> roles;
 
+ 
+    @OneToMany()
+    private List<Company> companyList;
+    
+    public ArticleInventory(){
+        
+         inventories = new ArrayList<Inventory>(); 
+    }
+
 	public int getId() {
 		return id;
 	}
@@ -97,4 +106,14 @@ public class User {
 		this.roles = roles;
 	}
 
+	public List<Company> getCompanyList() {
+        return companyList;
+    }
+
+    public void setCompanyList(List<Company> companyList) {
+        this.companyList = companyList;
+    }
+
+
+	
 }
