@@ -28,6 +28,16 @@ public class ReciboCajaService{
         return reciboCajaRepository.findAll();
     }
 
+    public Boolean create(ReciboCaja reciboCaja) {
+        ReciboCaja reciboCaja1 = reciboCajaRepository.findByNumeroComprobante(reciboCaja.getNumeroComprobante());
+        if(reciboCaja1==null)
+        {
+                reciboCajaRepository.save(reciboCaja);
+                return true;
+        }
+        return false;    
+	}
+
     public Boolean create(int numero_comprobante,String nombreCliente, long identificacion, double suma,String concepto,String descripcion, String elaborador, Boolean aprobado,Date fecha) {
         ReciboCaja article=reciboCajaRepository.findByNumeroComprobante(numero_comprobante);
         if(article==null){
