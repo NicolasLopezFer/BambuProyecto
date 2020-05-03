@@ -1,4 +1,4 @@
-package com.panda.bambu.service.user;
+package com.panda.bambu.service;
 import com.panda.bambu.model.company.Company;
 import com.panda.bambu.service.company.CompanyService;
 
@@ -12,16 +12,6 @@ public interface UserService {
 	
 	public boolean isUserAlreadyPresent(User user);
 
-	public Boolean addCompany(Company company) {
-       
-        if(companyService.isCompanyAlreadyPresent(company) == true){
-            if(company !=null){
-                User user = new User();
-                user.getcompanyList().add(company);
-                return true;            
-            }
-        }
-        return false;    
-	}
+	public boolean addCompany(Company company); 
     
 }

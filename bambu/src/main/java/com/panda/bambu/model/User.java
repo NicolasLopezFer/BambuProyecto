@@ -1,5 +1,8 @@
 package com.panda.bambu.model;
-import com.panda.bambu.service.companyService;
+import com.panda.bambu.model.company.Company;
+
+
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -11,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
@@ -53,10 +57,7 @@ public class User {
     @OneToMany()
     private List<Company> companyList;
     
-    public ArticleInventory(){
-        
-         inventories = new ArrayList<Inventory>(); 
-    }
+   
 
 	public int getId() {
 		return id;

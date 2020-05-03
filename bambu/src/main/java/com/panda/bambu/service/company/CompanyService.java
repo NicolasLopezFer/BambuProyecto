@@ -1,6 +1,9 @@
 package com.panda.bambu.service.company;
 
 import com.panda.bambu.model.User;
+import com.panda.bambu.model.article.Article;
+import com.panda.bambu.model.company.Company;
+import com.panda.bambu.model.company.CompanyRepository;
 import com.panda.bambu.service.UserService;
 import java.util.List;
 
@@ -13,9 +16,13 @@ public class CompanyService{
       
     @Autowired
     private CompanyRepository companyRepository;  
+    
+    @Autowired
+    UserService userService;
+    
  
 public Company findByNit(Long nit){
-        return companyRepository.findByNit(nit).get();
+        return companyRepository.findByNit(nit);
     }
 
 public List<Company> findAll(){
@@ -23,12 +30,12 @@ public List<Company> findAll(){
     }
 
     public Boolean create(Long nit, String name, String social_reason, String direction, Long telephone, double famiEmpresa_id, User user){
-          {
+          
         Company company=companyRepository.findByNit(nit);
         if(company==null){
-                Company newCompany = new Article(nit,name,social_reason,direction,telephone,famiEmpresa_id);
+                Company newCompany = new Company(nit,name,social_reason,direction,telephone,famiEmpresa_id);
                 companyRepository.save(newCompany);
-                UserService.addCompany(newCompany);
+                userService.addCompany(newCompany);
                 return true;
             
         }
@@ -39,7 +46,7 @@ public List<Company> findAll(){
         Company compania=companyRepository.findByNit(company.getNit());
         if(compania==null){
                 companyRepository.save(company);
-               UserService.addCompany(company);
+               userService.addCompany(company);
                 return true;
         
         }
@@ -72,6 +79,7 @@ public List<Company> findAll(){
     public void visualize_profile_company (Company company){
         company.toString();
     }
+    
      public Boolean modify(Long nit, String name, String social_reason, String direction, Long telephone, double famiEmpresa_id   ) {
         
         Company companyFound = companyRepository.findByNit(nit);
@@ -87,20 +95,22 @@ public List<Company> findAll(){
                 return true;
             }
         }
+        return false;
+     }
 
-
-        public Boolean delete(Company company)) {
+        public Boolean delete(Company company) {
             int a=0;
-        if(companyRepository.existsByNit(company.getNit())){
-             for(Company c:companyList){
+        if(companyRepository.existsById(company.getNit())){
+                    
+        	User user= new User();
+        	user=company.getUser();        
+        	for(Company c:user.getCompanyList()){
                  
-                 if(c.getNit==company.getNit){
-                     User.getCompanyList().remove(a)
+                 if(c.getNit()==company.getNit()){
+                     user.getCompanyList().remove(a);
                  }
                  a=a+1;
              }            
-            
-                CompanyService.delete(companyService.findByCompany(company));
                 companyRepository.delete(company);
                 return true;
             }
@@ -108,3 +118,4 @@ public List<Company> findAll(){
         
         return false;
     }
+  }
