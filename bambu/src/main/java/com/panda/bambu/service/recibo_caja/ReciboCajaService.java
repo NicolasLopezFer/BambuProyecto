@@ -1,6 +1,8 @@
 package com.panda.bambu.service.recibo_caja;
 
 import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import com.panda.bambu.model.recibo_caja.ReciboCaja;
@@ -29,16 +31,24 @@ public class ReciboCajaService{
     }
 
     public Boolean create(ReciboCaja reciboCaja) {
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+         
+        String dateString = "14/07/2018";
+         
+        //string to date
+        LocalDate localDate = LocalDate.parse(dateString, dateTimeFormatter);
+        //LocalDate fecha=reciboCaja.getFecha();
         ReciboCaja reciboCaja1 = reciboCajaRepository.findByNumeroComprobante(reciboCaja.getNumeroComprobante());
         if(reciboCaja1==null)
         {
-                reciboCajaRepository.save(reciboCaja);
-                return true;
+            reciboCaja.setFecha(localDate);
+            reciboCajaRepository.save(reciboCaja);
+            return true;
         }
         return false;    
 	}
 
-    public Boolean create(int numero_comprobante,String nombreCliente, long identificacion, double suma,String concepto,String descripcion, String elaborador, Boolean aprobado,Date fecha) {
+    public Boolean create(int numero_comprobante,String nombreCliente, long identificacion, double suma,String concepto,String descripcion, String elaborador, Boolean aprobado,LocalDate fecha) {
         ReciboCaja article=reciboCajaRepository.findByNumeroComprobante(numero_comprobante);
         if(article==null){
             ReciboCaja newReciboCaja = new ReciboCaja(numero_comprobante,nombreCliente,identificacion, suma, concepto, descripcion, elaborador,aprobado,fecha);

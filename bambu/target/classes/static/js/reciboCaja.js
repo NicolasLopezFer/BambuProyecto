@@ -11,7 +11,7 @@ $(document).ready(function() {
 		});
 		$('.editForm #editModal').modal();
 	});
-});
+}); 
 
 $(document).ready(function() {
 	$('.nBtn').on('click', function(event) {

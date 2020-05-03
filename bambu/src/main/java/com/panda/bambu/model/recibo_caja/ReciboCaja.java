@@ -1,5 +1,6 @@
 package com.panda.bambu.model.recibo_caja;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -24,7 +25,7 @@ public class ReciboCaja {
     
     @NotNull(message="Fecha is compulsory")
 	@Column(name = "fecha")
-    private Date fecha;
+    private LocalDate fecha;
     
     @NotNull(message="Nombre is compulsory")
 	@Column(name = "nombre")
@@ -70,11 +71,11 @@ public class ReciboCaja {
         this.numeroComprobante = numeroComprobante;
     }
 
-    public Date getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
 
@@ -218,7 +219,7 @@ public class ReciboCaja {
     }
 
 	public ReciboCaja(int numeroComprobante, String nombreCliente, long identificacion, double suma,
-			String concepto, String descripcion, String elaborador, Boolean aprobado,Date fecha) {
+			String concepto, String descripcion, String elaborador, Boolean aprobado,LocalDate fecha) {
                 this.numeroComprobante = numeroComprobante;
 		this.fecha = fecha;
 		this.nombreCliente = nombreCliente;

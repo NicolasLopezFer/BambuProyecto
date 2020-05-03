@@ -34,8 +34,10 @@ public class ReciboCajaController
 	}
 
 	@RequestMapping(value = "/reciboCaja-crear", method = RequestMethod.POST)
-	public ModelAndView crearArticulo(ReciboCaja a) {
+	public ModelAndView crearArticulo(ReciboCaja a) 
+	{
 		ModelAndView modelAndView = new ModelAndView();
+		System.out.println(a.getFecha());
 		if(reciboCajaService.create(a)) {
 			modelAndView.addObject("responseMessage", "Articulo guardado Exitosamente!");	
 			System.out.println("Articulo guardado Exitosamente!");
@@ -44,6 +46,7 @@ public class ReciboCajaController
 			System.out.println("NO SE GUARDO");
 		}
 		modelAndView.setViewName("redirect:/reciboCaja");
+		
 		return modelAndView;
 	}
 }
