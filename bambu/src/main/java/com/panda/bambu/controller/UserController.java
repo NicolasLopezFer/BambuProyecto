@@ -70,7 +70,7 @@ public class UserController {
 	
 	@RequestMapping({"/"})
 		public String llegada() {
-			return "llegada";
+			return "servicios-form.html";
 		}
 	
 	@RequestMapping(value = { "/login" }, method = RequestMethod.GET)
