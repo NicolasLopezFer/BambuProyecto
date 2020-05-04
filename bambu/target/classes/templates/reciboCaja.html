@@ -65,7 +65,7 @@
 	<!-- Portfolio Section-->
 	<section class="page-section portfolio">
 		<div class="container">
-
+			<br> <br>
 			<!-- Portfolio Section Heading-->
 			<h2
 				class="page-section-heading text-center text-uppercase text-secondary mb-0">Recibos de caja</h2>
@@ -86,13 +86,10 @@
                 </div>
                 <div class="text-center col-md-6">
 					<!-- Portfolio Item Nuevo Articulo-->
-                    <a class="btn btn-primary btn-m js-scroll-trigger nBtn"><i
+                    <a class="btn btn-primary btn-m js-scroll-trigger"><i
                         ></i> Reporte 
                     </a>
                 </div>
-
-
-				
 			</div>
 		</div>
 		
@@ -110,70 +107,87 @@
 								</button>
 							</div>
 							<div class="modal-body">
-								<div class="form-group">
-									<label for="numeroComprobante" class="col-form-label">Número comprobante</label> <input
-										type="number" class="form-control" id="numeroComprobante" name="numeroComprobante"
-										value="" />
-								</div>
-								
-								<div class="form-group">
-									<label for="nombreCliente" class="col-form-label">
-										Nombre cliente
-									</label> <input type="text" class="form-control"
-										id="nombreCliente" name="nombreCliente" value="" />
-								</div>
-								<div class="form-group">
-									<label for="fecha" class="col-form-label">
-										Fecha
-									</label> <input type="date" class="form-control"
-										id="fecha" name="fecha" value="" />
-								</div>
-								<div class="form-group">
-									<label for="identificacion" class="col-form-label">
-										Identificación
-									</label> <input type="number" class="form-control"
-										id="identificacion" name="identificacion" value="" />
-								</div>
-								<div class="form-group">
-									<label for="suma" class="col-form-label">
-										Suma
-									</label> <input type="number" class="form-control"
-										id="suma" name="suma" value="" />
-								</div>
-								<div class="form-group">
-									<label for="concepto" class="col-form-label">
-										Concepto
-									</label> <input type="text" class="form-control"
-										id="concepto" name="concepto" value="" />
-								</div>
-								<div class="form-group">
-									<label for="descripcion" class="col-form-label">
-										Descripción
-									</label> <input type="text" class="form-control"
-										id="descripcion" name="descripcion" value="" />
-								</div>
-								<div class="form-group">
-									<label for="elaborador" class="col-form-label">
-										Elaborador
-									</label> <input type="text" class="form-control"
-										id="elaborador" name="elaborador" value="" />
-								</div>
-								<div class="form-group">
-									<label for="salePrice" class="col-form-label">
-										Aprobado 
-									</label> 
-									<br> 
-									<input type="radio" checked="true" id="aprobado" name="aprobado" value="true">
-									<label for="aprobado"> Si</label><br>
-									<input type="radio" checked="false" id="aprobado" name="aprobado" value="false">
-									<label for="aprobado"> No </label><br>
-									
-								</div>
-							</div>
+								<div class="row">
+									<div class="col-md-9">
+										<div class="form-group">
+											<label for="numeroComprobante" class="col-form-label">Número comprobante</label> <input
+												type="number" class="form-control" id="numeroComprobante" name="numeroComprobante"
+												value="" />
+										</div>
+									</div>
+									<div class="col-md-3">
 
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="nombreCliente" class="col-form-label">
+												Nombre cliente
+											</label> <input type="text" class="form-control"
+												id="nombreCliente" name="nombreCliente" value="" />
+										</div>
+										
+										<div class="form-group">
+											<label for="fecha" class="col-form-label">
+												Fecha
+											</label> <input type="date" class="form-control"
+												id="fecha" name="fecha" value="" />
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="identificacion" class="col-form-label">
+												Identificación Cliente
+											</label> <input type="number" class="form-control"
+												id="identificacion" name="identificacion" value="" />
+										</div>
+										<div class="form-group">
+											<label for="suma" class="col-form-label">
+												Suma
+											</label> <input type="number" class="form-control"
+												id="suma" name="suma" value="" />
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="concepto" class="col-form-label">
+												Concepto
+											</label> <input type="text" class="form-control"
+												id="concepto" name="concepto" value="" />
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="descripcion" class="col-form-label">
+												Descripción
+											</label> <input type="text" class="form-control"
+												id="descripcion" name="descripcion" value="" />
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="elaborador" class="col-form-label">
+												Elaborador por
+											</label> <input type="text" class="form-control"
+												id="elaborador" name="elaborador" value="" />
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="salePrice" class="col-form-label">
+												Aprobado 
+											</label> 
+											<br> 
+											<input type="radio" checked="true" id="aprobado" name="aprobado" value="true">
+											<label for="aprobado"> Si</label><br>
+											<input type="radio" checked="false" id="aprobado" name="aprobado" value="false">
+											<label for="aprobado"> No </label><br>
+											
+										</div>
+									</div>
+								</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-secondary"
-									data-dismiss="modal">Close</button>
+									data-dismiss="modal">Cancelar</button>
 								<input type="submit" class="btn btn-primary " value="Guardar" />
 							</div>
 						</div>
