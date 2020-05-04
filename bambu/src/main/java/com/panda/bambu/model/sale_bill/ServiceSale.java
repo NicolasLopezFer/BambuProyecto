@@ -5,7 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
+
+import com.panda.bambu.model.service_famiempresa.ServiceFamiEmpresa;
 
 
 @Entity
@@ -16,21 +19,16 @@ public class ServiceSale {
 	@Column(name = "id")
     private Long id;
     
-    @NotNull(message="Code is compulsory")
-	@Column(name = "code", unique=true)
-    private String code;
+    @ManyToOne
+    private ServiceFamiEmpresa serviceFamiEmpresa;
     
-    @NotNull(message="Name is compulsory")
-	@Column(name = "name")
-    private String name;
+    @NotNull(message="Quantity is compulsory")
+	@Column(name = "quantity")
+    private double quantity;
     
-    @NotNull(message="Unit Cost is compulsory")
-	@Column(name = "unit_cost")
-    private double unitCost;
-
-    @NotNull(message="Price is compulsory")
-	@Column(name = "price")
-    private double price;
+    @NotNull(message="Total Value is compulsory")
+	@Column(name = "total_value")
+    private double total_value;
 
     public Long getId() {
         return id;
@@ -40,48 +38,40 @@ public class ServiceSale {
         this.id = id;
     }
 
-    public String getCode() {
-        return code;
+    public double getQuantity() {
+        return quantity;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setQuantity(double quantity) {
+        this.quantity = quantity;
     }
 
-    public String getName() {
-        return name;
+    public double getTotalValue(double total_value) {
+        return total_value;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTotalValue(double total_value) {
+        this.total_value = total_value;
     }
 
-    public double getUnitCost() {
-        return unitCost;
+    public ServiceFamiEmpresa getServiceFamiEmpresa() {
+        return serviceFamiEmpresa;
     }
 
-    public void setUnitCost(double unitCost) {
-        this.unitCost = unitCost;
+    public void setServiceFamiEmpresa(ServiceFamiEmpresa serviceFamiEmpresa) {
+        this.serviceFamiEmpresa = serviceFamiEmpresa;
     }
 
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((code == null) ? 0 : code.hashCode());
-        result = prime * result + ((name == null) ? 0 : name.hashCode());
         long temp;
-        temp = Double.doubleToLongBits(price);
+        result = prime * result + ((serviceFamiEmpresa == null) ? 0 : serviceFamiEmpresa.hashCode());
+        temp = Double.doubleToLongBits(quantity);
         result = prime * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(unitCost);
+        temp = Double.doubleToLongBits(total_value);
         result = prime * result + (int) (temp ^ (temp >>> 32));
         return result;
     }
@@ -95,29 +85,21 @@ public class ServiceSale {
         if (getClass() != obj.getClass())
             return false;
         ServiceSale other = (ServiceSale) obj;
-        if (code == null) {
-            if (other.code != null)
+        if (serviceFamiEmpresa == null) {
+            if (other.serviceFamiEmpresa != null)
                 return false;
-        } else if (!code.equals(other.code))
+        } else if (!serviceFamiEmpresa.equals(other.serviceFamiEmpresa))
             return false;
-        if (id != other.id)
+        if (Double.doubleToLongBits(quantity) != Double.doubleToLongBits(other.quantity))
             return false;
-        if (name == null) {
-            if (other.name != null)
-                return false;
-        } else if (!name.equals(other.name))
-            return false;
-        if (Double.doubleToLongBits(price) != Double.doubleToLongBits(other.price))
-            return false;
-        if (Double.doubleToLongBits(unitCost) != Double.doubleToLongBits(other.unitCost))
+        if (Double.doubleToLongBits(total_value) != Double.doubleToLongBits(other.total_value))
             return false;
         return true;
     }
 
     @Override
     public String toString() {
-        return "ServiceSale [code=" + code + ", id=" + id + ", name=" + name + ", price=" + price + ", unitCost="
-                + unitCost + "]";
+        return "ServiceSale [ id=" + id + ", serviceFamiEmpresa="+ serviceFamiEmpresa +" quantity=" + quantity + ", total_value=" + total_value + "]";
     }
 
         
