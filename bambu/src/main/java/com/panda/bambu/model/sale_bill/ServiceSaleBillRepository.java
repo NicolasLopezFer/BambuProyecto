@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ServiceSaleBillRepository extends JpaRepository<ServiceSaleBill, Long> {
-
+    ServiceSaleBill findByCode(String code);
 }
