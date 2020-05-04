@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 
 @Entity 
 public class ReciboCaja {
@@ -23,6 +25,7 @@ public class ReciboCaja {
 	@Column(name = "numeroComprobante", unique=true)
     private int numeroComprobante;
     
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     @NotNull(message="Fecha is compulsory")
 	@Column(name = "fecha")
     private LocalDate fecha;

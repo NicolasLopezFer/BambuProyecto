@@ -31,17 +31,17 @@ public class ReciboCajaService{
     }
 
     public Boolean create(ReciboCaja reciboCaja) {
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-         
-        String dateString = "14/07/2018";
-         
+        //DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy/mm/dd");
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        //String dateString = "14/07/2018";
         //string to date
-        LocalDate localDate = LocalDate.parse(dateString, dateTimeFormatter);
+        LocalDate localDate = LocalDate.parse(reciboCaja.getFecha().toString(),dateTimeFormatter);
         //LocalDate fecha=reciboCaja.getFecha();
         ReciboCaja reciboCaja1 = reciboCajaRepository.findByNumeroComprobante(reciboCaja.getNumeroComprobante());
         if(reciboCaja1==null)
         {
-            reciboCaja.setFecha(localDate);
+            //reciboCaja.setFecha(localDate);
             reciboCajaRepository.save(reciboCaja);
             return true;
         }
