@@ -59,4 +59,17 @@ public class ServiceController {
 		return modelAndView;
 	}
 
+	@RequestMapping(value = "/servicio-borrar", method = RequestMethod.GET)
+	public ModelAndView borrarArticulo(long id) {
+		ModelAndView modelAndView = new ModelAndView();
+		if(serviceFamiEmpresaService.delete(serviceFamiEmpresaService.findById(id))) 
+		{
+			modelAndView.addObject("responseMessage", "Servicio borrado Exitosamente!");	
+		}else {
+			modelAndView.addObject("responseMessage", "Problems bbcito pra");
+		}
+		modelAndView.setViewName("redirect:/servicios-form");
+		return modelAndView;
+	}
+
 }
