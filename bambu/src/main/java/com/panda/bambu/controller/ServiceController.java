@@ -1,5 +1,7 @@
 package com.panda.bambu.controller;
 
+import java.util.Optional;
+
 import com.panda.bambu.model.service_famiempresa.ServiceFamiEmpresa;
 import com.panda.bambu.model.service_famiempresa.ServiceFamiEmpresaRepository;
 import com.panda.bambu.service.service_famiempresa.ServiceFamiEmpresaService;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -20,15 +23,13 @@ public class ServiceController {
      @Autowired
      ServiceFamiEmpresaRepository serviceFamiEmpresaRepository;
 
-
-    @RequestMapping(value = "/service", method = RequestMethod.GET)
-	public ModelAndView service(@RequestParam(defaultValue="0") int page) {
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("serviciosEmpresa",serviceFamiEmpresaRepository.findAll(/*PageRequest.of(page, 10)*/));
-		modelAndView.addObject("paginaActual",page);
-		modelAndView.setViewName("servicio"); // resources/template/articulos.html
-		return modelAndView;
-	}
+	 @RequestMapping(value = "/servicios-form", method = RequestMethod.GET)
+	 public ModelAndView servicioHome() {
+		 ModelAndView modelAndView = new ModelAndView();
+		 modelAndView.addObject("service", serviceFamiEmpresaService.findAll());
+		 modelAndView.setViewName("servicio"); 
+		 return modelAndView;
+	 }
 
 	@RequestMapping(value = "/servicio-crear", method = RequestMethod.POST)
 	public ModelAndView crearServicio(ServiceFamiEmpresa s) {
@@ -70,6 +71,12 @@ public class ServiceController {
 		}
 		modelAndView.setViewName("redirect:/servicios-form");
 		return modelAndView;
+	}
+
+	@RequestMapping(value = "/servicio-encontraruno", method = RequestMethod.GET)
+	@ResponseBody
+	public Optional<ServiceFamiEmpresa> encontrarServicio(long id) {
+		return serviceFamiEmpresaRepository.findById(id);
 	}
 
 }

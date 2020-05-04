@@ -85,17 +85,17 @@
                                 <tr>
                                     <th>Código</th>
                                     <th>Servicio</th>
-                                    <th>Artículo Asociado</th>
+                                    <th>Artículos Asociado</th>
                                     <th>Precio de Venta</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead> 
                             <tbody>
                                 <tr th:each="i :${servicio}">
-                                    <td th:text="${i.getId()}"></td>
+                                    <td th:text="${i.getCode()}"></td>
                                     <td th:text="${i.getName()}"></td>
-                                    <td th:text="${i.getArticle()}"></td>
-                                    <td th:text="${i.precioVenta()}"></td>
+                                    <td th:text="${i.getArticles()}"></td>
+                                    <td th:text="${i.getPrice()}"></td>
                                     <td>
                                         <a th:href="@{servicios-encontraruno/(id=${i.getId()})}" class="btn btn-primary sBtn">Modificar</a>
                                         <a th:href="@{/(id=${i.getId()})}" class="btn btn-primary eBtn" data-toggle="modal" data-target="#salidaModal" id="btn-output">Eliminar</a>                                    </td>
@@ -106,6 +106,54 @@
                  
                   </div>
                 </div>
+            </div>
+            
+            <div class="saveForm">
+                <form th:action="@{/servicio-crear}" method="post">
+                    <div class="modal fade" id="saveModal" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Nuevo
+                                        Articulo</h5>
+                                    <button type="button" class="close" data-dismiss="modal"
+                                        aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="code" class="col-form-label">Codigo:</label> <input
+                                            type="text" class="form-control" id="code" name="code"
+                                            value="" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="name" class="col-form-label">Nombre
+                                            Articulo:</label> <input type="text" class="form-control" id="name"
+                                            name="name" value="" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="salePrice" class="col-form-label">Articulos asociados:</label> <input type="number" class="form-control"
+                                            id="salePrice" name="salePrice" value="" />
+                                            <a th:href="@{servicios-encontraruno/(id=${i.getId()})}" class="btn btn-primary sBtn">Agregar Articulo</a>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="salePrice" class="col-form-label">Precio de
+                                            venta:</label> <input type="number" class="form-control"
+                                            id="salePrice" name="salePrice" value="" />
+                                    </div>
+                                </div>
+    
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-dismiss="modal">Close</button>
+                                    <input type="submit" class="btn btn-primary " value="Guardar" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
 
             <div class="container-modal-entry">
@@ -130,7 +178,12 @@
                                     <div class="form-group">
                                         <label for="name" class="col-form-label">Nombre
                                             Articulo:</label> <input type="text" class="form-control" id="name"
-                                            name="name" value="" />
+                                            name="name" value="" readonly/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="salePrice" class="col-form-label">Articulos asociados:</label> <input type="number" class="form-control"
+                                            id="salePrice" name="salePrice" value="" />
+                                            <a th:href="@{servicios-encontraruno/(id=${i.getId()})}" class="btn btn-primary sBtn">Modificar Articulo</a>
                                     </div>
                                     <div class="form-group">
                                         <label for="salePrice" class="col-form-label">Precio de
@@ -147,6 +200,34 @@
                         </div>
                     </div>
                 </form>
+            </div>
+
+            <div class='deleteForm'>
+                <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Borrar Servicio</h5>
+                                <button type="button" class="close" data-dismiss="modal"
+                                    aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p class="alert alert-danger">
+                                    ¿Estas seguro que quieres borrar este servicio?
+                                </p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary"
+                                    data-dismiss="modal">No</button>
+                                <a href="" type="button" class="btn btn-danger" id="delRef">Si</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
             </div>
 
         </section>
