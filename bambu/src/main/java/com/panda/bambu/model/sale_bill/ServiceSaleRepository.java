@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ServiceSaleRepository extends JpaRepository<ServiceSale, Long> {
-    ServiceSale findByService(ServiceFamiEmpresa serviceFamiEmpresa);
+    ServiceSale findByServiceFamiEmpresa(ServiceFamiEmpresa serviceFamiEmpresa);
 }

@@ -29,10 +29,6 @@ public class ServiceFamiEmpresa {
     @NotNull(message="Name is compulsory")
 	@Column(name = "name")
     private String name;
-    
-    @NotNull(message="Unit Cost is compulsory")
-	@Column(name = "unit_cost")
-    private double unitCost;
 
     @NotNull(message="Price is compulsory")
 	@Column(name = "price")
@@ -41,13 +37,16 @@ public class ServiceFamiEmpresa {
     @OneToMany
     private List<Article> articles;
 
+    public ServiceFamiEmpresa()
+    {
+        
+    }
 
     public ServiceFamiEmpresa (String code, String name, double price)
     {
         this.code = code;
         this.name = name;
         this.price = price;
-        this.unitCost = 0.0;
         articles = new ArrayList<Article> ();
     }
 
@@ -56,7 +55,6 @@ public class ServiceFamiEmpresa {
         this.code = code;
         this.name = name;
         this.price = price;
-        this.unitCost = 0.0;
         this.articles = articles;
     }
 
@@ -94,14 +92,6 @@ public class ServiceFamiEmpresa {
         this.name = name;
     }
 
-    public double getUnitCost() {
-        return unitCost;
-    }
-
-    public void setUnitCost(double unitCost) {
-        this.unitCost = unitCost;
-    }
-
     public List<Article> getArticles() {
         return articles;
     }
@@ -129,8 +119,6 @@ public class ServiceFamiEmpresa {
         result = prime * result + ((name == null) ? 0 : name.hashCode());
         long temp;
         temp = Double.doubleToLongBits(price);
-        result = prime * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(unitCost);
         result = prime * result + (int) (temp ^ (temp >>> 32));
         return result;
     }
@@ -163,15 +151,12 @@ public class ServiceFamiEmpresa {
             return false;
         if (Double.doubleToLongBits(price) != Double.doubleToLongBits(other.price))
             return false;
-        if (Double.doubleToLongBits(unitCost) != Double.doubleToLongBits(other.unitCost))
-            return false;
         return true;
     }
 
     @Override
     public String toString() {
-        return "ServiceFamiEmpresa [code=" + code + ", articles="+articles+", id=" + id + ", name=" + name + ", price=" + price + ", unitCost="
-                + unitCost + "]";
+        return "ServiceFamiEmpresa [code=" + code + ", articles="+articles+", id=" + id + ", name=" + name + ", price=" + price + "]";
     }
 
 

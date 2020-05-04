@@ -8,7 +8,10 @@ import com.panda.bambu.model.service_famiempresa.ServiceFamiEmpresaRepository;
 import com.panda.bambu.service.article.ArticleService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+
+@Service
 public class ServiceFamiEmpresaService {
     
     @Autowired
@@ -75,7 +78,6 @@ public class ServiceFamiEmpresaService {
         if (serviceFound!=null){
             serviceFound.setName(service_new.getName());
             serviceFound.setPrice(service_new.getPrice());
-            serviceFound.setUnitCost(service_new.getUnitCost());
             serviceFound.setArticles(service_new.getArticles());
             serviceFamiEmpresaRepository.save(serviceFound);
             return true;
@@ -89,7 +91,6 @@ public class ServiceFamiEmpresaService {
         if (serviceFound!=null){
             serviceFound.setName(service_new.getName());
             serviceFound.setPrice(service_new.getPrice());
-            serviceFound.setUnitCost(service_new.getUnitCost());
             serviceFound.setArticles(articles);
             serviceFamiEmpresaRepository.save(serviceFound);
             return true;
@@ -103,7 +104,6 @@ public class ServiceFamiEmpresaService {
         if (serviceFound!=null){
             serviceFound.setName(name);
             serviceFound.setPrice(salePrice);
-            serviceFound.setUnitCost(unitCost);
             serviceFound.setArticles(articles);
             serviceFamiEmpresaRepository.save(serviceFound);
             return true;
