@@ -1,5 +1,7 @@
 package com.panda.bambu.controller;
 
+import java.util.Optional;
+
 import com.panda.bambu.model.recibo_caja.ReciboCaja;
 import com.panda.bambu.service.recibo_caja.ReciboCajaService;
 
@@ -28,7 +30,7 @@ public class ReciboCajaController
     @RequestMapping(value = "/reciboCaja", method = RequestMethod.GET)
 	public ModelAndView reciboCaja(@RequestParam(defaultValue="0") int page) {
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("paginaActual",page);
+		modelAndView.addObject("recibosCaja", reciboCajaService.findAll());
 		modelAndView.setViewName("reciboCaja"); // resources/template/reciboCaja.html
 		return modelAndView;
 	}
@@ -48,5 +50,40 @@ public class ReciboCajaController
 		modelAndView.setViewName("redirect:/reciboCaja");
 		
 		return modelAndView;
+	}
+
+	@RequestMapping(value = "/reciboCaja-editar", method = RequestMethod.POST)
+	public ModelAndView modificarArticulo(ReciboCaja a) {
+		ModelAndView modelAndView = new ModelAndView();
+		//articleRepository.save(a);
+		if(reciboCajaService.modify(a)) {
+			modelAndView.addObject("responseMessage", "Articulo editado Exitosamente!");	
+			System.out.println("Articulo guardado Exitosamente!");
+		}else {
+			modelAndView.addObject("responseMessage", "Existen errores al editado el articulo");
+			System.out.println("NO SE GUARDO");
+		}
+		modelAndView.setViewName("redirect:/reciboCaja");
+		return modelAndView;
+	}
+
+	@RequestMapping(value = "/reciboCaja-borrar", method = RequestMethod.GET)
+	public ModelAndView borrarReciboCaja(long id) {
+		ModelAndView modelAndView = new ModelAndView();
+		if(reciboCajaService.delete(reciboCajaService.findById(id))) 
+		{
+			modelAndView.addObject("responseMessage", "Articulo borrado Exitosamente!");	
+		}else {
+			modelAndView.addObject("responseMessage", "Existen errores al guardar el articulo");
+		}
+		modelAndView.setViewName("redirect:/reciboCaja");
+		return modelAndView;
+	}
+
+	@RequestMapping(value = "/reciboCaja-encontrarUno", method = RequestMethod.GET)
+	@ResponseBody
+	public ReciboCaja encontrarReciboCaja(long id) 
+	{
+		return reciboCajaService.findById(id);
 	}
 }

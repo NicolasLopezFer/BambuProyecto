@@ -70,7 +70,7 @@ public class ReciboCaja {
         return numeroComprobante;
     }
 
-    public void setnumeroComprobante(int numeroComprobante) {
+    public void setNumeroComprobante(int numeroComprobante) {
         this.numeroComprobante = numeroComprobante;
     }
 
