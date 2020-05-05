@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
@@ -15,51 +16,54 @@ import com.panda.bambu.model.User;
 
 public class Company{
 
+	@Id
     @NotNull(message="nit is compulsory")
     @Column(name="nit")
     private Long nit;
 
-
     @NotNull(message="name is compulsory")
-    @Column(name="name")
+    @Column(name="nombre")
     private String name;
 
-    @NotNull(message="social_reason is compulsory")
-    @Column(name="social_reason")
+    //@NotNull(message="social_reason is compulsory")
+    @Column(name="razon_social")
     private String social_reason;
 
-    @NotNull(message="direction is compulsory")
-    @Column(name="direction")
+    //@NotNull(message="direction is compulsory")
+    @Column(name="direccion")
     private String direction;
 
-    @NotNull(message="telephone is compulsory")
-    @Column(name="telephone")
+    //@NotNull(message="telephone is compulsory")
+    @Column(name="telefono")
     private Long telephone;
 
-    @NotNull(message="famiEmpresa_id is compulsory")
-    @Column(name="famiEmpresa_id")
-    private double famiEmpresa_id;
+    //@NotNull(message="famiEmpresa_id is compulsory")
+    @Column(name="auth_user_id")
+    private Double famiEmpresa_id;
 
-    @ManyToOne()
-    @Column(name="user")
-    private User user;
+    /*@ManyToOne()
+    @JoinColumn(name="usuario")
+    private User user;*/
     
 
 
 
 
- public Company(Long nit, String name, String social_reason, String direction, Long telephone, double famiEmpresa_id   ){
+ public Company(Long nit, String name, String social_reason, String direction, Long telephone) {//, double famiEmpresa_id ){
          
          this.nit = nit;
          this.name = name;
          this.social_reason = social_reason;
          this.direction=direction;
          this.telephone=telephone;
-         this.famiEmpresa_id=famiEmpresa_id;
+         //this.famiEmpresa_id=famiEmpresa_id;
          
 
     }
     
+ public Company(){
+     
+ }
 
 
     public Long getNit(){
@@ -107,16 +111,16 @@ public class Company{
          this.famiEmpresa_id = famiEmpresa_id;
     }
 
-    public User getUser(){
+    /*public User getUser(){
         return user;
     }
     public void setUser(User user){
          this.user = user;
-    }
+    }*/
 @Override
     public String toString() {
         return "Company [nit=" + nit + ", name=" + name + ", social_reason=" + social_reason + ", direction="
-                + direction + ", telephone=" + telephone + ", famiEmpresa_id=" + famiEmpresa_id + ", user=" + user.getName() + "]";
+                + direction + ", telephone=" + telephone + ", famiEmpresa_id=" + famiEmpresa_id + "]";//, user=" + user.getName() + "]";
     }
 
 

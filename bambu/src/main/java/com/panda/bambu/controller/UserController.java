@@ -19,6 +19,7 @@ import com.panda.bambu.model.return_articles.ArticleReturn;
 import com.panda.bambu.model.return_articles.ReturnArticles;
 import com.panda.bambu.service.UserService;
 import com.panda.bambu.service.article.ArticleService;
+import com.panda.bambu.service.company.CompanyService;
 import com.panda.bambu.service.return_articles.ArticleReturnService;
 import com.panda.bambu.service.return_articles.ReturnArticlesService;
 import com.panda.bambu.service.inventory.ArticleInventoryService;
@@ -64,6 +65,9 @@ public class UserController {
 	
 	@Autowired
 	ArticleRepository articleRepository;
+	
+	@Autowired
+	CompanyService companyService;
 
 	@Autowired
 	ReturnArticlesService returnArticlesService;
@@ -95,6 +99,8 @@ public class UserController {
 	@RequestMapping(value = "/emprendedor", method = RequestMethod.GET)
 	public ModelAndView emprendedorHome() {
 		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("empresasUsuario",companyService.findAll());
+		System.out.println("LAS EMPRESAS" + companyService.findAll());
 		modelAndView.setViewName("emprendedor"); // resources/template/emprendedor.html
 		return modelAndView;
 	}
@@ -102,7 +108,7 @@ public class UserController {
 	@RequestMapping(value = "/articulos", method = RequestMethod.GET)
 	public ModelAndView articulos(@RequestParam(defaultValue="0") int page) {
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("articulosEmpresa",articleRepository.findAll(/*PageRequest.of(page, 10)*/));
+		modelAndView.addObject("articulosEmpresa",articleRepository.findAll());
 		modelAndView.addObject("paginaActual",page);
 		modelAndView.setViewName("articulos"); // resources/template/articulos.html
 		return modelAndView;

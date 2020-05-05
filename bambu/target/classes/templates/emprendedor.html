@@ -7,6 +7,10 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 <title>Emprendedor</title>
+
+<!--JQUERY-->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <!-- Font Awesome icons (free version)-->
 <script src="https://use.fontawesome.com/releases/v5.12.1/js/all.js"
 	crossorigin="anonymous"></script>
@@ -18,6 +22,10 @@
 	rel="stylesheet" type="text/css" />
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="css/styles.css" rel="stylesheet" />
+<!-- Nuestro JS empresas -->
+<script type="text/javascript" th:src="@{/js/empresas.js}"
+	src="static/js/empresas.js"></script>
+
 </head>
 <body id="page-top">
 	<!-- Navigation-->
@@ -67,6 +75,7 @@
 		</div>
 	</header>
 
+	<!-- Seccion Empresas -->
 	<div class="container">
 		<div class="row">
 			<div class="col border-right d-flex justify-content-center">
@@ -87,28 +96,34 @@
 						<div class="container">
 							<div class="row">
 								<div class="col-sm">
-									<div class="dropdown show">
-										<a class="btn btn-secondary dropdown-toggle btn-lg" href="#"
+									<!--<div class="dropdown">
+									    <a class="btn btn-secondary dropdown-toggle btn-lg" href="#"
 											role="button" id="dropdownMenuLink" data-toggle="dropdown"
 											aria-haspopup="true" aria-expanded="false"> SELECCIONE LA
-											EMPRESA </a>
-										<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-											<a class="dropdown-item">empresa 1</a> 
-											<a class="dropdown-item">empresa 2</a> 
-											<a class="dropdown-item">empresa 3</a>
-											<div class="dropdown-divider"></div>
-											<a class="dropdown-item"><button
-													class="btn btn-outline-info btn-md">Registrar
-													Nueva Empresa</button></a>
-										</div>
-									</div>
+											EMPRESA <span class="caret"></span></a>
+									    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1" th:each="empresa : ${empresasUsuario}">
+									      <li role="presentation"><a role="menuitem" tabindex="-1" href="#" th:text="${empresa.name}" ></a></li>
+									      <li role="presentation" ><div class="dropdown-divider"></div></li>
+									      <li role="presentation"><button type="button" class="btn btn-info btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Registrar Nueva Empresa</button></li>
+									    </ul>
+									  </div> -->
+									  <div class="btn-group">
+										  <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+										    SELECCIONE LA EMPRESA
+										  </button>
+										  <div class="dropdown-menu">
+										    <a th:each="empresa : ${empresasUsuario}" th:href="@{emprendedor/empresa/(EmpresaNIT=${empresa.nit})}" class="dropdown-item" th:text="${empresa.name}"></a>
+										    <div class="dropdown-divider"></div>
+										    <a class="btn btn-info btn-sm nBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Registrar Nueva Empresa</a>
+										  </div>
+									  </div>
 									<br></br>
 									<div class="card" style="width: 18rem;">
 										<div class="card-body">
-											<h5 class="card-title">Nombre Empresa</h5>
-											<p class="card-text">NIT:</p>
-											<p class="card-text">Razon Social:</p>
-											<button class="btn btn-outline-primary btn-md">Gestionar
+											<h5 class="card-title" ><span th:text="${empresaElegida?.name}"></span></h5>
+											<p class="card-text">NIT: <span th:text="${empresaElegida?.nit}"></span> </p>
+											<p class="card-text">Razon Social: <span th:text="${empresaElegida?.social_reason}"></span></p>
+											<button class="btn btn-outline-primary btn-md eBtn">Gestionar
 										Empresa</button>
 										</div>
 									</div>
@@ -208,6 +223,113 @@
 			</div>
 		</div>
 	</div>
+	
+	<!-- Modal crear Empresa -->
+	<div class="saveForm">
+			<form th:action="@{/emprendedor/empresa-crear}" method="post">
+				<div class="modal fade" id="saveModal" tabindex="-1" role="dialog"
+					aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLabel" >Registrar
+									Empresa</h5>
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<div class="form-group">
+									<label for="nit" class="col-form-label">NIT:</label> <input
+										type="text" class="form-control" id="nit" name="nit"
+										value="" />
+								</div>
+								<div class="form-group">
+									<label for="name" class="col-form-label">Nombre:
+									</label> <input type="text" class="form-control" id="name"
+										name="name" value="" />
+								</div>
+								<div class="form-group">
+									<label for="social_reason" class="col-form-label">Razón 
+									Social:</label> <input type="text" class="form-control"
+										id="social_reason" name="social_reason" value="" />
+								</div>
+								<div class="form-group">
+									<label for="direction" class="col-form-label">Dirección:
+									</label> <input type="text" class="form-control"
+										id="direction" name="direction" value="" />
+								</div>
+								<div class="form-group">
+									<label for="telephone" class="col-form-label">Teléfono:
+									</label> <input type="number" class="form-control"
+										id="telephone" name="telephone" value="" />
+								</div>
+							</div>
+
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary"
+									data-dismiss="modal">Cancelar</button>
+								<input type="submit" class="btn btn-primary " value="Registrar" />
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+		
+		<!-- Modal editar empresa -->
+		<div class="editForm">
+			<form th:action="@{/emprendedor/empresa-editar}" method="post">
+				<div class="modal fade" id="editModal" tabindex="-1" role="dialog"
+					aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLabel">Editar Empresa</h5>
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<div class="form-group">
+									<label for="nit" class="col-form-label">NIT:</label> <input
+										type="text" class="form-control" id="nit" name="nit"
+										value="" readonly/>
+								</div>
+								<div class="form-group">
+									<label for="name" class="col-form-label">Nombre:
+									</label> <input type="text" class="form-control" id="name"
+										name="name" value="" />
+								</div>
+								<div class="form-group">
+									<label for="social_reason" class="col-form-label">Razón 
+									Social:</label> <input type="text" class="form-control"
+										id="social_reason" name="social_reason" value="" />
+								</div>
+								<div class="form-group">
+									<label for="direction" class="col-form-label">Dirección:
+									</label> <input type="text" class="form-control"
+										id="direction" name="direction" value="" />
+								</div>
+								<div class="form-group">
+									<label for="telephone" class="col-form-label">Teléfono:
+									</label> <input type="number" class="form-control"
+										id="telephone" name="telephone" value="" />
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary"
+									data-dismiss="modal">Close</button>
+								<input type="submit" class="btn btn-primary " value="Guardar" />
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+		
 	<!-- Seccion Informes-->
 	<section class="page-section bg-primary text-white mb-0" id="modelos">
 		<div class="container">
