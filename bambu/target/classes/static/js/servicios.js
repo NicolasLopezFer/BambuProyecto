@@ -39,9 +39,9 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
-	$('.nBtn').on('click', function(event) {
-		event.preventDefault();
-		$('.saveForm #saveModal').modal();
+	$('.newBtn').on('click', function(event) {
+        event.preventDefault();
+        $('.saveForm #saveModal').modal();
 	});
 });
 
