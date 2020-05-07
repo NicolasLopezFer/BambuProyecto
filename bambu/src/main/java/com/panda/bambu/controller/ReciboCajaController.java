@@ -36,7 +36,7 @@ public class ReciboCajaController
 	}
 
 	@RequestMapping(value = "/reciboCaja-crear", method = RequestMethod.POST)
-	public ModelAndView crearArticulo(ReciboCaja a) 
+	public ModelAndView crearReciboCaja(ReciboCaja a) 
 	{
 		ModelAndView modelAndView = new ModelAndView();
 		System.out.println(a.getFecha());
@@ -53,7 +53,7 @@ public class ReciboCajaController
 	}
 
 	@RequestMapping(value = "/reciboCaja-editar", method = RequestMethod.POST)
-	public ModelAndView modificarArticulo(ReciboCaja a) {
+	public ModelAndView modificarReciboCaja(ReciboCaja a) {
 		ModelAndView modelAndView = new ModelAndView();
 		//articleRepository.save(a);
 		if(reciboCajaService.modify(a)) {

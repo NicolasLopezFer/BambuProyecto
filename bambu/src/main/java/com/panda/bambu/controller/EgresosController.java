@@ -33,7 +33,7 @@ public class EgresosController
     }
     
     @RequestMapping(value = "/egreso-crear", method = RequestMethod.POST)
-	public ModelAndView crearArticulo(Egreso a) 
+	public ModelAndView crearEgreso(Egreso a) 
 	{
 		ModelAndView modelAndView = new ModelAndView();
 		if(egresoService.create(a)) {
@@ -48,8 +48,23 @@ public class EgresosController
 		return modelAndView;
     }
 
+    @RequestMapping(value = "/egreso-editar", method = RequestMethod.POST)
+	public ModelAndView modificarEgreso(Egreso a) {
+		ModelAndView modelAndView = new ModelAndView();
+		//articleRepository.save(a);
+		if(egresoService.modify(a)) {
+			modelAndView.addObject("responseMessage", "Articulo editado Exitosamente!");	
+			System.out.println("Articulo guardado Exitosamente!");
+		}else {
+			modelAndView.addObject("responseMessage", "Existen errores al editado el articulo");
+			System.out.println("NO SE GUARDO");
+		}
+		modelAndView.setViewName("redirect:/egreso");
+		return modelAndView;
+	}
+
     @RequestMapping(value = "/egreso-borrar", method = RequestMethod.GET)
-	public ModelAndView borrarReciboCaja(long id) {
+	public ModelAndView borrarEgreso(long id) {
 		ModelAndView modelAndView = new ModelAndView();
 		if(egresoService.delete(egresoService.findById(id))) 
 		{
@@ -64,7 +79,7 @@ public class EgresosController
 
     @RequestMapping(value = "/egreso-encontrarUno", method = RequestMethod.GET)
 	@ResponseBody
-	public Egreso encontrarReciboCaja(long id) 
+	public Egreso encontrarEgreso(long id) 
 	{
 		return egresoService.findById(id);
 	}
