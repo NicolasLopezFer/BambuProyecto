@@ -234,8 +234,4 @@ public class ReciboCaja {
 		this.aprobado = aprobado;
 
 	}
-
-    
-
-    
 }

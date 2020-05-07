@@ -58,7 +58,7 @@ public class ReciboCajaService{
         return false;    
     }
     
-	public boolean isArticleAlreadyPresent(ReciboCaja recibo_caja) {
+	public boolean isReciboCajaAlreadyPresent(ReciboCaja recibo_caja) {
 		ReciboCaja recibo_caja_found =reciboCajaRepository.findByNumeroComprobante(recibo_caja.getNumeroComprobante());
 		if (recibo_caja_found==null) 
 			return false;
