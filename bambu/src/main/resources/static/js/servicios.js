@@ -1,6 +1,11 @@
+ $(document).ready(function() {
+	$('.nBtn').on('click', function(event) {
+		event.preventDefault();
+		$('.saveForm #saveModal').modal();
+	});
+});
 
 
-//DataTable JQuery
 $(document).ready(function () {
     var table = $('#table-information').DataTable({
         lengthChange: false,
@@ -39,9 +44,21 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
-	$('.newBtn').on('click', function(event) {
-        event.preventDefault();
-        $('.saveForm #saveModal').modal();
+	$('.verarticulosBtn').on('click', function(event) {
+		event.preventDefault();
+		var href = $(this).attr('href');
+
+		$.get(href, function(servicio, status) {
+			$('.verArtForm #name').val(servicio.name);
+		});
+		$('.verArtForm #verArtModal').modal();
+	});
+});
+
+$(document).ready(function() {
+	$('.newArtBtn').on('click', function(event) {
+		event.preventDefault();
+		$('.newArtForm #newArtModal').modal();
 	});
 });
 
