@@ -69,7 +69,7 @@ public class ServiceController {
 			modelAndView.addObject("responseMessage", "Existen errores al modificar este servicio");
 			System.out.println("No se guardo");
 		}
-		modelAndView.setViewName("redirect:/serviciosform.html");
+		modelAndView.setViewName("redirect:/serviciosform");
 		return modelAndView;
 	}
 
@@ -82,7 +82,7 @@ public class ServiceController {
 		}else {
 			modelAndView.addObject("responseMessage", "Problems bbcito pra");
 		}
-		modelAndView.setViewName("redirect:/serviciosform.html");
+		modelAndView.setViewName("redirect:/serviciosform");
 		return modelAndView;
 	}
 

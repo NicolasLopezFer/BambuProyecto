@@ -37,7 +37,7 @@ $(document).ready(function() {
 		$.get(href, function(servicio, status) {
 			$('.editForm #code').val(servicio.code);
 			$('.editForm #name').val(servicio.name);
-			$('.editForm #salePrice').val(servicio.salePrice);
+			$('.editForm #price').val(servicio.price);
 		});
 		$('.editForm #editModal').modal();
 	});
