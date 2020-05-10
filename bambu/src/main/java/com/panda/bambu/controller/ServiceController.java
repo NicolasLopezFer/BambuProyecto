@@ -30,20 +30,20 @@ public class ServiceController {
 	 }
 
 	 @RequestMapping(value = "/serviarticulos", method = RequestMethod.GET)
-	 public ModelAndView serviArticulos(List<Article> a){
+	 public ModelAndView serviArticulos(final long id){
 		final ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("article", a);
+		modelAndView.addObject("servicee", serviceFamiEmpresaService.findById(id));
 		modelAndView.setViewName("serviarticulos");
 		return modelAndView;
 	 }
 
-	 @RequestMapping(value = "/newArtServ", method = RequestMethod.POST)
-	 public ModelAndView serviArticulos(List<Article> a){
-		final ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("article", a);
-		modelAndView.setViewName("serviarticulos");
-		return modelAndView;
-	 }
+	//  @RequestMapping(value = "/newArtServ", method = RequestMethod.POST)
+	//  public ModelAndView serviArticulos(List<Article> a){
+	// 	final ModelAndView modelAndView = new ModelAndView();
+	// 	modelAndView.addObject("article", a);
+	// 	modelAndView.setViewName("serviarticulos");
+	// 	return modelAndView;
+	//  }
 
 	@RequestMapping(value = "/serviciocrear", method = RequestMethod.POST)
 	public ModelAndView crearServicio(final ServiceFamiEmpresa s) {
@@ -55,7 +55,7 @@ public class ServiceController {
 			modelAndView.addObject("responseMessage", "Errores al guardar el servicio");
 			System.out.println("No se guardo servicio");
 		}
-		modelAndView.setViewName("redirect:/servicios-form");
+		modelAndView.setViewName("redirect:/serviciosform");
 		return modelAndView;
 	}
 
@@ -69,7 +69,7 @@ public class ServiceController {
 			modelAndView.addObject("responseMessage", "Existen errores al modificar este servicio");
 			System.out.println("No se guardo");
 		}
-		modelAndView.setViewName("redirect:/servicios-form");
+		modelAndView.setViewName("redirect:/serviciosform.html");
 		return modelAndView;
 	}
 
@@ -82,7 +82,7 @@ public class ServiceController {
 		}else {
 			modelAndView.addObject("responseMessage", "Problems bbcito pra");
 		}
-		modelAndView.setViewName("redirect:/servicios-form");
+		modelAndView.setViewName("redirect:/serviciosform.html");
 		return modelAndView;
 	}
 

@@ -111,7 +111,7 @@
                             <td th:text="${i.getCode()}"></td>
                             <td th:text="${i.getName()}"></td>
                             <td>
-                                <a th:href="@{serviarticulos/(id=${i.getArticles()})}"class="btn btn-primary verarticulosBtn">Ver articulos</a>
+                                <a th:href="@{serviarticulos/(id=${i.getId()})}"class="btn btn-primary verarticulosBtn">Ver articulos</a>
                             </td>
                             <td th:text="${i.getPrice()}"></td>
                             <td>
@@ -152,6 +152,9 @@
                                             <label for="name" class="col-form-label">Nombre
                                                 Servicio:</label> <input type="text" class="form-control" id="name"
                                                 name="name" value="" />
+										</div>
+										<div class="form-group">
+                                            <label for="salePrice" class="col-form-label">Los articulos asociados se ingresan luego:</label> 
                                         </div>
                                         <div class="form-group">
                                             <label for="salePrice" class="col-form-label">Precio de
@@ -173,7 +176,8 @@
         
 
         <div class="verArtForm">
-			<form th:action="@{/servicioarticulos}" method="">
+			
+			<form th:action="@{/serviarticulos}" method="">
 				<div class="modal fade" id="verArtModal" tabindex="-1" role="dialog"
 					aria-labelledby="exampleModalLabel" aria-hidden="true">
 					<div class="modal-dialog" role="document">
@@ -205,9 +209,9 @@
                                                     </tr>
                                                 </thead> 
                                                 <tbody>
-                                                    <tr th:each="i :${article}">
-                                                        <td th:text="${i.getCode()}"></td>
-                                                        <td th:text="${i.getName()}"></td>
+                                                    <tr th:each="i :${servicee}">
+														<td th:text="${i.getArticles().getCode()}"></td>
+														<td th:text="${i.getArticles().getName()}"></td>
                                                         <td>
                                                             <a th:href="@{serborrart/(id=${i.getId())}"class="btn btn-primary delArtBtn">Borrar</a>
                                                         </td>
@@ -228,7 +232,7 @@
 			</form>
         </div>
         
-        <div class="newArtForm">
+        <!-- <div class="newArtForm">
 			<form th:action="@{/newArtServ}" method="post">
 				<div class="modal fade" id="newArtModal" tabindex="-1" role="dialog"
 					aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -264,10 +268,10 @@
 					</div>
 				</div>
 			</form>
-		</div>
+		</div> -->
 
 
-		<!-- <div class="editForm">
+		<div class="editForm">
 			<form th:action="@{/serviciomodificar}" method="post">
 				<div class="modal fade" id="editModal" tabindex="-1" role="dialog"
 					aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -295,7 +299,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="salePrice" class="col-form-label">Articulo asociados:</label>
-                                            <a th:href="@{servicioencontraruno/(id=${i.getId()})}" class="btn btn-primary eBtn">Modificar</a>
+											<!-- <a th:href="@{serviarticulos/(id=${i.getId()})}"class="btn btn-primary verarticulosBtn">Ver articulos</a> -->
                                         </div>
                                         <div class="form-group">
                                             <label for="salePrice" class="col-form-label">Precio de
@@ -313,15 +317,15 @@
 					</div>
 				</div>
 			</form>
-		</div> -->
+		</div>
 
-		<!-- <div class='deleteForm'>
+		<div class='deleteForm'>
 			<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog"
 				aria-labelledby="exampleModalLabel" aria-hidden="true">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title" id="exampleModalLabel">Borrar servicio</h5>
+							<h5 class="modal-title" id="exampleModalLabel">Borrar</h5>
 							<button type="button" class="close" data-dismiss="modal"
 								aria-label="Close">
 								<span aria-hidden="true">&times;</span>
@@ -329,7 +333,7 @@
 						</div>
 						<div class="modal-body">
 							<p class="alert alert-danger">
-								¿Estas seguro que quieres borrar este servicio?
+								¿Estas seguro que quieres borrar?
 							</p>
 						</div>
 						<div class="modal-footer">
@@ -340,7 +344,7 @@
 					</div>
 				</div>
 			</div>
-		</div> -->
+		</div>
 
 	</section>
 

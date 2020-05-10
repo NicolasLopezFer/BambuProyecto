@@ -48,9 +48,9 @@ $(document).ready(function() {
 		event.preventDefault();
 		var href = $(this).attr('href');
 
-		$.get(href, function(servicio, status) {
-			$('.verArtForm #name').val(servicio.name);
-		});
+		// $.get(href, function(servicio, status) {
+		// 	$('.verArtForm #name').val(servicio.name);
+		// });
 		$('.verArtForm #verArtModal').modal();
 	});
 });
