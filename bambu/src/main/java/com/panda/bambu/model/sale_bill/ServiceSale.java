@@ -22,11 +22,11 @@ public class ServiceSale {
     @ManyToOne
     private ServiceFamiEmpresa serviceFamiEmpresa;
     
-    //@NotNull(message="Quantity is compulsory")
+    @NotNull(message="Quantity is compulsory")
 	@Column(name = "quantity")
     private double quantity;
     
-    //@NotNull(message="Total Value is compulsory")
+    @NotNull(message="Total Value is compulsory")
 	@Column(name = "total_value")
     private double total_value;
 
