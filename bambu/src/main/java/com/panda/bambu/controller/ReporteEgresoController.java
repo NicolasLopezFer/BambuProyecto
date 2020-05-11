@@ -35,7 +35,7 @@ public class ReporteEgresoController {
 		}
 		else
 		{
-			modelAndView.addObject("lista_egresos", egresos);
+			modelAndView.addObject("lista_egresos", egresoService.findAll());
 			filtrar=false;
 		}
 		
@@ -59,9 +59,17 @@ public class ReporteEgresoController {
 		egresos=list_egresos;
 		System.out.println(fechaInicio);
 		filtrar=true;
-		modelAndView.setViewName("redirect:/reporteEgreso");
+		modelAndView.setViewName("redirect:/reporteEgresos");
 		return modelAndView;
-    }
+	}
+	
+	@RequestMapping(value = "/reporteEgresos", method = RequestMethod.GET)
+	public ModelAndView reporteEgresos(@RequestParam(defaultValue="0") int page) {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("lista_egresos", egresos);
+		modelAndView.setViewName("reporteEgresos"); // resources/template/reporteEgresos.html
+		return modelAndView;
+	}
 
     @RequestMapping(value = "/reporteEgreso-encontrarUno", method = RequestMethod.GET)
 	@ResponseBody

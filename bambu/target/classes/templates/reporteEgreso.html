@@ -37,8 +37,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
        
    
-        <!-- DataTable JS -->
-        <script type="text/javascript" th:src="@{/js/reporteEgreso.js}" src="static/js/reporteEgreso.js"></script>
+       
         
         
         <!--Scripts Datatable Nuevos-->
@@ -93,16 +92,15 @@
                 </div>
                 <!-- Portfolio Grid Items-->
                 <div class="row" >
-                    <div class="text-center col-md-10">
-                    </div>
                     <div class="col-md-2" >
                         <div class="text-center">
                             <!-- Portfolio Item Nuevo Articulo-->
                             <a class="btn btn-primary btn-s js-scroll-trigger ffBtn"><i
-                               ></i>Filtrar por fecha</a>
+                                ></i>Filtrar por fecha</a>
                         </div>
                     </div>
                 </div>
+                <br>
                 <div class="row" >
                     <div class="content" style="width:100%">
                         <table id="table-information" class="table table-hover table-bordered">
@@ -208,5 +206,9 @@
 	<script src="assets/mail/jqBootstrapValidation.js"></script>
     <script src="assets/mail/contact_me.js"></script>
     <script src="js/scripts.js"></script>
+    
+    <script type="text/javascript" th:src="@{/js/reporteEgresos.js}" src="static/js/reporteEgresos.js"></script>
+     <!-- DataTable JS -->
+     <script type="text/javascript" th:src="@{/js/reporteEgreso.js}" src="static/js/reporteEgreso.js"></script>
     </body>
 </html>
