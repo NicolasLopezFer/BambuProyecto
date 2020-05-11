@@ -65,11 +65,20 @@ public class ServiceFamiEmpresaService {
         return false;    
     }
     
-    public boolean isArticleAlreadyPresent(ServiceFamiEmpresa service) {
+    public boolean isServiceAlreadyPresent(ServiceFamiEmpresa service) {
 		ServiceFamiEmpresa serviceFound = serviceFamiEmpresaRepository.findByCode(service.getCode());
 		if (serviceFound==null) 
 			return false;
 		return true;
+    }
+
+    public boolean isArticleAlreadyPresentInService(ServiceFamiEmpresa service, Article article) {
+        ServiceFamiEmpresa serviceFound = serviceFamiEmpresaRepository.findByCode(service.getCode());
+        Article articleFound = articleService.findByCode(article.getCode());
+        if (articleFound != null && serviceFound != null)
+            if(serviceFound.getArticles().contains(articleFound)) 
+			    return true;
+		return false;
     }
        
     public Boolean modify(ServiceFamiEmpresa service_new) {
@@ -116,9 +125,12 @@ public class ServiceFamiEmpresaService {
         ServiceFamiEmpresa serviceFound = serviceFamiEmpresaRepository.findByCode(service_new.getCode());
         Article articleFound = articleService.findByCode(article.getCode());
         if (serviceFound!=null && articleFound != null){
-            serviceFound.addArticle(articleFound);
-            serviceFamiEmpresaRepository.save(serviceFound);
-            return true;
+            if(!isArticleAlreadyPresentInService(serviceFound, articleFound))
+            {
+                serviceFound.addArticle(articleFound);
+                serviceFamiEmpresaRepository.save(serviceFound);
+                return true;
+            }
         }   
         return false;
     }
@@ -128,9 +140,12 @@ public class ServiceFamiEmpresaService {
         ServiceFamiEmpresa serviceFound = serviceFamiEmpresaRepository.findByCode(service_code);
         Article articleFound = articleService.findByCode(article.getCode());
         if (serviceFound!=null && articleFound != null){
-            serviceFound.addArticle(articleFound);
-            serviceFamiEmpresaRepository.save(serviceFound);
-            return true;
+            if(!isArticleAlreadyPresentInService(serviceFound, articleFound))
+            {
+                serviceFound.addArticle(articleFound);
+                serviceFamiEmpresaRepository.save(serviceFound);
+                return true;
+            }
         }   
         return false;
     }
@@ -141,9 +156,12 @@ public class ServiceFamiEmpresaService {
         ServiceFamiEmpresa serviceFound = serviceFamiEmpresaRepository.findByCode(service_new.getCode());
         Article articleFound = articleService.findByCode(article.getCode());
         if (serviceFound!=null && articleFound != null){
-            serviceFound.removeArticle(articleFound);
-            serviceFamiEmpresaRepository.save(serviceFound);
-            return true;
+            if(isArticleAlreadyPresentInService(serviceFound, articleFound))
+            {
+                serviceFound.removeArticle(articleFound);
+                serviceFamiEmpresaRepository.save(serviceFound);
+                return true;
+            }
         }   
         return false;
     }
@@ -153,9 +171,12 @@ public class ServiceFamiEmpresaService {
         ServiceFamiEmpresa serviceFound = serviceFamiEmpresaRepository.findByCode(service_code);
         Article articleFound = articleService.findByCode(article.getCode());
         if (serviceFound!=null && articleFound != null){
-            serviceFound.removeArticle(articleFound);
-            serviceFamiEmpresaRepository.save(serviceFound);
-            return true;
+            if(isArticleAlreadyPresentInService(serviceFound, articleFound))
+            {
+                serviceFound.removeArticle(articleFound);
+                serviceFamiEmpresaRepository.save(serviceFound);
+                return true;
+            }
         }   
         return false;
     }
@@ -169,7 +190,7 @@ public class ServiceFamiEmpresaService {
     }
     
     public Boolean save(ServiceFamiEmpresa service) {
-        if(!isArticleAlreadyPresent(service)){
+        if(!isServiceAlreadyPresent(service)){
             if (service.getCode().matches(".*[a-z].*")){
                 serviceFamiEmpresaRepository.save(service);
                 return true;
