@@ -97,8 +97,8 @@ public class CompanyService {
 		return false;
 	}
 
-	/*public Boolean delete(Company company) {
-		int a = 0;
+	public Boolean delete(Company company) {
+		/*int a = 0;
 		if (companyRepository.existsById(company.getNit())) {
 
 			User user = new User();
@@ -114,6 +114,8 @@ public class CompanyService {
 			return true;
 		}
 
-		return false;
-	}*/
+		return false;*/
+		companyRepository.delete(company);
+		return true;
+	}
 }

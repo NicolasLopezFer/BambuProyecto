@@ -51,5 +51,18 @@ public class CompanyController {
 		modelAndView.setViewName("redirect:/emprendedor");
 		return modelAndView;
 	}
+	
+	@RequestMapping(value = "/emprendedor/empresa-borrar", method = RequestMethod.GET)
+	public ModelAndView borrarArticulo(long EmpresaNIT) {
+		ModelAndView modelAndView = new ModelAndView();
+		if(companyService.delete(companyService.findByNit(EmpresaNIT))) 
+		{
+			modelAndView.addObject("responseMessage", "Empresa borrada Exitosamente!");	
+		}else {
+			modelAndView.addObject("responseMessage", "Existen errores al borrar la empresa");
+		}
+		modelAndView.setViewName("redirect:/emprendedor");
+		return modelAndView;
+	}
 
 }

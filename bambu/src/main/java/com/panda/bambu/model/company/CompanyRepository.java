@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 public interface CompanyRepository extends JpaRepository<Company, Long> {
          
       public Company findByNit(Long nit);
-
+      public Company deleteByNit(Long nit);
 }

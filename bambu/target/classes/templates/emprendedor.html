@@ -268,6 +268,7 @@
 							</div>
 
 							<div class="modal-footer">
+								
 								<button type="button" class="btn btn-secondary"
 									data-dismiss="modal">Cancelar</button>
 								<input type="submit" class="btn btn-primary " value="Registrar" />
@@ -278,7 +279,7 @@
 			</form>
 		</div>
 		
-		<!-- Modal editar empresa -->
+		<!-- Modal gestionar empresa -->
 		<div class="editForm">
 			<form th:action="@{/emprendedor/empresa-editar}" method="post">
 				<div class="modal fade" id="editModal" tabindex="-1" role="dialog"
@@ -286,7 +287,7 @@
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
-								<h5 class="modal-title" id="exampleModalLabel">Editar Empresa</h5>
+								<h5 class="modal-title" id="exampleModalLabel">Gestionar Empresa</h5>
 								<button type="button" class="close" data-dismiss="modal"
 									aria-label="Close">
 									<span aria-hidden="true">&times;</span>
@@ -296,38 +297,70 @@
 								<div class="form-group">
 									<label for="nit" class="col-form-label">NIT:</label> <input
 										type="text" class="form-control" id="nit" name="nit"
-										value="" readonly/>
+										th:value="${empresaElegida?.nit}" readonly/>
 								</div>
 								<div class="form-group">
 									<label for="name" class="col-form-label">Nombre:
 									</label> <input type="text" class="form-control" id="name"
-										name="name" value="" />
+										name="name" th:value="${empresaElegida?.name}" />
 								</div>
 								<div class="form-group">
 									<label for="social_reason" class="col-form-label">Razón 
 									Social:</label> <input type="text" class="form-control"
-										id="social_reason" name="social_reason" value="" />
+										id="social_reason" name="social_reason" th:value="${empresaElegida?.social_reason}" />
 								</div>
 								<div class="form-group">
 									<label for="direction" class="col-form-label">Dirección:
 									</label> <input type="text" class="form-control"
-										id="direction" name="direction" value="" />
+										id="direction" name="direction" th:value="${empresaElegida?.direction}" />
 								</div>
 								<div class="form-group">
 									<label for="telephone" class="col-form-label">Teléfono:
 									</label> <input type="number" class="form-control"
-										id="telephone" name="telephone" value="" />
+										id="telephone" name="telephone" th:value="${empresaElegida?.telephone}" />
 								</div>
 							</div>
 							<div class="modal-footer">
+								<div class="text-left">
+								    <a th:href="@{emprendedor/empresa-borrar/(EmpresaNIT=${empresaElegida?.nit})}" class="btn btn-danger dBtn">Borrar</a>
+								</div>
 								<button type="button" class="btn btn-secondary"
-									data-dismiss="modal">Close</button>
+									data-dismiss="modal">Cerrar</button>
 								<input type="submit" class="btn btn-primary " value="Guardar" />
 							</div>
 						</div>
 					</div>
 				</div>
 			</form>
+		</div>
+		
+		<!-- Modal eliminar empresa -->
+		<div class='deleteForm'>
+			<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog"
+				aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Borrar Empresa</h5>
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<p class="alert alert-danger">
+								¿Estas seguro que quieres borrar esta empresa?
+							</p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">No</button>
+							<a href="" type="button" class="btn btn-danger" id="delRef">Si</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
 		</div>
 		
 	<!-- Seccion Informes-->
