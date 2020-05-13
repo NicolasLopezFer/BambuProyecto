@@ -3,9 +3,9 @@ package com.panda.bambu.service.service_famiempresa;
 import java.util.List;
 
 import com.panda.bambu.model.article.Article;
+import com.panda.bambu.model.service_famiempresa.ServiceArticle;
 import com.panda.bambu.model.service_famiempresa.ServiceFamiEmpresa;
 import com.panda.bambu.model.service_famiempresa.ServiceFamiEmpresaRepository;
-import com.panda.bambu.service.article.ArticleService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,8 +17,9 @@ public class ServiceFamiEmpresaService {
     @Autowired
     private ServiceFamiEmpresaRepository serviceFamiEmpresaRepository;  
 
+
     @Autowired
-    private ArticleService articleService;
+    private ServiceArticleService serviceArticleService;
 
     public ServiceFamiEmpresa findById(Long id){
         return serviceFamiEmpresaRepository.findById(id).get();
@@ -44,7 +45,7 @@ public class ServiceFamiEmpresaService {
         return false;    
     }
 
-    public Boolean create(String code, String name, double price, List<Article> articles) {
+    public Boolean create(String code, String name, double price, List<ServiceArticle> articles) {
         ServiceFamiEmpresa service =serviceFamiEmpresaRepository.findByCode(code);
         if(service==null){
             if (code.matches(".*[a-z].*")){
@@ -72,11 +73,11 @@ public class ServiceFamiEmpresaService {
 		return true;
     }
 
-    public boolean isArticleAlreadyPresentInService(ServiceFamiEmpresa service, Article article) {
+    public boolean isArticleAlreadyPresentInService(ServiceFamiEmpresa service, ServiceArticle article) {
         ServiceFamiEmpresa serviceFound = serviceFamiEmpresaRepository.findByCode(service.getCode());
-        Article articleFound = articleService.findByCode(article.getCode());
+        Article articleFound = serviceArticleService.getArticle(article);
         if (articleFound != null && serviceFound != null)
-            if(serviceFound.getArticles().contains(articleFound)) 
+            if(serviceFound.getArticles().contains(article)) 
 			    return true;
 		return false;
     }
@@ -94,7 +95,7 @@ public class ServiceFamiEmpresaService {
         return false;
     }
 
-    public Boolean modify(ServiceFamiEmpresa service_new, List<Article> articles) {
+    public Boolean modify(ServiceFamiEmpresa service_new, List<ServiceArticle> articles) {
  
         ServiceFamiEmpresa serviceFound = serviceFamiEmpresaRepository.findByCode(service_new.getCode());
         if (serviceFound!=null){
@@ -107,7 +108,7 @@ public class ServiceFamiEmpresaService {
         return false;
     }
 
-    public Boolean modify(String code, String name, double unitCost, double salePrice, List<Article> articles) {
+    public Boolean modify(String code, String name, double unitCost, double salePrice, List<ServiceArticle> articles) {
         
         ServiceFamiEmpresa serviceFound = serviceFamiEmpresaRepository.findByCode(code);
         if (serviceFound!=null){
@@ -120,14 +121,14 @@ public class ServiceFamiEmpresaService {
         return false;
     }
 
-    public Boolean addArticle(ServiceFamiEmpresa service_new, Article article)
+    public Boolean addArticle(ServiceFamiEmpresa service_new, ServiceArticle article)
     {
         ServiceFamiEmpresa serviceFound = serviceFamiEmpresaRepository.findByCode(service_new.getCode());
-        Article articleFound = articleService.findByCode(article.getCode());
+        Article articleFound = serviceArticleService.getArticle(article);
         if (serviceFound!=null && articleFound != null){
-            if(!isArticleAlreadyPresentInService(serviceFound, articleFound))
+            if(!isArticleAlreadyPresentInService(serviceFound, article))
             {
-                serviceFound.addArticle(articleFound);
+                serviceFound.addArticle(article);
                 serviceFamiEmpresaRepository.save(serviceFound);
                 return true;
             }
@@ -135,14 +136,14 @@ public class ServiceFamiEmpresaService {
         return false;
     }
 
-    public Boolean addArticle(String service_code, Article article)
+    public Boolean addArticle(String service_code, ServiceArticle article)
     {
         ServiceFamiEmpresa serviceFound = serviceFamiEmpresaRepository.findByCode(service_code);
-        Article articleFound = articleService.findByCode(article.getCode());
+        Article articleFound = serviceArticleService.getArticle(article);
         if (serviceFound!=null && articleFound != null){
-            if(!isArticleAlreadyPresentInService(serviceFound, articleFound))
+            if(!isArticleAlreadyPresentInService(serviceFound, article))
             {
-                serviceFound.addArticle(articleFound);
+                serviceFound.addArticle(article);
                 serviceFamiEmpresaRepository.save(serviceFound);
                 return true;
             }
@@ -151,14 +152,14 @@ public class ServiceFamiEmpresaService {
     }
 
 
-    public Boolean removeArticle(ServiceFamiEmpresa service_new, Article article)
+    public Boolean removeArticle(ServiceFamiEmpresa service_new, ServiceArticle article)
     {
         ServiceFamiEmpresa serviceFound = serviceFamiEmpresaRepository.findByCode(service_new.getCode());
-        Article articleFound = articleService.findByCode(article.getCode());
+        Article articleFound = serviceArticleService.getArticle(article);
         if (serviceFound!=null && articleFound != null){
-            if(isArticleAlreadyPresentInService(serviceFound, articleFound))
+            if(isArticleAlreadyPresentInService(serviceFound, article))
             {
-                serviceFound.removeArticle(articleFound);
+                serviceFound.removeArticle(article);
                 serviceFamiEmpresaRepository.save(serviceFound);
                 return true;
             }
@@ -166,14 +167,14 @@ public class ServiceFamiEmpresaService {
         return false;
     }
 
-    public Boolean removeArticle(String service_code, Article article)
+    public Boolean removeArticle(String service_code, ServiceArticle article)
     {
         ServiceFamiEmpresa serviceFound = serviceFamiEmpresaRepository.findByCode(service_code);
-        Article articleFound = articleService.findByCode(article.getCode());
+        Article articleFound = serviceArticleService.getArticle(article);
         if (serviceFound!=null && articleFound != null){
-            if(isArticleAlreadyPresentInService(serviceFound, articleFound))
+            if(isArticleAlreadyPresentInService(serviceFound, article))
             {
-                serviceFound.removeArticle(articleFound);
+                serviceFound.removeArticle(article);
                 serviceFamiEmpresaRepository.save(serviceFound);
                 return true;
             }

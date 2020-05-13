@@ -35,7 +35,7 @@ public class ServiceFamiEmpresa {
     private double price;
 
     @OneToMany
-    private List<Article> articles;
+    private List<ServiceArticle> articles;
 
     public ServiceFamiEmpresa()
     {
@@ -47,10 +47,10 @@ public class ServiceFamiEmpresa {
         this.code = code;
         this.name = name;
         this.price = price;
-        articles = new ArrayList<Article> ();
+        articles = new ArrayList<ServiceArticle> ();
     }
 
-    public ServiceFamiEmpresa (String code, String name, double price, List<Article> articles)
+    public ServiceFamiEmpresa (String code, String name, double price, List<ServiceArticle> articles)
     {
         this.code = code;
         this.name = name;
@@ -58,14 +58,19 @@ public class ServiceFamiEmpresa {
         this.articles = articles;
     }
 
-    public void removeArticle(Article article)
+    public void removeArticle(ServiceArticle article)
     {
         articles.remove(article);
     }
 
-    public void addArticle(Article new_article)
+    public void addArticle(ServiceArticle new_article)
     {
         articles.add(new_article);
+    }
+
+    public void addArticle(Article article, double quantity)
+    {
+        articles.add(new ServiceArticle(article,quantity));
     }
 
     public Long getId() {
@@ -92,11 +97,11 @@ public class ServiceFamiEmpresa {
         this.name = name;
     }
 
-    public List<Article> getArticles() {
+    public List<ServiceArticle> getArticles() {
         return articles;
     }
 
-    public void setArticles(List<Article> articles) {
+    public void setArticles(List<ServiceArticle> articles) {
         this.articles = articles;
     }
 

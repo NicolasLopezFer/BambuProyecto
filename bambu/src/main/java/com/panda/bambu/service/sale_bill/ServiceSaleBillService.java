@@ -9,6 +9,7 @@ import com.panda.bambu.model.inventory.Output;
 import com.panda.bambu.model.sale_bill.ServiceSale;
 import com.panda.bambu.model.sale_bill.ServiceSaleBill;
 import com.panda.bambu.model.sale_bill.ServiceSaleBillRepository;
+import com.panda.bambu.model.service_famiempresa.ServiceArticle;
 import com.panda.bambu.model.service_famiempresa.ServiceFamiEmpresa;
 import com.panda.bambu.service.inventory.ArticleInventoryService;
 
@@ -67,8 +68,9 @@ public class ServiceSaleBillService {
                       return false;
                     }
                     ServiceFamiEmpresa  serviceFE = service.getServiceFamiEmpresa();
-                    for(Article article : serviceFE.getArticles())
+                    for(ServiceArticle serviceArticle : serviceFE.getArticles())
                     {
+                        Article article = serviceArticle.getArticle();
                         Output output = new Output();
                         output.setCode(serviceBill.getCode());
                         output.setDetail("Venta Servicio");
@@ -83,7 +85,7 @@ public class ServiceSaleBillService {
     }
 
     public boolean create(String code, String customer_name, LocalDate date, LocalDate expiration, Set<ServiceSale> services){
-        ServiceSaleBill serviceBill =  new ServiceSaleBill(code, customer_name, date, expiration, services)
+        ServiceSaleBill serviceBill =  new ServiceSaleBill(code, customer_name, date, expiration, services);
         if(serviceSaleBillRepository.findByCode(serviceBill.getCode()) == null){
             if(!serviceBill.getServices().isEmpty()){
                 for(ServiceSale service: serviceBill.getServices()){
@@ -95,8 +97,9 @@ public class ServiceSaleBillService {
                       return false;
                     }
                     ServiceFamiEmpresa  serviceFE = service.getServiceFamiEmpresa();
-                    for(Article article : serviceFE.getArticles())
+                    for(ServiceArticle serviceArticle : serviceFE.getArticles())
                     {
+                        Article article = serviceArticle.getArticle();
                         Output output = new Output();
                         output.setCode(serviceBill.getCode());
                         output.setDetail("Venta Servicio");
