@@ -22,13 +22,21 @@ public class ServiceSale {
     @ManyToOne
     private ServiceFamiEmpresa serviceFamiEmpresa;
     
-    //@NotNull(message="Quantity is compulsory")
+    @NotNull(message="Quantity is compulsory")
 	@Column(name = "quantity")
     private double quantity;
+
+    @Column(name = "discount")
+    private float discount;
     
-    //@NotNull(message="Total Value is compulsory")
+    @NotNull(message="Total Value is compulsory")
 	@Column(name = "total_value")
     private double total_value;
+
+    public ServiceSale()
+    {
+        
+    }
 
     public Long getId() {
         return id;
@@ -44,6 +52,16 @@ public class ServiceSale {
 
     public void setQuantity(double quantity) {
         this.quantity = quantity;
+    }
+
+    public double getDiscount()
+    {
+        return discount;
+    }
+
+    public void setDiscount(float discount)
+    {
+        this.discount = discount;
     }
 
     public double getTotalValue(double total_value) {
