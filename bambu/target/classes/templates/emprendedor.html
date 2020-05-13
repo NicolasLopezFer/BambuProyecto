@@ -1,184 +1,474 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Emprendedor</title>
-        <!-- Font Awesome icons (free version)-->
-        <script src="https://use.fontawesome.com/releases/v5.12.1/js/all.js" crossorigin="anonymous"></script>
-        <!-- Google fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
-        <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
-    </head>
-    <body id="page-top">
-        <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
-            <div class="container">
-                <a class="navbar-brand js-scroll-trigger" href="#page-top">BAMBÚ</a><button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu <i class="fas fa-bars"></i></button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#perfil">Perfil</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#cerrarsesion">Cerrar sesión</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <!-- Masthead-->
-        <header class="masthead bg-primary text-white text-center">
-            <div class="container d-flex align-items-center flex-column">
-                <!-- Masthead Avatar Image--><img class="masthead-avatar mb-5" th:src="@{/img/bambu.svg}" alt="" /><!-- Masthead Heading-->
-                <h1 class="masthead-heading text-uppercase mb-0">Bienvenido Emprendedor</h1>
-                <!-- Icon Divider-->
-                <div class="divider-custom divider-light">
-                    <div class="divider-custom-line"></div>
-                    <div class="divider-custom-icon"><i class="fas fa-square"></i></div>
-                    <div class="divider-custom-line"></div>
-                </div>
-                <!-- Masthead Subheading-->
-                <p class="masthead-subheading font-weight-light mb-0">Control financiera para FamiEmpresas</p>
-            </div>
-        </header>
-        <!-- Portfolio Section-->
-        <section class="page-section portfolio" id="modulos">
-            <div class="container">
-                <!-- Portfolio Section Heading-->
-                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">modulos</h2>
-                <!-- Icon Divider-->
-                <div class="divider-custom">
-                    <div class="divider-custom-line"></div>
-                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                    <div class="divider-custom-line"></div>
-                </div>
-                <!-- Portfolio Grid Items-->
-                <div class="row">
-                    <!-- Portfolio Item Factura de ventas-->
-                    <div class="col-sm-6 col-md-3 mb-5">
-                        <div class="portfolio-item mx-auto" data-toggle="modal" onclick="window.location.href='facturadeventa';">
-                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                                <div class="portfolio-item-caption-content text-center text-white"><p>Facturas de venta</p></div>
-                            </div>
-                            <img class="img-personalized" th:src="@{/img/bill.png}" alt="" />
-                        
-                        </div>
-                    </div>
-                    <!-- Portfolio Item Comprobantes de pago-->
-                    <div class="col-sm-6 col-md-3 mb-5">
-                        <div class="portfolio-item mx-auto" data-toggle="modal" onclick="window.location.href='egreso';">
-                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                                <div class="portfolio-item-caption-content text-center text-white"><p>Comprobantes de egreso</p></div>
-                            </div>
-                            <img class="img-personalized" th:src="@{/img/pencil.png}" alt="" />
-                        </div>
-                    </div>
-                    <!-- Portfolio Item Recibos de caja-->
-                    <div class="col-sm-6 col-md-3 mb-5">
-                        <div class="portfolio-item mx-auto" data-toggle="modal" onclick="window.location.href='reciboCaja';">
-                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                                <div class="portfolio-item-caption-content text-center text-white"><p>Recibos de caja </div>
-                            </div>
-                            <img class="img-personalized" th:src="@{/img/basket.png}" alt="" />
-                        </div>
-                    </div>
-                    <!-- Portfolio Item Devoluciones-->
-                    <div class="col-sm-6 col-md-3 mb-5">
-                        <div class="portfolio-item mx-auto" data-toggle="modal" onclick="window.location.href='devoluciones';">
-                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                                <div class="portfolio-item-caption-content text-center text-white"><p>Devoluciones</p></i></div>
-                            </div>
-                            <img class="img-personalized" th:src="@{/img/return.png}" alt="" />
-                        </div>
-                    </div>
-                    <!-- Portfolio Item Reportes-->
-                      <div class="portfolio-item mx-auto" data-toggle="modal">
-                        <a class="btn btn-primary btn-m js-scroll-trigger" href="#portfolioModal1">Reportes</a>
-                      </div>
-                      
-                  </div>
-                </div>
-            </div>
-        </section>
-       
-        <!-- About Section-->
-        <section class="page-section bg-primary text-white mb-0" id="modelos">
-            <div class="container">
-                <!-- About Section Heading-->
-                <h2 class="page-section-heading text-center text-uppercase text-white">Informes</h2>
-                <!-- Icon Divider-->
-                <div class="divider-custom divider-light">
-                    <div class="divider-custom-line"></div>
-                    <div class="divider-custom-icon"><i class="fas fa-circle"></i></div>
-                    <div class="divider-custom-line"></div>
-                </div>
-                <!-- About Section Content-->
-                <div class="row">
-                    <div class="col-lg-4 ml-auto"><p class="lead1"></p>
-                        <a class="btn btn-outline-secondary btn-xl js-scroll-trigger" href="inventario">Manejo de inventario</a>
-                        <a class="btn btn-outline-secondary btn-xl js-scroll-trigger" href="kardex">Generación Kardex</a>
-                        <a class="btn btn-outline-secondary btn-xl js-scroll-trigger" href="articulos">Crear articulos</a>
-                    </div>
-                    <div class="col-lg-4 mr-auto"><p class="lead1"></p>
-                        <a class="btn btn-outline-secondary btn-xl js-scroll-trigger" href="">Estado de situación financiera</a>
-                        <a class="btn btn-outline-secondary btn-xl js-scroll-trigger" href="">Estado de perdidas y ganancias</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Copyright Section-->
-        <section class="copyright py-4 text-center text-white">
-            <div class="container"><small>Copyright © BAMBÚ 2020</small></div>
-        </section>
-        <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes)-->
-        <div class="scroll-to-top d-lg-none position-fixed">
-            <a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top"><i class="fa fa-chevron-up"></i></a>
-        </div>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>Emprendedor</title>
 
-        <!-- Portfolio Modals--><!-- Portfolio Modal 1-->
-        <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-labelledby="portfolioModal1Label" aria-hidden="true">
-            <div class="modal-dialog modal-xl" role="document">
-                <div class="modal-content">
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true"><i class="fas fa-times"></i></span>
-                    </button>
-                    <div class="modal-body text-center">
-                        <div class="container">
-                            <div class="row justify-content-center">
-                                <div class="col-lg-8">
-                                    <!-- Portfolio Modal - Title-->
-                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">ERROR</h2>
-                                    <!-- Icon Divider-->
-                                    <div class="divider-custom">
-                                        <div class="divider-custom-line"></div>
-                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                                        <div class="divider-custom-line"></div>
-                                    </div>
-                                    <!-- Portfolio Modal - Image--><img class="img-fluid rounded mb-5" src="assets/img/portfolio/cabin.png" alt="" /><!-- Portfolio Modal - Text-->
-                                    <p class="mb-5">Esta función todavia no se encuentra disponible, por favor intente más tarde.</p>
-                                    <button class="btn btn-primary" href="#" data-dismiss="modal"><i class="fas fa-times fa-fw"></i>Cerrar ventana</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<!--JQUERY-->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- Font Awesome icons (free version)-->
+<script src="https://use.fontawesome.com/releases/v5.12.1/js/all.js"
+	crossorigin="anonymous"></script>
+<!-- Google fonts-->
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+	rel="stylesheet" type="text/css" />
+<link
+	href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic"
+	rel="stylesheet" type="text/css" />
+<!-- Core theme CSS (includes Bootstrap)-->
+<link href="css/styles.css" rel="stylesheet" />
+<!-- Nuestro JS empresas -->
+<script type="text/javascript" th:src="@{/js/empresas.js}"
+	src="static/js/empresas.js"></script>
+
+</head>
+<body id="page-top">
+	<!-- Navigation-->
+	<nav
+		class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top"
+		id="mainNav">
+		<div class="container">
+			<a class="navbar-brand js-scroll-trigger" href="#page-top">BAMBÚ</a>
+			<button
+				class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded"
+				type="button" data-toggle="collapse" data-target="#navbarResponsive"
+				aria-controls="navbarResponsive" aria-expanded="false"
+				aria-label="Toggle navigation">
+				Menu <i class="fas fa-bars"></i>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item mx-0 mx-lg-1"><a
+						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+						href="#perfil">Perfil</a></li>
+					<li class="nav-item mx-0 mx-lg-1"><a
+						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+						href="#cerrarsesion">Cerrar sesión</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<!-- Masthead-->
+	<header class="masthead bg-primary text-white text-center">
+		<div class="container d-flex align-items-center flex-column">
+			<!-- Masthead Avatar Image-->
+			<img class="masthead-avatar mb-5" th:src="@{/img/bambu.svg}" alt="" />
+			<!-- Masthead Heading-->
+			<h1 class="masthead-heading text-uppercase mb-0">Bienvenido
+				Emprendedor</h1>
+			<!-- Icon Divider-->
+			<div class="divider-custom divider-light">
+				<div class="divider-custom-line"></div>
+				<div class="divider-custom-icon">
+					<i class="fas fa-square"></i>
+				</div>
+				<div class="divider-custom-line"></div>
+			</div>
+			<!-- Masthead Subheading-->
+			<p class="masthead-subheading font-weight-light mb-0">Control
+				financiera para FamiEmpresas</p>
+		</div>
+	</header>
+
+	<!-- Seccion Empresas -->
+	<div class="container">
+		<div class="row">
+			<div class="col border-right d-flex justify-content-center">
+				<!-- Seccion Empresas-->
+				<section class="page-section bg-white text-black " id="modelos">
+					<div class="container">
+						<!-- About Section Heading-->
+						<h2
+							class="page-section-heading text-center text-uppercase text-secondary mb-0">Empresas</h2>
+						<!-- Icon Divider-->
+						<div class="divider-custom">
+							<div class="divider-custom-line"></div>
+							<div class="divider-custom-icon">
+								<i class="fas fa-circle"></i>
+							</div>
+							<div class="divider-custom-line"></div>
+						</div>
+						<div class="container">
+							<div class="row">
+								<div class="col-sm">
+									<!--<div class="dropdown">
+									    <a class="btn btn-secondary dropdown-toggle btn-lg" href="#"
+											role="button" id="dropdownMenuLink" data-toggle="dropdown"
+											aria-haspopup="true" aria-expanded="false"> SELECCIONE LA
+											EMPRESA <span class="caret"></span></a>
+									    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1" th:each="empresa : ${empresasUsuario}">
+									      <li role="presentation"><a role="menuitem" tabindex="-1" href="#" th:text="${empresa.name}" ></a></li>
+									      <li role="presentation" ><div class="dropdown-divider"></div></li>
+									      <li role="presentation"><button type="button" class="btn btn-info btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Registrar Nueva Empresa</button></li>
+									    </ul>
+									  </div> -->
+									  <div class="btn-group">
+										  <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+										    SELECCIONE LA EMPRESA
+										  </button>
+										  <div class="dropdown-menu">
+										    <a th:each="empresa : ${empresasUsuario}" th:href="@{emprendedor/empresa/(EmpresaNIT=${empresa.nit})}" class="dropdown-item" th:text="${empresa.name}"></a>
+										    <div class="dropdown-divider"></div>
+										    <a class="btn btn-info btn-sm nBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Registrar Nueva Empresa</a>
+										  </div>
+									  </div>
+									<br></br>
+									<div class="card" style="width: 18rem;">
+										<div class="card-body">
+											<h5 class="card-title" ><span th:text="${empresaElegida?.name}"></span></h5>
+											<p class="card-text">NIT: <span th:text="${empresaElegida?.nit}"></span> </p>
+											<p class="card-text">Razon Social: <span th:text="${empresaElegida?.social_reason}"></span></p>
+											<button class="btn btn-outline-primary btn-md eBtn">Gestionar
+										Empresa</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+			<div class="col d-flex justify-content-center">
+				<!-- Seccion Modulos-->
+				<section class="page-section portfolio" id="modulos">
+					<div class="container">
+						<!-- Portfolio Section Heading-->
+						<h2
+							class="page-section-heading text-center text-uppercase text-secondary mb-0">modulos</h2>
+						<!-- Icon Divider-->
+						<div class="divider-custom">
+							<div class="divider-custom-line"></div>
+							<div class="divider-custom-icon">
+								<i class="fas fa-star"></i>
+							</div>
+							<div class="divider-custom-line"></div>
+						</div>
+						<!-- Portfolio Grid Items-->
+						<div class="row d-flex justify-content-center">
+							<!-- Portfolio Item Factura de ventas-->
+							<div class="col-md-5 col-md-3 mb-5">
+								<div class="portfolio-item mx-auto" data-toggle="modal"
+									onclick="window.location.href='facturadeventa';">
+									<div
+										class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+										<div
+											class="portfolio-item-caption-content text-center text-white">
+											<p>Facturas de venta</p>
+										</div>
+									</div>
+									<img class="img-personalized" th:src="@{/img/bill.png}" alt="" />
+
+								</div>
+							</div>
+							<!-- Portfolio Item Comprobantes de pago-->
+							<div class="col-md-5 col-md-3 mb-5">
+								<div class="portfolio-item mx-auto" data-toggle="modal"
+									data-target="#portfolioModal1">
+									<div
+										class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+										<div
+											class="portfolio-item-caption-content text-center text-white">
+											<p>Comprobantes de egreso</p>
+										</div>
+									</div>
+									<img class="img-personalized" th:src="@{/img/pencil.png}"
+										alt="" />
+								</div>
+							</div>
+							<!-- Portfolio Item Recibos de caja-->
+							<div class="col-md-5 col-md-3 mb-5">
+								<div class="portfolio-item mx-auto" data-toggle="modal"
+									data-target="#portfolioModal1">
+									<div
+										class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+										<div
+											class="portfolio-item-caption-content text-center text-white">
+											<p>Recibos de caja
+										</div>
+									</div>
+									<img class="img-personalized" th:src="@{/img/basket.png}"
+										alt="" />
+								</div>
+							</div>
+							<!-- Portfolio Item Devoluciones-->
+							<div class="col-md-5 col-md-3 mb-5">
+								<div class="portfolio-item mx-auto" data-toggle="modal"
+									onclick="window.location.href='devoluciones';">
+									<div
+										class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+										<div
+											class="portfolio-item-caption-content text-center text-white">
+											<p>Devoluciones</p>
+											</i>
+										</div>
+									</div>
+									<img class="img-personalized" th:src="@{/img/return.png}"
+										alt="" />
+								</div>
+							</div>
+							<!-- Portfolio Item Reportes-->
+							<div class="portfolio-item mx-auto" data-toggle="modal">
+								<a class="btn btn-primary btn-m js-scroll-trigger"
+									href="#portfolioModal1">Reportes</a>
+							</div>
+
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Modal crear Empresa -->
+	<div class="saveForm">
+			<form th:action="@{/emprendedor/empresa-crear}" method="post">
+				<div class="modal fade" id="saveModal" tabindex="-1" role="dialog"
+					aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLabel" >Registrar
+									Empresa</h5>
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<div class="form-group">
+									<label for="nit" class="col-form-label">NIT:</label> <input
+										type="text" class="form-control" id="nit" name="nit"
+										value="" />
+								</div>
+								<div class="form-group">
+									<label for="name" class="col-form-label">Nombre:
+									</label> <input type="text" class="form-control" id="name"
+										name="name" value="" />
+								</div>
+								<div class="form-group">
+									<label for="social_reason" class="col-form-label">Razón 
+									Social:</label> <input type="text" class="form-control"
+										id="social_reason" name="social_reason" value="" />
+								</div>
+								<div class="form-group">
+									<label for="direction" class="col-form-label">Dirección:
+									</label> <input type="text" class="form-control"
+										id="direction" name="direction" value="" />
+								</div>
+								<div class="form-group">
+									<label for="telephone" class="col-form-label">Teléfono:
+									</label> <input type="number" class="form-control"
+										id="telephone" name="telephone" value="" />
+								</div>
+							</div>
+
+							<div class="modal-footer">
+								
+								<button type="button" class="btn btn-secondary"
+									data-dismiss="modal">Cancelar</button>
+								<input type="submit" class="btn btn-primary " value="Registrar" />
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+		
+		<!-- Modal gestionar empresa -->
+		<div class="editForm">
+			<form th:action="@{/emprendedor/empresa-editar}" method="post">
+				<div class="modal fade" id="editModal" tabindex="-1" role="dialog"
+					aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLabel">Gestionar Empresa</h5>
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<div class="form-group">
+									<label for="nit" class="col-form-label">NIT:</label> <input
+										type="text" class="form-control" id="nit" name="nit"
+										th:value="${empresaElegida?.nit}" readonly/>
+								</div>
+								<div class="form-group">
+									<label for="name" class="col-form-label">Nombre:
+									</label> <input type="text" class="form-control" id="name"
+										name="name" th:value="${empresaElegida?.name}" />
+								</div>
+								<div class="form-group">
+									<label for="social_reason" class="col-form-label">Razón 
+									Social:</label> <input type="text" class="form-control"
+										id="social_reason" name="social_reason" th:value="${empresaElegida?.social_reason}" />
+								</div>
+								<div class="form-group">
+									<label for="direction" class="col-form-label">Dirección:
+									</label> <input type="text" class="form-control"
+										id="direction" name="direction" th:value="${empresaElegida?.direction}" />
+								</div>
+								<div class="form-group">
+									<label for="telephone" class="col-form-label">Teléfono:
+									</label> <input type="number" class="form-control"
+										id="telephone" name="telephone" th:value="${empresaElegida?.telephone}" />
+								</div>
+							</div>
+							<div class="modal-footer">
+								<div class="text-left">
+								    <a th:href="@{emprendedor/empresa-borrar/(EmpresaNIT=${empresaElegida?.nit})}" class="btn btn-danger dBtn">Borrar</a>
+								</div>
+								<button type="button" class="btn btn-secondary"
+									data-dismiss="modal">Cerrar</button>
+								<input type="submit" class="btn btn-primary " value="Guardar" />
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+		
+		<!-- Modal eliminar empresa -->
+		<div class='deleteForm'>
+			<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog"
+				aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Borrar Empresa</h5>
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<p class="alert alert-danger">
+								¿Estas seguro que quieres borrar esta empresa?
+							</p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">No</button>
+							<a href="" type="button" class="btn btn-danger" id="delRef">Si</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		
+	<!-- Seccion Informes-->
+	<section class="page-section bg-primary text-white mb-0" id="modelos">
+		<div class="container">
+			<!-- About Section Heading-->
+			<h2
+				class="page-section-heading text-center text-uppercase text-white">Informes</h2>
+			<!-- Icon Divider-->
+			<div class="divider-custom divider-light">
+				<div class="divider-custom-line"></div>
+				<div class="divider-custom-icon">
+					<i class="fas fa-circle"></i>
+				</div>
+				<div class="divider-custom-line"></div>
+			</div>
+			<!-- About Section Content-->
+			<div class="row">
+				<div class="col-lg-4 ml-auto">
+					<p class="lead1"></p>
+					<a class="btn btn-outline-secondary btn-xl js-scroll-trigger"
+						href="inventario">Manejo de inventario</a> <a
+						class="btn btn-outline-secondary btn-xl js-scroll-trigger"
+						href="kardex">Generación Kardex</a> <a
+						class="btn btn-outline-secondary btn-xl js-scroll-trigger"
+						href="articulos">Crear articulos</a>
+				</div>
+				<div class="col-lg-4 mr-auto">
+					<p class="lead1"></p>
+					<a class="btn btn-outline-secondary btn-xl js-scroll-trigger"
+						href="">Estado de situación financiera</a> <a
+						class="btn btn-outline-secondary btn-xl js-scroll-trigger" href="">Estado
+						de perdidas y ganancias</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Copyright Section-->
+	<section class="copyright py-4 text-center text-white">
+		<div class="container">
+			<small>Copyright © BAMBÚ 2020</small>
+		</div>
+	</section>
+	<!-- Scroll to Top Button (Only visible on small and extra-small screen sizes)-->
+	<div class="scroll-to-top d-lg-none position-fixed">
+		<a class="js-scroll-trigger d-block text-center text-white rounded"
+			href="#page-top"><i class="fa fa-chevron-up"></i></a>
+	</div>
+
+	<!-- Portfolio Modals-->
+	<!-- Portfolio Modal 1-->
+	<div class="portfolio-modal modal fade" id="portfolioModal1"
+		tabindex="-1" role="dialog" aria-labelledby="portfolioModal1Label"
+		aria-hidden="true">
+		<div class="modal-dialog modal-xl" role="document">
+			<div class="modal-content">
+				<button class="close" type="button" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true"><i class="fas fa-times"></i></span>
+				</button>
+				<div class="modal-body text-center">
+					<div class="container">
+						<div class="row justify-content-center">
+							<div class="col-lg-8">
+								<!-- Portfolio Modal - Title-->
+								<h2
+									class="portfolio-modal-title text-secondary text-uppercase mb-0">ERROR</h2>
+								<!-- Icon Divider-->
+								<div class="divider-custom">
+									<div class="divider-custom-line"></div>
+									<div class="divider-custom-icon">
+										<i class="fas fa-star"></i>
+									</div>
+									<div class="divider-custom-line"></div>
+								</div>
+								<!-- Portfolio Modal - Image-->
+								<img class="img-fluid rounded mb-5"
+									src="assets/img/portfolio/cabin.png" alt="" />
+								<!-- Portfolio Modal - Text-->
+								<p class="mb-5">Esta función todavia no se encuentra
+									disponible, por favor intente más tarde.</p>
+								<button class="btn btn-primary" href="#" data-dismiss="modal">
+									<i class="fas fa-times fa-fw"></i>Cerrar ventana
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
 
-        
-        <!-- Bootstrap core JS-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-        <!-- Third party plugin JS-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-        <!-- Contact form JS-->
-        <script src="assets/mail/jqBootstrapValidation.js"></script>
-        <script src="assets/mail/contact_me.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
-    </body>
+
+	<!-- Bootstrap core JS-->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+	<!-- Third party plugin JS-->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+	<!-- Contact form JS-->
+	<script src="assets/mail/jqBootstrapValidation.js"></script>
+	<script src="assets/mail/contact_me.js"></script>
+	<!-- Core theme JS-->
+	<script src="js/scripts.js"></script>
+</body>
 </html>
