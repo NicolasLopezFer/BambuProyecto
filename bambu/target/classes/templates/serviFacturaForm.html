@@ -66,67 +66,106 @@
 
 
 	<!-- Portfolio Section-->
-	<section class="page-section portfolio">
-		<div class="container">
-			<br> <br>
-			<!-- Portfolio Section Heading-->
-			<h2
-				class="page-section-heading text-center text-uppercase text-secondary mb-0">Servicios</h2>
-			<!-- Icon Divider-->
-			<div class="divider-custom">
-				<div class="divider-custom-line"></div>
-				<div class="divider-custom-icon">
-					<i class="fas fa-star"></i>
-				</div>
-				<div class="divider-custom-line"></div>
-			</div>
-			<!-- Portfolio Grid Items-->
-			<div class="row">
-				<div class="text-center col-md-6">
-					<!-- Portfolio Item Nuevo Articulo-->
-					<a class="btn btn-primary btn-m js-scroll-trigger nBtn"><i
-						class="fas fa-plus"></i> Nuevo Servicio </a>
-                </div>
-			</div>
-		</div>
-		</br></br>
-		<!-- Portfolio Item Nuevo Articulo-->
-		<div class = "row">
-			<div class="text-center col-md-2">
+    <section class="page-section portfolio" id="modulos">
+        <div class="container">
+            <!-- Portfolio Section Heading-->
+            <p>  </p>
+            <p>  </p>
+            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Factura de servicio</h2>
+            <!-- Icon Divider-->
+            <div class="divider-custom">
+                <div class="divider-custom-line"></div>
+                <div class="divider-custom-icon"><i class="fas fa-circle"></i></div>
+                <div class="divider-custom-line"></div>
+            </div>
 
-			</div>
-			<div class="content col-md-8" style="width:100%">
-				<table id="table-information" class="table table-hover table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Código</th>
-                            <th>Servicio</th>
-                            <th>Artículos Asociado</th>
-                            <th>Precio de Venta</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead> 
-                    <tbody>
-                        <tr th:each="i :${service}">
-                            <td th:text="${i.getCode()}"></td>
-                            <td th:text="${i.getName()}"></td>
-                            <td>
-                                <a th:href="@{serviarticulos/(id=${i.getId()})}"class="btn btn-primary verarticulosBtn">Ver articulos</a>
-                            </td>
-                            <td th:text="${i.getPrice()}"></td>
-                            <td>
-                                <a th:href="@{servicioencontraruno/(id=${i.getId()})}" class="btn btn-primary eBtn">Modificar</a>
-                                <a th:href="@{servicioborrar/(id=${i.getId()})}"class="btn btn-primary dBtn">Borrar</a>
-                            </td>
-                          </tr>                               
-                    </tbody>
+
+            <!-- Portfolio Grid Items-->
+            <div class="row">
+                <div class="text-center col-md-6">
+                    <div class="control-group">
+                        <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                            <label>Número</label><input class="form-control" id="numeroFacturaDeVenta" type="number" placeholder="Número" required="required" data-validation-required-message="Por favor ingrese número factura de venta"/>
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                            <label>Cliente</label><input class="form-control" id="clienteFacturaDeVenta" type="message" placeholder="Cliente" required="required" data-validation-required-message="Por favor ingrese cliente"/>
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                            <label>NIT o C.C</label><input class="form-control" id="nitFacturaDeVenta" type="number" placeholder="NIT O C.C" required="required" data-validation-required-message="Por favor ingrese NIT o CC"/>
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center col-md-6">
+                    Fecha
+                    <div class="control-group">
+                        <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                            <label></label><input class="form-control" id="fechaFacturaDeVenta" type="date" required="required" data-validation-required-message="Por favor ingrese fecha." />
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                    Vencimiento
+                    <div class="control-group">
+                        <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                            <label></label><input class="form-control" id="fechaVencimiento" type="date" placeholder="Vencimiento"/>
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+                <!-- Portfolio tabla Busqueda-->
+                <div class="form-group pull-right">
+                    <input type="text" class="search form-control" placeholder="¿Qué buscas?">
+                </div>
+                <span class="counter pull-right"></span>
+                <table class="table table-hover table-bordered results">
+                  <thead>
+                    <tr>
+                        <th>Servicio</th>
+                        <th>Precio</th>
+                        <th>Descuento %</th>
+                        <th>Impuesto</th>
+                        <th>Cantidad</th>
+                        <th>Total</th>
+                        <th>Acciones</th>
+                    </tr>
+                  </thead>
+
+                  <!--Información base de datos-->
+                  <tbody>
+                      <tr th:each="i :${service}">
+                        <td th:text="${i.getName()}"></td>
+                        <td th:text="${i.getPrice()}"></td>
+                        <td>40%</td>
+                        <td>asd</td>
+                        <td>asd</td>
+                        <td>asd</td>
+                        <td>asd</td>
+                      </tr>
+                  </tbody>
                 </table>
-			</div>
-			<div class="text-center col-md-2">
-			</div>
-		</div>
-		
-	</section>
+                  
+              </div>
+            </div>
+            <!-- Portfolio total y aceptar-->
+            <div class="row">
+                <div class="text-center col-md-4"></div>
+                <div class="text-center col-md-4"></div>
+                <div class="text-center col-md-4">
+                    <p class="masthead-subheading font-weight-light mb-0">Total</p>
+                    <p>  </p>
+                    <div class="form-group"><button onclick="mensajeConfirmacionFacturaDeVenta()" class="btn btn-primary" id="sendMessageButton" type="button">Aceptar</button></div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 
 	<!-- Copyright Section-->
