@@ -1,6 +1,11 @@
 package com.panda.bambu.controller;
 
 import java.util.Optional;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 import com.panda.bambu.model.egreso.Egreso;
 import com.panda.bambu.service.egreso.EgresoService;
@@ -22,7 +27,10 @@ public class EgresosController
 
 {
     @Autowired
-    EgresoService egresoService;
+	EgresoService egresoService;
+	
+	List<Egreso> egresos=new ArrayList<>();
+	Boolean filtrar=false;
 
     @RequestMapping(value = "/egreso", method = RequestMethod.GET)
 	public ModelAndView egresos(@RequestParam(defaultValue="0") int page) {
@@ -73,6 +81,33 @@ public class EgresosController
 			modelAndView.addObject("responseMessage", "Existen errores al guardar el articulo");
 		}
 		modelAndView.setViewName("redirect:/egreso");
+		return modelAndView;
+	}
+
+	@RequestMapping(value = "/filtrarFechas", method = RequestMethod.POST)
+	public ModelAndView filtrarFechas(@RequestParam(value = "fechaInicio") String fechaInicio, @RequestParam(value = "fechaFin") String fechaFin) 
+	{
+		ModelAndView modelAndView = new ModelAndView();
+		DateTimeFormatter formatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		LocalDate dateInicial=LocalDate.parse(fechaInicio,formatter);
+		LocalDate dateFinal=LocalDate.parse(fechaFin,formatter);
+		List<Egreso> list_egresos=new ArrayList<>();
+		for(Egreso e:egresoService.findAll()){
+			if(e.getFecha().isAfter(dateInicial) && e.getFecha().isBefore(dateFinal))
+				list_egresos.add(e);
+		}
+		egresos=list_egresos;
+		System.out.println(fechaInicio);
+		filtrar=true;
+		modelAndView.setViewName("redirect:/reporteEgresos");
+		return modelAndView;
+	}
+
+	@RequestMapping(value = "/reporteEgresos", method = RequestMethod.GET)
+	public ModelAndView reporteEgresos(@RequestParam(defaultValue="0") int page) {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("lista_egresos", egresos);
+		modelAndView.setViewName("reporteEgresos"); // resources/template/reporteEgresos.html
 		return modelAndView;
 	}
 
