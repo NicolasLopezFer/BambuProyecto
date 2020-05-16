@@ -57,3 +57,10 @@ $(document).ready(function() {
 		$('#deleteModal').modal();	
 	});
 });
+
+$(document).ready(function() {
+	$('.ffBtn').on('click', function(event) {
+		event.preventDefault();
+		$('.filtrarFechasRecibo #filtrarModal').modal();
+	});
+});

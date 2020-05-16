@@ -84,12 +84,12 @@
 			<div class="row">
 				<div class="text-center col-md-6">
 					<!-- Portfolio Item Nuevo Articulo-->
-					<a class="btn btn-primary btn-m js-scroll-trigger nBtn"><i
+					<a class="btn btn-primary btn-s js-scroll-trigger nBtn"><i
 						class="fas fa-plus"></i> Nuevo recibo </a>
                 </div>
                 <div class="text-center col-md-6">
 					<!-- Portfolio Item Nuevo Articulo-->
-                    <a class="btn btn-primary btn-m js-scroll-trigger"><i
+                    <a class="btn btn-primary btn-s js-scroll-trigger ffBtn"><i
                         ></i> Reporte 
                     </a>
                 </div>
@@ -366,6 +366,49 @@
 				</div>
 			</div>
 
+		</div>
+
+		<div class="filtrarFechasRecibo">
+			<form th:action="@{/filtrarFechasRecibo}" method="post">
+				<div class="modal fade" id="filtrarModal" tabindex="-1" role="dialog"
+					aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLabel">Filtrar reporte por fechas</h5>
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="fechaInicio" class="col-form-label">
+												Fecha inicio
+											</label> <input type="date" class="form-control"
+												id="fechaInicio" th:name="fechaInicio" value="" required="required" />
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="fechaFin" class="col-form-label">
+												Fecha fin
+											</label> <input type="date" class="form-control"
+												id="fechaFin" th:name="fechaFin" value="" required="required" />
+										</div>
+									</div>
+								</div>   
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary"
+									data-dismiss="modal">Cancelar</button>
+								<input type="submit" class="btn btn-primary " value="Generar reporte" />
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
 		</div>
 
 	</section>
