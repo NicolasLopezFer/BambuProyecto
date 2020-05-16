@@ -32,7 +32,8 @@ public class ServiceController {
 	 @RequestMapping(value = "/serviarticulos", method = RequestMethod.GET)
 	 public ModelAndView serviArticulos(final long id){
 		final ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("servicee", serviceFamiEmpresaService.findById(id));
+		modelAndView.addObject("id", serviceFamiEmpresaService.findById(id));
+		modelAndView.addObject("article", serviceFamiEmpresaService.findById(id).getArticles());
 		modelAndView.setViewName("serviarticulos");
 		return modelAndView;
 	 }

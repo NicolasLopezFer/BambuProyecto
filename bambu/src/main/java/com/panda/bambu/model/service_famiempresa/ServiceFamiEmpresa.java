@@ -39,7 +39,7 @@ public class ServiceFamiEmpresa {
 
     public ServiceFamiEmpresa()
     {
-        
+        articles = new ArrayList<ServiceArticle>();
     }
 
     public ServiceFamiEmpresa (String code, String name, double price)
