@@ -88,6 +88,11 @@ public class ReciboCajaController
 	@RequestMapping(value = "/filtrarFechasRecibo", method = RequestMethod.POST)
 	public ModelAndView filtrarFechasRecibo(@RequestParam(value = "fechaInicio") String fechaInicio, @RequestParam(value = "fechaFin") String fechaFin) 
 	{
+		return filtrarFechasReciboPost(fechaInicio, fechaFin);
+	}
+	@RequestMapping(value = "/filtrarFechasReciboCaja")
+	public ModelAndView filtrarFechasReciboPost(String fechaInicio,String fechaFin) 
+	{
 		ModelAndView modelAndView = new ModelAndView();
 		DateTimeFormatter formatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDate dateInicial=LocalDate.parse(fechaInicio,formatter);
