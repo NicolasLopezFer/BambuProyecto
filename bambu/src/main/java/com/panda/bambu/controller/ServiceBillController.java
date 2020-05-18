@@ -21,6 +21,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Controller
 public class ServiceBillController {
@@ -63,11 +65,10 @@ public class ServiceBillController {
 		 LocalDate dateFactura = LocalDate.parse(fechaInicio,formatter);
 		 LocalDate dateVencimiento = LocalDate.parse(fechaVencimiento, formatter);
 		
-		// for(int i = 0; i < serSale.size();i++){
-		// 	serSaleService.create(serSale.get(i));
-		// }
-
-		//  serSaleBillService.create(codeString, nombre, dateFactura, dateVencimiento, serSale)
+		for(int i = 0; i < serSale.size();i++){
+			serSaleService.create(serSale.get(i));
+		}
+		 serSaleBillService.create(code, nombre, dateFactura, dateVencimiento, serSale.stream().collect(Collectors.toSet()));
 
 		 serSale.clear();
 		 modelAndView.setViewName("redirect:/serviFacturaForm");	
