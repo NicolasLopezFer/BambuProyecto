@@ -8,7 +8,10 @@ import com.panda.bambu.model.service_famiempresa.ServiceFamiEmpresa;
 import com.panda.bambu.service.service_famiempresa.ServiceFamiEmpresaService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+
+@Service
 public class ServiceSaleService {
     @Autowired
     ServiceSaleRepository serviceSaleRepository;

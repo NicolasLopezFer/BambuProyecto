@@ -27,8 +27,8 @@
 <link href="css/styles.css" rel="stylesheet" />
 
 <!-- Nuestro JS servicio -->
-<script type="text/javascript" th:src="@{/js/servicios.js}"
-	src="static/js/servicios.js"></script>
+<script type="text/javascript" th:src="@{/js/servicebill.js}"
+	src="static/js/servicebill.js"></script>
 </head>
 <!-- DataTable JS -->
 <script type="text/javascript" th:src="@{/js/table/datatable.js}" src="static/js/table/datatable.js"></script>
@@ -67,102 +67,185 @@
 
 	<!-- Portfolio Section-->
     <section class="page-section portfolio" id="modulos">
-        <div class="container">
-            <!-- Portfolio Section Heading-->
-            <p>  </p>
-            <p>  </p>
-            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Factura de servicio</h2>
-            <!-- Icon Divider-->
-            <div class="divider-custom">
-                <div class="divider-custom-line"></div>
-                <div class="divider-custom-icon"><i class="fas fa-circle"></i></div>
-                <div class="divider-custom-line"></div>
-            </div>
-
-
-            <!-- Portfolio Grid Items-->
-            <div class="row">
-                <div class="text-center col-md-6">
-                    <div class="control-group">
-                        <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                            <label>Número</label><input class="form-control" id="numeroFacturaDeVenta" type="number" placeholder="Número" required="required" data-validation-required-message="Por favor ingrese número factura de venta"/>
-                            <p class="help-block text-danger"></p>
+        <form action="#" th:action="@{serviFacturasForm}" method="post">
+            <div class="container">
+                <!-- Portfolio Section Heading-->
+                <p>  </p>
+                <p>  </p>
+                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Factura de servicio</h2>
+                <!-- Icon Divider-->
+                <div class="divider-custom">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-circle"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+    
+    
+                <!-- Portfolio Grid Items-->
+                <div class="row">
+                    <div class="text-center col-md-6">
+                        <div class="control-group">
+                            <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                <label>Número</label><input class="form-control" id="numeroFacturaDeVenta" type="number" placeholder="Número" required="required" data-validation-required-message="Por favor ingrese número factura de venta"/>
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                <label>Cliente</label><input class="form-control" id="clienteFacturaDeVenta" type="message" placeholder="Cliente" required="required" data-validation-required-message="Por favor ingrese cliente"/>
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                <label>NIT o C.C</label><input class="form-control" id="nitFacturaDeVenta" type="number" placeholder="NIT O C.C" required="required" data-validation-required-message="Por favor ingrese NIT o CC"/>
+                                <p class="help-block text-danger"></p>
+                            </div>
                         </div>
                     </div>
-                    <div class="control-group">
-                        <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                            <label>Cliente</label><input class="form-control" id="clienteFacturaDeVenta" type="message" placeholder="Cliente" required="required" data-validation-required-message="Por favor ingrese cliente"/>
-                            <p class="help-block text-danger"></p>
+                    <div class="text-center col-md-6">
+                        Fecha
+                        <div class="control-group">
+                            <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                <label></label><input class="form-control" id="fechaFacturaDeVenta" type="date" required="required" data-validation-required-message="Por favor ingrese fecha." />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        Vencimiento
+                        <div class="control-group">
+                            <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                <label></label><input class="form-control" id="fechaVencimiento" type="date" placeholder="Vencimiento"/>
+                                <p class="help-block text-danger"></p>
+                            </div>
                         </div>
                     </div>
-                    <div class="control-group">
-                        <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                            <label>NIT o C.C</label><input class="form-control" id="nitFacturaDeVenta" type="number" placeholder="NIT O C.C" required="required" data-validation-required-message="Por favor ingrese NIT o CC"/>
-                            <p class="help-block text-danger"></p>
-                        </div>
+    
+                </div>
+                    <!-- Portfolio tabla Busqueda-->
+                    <!-- <div class="form-group pull-right">
+                        <input type="text" class="search form-control" placeholder="¿Qué buscas?">
+                    </div> -->
+                    <span class="counter pull-right"></span>
+                    <table class="table table-hover table-bordered results" id = "tablaSaleService">
+                      <thead>
+                        <tr>
+                            <th>Servicio</th>
+                            <th>Precio</th>
+                            <th>Descuento %</th>
+                            <th>Cantidad</th>
+                            <th>Total</th>
+                            <th>Acciones</th>
+                        </tr>
+                      </thead>
+    
+                      <!--Información base de datos-->
+                      <tbody>
+                          <tr th:each="i :${serviceSale}">
+                            <td th:text="${i.getServiceFamiEmpresa().getName()}" id="serviName"></td>
+                            <td th:text="${i.getServiceFamiEmpresa().getPrice()}" id="serviPrice"></td>
+                            <td th:text="${i.getDiscount()}" id="serviDescuento"></td>
+                            <td th:text="${i.getQuantity()}" id="serviCantidad"></td>
+                            <td th:text="${i.getTotalValue()}" id="serviTotal"></td>
+                            <td>
+                                <a th:href="@{borrarServicio/(id=${i.getId()})}"class="btn btn-primary dBtn">Borrar</a>
+                            </td>
+                          </tr>
+                      </tbody>
+                    </table>
+                      
+                  </div>
+                </div>
+                <!-- Portfolio total y aceptar-->
+                <div class="row">
+                    <div class="text-center col-md-4"></div>
+                    <div class="text-center col-md-4"></div>
+                    <div class="text-center col-md-4">
+                        <p class="masthead-subheading font-weight-light mb-0">Total</p>
+                        <p th:text="${total}"></p>
                     </div>
                 </div>
-                <div class="text-center col-md-6">
-                    Fecha
-                    <div class="control-group">
-                        <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                            <label></label><input class="form-control" id="fechaFacturaDeVenta" type="date" required="required" data-validation-required-message="Por favor ingrese fecha." />
-                            <p class="help-block text-danger"></p>
-                        </div>
-                    </div>
-                    Vencimiento
-                    <div class="control-group">
-                        <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                            <label></label><input class="form-control" id="fechaVencimiento" type="date" placeholder="Vencimiento"/>
-                            <p class="help-block text-danger"></p>
-                        </div>
+                <div class="row">
+                    <div class="text-center col-md-4"></div>
+                        <a type="button" th:href="@{agregarServicio}" class="btn btn-primary nBtn"> Agregar Servicio</a>
+                    
+                    <div class="text-center col-md-4">
+                        <a type="button" th:href="@{guardarBill}" class="btn btn-primary"> Guardar Factura</a>
                     </div>
                 </div>
+            </div>
+        </form>
 
-            </div>
-                <!-- Portfolio tabla Busqueda-->
-                <div class="form-group pull-right">
-                    <input type="text" class="search form-control" placeholder="¿Qué buscas?">
-                </div>
-                <span class="counter pull-right"></span>
-                <table class="table table-hover table-bordered results">
-                  <thead>
-                    <tr>
-                        <th>Servicio</th>
-                        <th>Precio</th>
-                        <th>Descuento %</th>
-                        <th>Cantidad</th>
-                        <th>Total</th>
-                        <th>Acciones</th>
-                    </tr>
-                  </thead>
-
-                  <!--Información base de datos-->
-                  <tbody>
-                      <tr th:each="i :${service}">
-                        <td th:text="${i.getName()}"></td>
-                        <td th:text="${i.getPrice()}"></td>
-                        <td>40%</td>
-                        <td>asd</td>
-                        <td>asd</td>
-                        <td>asd</td>
-                      </tr>
-                  </tbody>
-                </table>
-                  
-              </div>
-            </div>
-            <!-- Portfolio total y aceptar-->
-            <div class="row">
-                <div class="text-center col-md-4"></div>
-                <div class="text-center col-md-4"></div>
-                <div class="text-center col-md-4">
-                    <p class="masthead-subheading font-weight-light mb-0">Total</p>
-                    <p>  </p>
-                    <div class="form-group"><button onclick="mensajeConfirmacionFacturaDeVenta()" class="btn btn-primary" id="sendMessageButton" type="button">Aceptar</button></div>
-                </div>
-            </div>
+        <div class="saveForm">
+			<form th:action="@{/agregarServicio}" method="post">
+				<div class="modal fade" id="saveModal" tabindex="-1" role="dialog"
+					aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLabel">Agregar Servicio</h5>
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<div class="row">
+									<div class="col-md-9">
+										<div class="form-group">
+                                            <label for="code" class="col-form-label">Codigo:</label> <input
+                                                type="text" class="form-control" id="code" name="code"
+                                                value="" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="cantidad" class="col-form-label">Cantidad:
+                                            </label> <input type="number" class="form-control"
+                                                id="cantidad" name="cantidad" value="" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="descuento" class="col-form-label">Descuento:
+                                            </label> <input type="number" class="form-control"
+                                                id="descuento" name="descuento" value="" />
+                                        </div>
+									</div>
+								</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary"
+									data-dismiss="modal">Cancelar</button>
+								<input type="submit" class="btn btn-primary " value="Guardar" />
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
         </div>
+
+        <div class='deleteForm'>
+			<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog"
+				aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Borrar</h5>
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<p class="alert alert-danger">
+								¿Estas seguro que quieres borrar?
+							</p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">No</button>
+							<a href="" type="button" class="btn btn-danger" id="delRef">Si</a>
+						</div>
+					</div>
+				</div>
+			</div>
+        </div>
+        
     </section>
 
 

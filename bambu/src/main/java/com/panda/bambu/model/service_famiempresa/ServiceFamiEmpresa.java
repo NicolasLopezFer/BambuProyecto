@@ -11,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
-import com.panda.bambu.model.article.Article;
 
 
 @Entity 
@@ -35,11 +34,11 @@ public class ServiceFamiEmpresa {
     private double price;
 
     @OneToMany
-    private List<ServiceArticle> articles;
+    private List<ServiceArticle> service_articles;
 
     public ServiceFamiEmpresa()
     {
-        articles = new ArrayList<ServiceArticle>();
+        
     }
 
     public ServiceFamiEmpresa (String code, String name, double price)
@@ -47,31 +46,27 @@ public class ServiceFamiEmpresa {
         this.code = code;
         this.name = name;
         this.price = price;
-        articles = new ArrayList<ServiceArticle> ();
+        service_articles = new ArrayList<ServiceArticle> ();
     }
 
-    public ServiceFamiEmpresa (String code, String name, double price, List<ServiceArticle> articles)
+    public ServiceFamiEmpresa (String code, String name, double price, List<ServiceArticle> service_articles)
     {
         this.code = code;
         this.name = name;
         this.price = price;
-        this.articles = articles;
+        this.service_articles = service_articles;
     }
 
-    public void removeArticle(ServiceArticle article)
+    public void removeArticle(ServiceArticle service_article)
     {
-        articles.remove(article);
+        service_articles.remove(service_article);
     }
 
     public void addArticle(ServiceArticle new_article)
     {
-        articles.add(new_article);
+        service_articles.add(new_article);
     }
 
-    public void addArticle(Article article, double quantity)
-    {
-        articles.add(new ServiceArticle(article,quantity));
-    }
 
     public Long getId() {
         return id;
@@ -98,11 +93,11 @@ public class ServiceFamiEmpresa {
     }
 
     public List<ServiceArticle> getArticles() {
-        return articles;
+        return service_articles;
     }
 
-    public void setArticles(List<ServiceArticle> articles) {
-        this.articles = articles;
+    public void setArticles(List<ServiceArticle> service_articles) {
+        this.service_articles = service_articles;
     }
 
     public double getPrice() {
@@ -119,7 +114,7 @@ public class ServiceFamiEmpresa {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((articles == null) ? 0 : articles.hashCode());
+        result = prime * result + ((service_articles == null) ? 0 : service_articles.hashCode());
         result = prime * result + ((code == null) ? 0 : code.hashCode());
         result = prime * result + ((name == null) ? 0 : name.hashCode());
         long temp;
@@ -137,10 +132,10 @@ public class ServiceFamiEmpresa {
         if (getClass() != obj.getClass())
             return false;
         ServiceFamiEmpresa other = (ServiceFamiEmpresa) obj;
-        if (articles == null) {
-            if (other.articles != null)
+        if (service_articles == null) {
+            if (other.service_articles != null)
                 return false;
-        } else if (!articles.equals(other.articles))
+        } else if (!service_articles.equals(other.service_articles))
             return false;
         if (code == null) {
             if (other.code != null)
@@ -161,7 +156,7 @@ public class ServiceFamiEmpresa {
 
     @Override
     public String toString() {
-        return "ServiceFamiEmpresa [code=" + code + ", articles="+articles+", id=" + id + ", name=" + name + ", price=" + price + "]";
+        return "ServiceFamiEmpresa [code=" + code + ", articles="+service_articles+", id=" + id + ", name=" + name + ", price=" + price + "]";
     }
 
 
