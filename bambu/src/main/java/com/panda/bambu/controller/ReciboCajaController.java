@@ -1,6 +1,10 @@
 package com.panda.bambu.controller;
 
 import java.util.Optional;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.panda.bambu.model.recibo_caja.ReciboCaja;
 import com.panda.bambu.service.recibo_caja.ReciboCajaService;
@@ -26,6 +30,7 @@ public class ReciboCajaController
     @Autowired
     ReciboCajaService reciboCajaService;
 
+	List<ReciboCaja> recibos=new ArrayList<>();
 
     @RequestMapping(value = "/reciboCaja", method = RequestMethod.GET)
 	public ModelAndView reciboCaja(@RequestParam(defaultValue="0") int page) {
@@ -77,6 +82,36 @@ public class ReciboCajaController
 			modelAndView.addObject("responseMessage", "Existen errores al guardar el articulo");
 		}
 		modelAndView.setViewName("redirect:/reciboCaja");
+		return modelAndView;
+	}
+
+	@RequestMapping(value = "/filtrarFechasRecibo", method = RequestMethod.POST)
+	public ModelAndView filtrarFechasRecibo(@RequestParam(value = "fechaInicio") String fechaInicio, @RequestParam(value = "fechaFin") String fechaFin) 
+	{
+		return filtrarFechasReciboPost(fechaInicio, fechaFin);
+	}
+	@RequestMapping(value = "/filtrarFechasReciboCaja")
+	public ModelAndView filtrarFechasReciboPost(String fechaInicio,String fechaFin) 
+	{
+		ModelAndView modelAndView = new ModelAndView();
+		DateTimeFormatter formatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		LocalDate dateInicial=LocalDate.parse(fechaInicio,formatter);
+		LocalDate dateFinal=LocalDate.parse(fechaFin,formatter);
+		List<ReciboCaja> list_recibos=new ArrayList<>();
+		for(ReciboCaja r:reciboCajaService.findAll()){
+			if(r.getFecha().isAfter(dateInicial) && r.getFecha().isBefore(dateFinal))
+				list_recibos.add(r);
+		}
+		recibos=list_recibos;
+		modelAndView.setViewName("redirect:/reporteRecibosCaja");
+		return modelAndView;
+	}
+
+	@RequestMapping(value = "/reporteRecibosCaja", method = RequestMethod.GET)
+	public ModelAndView reporteRecibosCaja(@RequestParam(defaultValue="0") int page) {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("lista_recibos", recibos);
+		modelAndView.setViewName("reporteRecibosCaja"); // resources/template/reporteReciboCajas.html
 		return modelAndView;
 	}
 
