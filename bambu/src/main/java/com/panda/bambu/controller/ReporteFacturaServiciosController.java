@@ -26,7 +26,7 @@ public class ReporteFacturaServiciosController {
 	
 	Boolean filtrar=false;
 	
-	 @RequestMapping(value = "/reporteFacturaServicio", method = RequestMethod.GET)
+	 /*@RequestMapping(value = "/reporteFacturaServicio", method = RequestMethod.GET)
 		public ModelAndView facturas(@RequestParam(defaultValue="0") int page) {
 			ModelAndView modelAndView = new ModelAndView();
 			if (!filtrar)
@@ -42,10 +42,15 @@ public class ReporteFacturaServiciosController {
 			modelAndView.setViewName("reporteFacturaServicio"); // resources/template/reporteFacturaServicio.html
 			
 			return modelAndView;
-		}
-		
+		}*/
 		@RequestMapping(value = "/filtrarFechasFactura", method = RequestMethod.POST)
-		public ModelAndView filtrarFechas(@RequestParam(value = "fechaInicio") String fechaInicio, @RequestParam(value = "fechaFin") String fechaFin) 
+		public ModelAndView filtrarFechasFactura(@RequestParam(value = "fechaInicio") String fechaInicio, @RequestParam(value = "fechaFin") String fechaFin) 
+		{
+			return filtrarFechasFacturaServicioPost(fechaInicio, fechaFin);
+		}
+	
+		@RequestMapping(value = "/filtrarFechasFacturaServicio")
+		public ModelAndView filtrarFechasFacturaServicioPost(String fechaInicio,String fechaFin) 
 		{
 			ModelAndView modelAndView = new ModelAndView();
 			DateTimeFormatter formatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
