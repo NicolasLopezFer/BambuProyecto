@@ -64,7 +64,7 @@ public class ServiceSale {
         this.discount = discount;
     }
 
-    public double getTotalValue(double total_value) {
+    public double getTotalValue() {
         return total_value;
     }
 
