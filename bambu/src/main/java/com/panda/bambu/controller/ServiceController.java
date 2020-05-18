@@ -1,13 +1,17 @@
 package com.panda.bambu.controller;
 
 import com.panda.bambu.model.article.Article;
+import com.panda.bambu.model.service_famiempresa.ServiceArticle;
 import com.panda.bambu.model.service_famiempresa.ServiceFamiEmpresa;
+import com.panda.bambu.service.article.ArticleService;
+import com.panda.bambu.service.service_famiempresa.ServiceArticleService;
 import com.panda.bambu.service.service_famiempresa.ServiceFamiEmpresaService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -17,8 +21,16 @@ import java.util.Optional;
 @Controller
 public class ServiceController {
 
+	private long idServ = 0;
+
      @Autowired
 	 ServiceFamiEmpresaService serviceFamiEmpresaService;
+
+	 @Autowired
+	 ServiceArticleService sArticleService;
+
+	 @Autowired
+	 ArticleService aSer;
 	 
 	 @RequestMapping(value = "/serviciosform", method = RequestMethod.GET)
 	 public ModelAndView servicioHome() {
@@ -29,22 +41,45 @@ public class ServiceController {
 		 return modelAndView;
 	 }
 
+	 @RequestMapping(value = "/verArticuloServicio", method = RequestMethod.GET)
+	 public ModelAndView serArtHome() {
+		 final ModelAndView modelAndView = new ModelAndView();
+		 ServiceFamiEmpresa sfe = serviceFamiEmpresaService.findById(idServ);
+		 List<ServiceArticle> sa = sfe.getArticles();
+		 modelAndView.addObject("articles", sa);
+		 modelAndView.addObject("nombreService", sfe.getName());
+		 modelAndView.setViewName("verArticuloServicio"); 
+		 return modelAndView;
+	 }
+
 	 @RequestMapping(value = "/serviarticulos", method = RequestMethod.GET)
 	 public ModelAndView serviArticulos(final long id){
 		final ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("id", serviceFamiEmpresaService.findById(id));
-		modelAndView.addObject("article", serviceFamiEmpresaService.findById(id).getArticles());
-		modelAndView.setViewName("serviarticulos");
+		idServ = id;
+		modelAndView.setViewName("redirect:/verArticuloServicio");
 		return modelAndView;
 	 }
 
-	//  @RequestMapping(value = "/newArtServ", method = RequestMethod.POST)
-	//  public ModelAndView serviArticulos(List<Article> a){
-	// 	final ModelAndView modelAndView = new ModelAndView();
-	// 	modelAndView.addObject("article", a);
-	// 	modelAndView.setViewName("serviarticulos");
-	// 	return modelAndView;
-	//  }
+	 @RequestMapping(value = "/newServArt", method = RequestMethod.POST)
+	 public ModelAndView serviArticulos(@RequestParam(value = "code")String code,
+	 									@RequestParam(value = "cantReque")String cant){
+		final ModelAndView modelAndView = new ModelAndView();
+		System.out.println("AAAAAAAAAAAAAAAAAAAA");
+		System.out.println(code);
+		System.out.println(cant);
+		Article a = aSer.findByCode(code);
+
+
+		ServiceArticle servart = new ServiceArticle();
+
+		servart.setArticle(a);
+		servart.setQuantity(Integer.parseInt(cant));
+		sArticleService.create(a, Integer.parseInt(cant));
+
+		serviceFamiEmpresaService.addArticle(serviceFamiEmpresaService.findById(idServ), servart);
+		modelAndView.setViewName("redirect:/verArticuloServicio");
+		return modelAndView;
+	 }
 
 	@RequestMapping(value = "/serviciocrear", method = RequestMethod.POST)
 	public ModelAndView crearServicio(final ServiceFamiEmpresa s) {

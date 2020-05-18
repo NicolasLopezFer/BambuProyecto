@@ -110,7 +110,7 @@
                             <td th:text="${i.getCode()}"></td>
                             <td th:text="${i.getName()}"></td>
                             <td>
-                                <a th:href="@{serviarticulos/(id=${i.getId()})}" class="btn btn-primary  verarticulosBtn">Ver articulos</a>
+                                <a th:href="@{serviarticulos/(id=${i.getId()})}" class="btn btn-primary">Ver articulos</a>
                             </td>
                             <td th:text="${i.getPrice()}"></td>
                             <td>
@@ -151,14 +151,14 @@
                                                 Servicio:</label> <input type="text" class="form-control" id="name"
                                                 name="name" value="" />
 										</div>
-										<div class="form-group">
-                                            <label for="articles" class="col-form-label">Los articulos asociados se ingresan luego:</label> 
-                                        </div>
                                         <div class="form-group">
                                             <label for="price" class="col-form-label">Precio de
                                                 venta:</label> <input type="number" class="form-control"
                                                 id="price" name="price" value="" />
-                                        </div>
+										</div>
+										<div class="form-group">
+                                            <p>Los articulos seran agregados luego</p>
+										</div>
 									</div>
 								</div>
 							<div class="modal-footer">
@@ -172,106 +172,6 @@
 			</form>
         </div>
         
-
-        <div class="verArtForm">
-			<form th:action="@{/serviarticulos}" method="GET">
-				<div class="modal fade" id="verArtModal" tabindex="-1" role="dialog"
-					aria-labelledby="exampleModalLabel" aria-hidden="true">
-					<div class="modal-dialog" role="document">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h5 class="modal-title" id="exampleModalLabel">Articulos</h5>
-								<button type="button" class="close" data-dismiss="modal"
-									aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-							</div>
-							<div class="modal-body">
-								<div class="row">
-									<div class="col-md-9">
-                                        <div class="form-group">
-											<!-- <label for="id" class="col-form-label">Id servicio:</label> <input
-                                                type="text" class="form-control" id="id" name="id"
-												value="" readonly/>
-											<p><br></p> -->
-
-											<label for="name" class="col-form-label">Articulos del servicio:</label>
-											<!-- <p th:text=${id}></p> -->
-											<!-- <input type="numeric" id="id" name="id" th:value="{$id)"/> -->
-											<div class="text-center col-md-6">
-												<a class="btn btn-primary "> Agregar Articulo </a>
-											</div>
-                                            <table id="table-information" class="table table-hover table-bordered">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Codigo</th>
-                                                        <th>Nombre</th>
-                                                        <th>Acciones</th>
-                                                    </tr>
-                                                </thead> 
-                                                <tbody>
-                                                    <tr th:each="i :${article}">
-														<td th:text="${i.getArticle().getCode()}"></td>
-														<td th:text="${i.getArticle().getName()}"></td>
-                                                        <td>
-                                                            <a th:href="@{serborrart/(id=${i.getId())}"class="btn btn-primary delArtBtn">Borrar</a>
-                                                        </td>
-                                                      </tr>                               
-                                                </tbody>
-                                            </table>
-                                        </div>
-									</div>
-								</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-secondary"
-									data-dismiss="modal">Cancelar</button>
-								<input type="submit" class="btn btn-primary " value="Guardar" />
-							</div>
-						</div>
-					</div>
-				</div>
-			</form>
-        </div>
-        
-        <!-- <div class="newArtForm">
-			<form th:action="@{/newArtServ}" method="post">
-				<div class="modal fade" id="newArtModal" tabindex="-1" role="dialog"
-					aria-labelledby="exampleModalLabel" aria-hidden="true">
-					<div class="modal-dialog" role="document">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h5 class="modal-title" id="exampleModalLabel">Articulos</h5>
-								<button type="button" class="close" data-dismiss="modal"
-									aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-							</div>
-							<div class="modal-body">
-								<div class="row">
-									<div class="col-md-9">
-                                        <div class="form-group">
-                                            <label for="code" class="col-form-label">Codigo:</label> <input
-                                                type="text" class="form-control" id="code" name="code"
-                                                value="" />
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="cantReque" class="col-form-label">Cantidad Requerida</label> <input type="number" class="form-control"
-                                                id="cantReque" name="cantReque" value="" />
-                                        </div>
-									</div>
-								</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-secondary"
-									data-dismiss="modal">Cancelar</button>
-								<input type="submit" class="btn btn-primary " value="Guardar" />
-							</div>
-						</div>
-					</div>
-				</div>
-			</form>
-		</div> -->
-
-
 		<div class="editForm">
 			<form th:action="@{/serviciomodificar}" method="post">
 				<div class="modal fade" id="editModal" tabindex="-1" role="dialog"

@@ -70,7 +70,7 @@
 			<br> <br>
 			<!-- Portfolio Section Heading-->
 			<h2
-				class="page-section-heading text-center text-uppercase text-secondary mb-0">Servicios</h2>
+				class="page-section-heading text-center text-uppercase text-secondary mb-0">Articulos del Servicio</h2>
 			<!-- Icon Divider-->
 			<div class="divider-custom">
 				<div class="divider-custom-line"></div>
@@ -82,9 +82,12 @@
 			<!-- Portfolio Grid Items-->
 			<div class="row">
 				<div class="text-center col-md-6">
+                    <p class="masthead-subheading font-weight-light mb-0">Nombre Servicio</p>
+                        <p th:text="${nombreService}" th:name="nombreServicio" id="NombreServicio"></p>
 					<!-- Portfolio Item Nuevo Articulo-->
-					<a class="btn btn-primary btn-m js-scroll-trigger nBtn"><i
-						class="fas fa-plus"></i> Nuevo Servicio </a>
+					<a class="btn btn-primary btn-m js-scroll-trigger nABtn"><i
+                        class="fas fa-plus"></i> Nuevo Articulo al Servicio </a>
+                        
                 </div>
 			</div>
 		</div>
@@ -99,20 +102,16 @@
                     <thead>
                         <tr>
                             <th>Código</th>
-                            <th>Servicio</th>
-                            <th>Artículos Asociado</th>
-                            <th>Precio de Venta</th>
+                            <th>Nombre</th>
+                            <th>Cantidad</th>
                             <th>Acciones</th>
                         </tr>
                     </thead> 
                     <tbody>
-                        <tr th:each="i :${service}">
-                            <td th:text="${i.getCode()}"></td>
-                            <td th:text="${i.getName()}"></td>
-                            <td>
-                                <a th:href="@{serviarticulos/(id=${i.getId()})}" class="btn btn-primary">Ver articulos</a>
-                            </td>
-                            <td th:text="${i.getPrice()}"></td>
+                        <tr th:each="i :${articles}">
+                            <td th:text="${i.getArticle().getCode()}"></td>
+                            <td th:text="${i.getArticle().getName()}"></td>
+                            <td th:text="${i.getQuantity()}"></td>
                             <td>
                                 <a th:href="@{servicioencontraruno/(id=${i.getId()})}" class="btn btn-primary eBtn">Modificar</a>
                                 <a th:href="@{servicioborrar/(id=${i.getId()})}"class="btn btn-primary dBtn">Borrar</a>
@@ -125,9 +124,9 @@
 			</div>
 		</div>
 		
-		<div class="saveForm">
-			<form th:action="@{/serviciocrear}" method="post">
-				<div class="modal fade" id="saveModal" tabindex="-1" role="dialog"
+		<div class="saveAForm">
+			<form th:action="@{/newServArt}" method="post">
+				<div class="modal fade" id="saveAModal" tabindex="-1" role="dialog"
 					aria-labelledby="exampleModalLabel" aria-hidden="true">
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
@@ -141,24 +140,15 @@
 							<div class="modal-body">
 								<div class="row">
 									<div class="col-md-9">
-										<div class="form-group">
+                                        <div class="form-group">
                                             <label for="code" class="col-form-label">Codigo:</label> <input
                                                 type="text" class="form-control" id="code" name="code"
                                                 value="" />
                                         </div>
                                         <div class="form-group">
-                                            <label for="name" class="col-form-label">Nombre
-                                                Servicio:</label> <input type="text" class="form-control" id="name"
-                                                name="name" value="" />
-										</div>
-                                        <div class="form-group">
-                                            <label for="price" class="col-form-label">Precio de
-                                                venta:</label> <input type="number" class="form-control"
-                                                id="price" name="price" value="" />
-										</div>
-										<div class="form-group">
-                                            <p>Los articulos seran agregados luego</p>
-										</div>
+                                            <label for="cantReque" class="col-form-label">Cantidad Requerida</label> <input type="number" class="form-control"
+                                                id="cantReque" name="cantReque" value="" />
+                                        </div>
 									</div>
 								</div>
 							<div class="modal-footer">
@@ -171,7 +161,7 @@
 				</div>
 			</form>
         </div>
-        
+               
 		<div class="editForm">
 			<form th:action="@{/serviciomodificar}" method="post">
 				<div class="modal fade" id="editModal" tabindex="-1" role="dialog"

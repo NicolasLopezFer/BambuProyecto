@@ -29,6 +29,13 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
+	$('.nABtn').on('click', function(event) {
+		event.preventDefault();
+		$('.saveAForm #saveAModal').modal();
+	});
+});
+
+$(document).ready(function() {
 	$('.eBtn').on('click', function(event) {
 		event.preventDefault();
 		var href = $(this).attr('href');
@@ -41,17 +48,6 @@ $(document).ready(function() {
 	});
 });
 
-$(document).ready(function() {
-	$('.verarticulosBtn').on('click', function(event) {
-		event.preventDefault();
-		var href = $(this).attr('href');
-
-		// $.get(href, function(servicio, status) {
-		// 	$('.verArtForm #id').val(servicio.id);
-		// });
-		$('.verArtForm #verArtModal').modal();
-	});
-});
 
 // $(document).ready(function() {
 // 	$('.verarticulosBtn').on('click', function(event) {
