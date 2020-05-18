@@ -52,7 +52,7 @@
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item mx-0 mx-lg-1"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-						href="emprendedor">Atras</a></li>
+						th:href="irAtras">Atras</a></li>
 					<li class="nav-item mx-0 mx-lg-1"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
 						href="#perfil">Perfil</a></li>
@@ -86,7 +86,7 @@
                     <div class="text-center col-md-6">
                         <div class="control-group">
                             <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                                <label>Número</label><input class="form-control" id="numeroFacturaDeVenta" type="number" placeholder="Número" required="required" data-validation-required-message="Por favor ingrese número factura de venta"/>
+                                <label>Numero Factura</label><input th:value="${numeroFactura}" class="form-control" id="numeroFacturaDeVenta" type="text" required="required" data-validation-required-message="Por favor ingrese número factura de venta"/>
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
@@ -147,7 +147,7 @@
                             <td th:text="${i.getQuantity()}" id="serviCantidad"></td>
                             <td th:text="${i.getTotalValue()}" id="serviTotal"></td>
                             <td>
-                                <a th:href="@{borrarServicio/(id=${i.getId()})}"class="btn btn-primary dBtn">Borrar</a>
+                                <a th:href="@{borrarServicio/(id=${i.getTotalValue()})}"class="btn btn-primary dBtn">Borrar</a>
                             </td>
                           </tr>
                       </tbody>
