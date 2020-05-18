@@ -67,7 +67,7 @@
 
 	<!-- Portfolio Section-->
     <section class="page-section portfolio" id="modulos">
-        <form action="#" th:action="@{serviFacturasForm}" method="post">
+        <form th:action="@{/guardarBill}" method="post">
             <div class="container">
                 <!-- Portfolio Section Heading-->
                 <p>  </p>
@@ -84,47 +84,36 @@
                 <!-- Portfolio Grid Items-->
                 <div class="row">
                     <div class="text-center col-md-6">
-                        <div class="control-group">
-                            <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                                <label>Numero Factura</label><input th:value="${numeroFactura}" class="form-control" id="numeroFacturaDeVenta" type="text" required="required" data-validation-required-message="Por favor ingrese número factura de venta"/>
-                                <p class="help-block text-danger"></p>
-                            </div>
+                        <div class="form-group">
+                            <label for="numFact" class="col-form-label">Numero Facutura:
+                            </label> <input th:name="numFact" type="number" class="form-control"
+                                id="numFact" name="numFact" value="" />
                         </div>
-                        <div class="control-group">
-                            <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                                <label>Cliente</label><input class="form-control" id="clienteFacturaDeVenta" type="message" placeholder="Cliente" required="required" data-validation-required-message="Por favor ingrese cliente"/>
-                                <p class="help-block text-danger"></p>
-                            </div>
+                        <div class="form-group">
+                            <label for="nombreCliente" class="col-form-label">Nombre Cliente:</label> <input
+                                type="text" class="form-control" id="nombreCliente" name="nombreCliente"
+                                value="" />
                         </div>
-                        <div class="control-group">
-                            <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                                <label>NIT o C.C</label><input class="form-control" id="nitFacturaDeVenta" type="number" placeholder="NIT O C.C" required="required" data-validation-required-message="Por favor ingrese NIT o CC"/>
-                                <p class="help-block text-danger"></p>
-                            </div>
+                        <div class="form-group">
+                            <label for="nitcc" class="col-form-label">NIT o CC:
+                            </label> <input type="number" class="form-control"
+                                id="nitcc" name="nitcc" value="" />
                         </div>
                     </div>
                     <div class="text-center col-md-6">
-                        Fecha
-                        <div class="control-group">
-                            <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                                <label></label><input class="form-control" id="fechaFacturaDeVenta" type="date" required="required" data-validation-required-message="Por favor ingrese fecha." />
-                                <p class="help-block text-danger"></p>
-                            </div>
+                        <div class="form-group">
+                            <label for="fechaInicio" class="col-form-label">Fecha Factura:
+                            </label> <input type="date" class="form-control"
+                                id="fechaInicio" name="fechaInicio" value="" />
                         </div>
-                        Vencimiento
-                        <div class="control-group">
-                            <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                                <label></label><input class="form-control" id="fechaVencimiento" type="date" placeholder="Vencimiento"/>
-                                <p class="help-block text-danger"></p>
-                            </div>
+                        <div class="form-group">
+                            <label for="fechaVencimiento" class="col-form-label">Fecha Vencimiento:
+                            </label> <input type="date" class="form-control"
+                                id="fechaVencimiento" name="fechaVencimiento" value="" />
                         </div>
                     </div>
     
                 </div>
-                    <!-- Portfolio tabla Busqueda-->
-                    <!-- <div class="form-group pull-right">
-                        <input type="text" class="search form-control" placeholder="¿Qué buscas?">
-                    </div> -->
                     <span class="counter pull-right"></span>
                     <table class="table table-hover table-bordered results" id = "tablaSaleService">
                       <thead>
@@ -161,15 +150,14 @@
                     <div class="text-center col-md-4"></div>
                     <div class="text-center col-md-4">
                         <p class="masthead-subheading font-weight-light mb-0">Total</p>
-                        <p th:text="${total}"></p>
+                        <p th:text="${total}" th:name="valorTotal" id="valorTotal"></p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="text-center col-md-4"></div>
                         <a type="button" th:href="@{agregarServicio}" class="btn btn-primary nBtn"> Agregar Servicio</a>
-                    
                     <div class="text-center col-md-4">
-                        <a type="button" th:href="@{guardarBill}" class="btn btn-primary"> Guardar Factura</a>
+                        <input type="submit" class="btn btn-primary " value="Guardar Factura" />
                     </div>
                 </div>
             </div>

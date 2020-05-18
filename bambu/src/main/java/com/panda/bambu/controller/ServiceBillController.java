@@ -51,24 +51,25 @@ public class ServiceBillController {
 	 }
 
 	 @RequestMapping(value = "/guardarBill", method = RequestMethod.POST)
-	 public ModelAndView servicioHomePost(@RequestParam(value = "numeroFacturaDeVenta") String codeString,
-								   @RequestParam(value = "clienteFacturaDeVenta") String nombre,
-								   @RequestParam(value = "nitFacutraDeVenta") String nit,
-								   @RequestParam(value = "fechaFacturaDeVenta") String fechaVenta,
-								   @RequestParam(value = "fechaVencimiento") String fechaVencimiento,
-								   @RequestParam(value = "valorTotal") String totalPago) {
+	 public ModelAndView servicioHomePost(@RequestParam(value = "numFact") String code,
+										   @RequestParam(value = "nombreCliente") String nombre,
+										   @RequestParam(value = "nitcc") String nitcc,
+										   @RequestParam(value = "fechaInicio")String fechaInicio,
+										   @RequestParam(value = "fechaVencimiento") String fechaVencimiento) {
 		ModelAndView modelAndView = new ModelAndView();
 		 ServiceSale ss = new ServiceSale();
 		 ServiceSaleBill ssb = new ServiceSaleBill();
 		 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		 LocalDate dateFactura = LocalDate.parse(fechaVenta,formatter);
+		 LocalDate dateFactura = LocalDate.parse(fechaInicio,formatter);
 		 LocalDate dateVencimiento = LocalDate.parse(fechaVencimiento, formatter);
 		
-		for(int i = 0; i < serSale.size();i++){
-			serSaleService.create(serSale.get(i));
-		}
+		// for(int i = 0; i < serSale.size();i++){
+		// 	serSaleService.create(serSale.get(i));
+		// }
 
-		serSaleBillService.create(codeString, nombre, dateFactura, dateVencimiento, serSale)
+		//  serSaleBillService.create(codeString, nombre, dateFactura, dateVencimiento, serSale)
+
+		 serSale.clear();
 		 modelAndView.setViewName("redirect:/serviFacturaForm");	
 		 return modelAndView;
 	 }
