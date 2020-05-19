@@ -48,6 +48,18 @@ $(document).ready(function() {
 	});
 });
 
+$(document).ready(function() {
+	$('.eABtn').on('click', function(event) {
+		event.preventDefault();
+		var href = $(this).attr('href');
+		$.get(href, function(servicio, status) {
+			$('.editAForm #code').val(servicio.code);
+			$('.editAForm #cant').val(servicio.cant);
+		});
+		$('.editAForm #editAModal').modal();
+	});
+});
+
 
 // $(document).ready(function() {
 // 	$('.verarticulosBtn').on('click', function(event) {
@@ -78,5 +90,14 @@ $(document).ready(function() {
 		var href = $(this).attr('href');
 		$('#deleteModal #delRef').attr('href',href);
 		$('#deleteModal').modal();	
+	});
+});
+
+$(document).ready(function() {
+	$('.dABtn').on('click', function(event) {
+		event.preventDefault();
+		var href = $(this).attr('href');
+		$('#deleteAModal #delRef').attr('href',href);
+		$('#deleteAModal').modal();	
 	});
 });

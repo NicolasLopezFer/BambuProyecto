@@ -51,7 +51,7 @@
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item mx-0 mx-lg-1"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-						href="emprendedor">Atras</a></li>
+						href="serviciosform">Atras</a></li>
 					<li class="nav-item mx-0 mx-lg-1"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
 						href="#perfil">Perfil</a></li>
@@ -113,8 +113,8 @@
                             <td th:text="${i.getArticle().getName()}"></td>
                             <td th:text="${i.getQuantity()}"></td>
                             <td>
-                                <a th:href="@{servicioencontraruno/(id=${i.getId()})}" class="btn btn-primary eBtn">Modificar</a>
-                                <a th:href="@{servicioborrar/(id=${i.getId()})}"class="btn btn-primary dBtn">Borrar</a>
+                                <a th:href="@{artiServEncontrarUno/(id=${i.getId()})}" class="btn btn-primary eABtn">Modificar</a>
+                                <a th:href="@{artiServBorrar/(id=${i.getId()})}"class="btn btn-primary dABtn">Borrar</a>
                             </td>
                           </tr>                               
                     </tbody>
@@ -162,14 +162,14 @@
 			</form>
         </div>
                
-		<div class="editForm">
-			<form th:action="@{/serviciomodificar}" method="post">
-				<div class="modal fade" id="editModal" tabindex="-1" role="dialog"
+		<div class="editAForm">
+			<form th:action="@{/artServModificar}" method="post">
+				<div class="modal fade" id="editAModal" tabindex="-1" role="dialog"
 					aria-labelledby="exampleModalLabel" aria-hidden="true">
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
-								<h5 class="modal-title" id="exampleModalLabel">Editar Servicio</h5>
+								<h5 class="modal-title" id="exampleModalLabel">Editar Articulo Servicio</h5>
 								<button type="button" class="close" data-dismiss="modal"
 									aria-label="Close">
 									<span aria-hidden="true">&times;</span>
@@ -181,18 +181,12 @@
 										<div class="form-group">
                                             <label for="code" class="col-form-label">Codigo:</label> <input
                                                 type="text" class="form-control" id="code" name="code"
-                                                value="" readonly/>
+                                                value=""/>
                                         </div>
                                         <div class="form-group">
-                                            <label for="name" class="col-form-label">Nombre
-                                                Servicio:</label> <input type="text" class="form-control" id="name"
-                                                name="name" value="" readonly/>
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <label for="price" class="col-form-label">Precio de
-                                                venta:</label> <input type="number" class="form-control"
-                                                id="price" name="price" value="" />
+											<label for="cant" class="col-form-label">Cantidad:</label>
+											 <input type="number" class="form-control"
+                                                id="cant" name="cant" value="" />
                                         </div>
 									</div>
 								</div>
@@ -207,8 +201,8 @@
 			</form>
 		</div>
 
-		<div class='deleteForm'>
-			<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog"
+		<div class='deleteAForm'>
+			<div class="modal fade" id="deleteAModal" tabindex="-1" role="dialog"
 				aria-labelledby="exampleModalLabel" aria-hidden="true">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
