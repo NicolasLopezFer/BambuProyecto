@@ -43,9 +43,9 @@ public class ServiceSaleService {
            if(discount > 0){
               total -= total*discount;
            }
-           return total; 
+           return Math.ceil(total); 
          }
-      return total;
+      return Math.ceil(total);
     }
 
     public boolean create(ServiceSale serviceSale){

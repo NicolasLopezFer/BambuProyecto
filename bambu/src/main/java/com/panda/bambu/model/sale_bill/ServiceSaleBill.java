@@ -51,13 +51,15 @@ public class ServiceSaleBill {
 
     }
 
-    public ServiceSaleBill(String code, String customer_name, LocalDate date, LocalDate expiration, Set<ServiceSale> services )
+    public ServiceSaleBill(String code, String customer_name, LocalDate date, LocalDate expiration, Set<ServiceSale> services, String nitcc, double total)
     {
         this.code = code;
         this.customer_name = customer_name;
         this.date = date;
         this.expiration = expiration;
         this.services = services;
+        this.idCustomer = nitcc;
+        this.total = total;
     }
 
     public Long getId() {

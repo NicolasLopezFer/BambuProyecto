@@ -54,7 +54,7 @@ public class ServiceSale {
         this.quantity = quantity;
     }
 
-    public double getDiscount()
+    public float getDiscount()
     {
         return discount;
     }
