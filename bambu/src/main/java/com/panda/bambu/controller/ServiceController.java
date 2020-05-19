@@ -64,9 +64,9 @@ public class ServiceController {
 	 public ModelAndView serviArticulos(@RequestParam(value = "code")String code,
 	 									@RequestParam(value = "cantReque")String cant){
 		final ModelAndView modelAndView = new ModelAndView();
-		System.out.println("AAAAAAAAAAAAAAAAAAAA");
-		System.out.println(code);
-		System.out.println(cant);
+		// System.out.println("AAAAAAAAAAAAAAAAAAAA");
+		// System.out.println(code);
+		// System.out.println(cant);
 		Article a = aSer.findByCode(code);
 
 
@@ -74,7 +74,9 @@ public class ServiceController {
 
 		servart.setArticle(a);
 		servart.setQuantity(Integer.parseInt(cant));
-		sArticleService.create(a, Integer.parseInt(cant));
+		System.out.println(servart);
+		System.out.println(serviceFamiEmpresaService);
+		// sArticleService.create(a, Integer.parseInt(cant));
 
 		serviceFamiEmpresaService.addArticle(serviceFamiEmpresaService.findById(idServ), servart);
 		modelAndView.setViewName("redirect:/verArticuloServicio");

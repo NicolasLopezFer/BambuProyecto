@@ -3,6 +3,7 @@ package com.panda.bambu.controller;
 import com.panda.bambu.model.article.Article;
 import com.panda.bambu.model.sale_bill.ServiceSale;
 import com.panda.bambu.model.sale_bill.ServiceSaleBill;
+import com.panda.bambu.model.service_famiempresa.ServiceArticle;
 import com.panda.bambu.model.service_famiempresa.ServiceFamiEmpresa;
 import com.panda.bambu.service.sale_bill.ServiceSaleBillService;
 import com.panda.bambu.service.sale_bill.ServiceSaleService;
@@ -19,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -28,6 +30,8 @@ import java.util.stream.Collectors;
 public class ServiceBillController {
 
 	private List<ServiceSale> serSale = new ArrayList<ServiceSale>();
+
+	private double t = 0;
 
      @Autowired
 	 ServiceFamiEmpresaService serviceFamiEmpresaService;
@@ -43,8 +47,10 @@ public class ServiceBillController {
 		 final ModelAndView modelAndView = new ModelAndView();
 		 final List<ServiceSale> s = serSale;
 		 double total = 0;
+		 t = 0;
 		 for(int i = 0;i<s.size();i++){
 			total = total + s.get(i).getTotalValue();
+			t = t + s.get(i).getTotalValue();
 		 }
 		 modelAndView.addObject("serviceSale", s);
 		 modelAndView.addObject("total", total);
@@ -57,20 +63,23 @@ public class ServiceBillController {
 										   @RequestParam(value = "nombreCliente") String nombre,
 										   @RequestParam(value = "nitcc") String nitcc,
 										   @RequestParam(value = "fechaInicio")String fechaInicio,
-										   @RequestParam(value = "fechaVencimiento") String fechaVencimiento) {
+										   @RequestParam(value = "fechaVenci")String fechaVenci) {
 		ModelAndView modelAndView = new ModelAndView();
-		 ServiceSale ss = new ServiceSale();
-		 ServiceSaleBill ssb = new ServiceSaleBill();
 		 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		 LocalDate dateFactura = LocalDate.parse(fechaInicio,formatter);
-		 LocalDate dateVencimiento = LocalDate.parse(fechaVencimiento, formatter);
+		 LocalDate dateVencimiento = LocalDate.parse(fechaVenci, formatter);
 		
-		for(int i = 0; i < serSale.size();i++){
-			serSaleService.create(serSale.get(i));
-		}
-		 serSaleBillService.create(code, nombre, dateFactura, dateVencimiento, serSale.stream().collect(Collectors.toSet()));
+		// for(int i = 0; i < serSale.size();i++){
+		// 	serSaleService.create(serSale.get(i));
+		// }
+
+		Set<ServiceSale> sett = new HashSet<ServiceSale>(serSale);
+		serSaleBillService.create(code, nombre, dateFactura, dateVencimiento, sett, nitcc, t);
+
+		 System.out.println("A 2");
 
 		 serSale.clear();
+		 t = 0;
 		 modelAndView.setViewName("redirect:/serviFacturaForm");	
 		 return modelAndView;
 	 }
@@ -114,6 +123,7 @@ public class ServiceBillController {
 	public ModelAndView limpiarLista() {
 		final ModelAndView modelAndView = new ModelAndView();
 		serSale.clear();
+		t = 0;
 		modelAndView.setViewName("redirect:/emprendedor");
 		return modelAndView;
 	}
