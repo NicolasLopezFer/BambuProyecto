@@ -145,9 +145,6 @@ public class ServiceBillController {
 		LocalDate dateFinal = LocalDate.parse(fechaFin, formatter);
 		List<ServiceSaleBill> list_facturas_servicio = new ArrayList<>();
 		for (ServiceSaleBill s : serSaleBillService.findAll()) {
-			for(ServiceSale serv: s.getServices()) {
-				System.out.println("Servicios "+serv.getServiceFamiEmpresa().getName());
-			}
 			if (s.getDate().isAfter(dateInicial) && s.getDate().isBefore(dateFinal))
 				list_facturas_servicio.add(s);
 		}
