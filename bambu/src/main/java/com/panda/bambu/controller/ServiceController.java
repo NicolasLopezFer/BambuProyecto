@@ -77,7 +77,7 @@ public class ServiceController {
 
 			servart.setArticle(a);
 			servart.setQuantity(Integer.parseInt(cant));
-			sArticleService.create(servart);
+			// sArticleService.create(servart);
 
 			serviceFamiEmpresaService.addArticle(serviceFamiEmpresaService.findById(idServ), servart);
 
@@ -121,7 +121,10 @@ public class ServiceController {
 	public ModelAndView modificarArticulo(@RequestParam(value = "code")String code,
 										  @RequestParam(value = "cant")String cant){
 		final ModelAndView modelAndView = new ModelAndView();
+
 		ServiceArticle sArt = sArticleService.findById(idArtServ);
+		sArt.setQuantity(Double.parseDouble(cant));
+
 		if(serviceFamiEmpresaService.modifyArticle(serviceFamiEmpresaService.findById(idServ), sArt)){
 			modelAndView.addObject("responseMessage", "Articulo del Servicio editado Exitosamente!");	
 			System.out.println("Servicio guardado Exitosamente!");
@@ -163,6 +166,7 @@ public class ServiceController {
 	@RequestMapping(value = "/servicioencontraruno", method = RequestMethod.GET)
 	@ResponseBody
 	public ServiceFamiEmpresa encontrarServicio(final long id) {
+		idServ = id;
 		return serviceFamiEmpresaService.findById(id);
 	}
 

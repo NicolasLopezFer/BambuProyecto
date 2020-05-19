@@ -21,7 +21,7 @@ public class ServiceArticle {
     private Long id;
 
     @NotNull(message="Quantity is compulsory")
-	@Column(name = "quantity", unique=true)
+	@Column(name = "quantity")
     private double quantity;
 
     @ManyToOne

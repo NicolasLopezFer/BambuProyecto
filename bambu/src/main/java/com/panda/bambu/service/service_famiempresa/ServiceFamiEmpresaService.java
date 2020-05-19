@@ -1,5 +1,6 @@
 package com.panda.bambu.service.service_famiempresa;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.panda.bambu.model.article.Article;
@@ -22,8 +23,7 @@ public class ServiceFamiEmpresaService {
     @Autowired
     private ServiceArticleService serviceArticleService;
 
-    @Autowired
-    private ArticleService articleService;
+
 
     public ServiceFamiEmpresa findById(Long id){
         return serviceFamiEmpresaRepository.findById(id).get();
@@ -81,27 +81,19 @@ public class ServiceFamiEmpresaService {
         ServiceFamiEmpresa serviceFound = serviceFamiEmpresaRepository.findByCode(service.getCode());
         Article articleFound = serviceArticleService.getArticle(article);
         if (articleFound != null && serviceFound != null)
-            if(serviceFound.getArticles().contains(article)) 
-			    return true;
-		return false;
-    }
-    
-    public boolean isArticleAlreadyPresentInService(ServiceFamiEmpresa service, Article articleFound) {
-        ServiceFamiEmpresa serviceFound = serviceFamiEmpresaRepository.findByCode(service.getCode());
-        if (articleFound != null && serviceFound != null)
             for(ServiceArticle art : serviceFound.getArticles())
-                if(art.getArticle().equals(articleFound)) 
+                if(art.getArticle().getCode().equals(article.getArticle().getCode())) 
                     return true;
 		return false;
     }
-
+    
     public Boolean modify(ServiceFamiEmpresa service_new) {
  
         ServiceFamiEmpresa serviceFound = serviceFamiEmpresaRepository.findByCode(service_new.getCode());
         if (serviceFound!=null){
             serviceFound.setName(service_new.getName());
             serviceFound.setPrice(service_new.getPrice());
-            serviceFound.setArticles(service_new.getArticles());
+
             serviceFamiEmpresaRepository.save(serviceFound);
             return true;
         }   
@@ -114,7 +106,7 @@ public class ServiceFamiEmpresaService {
         if (serviceFound!=null){
             serviceFound.setName(service_new.getName());
             serviceFound.setPrice(service_new.getPrice());
-            serviceFound.setArticles(articles);
+
             serviceFamiEmpresaRepository.save(serviceFound);
             return true;
         }   
@@ -141,6 +133,7 @@ public class ServiceFamiEmpresaService {
         if (serviceFound!=null && articleFound != null){
             if(!isArticleAlreadyPresentInService(serviceFound, article))
             {
+                serviceArticleService.create(article);
                 serviceFound.addArticle(article);
                 serviceFamiEmpresaRepository.save(serviceFound);
                 return true;
@@ -201,12 +194,12 @@ public class ServiceFamiEmpresaService {
     {
         ServiceFamiEmpresa serviceFound = serviceFamiEmpresaRepository.findByCode(service_new.getCode());
         Article articleFound = serviceArticleService.getArticle(article);
-        if (serviceFound!=null && articleFound != null){
+        if (serviceFound!=null && articleFound != null && article != null){
             if(isArticleAlreadyPresentInService(serviceFound, article))
             {
                 for(ServiceArticle art : serviceFound.getArticles()) {
-                    if(art.getArticle().getCode().equals(articleFound.getCode())) {
-                        art.setQuantity(articleFound.getQuantity());
+                    if(art.getId().equals(article.getId())) {
+                        art.setQuantity(article.getQuantity());
                         serviceArticleService.modify(art);
                     }
                 }
@@ -225,28 +218,8 @@ public class ServiceFamiEmpresaService {
             if(isArticleAlreadyPresentInService(serviceFound, article))
             {
                 for(ServiceArticle art : serviceFound.getArticles()) {
-                    if(art.getArticle().getCode().equals(articleFound.getCode())) {
-                        art.setQuantity(articleFound.getQuantity());
-                        serviceArticleService.modify(art);
-                    }
-                }
-                serviceFamiEmpresaRepository.save(serviceFound);
-                return true;
-            }
-        }   
-        return false;
-    }
-
-    public Boolean modifyArticle(String service_code, String article_code)
-    {
-        ServiceFamiEmpresa serviceFound = serviceFamiEmpresaRepository.findByCode(service_code);
-        Article articleFound = articleService.findByCode(article_code);
-        if (serviceFound!=null && articleFound != null){
-            if(isArticleAlreadyPresentInService(serviceFound, articleFound))
-            {
-                for(ServiceArticle art : serviceFound.getArticles()) {
-                    if(art.getArticle().getCode().equals(articleFound.getCode())) {
-                        art.setQuantity(articleFound.getQuantity());
+                    if(art.getId().equals(article.getId())) {
+                        art.setQuantity(article.getQuantity());
                         serviceArticleService.modify(art);
                     }
                 }
@@ -259,6 +232,12 @@ public class ServiceFamiEmpresaService {
 
     public Boolean delete(ServiceFamiEmpresa service) {
         if(serviceFamiEmpresaRepository.existsById(service.getId())){
+            List<ServiceArticle> sArtList = new ArrayList<ServiceArticle>(service.getArticles()); 
+            service.getArticles().clear();
+            
+            for(ServiceArticle sArt: sArtList)
+                serviceArticleService.delete(sArt);
+
             serviceFamiEmpresaRepository.delete(service);
             return true;
         }
