@@ -65,6 +65,17 @@ public class ServiceArticleService {
         return false;
     }
 
+	public boolean modify(ServiceArticle serviceArticle) {
+
+        ServiceArticle sa = findById(serviceArticle.getId());
+        if(sa != null){
+            sa.setQuantity(serviceArticle.getQuantity());
+            serviceArticleRepository.save(sa);
+            return true;
+        }
+        return false;
+	}
+
     
 
 }
