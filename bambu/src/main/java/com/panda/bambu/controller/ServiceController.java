@@ -69,16 +69,19 @@ public class ServiceController {
 		// System.out.println(cant);
 		Article a = aSer.findByCode(code);
 
+		if(a != null){
+			ServiceArticle servart = new ServiceArticle();
 
-		ServiceArticle servart = new ServiceArticle();
+			servart.setArticle(a);
+			servart.setQuantity(Integer.parseInt(cant));
+			sArticleService.create(servart);
 
-		servart.setArticle(a);
-		servart.setQuantity(Integer.parseInt(cant));
-		System.out.println(servart);
-		System.out.println(serviceFamiEmpresaService);
-		// sArticleService.create(a, Integer.parseInt(cant));
+			serviceFamiEmpresaService.addArticle(serviceFamiEmpresaService.findById(idServ), servart);
 
-		serviceFamiEmpresaService.addArticle(serviceFamiEmpresaService.findById(idServ), servart);
+			modelAndView.addObject("responseMessage","Creado exitosamente");
+		}else{
+			modelAndView.addObject("responseMessage","Articulo inexistente");
+		}
 		modelAndView.setViewName("redirect:/verArticuloServicio");
 		return modelAndView;
 	 }
