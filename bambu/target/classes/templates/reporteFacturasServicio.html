@@ -122,18 +122,22 @@
                                     <th>Identificación</th>
                                     <th>Fecha</th>
                                     <th>Expiracion</th>
-                                    <!--<th>Servicios</th>  -->
+                                    <th>Servicios</th>
                                     <th>Total</th>
                                 </tr>
                             </thead> 
                             <tbody>
-                                <tr th:each="i :${lista_facturas_servicio}">
+                                <tr th:each="i :${listaFiltrada}">
                                     <td th:text="${i.getCode()}"></td>
                                     <td th:text="${i.getCustomer_name()}"></td>
                                     <td th:text="${i.getIdCustomer()}"></td>
                                     <td th:text="${i.getDate()}"></td>
                                     <td th:text="${i.getExpiration()}"></td>
-                                    <!-- <td th:text="${i.getServices()}"></td> -->
+                                    <td>
+							            <div th:each="serv : ${i.getServices()}">
+							                <p th:text="${serv.getServiceFamiEmpresa().getName()}"></p>
+							            </div>
+							        </td>
                                     <td th:text="${i.getTotal()}"></td>
                                   </tr>                             
                             </tbody>
