@@ -42,7 +42,7 @@ public class ServiceFamiEmpresa {
 
     public ServiceFamiEmpresa()
     {
-        
+        this.active = true;
     }
 
     public ServiceFamiEmpresa (String code, String name, double price)

@@ -101,13 +101,13 @@ public class ReporteServiciosFamiEmpresaController {
 	// 	return modelAndView;
 	// }
 	
-	@RequestMapping(value = "/reporteServiciosFamiEmpresa", method = RequestMethod.GET)
-	public ModelAndView reporteRecibosCaja(@RequestParam(defaultValue="0") int page) {
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("lista_servicios", servicios);
-		modelAndView.setViewName("reporteServiciosFamiEmpresa"); // resources/template/reporteReciboCajas.html
-		return modelAndView;
-	}
+	// @RequestMapping(value = "/reporteServiciosFamiEmpresa", method = RequestMethod.GET)
+	// public ModelAndView reporteRecibosCaja(@RequestParam(defaultValue="0") int page) {
+	// 	ModelAndView modelAndView = new ModelAndView();
+	// 	modelAndView.addObject("lista_servicios", servicios);
+	// 	modelAndView.setViewName("reporteServiciosFamiEmpresa"); // resources/template/reporteReciboCajas.html
+	// 	return modelAndView;
+	// }
 
     // @RequestMapping(value = "/reporteReciboCaja-encontrarUno", method = RequestMethod.GET)
 	// @ResponseBody

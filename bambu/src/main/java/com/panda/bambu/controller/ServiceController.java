@@ -38,7 +38,7 @@ public class ServiceController {
 	 @RequestMapping(value = "/serviciosform", method = RequestMethod.GET)
 	 public ModelAndView servicioHome() {
 		 final ModelAndView modelAndView = new ModelAndView();
-		 final List<ServiceFamiEmpresa> s = serviceFamiEmpresaService.findAll();
+		 final List<ServiceFamiEmpresa> s = serviceFamiEmpresaService.findAllActives();
 		 modelAndView.addObject("service", s);
 		 modelAndView.setViewName("serviciosform"); 
 		 return modelAndView;
@@ -92,7 +92,8 @@ public class ServiceController {
 	@RequestMapping(value = "/serviciocrear", method = RequestMethod.POST)
 	public ModelAndView crearServicio(final ServiceFamiEmpresa s) {
 		final ModelAndView modelAndView = new ModelAndView();
-		if(serviceFamiEmpresaService.create(s)) {
+		ServiceFamiEmpresa nuevo = new ServiceFamiEmpresa(s.getCode(), s.getName(), s.getPrice());
+		if(serviceFamiEmpresaService.create(nuevo)) {
 			modelAndView.addObject("responseMessage", "Servicio creado exitosamente!");	
 			System.out.println("Servicio guardado exitosamente!");
 		}else {
