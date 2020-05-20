@@ -23,6 +23,9 @@ public class ArticleInventory{
     
     @OneToOne()
     private Article article;
+
+    @Column(name = "measure_method")
+    private String measureMethod;
  
     @OneToMany()
     private List<Inventory> inventories;
@@ -48,6 +51,14 @@ public class ArticleInventory{
         this.article = article;
     }
 
+    public String getMeasureMethod() {
+        return measureMethod;
+    }
+
+    public void setMeasureMethod(String measureMethod) {
+        this.measureMethod = measureMethod;
+    }
+
     public List<Inventory> getInventories() {
         return inventories;
     }
@@ -63,6 +74,7 @@ public class ArticleInventory{
         result = prime * result + ((article == null) ? 0 : article.hashCode());
         result = prime * result + (int) (id ^ (id >>> 32));
         result = prime * result + ((inventories == null) ? 0 : inventories.hashCode());
+        result = prime * result + ((measureMethod == null) ? 0 : measureMethod.hashCode());
         return result;
     }
 
@@ -87,12 +99,13 @@ public class ArticleInventory{
                 return false;
         } else if (!inventories.equals(other.inventories))
             return false;
+        if (measureMethod == null) {
+            if (other.measureMethod != null)
+                return false;
+        } else if (!measureMethod.equals(other.measureMethod))
+            return false;
         return true;
     }
-   
-    @Override
-    public String toString() {
-        return "ArticleInventory [article=" + article + ", id=" + id + ", inventories=" + inventories
-                + "]";
-    }
+
+    
 }

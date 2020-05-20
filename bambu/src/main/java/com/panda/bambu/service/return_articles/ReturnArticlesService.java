@@ -1,6 +1,8 @@
 package com.panda.bambu.service.return_articles;
 
+import java.util.List;
 
+import com.panda.bambu.model.inventory.ArticleInventory;
 import com.panda.bambu.model.inventory.Entry;
 import com.panda.bambu.model.inventory.Output;
 import com.panda.bambu.model.return_articles.ArticleReturn;
@@ -24,6 +26,12 @@ public class ReturnArticlesService {
 
     @Autowired
     ArticleInventoryService articleInventoryService;
+    
+
+    public List<ReturnArticles> findAll(){
+        return returnArticlesRepository.findAll();
+
+   }
 
     public ReturnArticles findById(Long id){
          return returnArticlesRepository.findById(id).get();
@@ -44,10 +52,17 @@ public class ReturnArticlesService {
           entry.setUnitCost(article.getArticle().getUnitCost());
           entry.setTotalCost(article.getQuantity()*article.getArticle().getUnitCost());
           entry.setArticle(article.getArticle());
+          
+          ArticleInventory articleInventory = null;
+          for (ArticleInventory a : articleInventoryService.findAll()) {
+               if(a.getArticle().getId() == article.getArticle().getId()){
+                  articleInventory = a;
+               }  
+          } 
 
-          if(!articleInventoryService.addEntry(articleInventoryService.findByArticle(article.getArticle()),entry)){
-              return true;
-          }
+          if(articleInventory != null && articleInventoryService.addEntry(articleInventory,entry) == true){
+             return true;
+         }
 
           return false;
     }
@@ -61,8 +76,15 @@ public class ReturnArticlesService {
         output.setUnitCost(article.getArticle().getUnitCost());
         output.setTotalCost(article.getQuantity()*article.getArticle().getUnitCost());
         output.setArticle(article.getArticle());
+        
+        ArticleInventory articleInventory = null;
+        for (ArticleInventory a : articleInventoryService.findAll()) {
+             if(a.getArticle().getId() == article.getArticle().getId()){
+                articleInventory = a;
+             }  
+        } 
 
-        if(!articleInventoryService.addOuput(articleInventoryService.findByArticle(article.getArticle()),output)){
+        if(articleInventory != null && !articleInventoryService.addOuput(articleInventory,output)){
             return true;
         }
 
@@ -70,7 +92,7 @@ public class ReturnArticlesService {
     }
 
     public boolean create(ReturnArticles returnArticles){
-        
+           
            if(returnArticles != null && !returnArticles.getArticles().isEmpty() ){
               if(returnArticles.getSaleReturn() == true){
                  for ( ArticleReturn article: returnArticles.getArticles()){

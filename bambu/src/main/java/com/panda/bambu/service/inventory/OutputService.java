@@ -56,7 +56,8 @@ public class OutputService {
      }
 
      public boolean create(Output output){
-                 
+        
+        System.out.println("SLIDAADADA");
         if(output != null && outputRepository.findByCode(output.getCode()) == null && articleService.isArticleAlreadyPresent(output.getArticle())){
             outputRepository.save(output);
             return true;

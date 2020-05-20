@@ -4,6 +4,7 @@ C:\Users\aulasingenieria\Desktop\IngeSoft\Bambu\local\BambuProyecto\bambu\src\ma
 C:\Users\aulasingenieria\Desktop\IngeSoft\Bambu\local\BambuProyecto\bambu\src\main\java\com\panda\bambu\service\inventory\InventoryService.java
 C:\Users\aulasingenieria\Desktop\IngeSoft\Bambu\local\BambuProyecto\bambu\src\main\java\com\panda\bambu\service\inventory\BalanceService.java
 C:\Users\aulasingenieria\Desktop\IngeSoft\Bambu\local\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\UserRepository.java
+C:\Users\aulasingenieria\Desktop\IngeSoft\Bambu\local\BambuProyecto\bambu\src\main\java\com\panda\bambu\controller\InventoryController.java
 C:\Users\aulasingenieria\Desktop\IngeSoft\Bambu\local\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\RoleRepository.java
 C:\Users\aulasingenieria\Desktop\IngeSoft\Bambu\local\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\User.java
 C:\Users\aulasingenieria\Desktop\IngeSoft\Bambu\local\BambuProyecto\bambu\src\main\java\com\panda\bambu\service\return_articles\ArticleReturnService.java
@@ -23,6 +24,7 @@ C:\Users\aulasingenieria\Desktop\IngeSoft\Bambu\local\BambuProyecto\bambu\src\ma
 C:\Users\aulasingenieria\Desktop\IngeSoft\Bambu\local\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\inventory\Balance.java
 C:\Users\aulasingenieria\Desktop\IngeSoft\Bambu\local\BambuProyecto\bambu\src\main\java\com\panda\bambu\service\return_articles\ReturnArticlesService.java
 C:\Users\aulasingenieria\Desktop\IngeSoft\Bambu\local\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\inventory\Entry.java
+C:\Users\aulasingenieria\Desktop\IngeSoft\Bambu\local\BambuProyecto\bambu\src\main\java\com\panda\bambu\controller\ReturnArticlesController.java
 C:\Users\aulasingenieria\Desktop\IngeSoft\Bambu\local\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\tax\TaxRepository.java
 C:\Users\aulasingenieria\Desktop\IngeSoft\Bambu\local\BambuProyecto\bambu\src\main\java\com\panda\bambu\ServletInitializer.java
 C:\Users\aulasingenieria\Desktop\IngeSoft\Bambu\local\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\sale_bill\ArticleSale.java
@@ -33,6 +35,7 @@ C:\Users\aulasingenieria\Desktop\IngeSoft\Bambu\local\BambuProyecto\bambu\src\ma
 C:\Users\aulasingenieria\Desktop\IngeSoft\Bambu\local\BambuProyecto\bambu\src\main\java\com\panda\bambu\service\inventory\ArticleInventoryService.java
 C:\Users\aulasingenieria\Desktop\IngeSoft\Bambu\local\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\article\Article.java
 C:\Users\aulasingenieria\Desktop\IngeSoft\Bambu\local\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\return_articles\ArticleReturnRepository.java
+C:\Users\aulasingenieria\Desktop\IngeSoft\Bambu\local\BambuProyecto\bambu\src\main\java\com\panda\bambu\controller\ArticleSaleBillController.java
 C:\Users\aulasingenieria\Desktop\IngeSoft\Bambu\local\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\return_articles\ReturnArticles.java
 C:\Users\aulasingenieria\Desktop\IngeSoft\Bambu\local\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\sale_bill\ServiceSale.java
 C:\Users\aulasingenieria\Desktop\IngeSoft\Bambu\local\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\tax\Tax.java

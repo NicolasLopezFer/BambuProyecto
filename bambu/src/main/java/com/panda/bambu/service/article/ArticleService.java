@@ -5,7 +5,6 @@ import java.util.List;
 import com.panda.bambu.model.article.Article;
 import com.panda.bambu.model.article.ArticleRepository;
 import com.panda.bambu.model.inventory.ArticleInventory;
-import com.panda.bambu.model.inventory.ArticleInventoryRepository;
 import com.panda.bambu.model.inventory.Balance;
 import com.panda.bambu.model.inventory.Entry;
 import com.panda.bambu.model.inventory.Inventory;
@@ -32,6 +31,17 @@ public class ArticleService{
     public Article findByCode(String code){
         return articleRepository.findByCode(code);
     }
+
+    public Article findByPosition(int index){
+        List<Article> articles = findAll();
+        Article article = articles.get(index);
+        
+        if(!articles.isEmpty() && article != null){
+           return article;
+        }
+
+        return article;
+    }
     
     public List<Article> findAll(){
         return articleRepository.findAll();
@@ -50,12 +60,18 @@ public class ArticleService{
         return false;    
     }
     
+    public Article getLastArticleCreate(){
+           
+          List<Article> articles = findAll();
+          return articles.get(articles.size()-1); 
+    }
+
     public Boolean create(Article article) {
         Article articleF=articleRepository.findByCode(article.getCode());
         if(articleF==null){
             //if (article.getCode().matches(".*[a-z].*")){
                 articleRepository.save(article);
-                articleInventoryService.create(article);
+                articleInventoryService.create(getLastArticleCreate());
                 return true;
             //}
         }

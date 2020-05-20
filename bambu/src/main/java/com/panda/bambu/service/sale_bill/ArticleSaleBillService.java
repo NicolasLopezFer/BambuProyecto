@@ -55,20 +55,21 @@ public class ArticleSaleBillService {
            if(articleSaleBillRepository.findByCode(articleBill.getCode()) == null){
               if(!articleBill.getArticles().isEmpty()){
                   for(ArticleSale article: articleBill.getArticles()){
-                      if(article == null || isRepeatCode(articleBill, article)){
+                      if(article == null){
                          return false;   
                       }
-
+                      System.out.println("TOY CREANDO LA FACTURA");
                       if(articleSaleService.create(article) == false){
                          return false;
                       }
 
                       articleSaleService.create(article);
+
                       Output output = new Output();
                       output.setCode(articleBill.getCode());
                       output.setDetail("Venta");
                       output.setQuantity(article.getQuantity());
-                      articleInventoryService.addOuput(articleInventoryService.findByArticle(article.getArticle()), output);
+                      //articleInventoryService.addOuput(articleInventoryService.findById(article.getId()), output);
                   }
 
                    articleSaleBillRepository.save(articleBill);

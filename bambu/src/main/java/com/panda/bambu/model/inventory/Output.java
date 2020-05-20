@@ -21,7 +21,7 @@ public class Output {
     
  	@Column(name = "code", unique=true)
     private String code;
-  
+    
     @Column(name = "date")
     private LocalDate date;
 
@@ -42,7 +42,7 @@ public class Output {
 
     public Output(String code, String detail, int quantity, double unitCost, double totalCost){
         this.code = code;
-        date = LocalDate.now();
+        this.date = LocalDate.now();
         this.detail = detail;
         this.quantity = quantity;
         this.unitCost = unitCost;
