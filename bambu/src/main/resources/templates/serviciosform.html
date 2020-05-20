@@ -126,7 +126,7 @@
 		</div>
 		
 		<div class="saveForm">
-			<form th:action="@{/serviciocrear}" method="post">
+			<form th:action="@{/serviciocrear}" method="post" >
 				<div class="modal fade" id="saveModal" tabindex="-1" role="dialog"
 					aria-labelledby="exampleModalLabel" aria-hidden="true">
 					<div class="modal-dialog" role="document">
@@ -144,17 +144,17 @@
 										<div class="form-group">
                                             <label for="code" class="col-form-label">Codigo:</label> <input
                                                 type="text" class="form-control" id="code" name="code"
-                                                value="" />
+												value="" required=""/>
                                         </div>
                                         <div class="form-group">
                                             <label for="name" class="col-form-label">Nombre
                                                 Servicio:</label> <input type="text" class="form-control" id="name"
-                                                name="name" value="" />
+                                                name="name" value="" required=""/>
 										</div>
                                         <div class="form-group">
                                             <label for="price" class="col-form-label">Precio de
                                                 venta:</label> <input type="number" class="form-control"
-                                                id="price" name="price" value="" />
+                                                id="price" name="price" value="" required=""/>
 										</div>
 										<div class="form-group">
                                             <p>Los articulos seran agregados luego</p>
@@ -202,7 +202,7 @@
                                         <div class="form-group">
                                             <label for="price" class="col-form-label">Precio de
                                                 venta:</label> <input type="number" class="form-control"
-                                                id="price" name="price" value="" />
+                                                id="price" name="price" value="" required=""/>
                                         </div>
 									</div>
 								</div>
@@ -273,5 +273,7 @@
 	<script src="assets/mail/contact_me.js"></script>
 	<!-- Core theme JS-->
 	<script src="js/scripts.js"></script>
+	<!-- Validation JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.14.0/jquery.validate.min.js"></script>
 </body>
 </html>

@@ -127,7 +127,7 @@
             </div>
 
             <div class="filtrarAFechasRecibo">
-                <form th:action="@{/filtrarAFechasRecibo}" method="post">
+                <form th:action="@{/filtrarAFechasRecibo}" method="post" name="filtrarAFechasRecibo">
                     <div class="modal fade" id="filtrarModal" tabindex="-1" role="dialog"
                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
@@ -146,7 +146,7 @@
                                                 <label for="fechaInicio" class="col-form-label">
                                                     Fecha inicio
                                                 </label> <input type="date" class="form-control"
-                                                    id="fechaInicio" th:name="fechaInicio" value="" required="required" />
+                                                    id="fechaInicio" th:name="fechaInicio" value="" required="" />
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -154,7 +154,7 @@
                                                 <label for="fechaFin" class="col-form-label">
                                                     Fecha fin
                                                 </label> <input type="date" class="form-control"
-                                                    id="fechaFin" th:name="fechaFin" value="" required="required" />
+                                                    id="fechaFin" th:name="fechaFin" value="" required="" />
                                             </div>
                                         </div>
                                     </div>   

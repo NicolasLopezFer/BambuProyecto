@@ -53,12 +53,31 @@ $(document).ready(function() {
 		event.preventDefault();
 		var href = $(this).attr('href');
 		$.get(href, function(servicio, status) {
-			$('.editAForm #code').val(servicio.code);
-			$('.editAForm #cant').val(servicio.cant);
+			$('.editAForm #code').val(servicio.article.code);
+			$('.editAForm #cant').val(servicio.quantity);
 		});
 		$('.editAForm #editAModal').modal();
 	});
 });
+
+
+// $(function() {
+// 	$("form[name='saveForm']").validate({
+// 	  rules: {
+// 		code: "required",
+// 		name: "required",
+// 		price: "required"
+// 	  },
+// 	  messages: {
+// 		code: "Por favor ingrese el codigo.",
+// 		name: "Por favor ingrese el nombre.",
+// 		price: "Por favor ingrese el precio."
+// 	  },
+// 	  submitHandler: function(form) {
+// 		form.submit();
+// 	  }
+// 	});	
+//   });
 
 
 // $(document).ready(function() {
