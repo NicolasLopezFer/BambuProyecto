@@ -97,6 +97,10 @@ public class ReciboCajaController
 		DateTimeFormatter formatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDate dateInicial=LocalDate.parse(fechaInicio,formatter);
 		LocalDate dateFinal=LocalDate.parse(fechaFin,formatter);
+		if(!dateInicial.isBefore(dateFinal)){
+			modelAndView.setViewName("redirect:/reciboCaja");
+			return modelAndView;
+		}
 		List<ReciboCaja> list_recibos=new ArrayList<>();
 		for(ReciboCaja r:reciboCajaService.findAll()){
 			if(r.getFecha().isAfter(dateInicial) && r.getFecha().isBefore(dateFinal))

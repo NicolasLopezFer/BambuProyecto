@@ -29,6 +29,9 @@
 <!-- Nuestro JS recibo -->
 <script type="text/javascript" th:src="@{/js/reciboCaja.js}"
 	src="static/js/reciboCaja.js"></script>
+
+	<script type="text/javascript" th:src="@{/js/validarFechas.js}"
+	src="static/js/validarFechas.js"></script>
 </head>
 <!-- DataTable JS -->
 <script type="text/javascript" th:src="@{/js/table/datatable.js}" src="static/js/table/datatable.js"></script>
@@ -403,7 +406,8 @@
 							<div class="modal-footer">
 								<button type="button" class="btn btn-secondary"
 									data-dismiss="modal">Cancelar</button>
-								<input type="submit" class="btn btn-primary " value="Generar reporte" />
+								<input type="submit" class="btn btn-primary " value="Generar reporte" onclick="validar();"  />
+								<div id="result"></div>
 							</div>
 						</div>
 					</div>
@@ -440,5 +444,7 @@
 	<script src="assets/mail/contact_me.js"></script>
 	<!-- Core theme JS-->
 	<script src="js/scripts.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 </body>
 </html>
