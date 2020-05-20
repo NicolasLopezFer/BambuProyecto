@@ -48,6 +48,37 @@ $(document).ready(function() {
 	});
 });
 
+$(document).ready(function() {
+	$('.eABtn').on('click', function(event) {
+		event.preventDefault();
+		var href = $(this).attr('href');
+		$.get(href, function(servicio, status) {
+			$('.editAForm #code').val(servicio.article.code);
+			$('.editAForm #cant').val(servicio.quantity);
+		});
+		$('.editAForm #editAModal').modal();
+	});
+});
+
+
+// $(function() {
+// 	$("form[name='saveForm']").validate({
+// 	  rules: {
+// 		code: "required",
+// 		name: "required",
+// 		price: "required"
+// 	  },
+// 	  messages: {
+// 		code: "Por favor ingrese el codigo.",
+// 		name: "Por favor ingrese el nombre.",
+// 		price: "Por favor ingrese el precio."
+// 	  },
+// 	  submitHandler: function(form) {
+// 		form.submit();
+// 	  }
+// 	});	
+//   });
+
 
 // $(document).ready(function() {
 // 	$('.verarticulosBtn').on('click', function(event) {
@@ -78,5 +109,14 @@ $(document).ready(function() {
 		var href = $(this).attr('href');
 		$('#deleteModal #delRef').attr('href',href);
 		$('#deleteModal').modal();	
+	});
+});
+
+$(document).ready(function() {
+	$('.dABtn').on('click', function(event) {
+		event.preventDefault();
+		var href = $(this).attr('href');
+		$('#deleteAModal #delRef').attr('href',href);
+		$('#deleteAModal').modal();	
 	});
 });

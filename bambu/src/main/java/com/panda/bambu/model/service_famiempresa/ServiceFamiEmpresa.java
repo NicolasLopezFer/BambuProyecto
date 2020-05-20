@@ -22,7 +22,7 @@ public class ServiceFamiEmpresa {
     private Long id;
     
     @NotNull(message="Code is compulsory")
-	@Column(name = "code", unique=true)
+	@Column(name = "code")
     private String code;
     
     @NotNull(message="Name is compulsory")
@@ -33,12 +33,16 @@ public class ServiceFamiEmpresa {
 	@Column(name = "price")
     private double price;
 
+    @NotNull(message="Active is compulsory")
+	@Column(name = "active")
+    private boolean active;
+
     @OneToMany
     private List<ServiceArticle> service_articles;
 
     public ServiceFamiEmpresa()
     {
-        
+        this.active = true;
     }
 
     public ServiceFamiEmpresa (String code, String name, double price)
@@ -47,6 +51,7 @@ public class ServiceFamiEmpresa {
         this.name = name;
         this.price = price;
         service_articles = new ArrayList<ServiceArticle> ();
+        this.active = true;
     }
 
     public ServiceFamiEmpresa (String code, String name, double price, List<ServiceArticle> service_articles)
@@ -55,6 +60,7 @@ public class ServiceFamiEmpresa {
         this.name = name;
         this.price = price;
         this.service_articles = service_articles;
+        this.active = true;
     }
 
     public void removeArticle(ServiceArticle service_article)
@@ -67,6 +73,15 @@ public class ServiceFamiEmpresa {
         service_articles.add(new_article);
     }
 
+    public void setInactive()
+    {
+        this.active = false;
+    }
+
+    public void setActive()
+    {
+        this.active = true;
+    }
 
     public Long getId() {
         return id;
@@ -90,6 +105,11 @@ public class ServiceFamiEmpresa {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public boolean isActive()
+    {
+        return active;
     }
 
     public List<ServiceArticle> getArticles() {

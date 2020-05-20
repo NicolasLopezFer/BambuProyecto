@@ -92,6 +92,7 @@ C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu
 C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\service\inventory\ArticleInventoryService.java
 C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\controller\ReporteEgresoController.java
 C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\controller\UserController.java
+C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\controller\ReporteServiciosFamiEmpresaController.java
 C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\inventory\OutputRepository.java
 C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\recibo_caja\ReciboCaja.java
 C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\Role.java
@@ -128,6 +129,7 @@ C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu
 C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\inventory\Output.java
 C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\controller\ServiceController.java
 C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\inventory\InventoryRepository.java
+C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\controller\auxServiReport.java
 C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\metodo_pago\MetodoPago.java
 C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\sale_bill\ServiceSaleRepository.java
 C:\Users\nico\Desktop\IngeSoft\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\egreso\EgresoRepository.java

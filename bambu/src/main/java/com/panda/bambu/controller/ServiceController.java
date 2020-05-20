@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.security.Provider.Service;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,6 +23,8 @@ import java.util.Optional;
 public class ServiceController {
 
 	private long idServ = 0;
+
+	private long idArtServ = 0;
 
      @Autowired
 	 ServiceFamiEmpresaService serviceFamiEmpresaService;
@@ -35,7 +38,7 @@ public class ServiceController {
 	 @RequestMapping(value = "/serviciosform", method = RequestMethod.GET)
 	 public ModelAndView servicioHome() {
 		 final ModelAndView modelAndView = new ModelAndView();
-		 final List<ServiceFamiEmpresa> s = serviceFamiEmpresaService.findAll();
+		 final List<ServiceFamiEmpresa> s = serviceFamiEmpresaService.findAllActives();
 		 modelAndView.addObject("service", s);
 		 modelAndView.setViewName("serviciosform"); 
 		 return modelAndView;
@@ -74,7 +77,7 @@ public class ServiceController {
 
 			servart.setArticle(a);
 			servart.setQuantity(Integer.parseInt(cant));
-			sArticleService.create(servart);
+			// sArticleService.create(servart);
 
 			serviceFamiEmpresaService.addArticle(serviceFamiEmpresaService.findById(idServ), servart);
 
@@ -89,7 +92,8 @@ public class ServiceController {
 	@RequestMapping(value = "/serviciocrear", method = RequestMethod.POST)
 	public ModelAndView crearServicio(final ServiceFamiEmpresa s) {
 		final ModelAndView modelAndView = new ModelAndView();
-		if(serviceFamiEmpresaService.create(s)) {
+		ServiceFamiEmpresa nuevo = new ServiceFamiEmpresa(s.getCode(), s.getName(), s.getPrice());
+		if(serviceFamiEmpresaService.create(nuevo)) {
 			modelAndView.addObject("responseMessage", "Servicio creado exitosamente!");	
 			System.out.println("Servicio guardado exitosamente!");
 		}else {
@@ -114,10 +118,29 @@ public class ServiceController {
 		return modelAndView;
 	}
 
+	@RequestMapping(value = "/artServModificar", method = RequestMethod.POST)
+	public ModelAndView modificarArticulo(@RequestParam(value = "code")String code,
+										  @RequestParam(value = "cant")String cant){
+		final ModelAndView modelAndView = new ModelAndView();
+
+		ServiceArticle sArt = sArticleService.findById(idArtServ);
+		sArt.setQuantity(Double.parseDouble(cant));
+
+		if(serviceFamiEmpresaService.modifyArticle(serviceFamiEmpresaService.findById(idServ), sArt)){
+			modelAndView.addObject("responseMessage", "Articulo del Servicio editado Exitosamente!");	
+			System.out.println("Servicio guardado Exitosamente!");
+		}else{
+			modelAndView.addObject("responseMessage", "Existen errores al modificar este articulo del servicio");
+			System.out.println("No se guardo");
+		}
+		modelAndView.setViewName("redirect:/verArticuloServicio");
+		return modelAndView;
+	}
+
 	@RequestMapping(value = "/servicioborrar", method = RequestMethod.GET)
 	public ModelAndView borrarArticulo(final long id) {
 		final ModelAndView modelAndView = new ModelAndView();
-		if(serviceFamiEmpresaService.delete(serviceFamiEmpresaService.findById(id))) 
+		if(serviceFamiEmpresaService.changeInactive(serviceFamiEmpresaService.findById(id))) 
 		{
 			modelAndView.addObject("responseMessage", "Servicio borrado Exitosamente!");	
 		}else {
@@ -127,10 +150,32 @@ public class ServiceController {
 		return modelAndView;
 	}
 
+	@RequestMapping(value = "/artiServBorrar", method = RequestMethod.GET)
+	public ModelAndView borrarArtServ(final long id) {
+		final ModelAndView modelAndView = new ModelAndView();
+		ServiceArticle sa = sArticleService.findById(id);
+		if(serviceFamiEmpresaService.removeArticle(serviceFamiEmpresaService.findById(idServ), sa)) 
+		{
+			modelAndView.addObject("responseMessage", "Articulo del Servicio borrado Exitosamente!");	
+		}else {
+			modelAndView.addObject("responseMessage", "Problems bbcito pra");
+		}
+		modelAndView.setViewName("redirect:/verArticuloServicio");
+		return modelAndView;
+	}
+
 	@RequestMapping(value = "/servicioencontraruno", method = RequestMethod.GET)
 	@ResponseBody
 	public ServiceFamiEmpresa encontrarServicio(final long id) {
+		idServ = id;
 		return serviceFamiEmpresaService.findById(id);
+	}
+
+	@RequestMapping(value = "/artiServEncontrarUno", method = RequestMethod.GET)
+	@ResponseBody
+	public ServiceArticle encontrarArtServ(final long id) {
+		idArtServ = id;
+		return sArticleService.findById(id);
 	}
 
 

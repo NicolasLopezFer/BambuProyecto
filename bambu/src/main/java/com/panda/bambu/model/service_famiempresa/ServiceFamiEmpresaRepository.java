@@ -6,6 +6,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ServiceFamiEmpresaRepository extends JpaRepository<ServiceFamiEmpresa, Long> {
 
-    public ServiceFamiEmpresa findByCode(String code);
 
 }
