@@ -87,6 +87,12 @@ public class EgresosController
 	@RequestMapping(value = "/filtrarFechas", method = RequestMethod.POST)
 	public ModelAndView filtrarFechas(@RequestParam(value = "fechaInicio") String fechaInicio, @RequestParam(value = "fechaFin") String fechaFin) 
 	{
+		return filtrarFechasEgreso(fechaInicio,fechaFin);
+	}
+
+	@RequestMapping(value = "/filtrarFechasEgreso")
+	public ModelAndView filtrarFechasEgreso(String fechaInicio,String fechaFin) 
+	{
 		ModelAndView modelAndView = new ModelAndView();
 		DateTimeFormatter formatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDate dateInicial=LocalDate.parse(fechaInicio,formatter);

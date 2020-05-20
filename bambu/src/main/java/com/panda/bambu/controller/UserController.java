@@ -84,6 +84,7 @@ public class UserController {
 		return modelAndView;
 	}
 
+
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public ModelAndView register() {
 		ModelAndView modelAndView = new ModelAndView();
