@@ -519,6 +519,18 @@ mark,
   color: #6c757d;
 }
 
+.btn-igual{
+  margin: 10px;
+  height: 130px;
+  width: 250px;
+  vertical-align: middle;
+  line-height: 400px;
+}
+
+.paraCentrar{
+  text-align:center;
+}
+
 code {
   font-size: 87.5%;
   color: #e83e8c;
