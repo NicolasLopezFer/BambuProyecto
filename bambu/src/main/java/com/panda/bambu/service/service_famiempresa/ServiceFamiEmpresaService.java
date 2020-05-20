@@ -7,7 +7,6 @@ import com.panda.bambu.model.article.Article;
 import com.panda.bambu.model.service_famiempresa.ServiceArticle;
 import com.panda.bambu.model.service_famiempresa.ServiceFamiEmpresa;
 import com.panda.bambu.model.service_famiempresa.ServiceFamiEmpresaRepository;
-import com.panda.bambu.service.article.ArticleService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,11 +29,43 @@ public class ServiceFamiEmpresaService {
     }
 
     public ServiceFamiEmpresa findByCode(String code){
-        return serviceFamiEmpresaRepository.findByCode(code);
+        List<ServiceFamiEmpresa> servicios = serviceFamiEmpresaRepository.findAll();
+        for(ServiceFamiEmpresa serviceFE: servicios)
+        {
+            if(serviceFE.getCode().equals(code) && serviceFE.isActive() )
+                return serviceFE;
+        }
+        return null;
     }
     
     public List<ServiceFamiEmpresa> findAll(){
         return serviceFamiEmpresaRepository.findAll();
+    }
+
+    public List<ServiceFamiEmpresa> findAllActives(){
+        List<ServiceFamiEmpresa> servicios = serviceFamiEmpresaRepository.findAll();
+        List<ServiceFamiEmpresa> serviciosActivos = new ArrayList<ServiceFamiEmpresa>();
+        for(ServiceFamiEmpresa serviceFE: servicios)
+        {
+            if(serviceFE.isActive())
+            {
+                serviciosActivos.add(serviceFE);
+            }
+        }
+        return serviciosActivos;
+    }
+
+    public List<ServiceFamiEmpresa> findAllInactives(){
+        List<ServiceFamiEmpresa> servicios = serviceFamiEmpresaRepository.findAll();
+        List<ServiceFamiEmpresa> serviciosActivos = new ArrayList<ServiceFamiEmpresa>();
+        for(ServiceFamiEmpresa serviceFE: servicios)
+        {
+            if(!serviceFE.isActive())
+            {
+                serviciosActivos.add(serviceFE);
+            }
+        }
+        return serviciosActivos;
     }
 
     public Boolean create(String code, String name, double price) {
@@ -73,7 +104,7 @@ public class ServiceFamiEmpresaService {
     public boolean isServiceAlreadyPresent(ServiceFamiEmpresa service) {
 		ServiceFamiEmpresa serviceFound = serviceFamiEmpresaRepository.findByCode(service.getCode());
 		if (serviceFound==null) 
-			return false;
+            return false;
 		return true;
     }
 
@@ -227,6 +258,26 @@ public class ServiceFamiEmpresaService {
                 return true;
             }
         }   
+        return false;
+    }
+
+    public Boolean changeInactive(ServiceFamiEmpresa service) {
+        if(serviceFamiEmpresaRepository.existsById(service.getId())){
+            ServiceFamiEmpresa serviceFound = serviceFamiEmpresaRepository.findByCode(service.getCode());
+            serviceFound.setInactive();
+            serviceFamiEmpresaRepository.save(serviceFound);
+            return true;
+        }
+        return false;
+    }
+
+    public Boolean changeActive(ServiceFamiEmpresa service) {
+        if(serviceFamiEmpresaRepository.existsById(service.getId())){
+            ServiceFamiEmpresa serviceFound = serviceFamiEmpresaRepository.findByCode(service.getCode());
+            serviceFound.setActive();
+            serviceFamiEmpresaRepository.save(serviceFound);
+            return true;
+        }
         return false;
     }
 

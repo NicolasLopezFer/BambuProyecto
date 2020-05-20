@@ -58,7 +58,8 @@ public class ServiceArticleService {
     public boolean delete(ServiceArticle serviceArticle){
 
         if(serviceArticleRepository.existsById(serviceArticle.getId())){
-            serviceArticleRepository.delete(serviceArticle);
+            ServiceArticle sArt = serviceArticleRepository.findById(serviceArticle.getId()).get();
+            serviceArticleRepository.delete(sArt);
             return true;
         }
  

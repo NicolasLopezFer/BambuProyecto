@@ -53,10 +53,5 @@ public class auxServiReport {
         this.total = total;
     }
 
-    @Override
-    public int hashCode() {
-        // TODO Auto-generated method stub
-        return super.hashCode();
-    }
      
 }
