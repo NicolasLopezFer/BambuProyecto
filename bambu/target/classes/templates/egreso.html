@@ -31,13 +31,16 @@
 	src="static/js/egreso.js"></script>
 </head>
 
+<script type="text/javascript" th:src="@{/js/validarFechas.js}" 
+	src="static/js/validarFechas.js"></script> 
+
 <body id="page-top">
 	<!-- Navigation-->
 	<nav
 		class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top"
 		id="mainNav">
 		<div class="container">
-			<a class="navbar-brand js-scroll-trigger" href="emprendedor">BAMBÚ</a>
+			<a class="navbar-brand js-scroll-trigger" href="#page-top">BAMBÚ</a>
 			<button
 				class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded"
 				type="button" data-toggle="collapse" data-target="#navbarResponsive"
@@ -129,7 +132,6 @@
 			<div class="text-center col-md-2">
 
 			</div>
-		</div>
 		
 		<div class="saveForm">
 			<form th:action="@{/egreso-crear}" method="post">
@@ -252,8 +254,12 @@
 					</div>
 				</div>
 			</form>
-        </div>
-        
+		</div>
+		
+		
+
+
+
 		<div class="editForm">
 			<form th:action="@{/egreso-editar}" method="post">
 				<div class="modal fade" id="editModal" tabindex="-1" role="dialog"
@@ -442,8 +448,9 @@
 							<div class="modal-footer">
 								<button type="button" class="btn btn-secondary"
 									data-dismiss="modal">Cancelar</button>
-								<input type="submit" class="btn btn-primary " value="Generar reporte" />
+								<input type="submit" class="btn btn-primary " value="Generar reporte"  onclick="validar();" />
 							</div>
+			
 						</div>
 					</div>
 				</div>
