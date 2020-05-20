@@ -10,6 +10,7 @@ function validar()
     var Secondfecha=document.getElementById("fechaFin").value;
     if(!validarFecha(Firstfecha,Secondfecha)){
         //document.getElementById("result").innerHTML="La fecha "+Secondfecha+" es incorrecta";
-        alert("La fecha "+Secondfecha+" es incorrecta. Debe ser posterior a la fecha de inicio");
+        //alert("La fecha "+Secondfecha+" es incorrecta. Debe ser posterior a la fecha de inicio");
+        swal("¡Error!", "La fecha "+Secondfecha+" es incorrecta", "error");
     }
 }
