@@ -1,7 +1,7 @@
 $(document).ready(function() {
-	$('.ffBtn').on('click', function(event) {
+	$('.fffBtn').on('click', function(event) {
 		event.preventDefault();
-		$('.filtrarFechasRecibo #filtrarModal').modal();
+		$('.filtrarAFechasRecibo #filtrarModal').modal();
 	});
 });
 

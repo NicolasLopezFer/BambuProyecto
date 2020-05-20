@@ -51,7 +51,6 @@ public class ReporteServiciosFamiEmpresaController {
 					if(ss.get(j).getServiceFamiEmpresa().getCode() == serviReportLlegada.get(k).getCode()){
 						existente = true;
 						ubicacionLocal = k;
-						System.out.println("AAAAAAAAAAAAAAAAAAAAAAA");
 					}
 				}
 				if(existente == true){
@@ -84,30 +83,68 @@ public class ReporteServiciosFamiEmpresaController {
 		return modelAndView;
 	}
 	
-	// @RequestMapping(value = "/filtrarFechasRecibo", method = RequestMethod.POST)
-	// public ModelAndView filtrarFechasRecibo(@RequestParam(value = "fechaInicio") String fechaInicio, @RequestParam(value = "fechaFin") String fechaFin) 
-	// {
-	// 	ModelAndView modelAndView = new ModelAndView();
-	// 	DateTimeFormatter formatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
-	// 	LocalDate dateInicial=LocalDate.parse(fechaInicio,formatter);
-	// 	LocalDate dateFinal=LocalDate.parse(fechaFin,formatter);
-	// 	List<ReciboCaja> list_recibos=new ArrayList<>();
-	// 	for(ReciboCaja r: serviceFamiEmpresaSer.findAll()){
-	// 		if(r.getFecha().isAfter(dateInicial) && r.getFecha().isBefore(dateFinal))
-	// 			list_recibos.add(r);
-	// 	}
-	// 	recibos=list_recibos;
-	// 	modelAndView.setViewName("redirect:/reporteRecibosCaja");
-	// 	return modelAndView;
-	// }
+	@RequestMapping(value = "/filtrarAFechasRecibo", method = RequestMethod.POST)
+	public ModelAndView filtrarFechasRecibo(@RequestParam(value = "fechaInicio") String fechaInicio, @RequestParam(value = "fechaFin") String fechaFin) 
+	{
+		ModelAndView modelAndView = new ModelAndView();
+		DateTimeFormatter formatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		LocalDate dateInicial=LocalDate.parse(fechaInicio,formatter);
+		LocalDate dateFinal=LocalDate.parse(fechaFin,formatter);
+
+		serviReportLlegada.clear();
+
+		int ubicacionLocal = 0;
+		List<ServiceSaleBill> ssb = serviceSaleBillSer.findAll();
+
+		for(int i = 0; i<ssb.size();i++){
+			if(ssb.get(i).getDate().isAfter(dateInicial) && ssb.get(i).getExpiration().isBefore(dateFinal)){
+				auxServiReport asr = new auxServiReport();;
+				List<ServiceSale> ss = new ArrayList<ServiceSale>(ssb.get(i).getServices());
+				boolean existente = false;
+				for(int j = 0; j < ss.size();j++){
+					for(int k = 0; k < serviReport.size();k++){
+						if(ss.get(j).getServiceFamiEmpresa().getCode() == serviReport.get(k).getCode()){
+							existente = true;
+							ubicacionLocal = k;
+						}
+					}
+					if(existente == true){
+						double cantSol = serviReport.get(ubicacionLocal).getCantSolicitudes();
+						double tot = serviReport.get(ubicacionLocal).getTotal();
+						String c = serviReport.get(ubicacionLocal).getCode();
+						String n = serviReport.get(ubicacionLocal).getNombre();
+
+						serviReport.remove(ubicacionLocal);
+
+						asr.setCode(c);
+						asr.setNombre(n);
+						asr.setCantSolicitudes(cantSol + ss.get(j).getQuantity());
+						asr.setTotal(tot + ss.get(j).getTotalValue());
+
+						serviReport.add(asr);
+
+					}else{
+						asr.setCode(ss.get(j).getServiceFamiEmpresa().getCode());
+						asr.setNombre(ss.get(j).getServiceFamiEmpresa().getName());
+						asr.setCantSolicitudes(ss.get(j).getQuantity());
+						asr.setTotal(ss.get(j).getTotalValue());
+						serviReport.add(asr);
+					}
+				}
+			}			
+		}	
+
+		modelAndView.setViewName("redirect:/reporteServiciosFamiEmpresa");
+		return modelAndView;
+	}
 	
-	// @RequestMapping(value = "/reporteServiciosFamiEmpresa", method = RequestMethod.GET)
-	// public ModelAndView reporteRecibosCaja(@RequestParam(defaultValue="0") int page) {
-	// 	ModelAndView modelAndView = new ModelAndView();
-	// 	modelAndView.addObject("lista_servicios", servicios);
-	// 	modelAndView.setViewName("reporteServiciosFamiEmpresa"); // resources/template/reporteReciboCajas.html
-	// 	return modelAndView;
-	// }
+	@RequestMapping(value = "/reporteServiciosFamiEmpresa", method = RequestMethod.GET)
+	public ModelAndView reporteRecibosCaja(@RequestParam(defaultValue="0") int page) {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("lista_servicios", serviReport);
+		modelAndView.setViewName("reporteServiciosFamiEmpresa"); // resources/template/reporteReciboCajas.html
+		return modelAndView;
+	}
 
     // @RequestMapping(value = "/reporteReciboCaja-encontrarUno", method = RequestMethod.GET)
 	// @ResponseBody

@@ -140,7 +140,7 @@ public class ServiceController {
 	@RequestMapping(value = "/servicioborrar", method = RequestMethod.GET)
 	public ModelAndView borrarArticulo(final long id) {
 		final ModelAndView modelAndView = new ModelAndView();
-		if(serviceFamiEmpresaService.delete(serviceFamiEmpresaService.findById(id))) 
+		if(serviceFamiEmpresaService.changeInactive(serviceFamiEmpresaService.findById(id))) 
 		{
 			modelAndView.addObject("responseMessage", "Servicio borrado Exitosamente!");	
 		}else {
