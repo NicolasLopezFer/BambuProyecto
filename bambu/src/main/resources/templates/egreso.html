@@ -31,6 +31,9 @@
 	src="static/js/egreso.js"></script>
 </head>
 
+<script type="text/javascript" th:src="@{/js/validarFechas.js}" 
+	src="static/js/validarFechas.js"></script> 
+
 <body id="page-top">
 	<!-- Navigation-->
 	<nav
@@ -129,7 +132,6 @@
 			<div class="text-center col-md-2">
 
 			</div>
-		</div>
 		
 		<div class="saveForm">
 			<form th:action="@{/egreso-crear}" method="post">
@@ -252,8 +254,12 @@
 					</div>
 				</div>
 			</form>
-        </div>
-        
+		</div>
+		
+		
+
+
+
 		<div class="editForm">
 			<form th:action="@{/egreso-editar}" method="post">
 				<div class="modal fade" id="editModal" tabindex="-1" role="dialog"
@@ -442,8 +448,9 @@
 							<div class="modal-footer">
 								<button type="button" class="btn btn-secondary"
 									data-dismiss="modal">Cancelar</button>
-								<input type="submit" class="btn btn-primary " value="Generar reporte" />
+								<input type="submit" class="btn btn-primary " value="Generar reporte"  onclick="validar();" />
 							</div>
+			
 						</div>
 					</div>
 				</div>
@@ -478,5 +485,7 @@
 	<script src="assets/mail/contact_me.js"></script>
 	<!-- Core theme JS-->
 	<script src="js/scripts.js"></script>
+	<!-- Sweet Alert -->
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </body>
 </html>

@@ -35,6 +35,7 @@ public class EgresosController
     @RequestMapping(value = "/egreso", method = RequestMethod.GET)
 	public ModelAndView egresos(@RequestParam(defaultValue="0") int page) {
 		ModelAndView modelAndView = new ModelAndView();
+		modelAndView = new ModelAndView();
 		modelAndView.addObject("egresos", egresoService.findAll());
 		modelAndView.setViewName("egreso"); // resources/template/egresos.html
 		return modelAndView;
@@ -46,7 +47,7 @@ public class EgresosController
 		ModelAndView modelAndView = new ModelAndView();
 		if(egresoService.create(a)) {
 			modelAndView.addObject("responseMessage", "Articulo guardado Exitosamente!");	
-			System.out.println("Articulo guardado Exitosamente!");
+			System.out.println("Egreso guardado Exitosamente!");
 		}else {
 			modelAndView.addObject("responseMessage", "Existen errores al guardar el articulo");
 			System.out.println("NO SE GUARDO");
@@ -91,12 +92,17 @@ public class EgresosController
 	}
 
 	@RequestMapping(value = "/filtrarFechasEgreso")
-	public ModelAndView filtrarFechasEgreso(String fechaInicio,String fechaFin) 
+	public ModelAndView filtrarFechasEgreso(String fechaInicio,String fechaFin)
 	{
 		ModelAndView modelAndView = new ModelAndView();
 		DateTimeFormatter formatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDate dateInicial=LocalDate.parse(fechaInicio,formatter);
 		LocalDate dateFinal=LocalDate.parse(fechaFin,formatter);
+		if (!dateInicial.isBefore(dateFinal))
+		{
+			modelAndView.setViewName("redirect:/egreso");
+			return modelAndView;
+		}
 		List<Egreso> list_egresos=new ArrayList<>();
 		for(Egreso e:egresoService.findAll()){
 			if(e.getFecha().isAfter(dateInicial) && e.getFecha().isBefore(dateFinal))
