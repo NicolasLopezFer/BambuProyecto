@@ -91,7 +91,7 @@ public class ReporteServiciosFamiEmpresaController {
 		LocalDate dateInicial=LocalDate.parse(fechaInicio,formatter);
 		LocalDate dateFinal=LocalDate.parse(fechaFin,formatter);
 
-		serviReportLlegada.clear();
+		serviReport.clear();
 
 		int ubicacionLocal = 0;
 		List<ServiceSaleBill> ssb = serviceSaleBillSer.findAll();
