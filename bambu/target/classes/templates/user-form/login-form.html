@@ -16,8 +16,8 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <!-- FRAMEWORK BOOTSTRAP para el estilo de la pagina-->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<!-- Core theme CSS (includes Bootstrap)-->
+	<link href="css/styles.css" rel="stylesheet" />
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
@@ -48,10 +48,10 @@
 <body id="page-top">
 
 	<!-- Navigation -->
-	<nav class="navbar navbar-expand-lg navbar-white bg-light fixed-top"
+	<nav class="navbar navbar-expand-lg navbar-white bg-white fixed-top"
 		id="mainNav">
 		<div class="container">
-			<a class="navbar-brand js-scroll-trigger" href="#page-top"> <img
+			<a class="navbar-brand js-scroll-trigger" href="/"> <img
 				src="static/img/bambulogo_horiz_sinfondo.png"
 				th:src="@{/img/bambulogo_horiz_sinfondo.png}" width="140"
 				height="70" class="d-inline-block align-top" alt="?">
@@ -69,23 +69,24 @@
 		<header class="bg-success text-white">
 			<div class="container">
 				<div class="row">
-					<div class="col-lg-12 " align="center">
+					<div class="col-lg-12" align="center">
 						<div class="col-6">
-							<h1 class="display-4">Inicia Sesión</h1>
+							<h1 class="display-3">Inicia Sesión</h1>
 						</div><br><br>
 						<form class="col-6" th:action="@{/login}" method="post">
 							<div class="form-group" id="user-group">
 								<input type="text" class="form-control"
-									placeholder="Correo Electronico" name="email" />
+									placeholder="Correo Electronico" name="email" required=""/>
 							</div>
 							<div class="form-group" id="contrasena-group">
 								<input type="password" class="form-control"
-									placeholder="Contraseña" name="password" />
+									placeholder="Contraseña" name="password" required=""/>
 							</div>
-							<a class="btn btn-secondary" th:href="@{'/'}">Cancelar</a>
-							<button type="submit" class="btn btn-primary">
+							<div>
+							<button type="submit" class="btn btn-secondary btn-md">
 								<i class="fas fa-sign-in-alt"></i> Ingresar
 							</button>
+							</div>
 						</form>
 						<div class="col-12 forgot">
 							<p>
