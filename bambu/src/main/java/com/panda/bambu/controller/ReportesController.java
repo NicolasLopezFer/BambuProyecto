@@ -64,7 +64,16 @@ public class ReportesController
      {
         
         RedirectView rv=new RedirectView();
-
+        DateTimeFormatter formatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		LocalDate dateInicial=LocalDate.parse(fechaInicio,formatter);
+        LocalDate dateFinal=LocalDate.parse(fechaFin,formatter);
+        if (!dateInicial.isBefore(dateFinal))
+		{
+            rv = new RedirectView("reportes",true);
+            rv.addStaticAttribute("fechaInicio",fechaInicio);
+            rv.addStaticAttribute("fechaFin",fechaFin);
+			return rv;
+		}
         if (tipoReporte.equals("egreso"))
             rv = new RedirectView("filtrarFechasEgreso",true);
         else if(tipoReporte.equals("reciboCaja"))
