@@ -14,7 +14,10 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
         <!--<script type="text/javascript" th:src="@{/js/devoluciones.js}"
-	        src="static/js/devoluciones.js"></script>-->
+            src="static/js/devoluciones.js"></script>-->
+            
+            <script type="text/javascript" th:src="@{/js/validarFechas.js}" 
+            src="static/js/validarFechas.js"></script> 
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -23,7 +26,7 @@
                 <a class="navbar-brand js-scroll-trigger" href="emprendedor">BAMBÚ</a><button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu <i class="fas fa-bars"></i></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="javascript:history.back()">Atras</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="emprendedor">Atras</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#perfil">Perfil</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#cerrarsesion">Cerrar sesión</a></li>
                     </ul>
@@ -58,9 +61,7 @@
                                 Tipo de reporte 
                             </label> 
                             <br> 
-                            <input type="radio" id="tipoReporte" th:name="tipoReporte" value="ingreso">
-                            <label for="tipoReporte"> Reporte Ingresos</label><br>
-                            <input type="radio" id="tipoReporte" th:name="tipoReporte" value="egreso">
+                            <input type="radio" id="tipoReporte" th:name="tipoReporte" value="egreso" required="">
                             <label for="tipoReporte"> Reporte Egresos</label><br>
                             <input type="radio" id="tipoReporte" th:name="tipoReporte" value="ingreYegre">
                             <label for="tipoReporte"> Reporte Ingresos Y Egresos</label><br>
@@ -91,7 +92,7 @@
                             id="fechaFin" th:name="fechaFin" value="" required="required" />
                         <br>
                         <div class="modal-footer">
-                            <input type="submit" class="btn btn-primary " value="Generar reporte" />
+                            <input type="submit" class="btn btn-primary " value="Generar reporte" onclick="validar();"/>
                         </div>
                     </div>
 

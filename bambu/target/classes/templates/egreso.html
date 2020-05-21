@@ -21,7 +21,14 @@
 	rel="stylesheet" type="text/css" />
 <link
 	href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic"
-	rel="stylesheet" type="text/css" />
+	rel="stylesheet" type="text/css" 
+/>
+
+
+        <!-- DataTables CSS -->
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
+		
+		
 
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="css/styles.css" rel="stylesheet" />
@@ -52,7 +59,7 @@
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item mx-0 mx-lg-1"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-						href="javascript:history.back()">Atras</a></li>
+						href="emprendedor">Atras</a></li>
 					<li class="nav-item mx-0 mx-lg-1"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
 						href="#perfil">Perfil</a></li>
@@ -487,5 +494,13 @@
 	<script src="js/scripts.js"></script>
 	<!-- Sweet Alert -->
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	
+	<!--JQUERY DataTable-->       
+	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	  
+	<!-- DataTable JS -->
+	<script type="text/javascript" th:src="@{/js/table/datatable.js}" src="static/js/table/datatable.js"></script>
 </body>
 </html>
