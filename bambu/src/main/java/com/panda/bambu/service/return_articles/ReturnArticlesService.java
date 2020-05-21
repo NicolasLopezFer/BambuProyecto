@@ -47,6 +47,7 @@ public class ReturnArticlesService {
 
     public List<ReturnArticles> findByRange(LocalDate dateInicial, LocalDate dateFinal){
         List<ReturnArticles> returns = new ArrayList<ReturnArticles>();
+        if(!findAll().isEmpty()){
         for (ReturnArticles returnArticles : findAll()) {
             if(returnArticles.getDate() != null){
               if(returnArticles.getDate().isAfter(dateInicial) && returnArticles.getDate().isBefore(dateFinal)){
@@ -54,6 +55,7 @@ public class ReturnArticlesService {
               }
             }
         }
+    }
         return returns;
     }
     
