@@ -13,7 +13,7 @@ public class Tax {
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-    private int id;
+    private Long id;
 
     @NotNull(message="Name is compulsory")
     @Column(name = "name")
@@ -23,11 +23,11 @@ public class Tax {
     @Column(name = "value")
     private float value;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -51,7 +51,7 @@ public class Tax {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + id;
+
         result = prime * result + ((name == null) ? 0 : name.hashCode());
         result = prime * result + Float.floatToIntBits(value);
         return result;

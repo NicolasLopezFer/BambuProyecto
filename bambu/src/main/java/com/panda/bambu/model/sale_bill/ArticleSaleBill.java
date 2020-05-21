@@ -1,8 +1,8 @@
 package com.panda.bambu.model.sale_bill;
 
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -36,12 +36,11 @@ public class ArticleSaleBill{
     @Column(name = "date")
     private LocalDate date;
 
-    @NotNull(message="Expiration is compulsory")
     @Column(name = "expiration")
     private LocalDate expiration;
     
     @OneToMany()
-    private Set<ArticleSale> articles;
+    private List<ArticleSale> articles;
 
     @NotNull(message="Total is compulsory")
     @Column(name = "total")
@@ -49,7 +48,7 @@ public class ArticleSaleBill{
     
     public ArticleSaleBill(){
          date = LocalDate.now();
-         articles = new HashSet<ArticleSale>();
+         articles = new ArrayList<ArticleSale>();
     }
 
     public Long getId() {
@@ -100,11 +99,11 @@ public class ArticleSaleBill{
         this.expiration = expiration;
     }
 
-    public Set<ArticleSale> getArticles() {
+    public List<ArticleSale> getArticles() {
         return articles;
     }
 
-    public void setArticles(Set<ArticleSale> articles) {
+    public void setArticles(List<ArticleSale> articles) {
         this.articles = articles;
     }
 

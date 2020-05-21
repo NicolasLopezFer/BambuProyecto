@@ -14,8 +14,13 @@ public class MeasureMethodService {
       @Autowired
       MeasureMethodRepository measureMethodRepository;
 
-      public List<MeasureMethod> findAllMethods(){
-
+      public List<MeasureMethod> findAll(){
+           System.out.println("");
+           System.out.println("");
+           System.out.println("");
+           System.out.println("ANDO BUSCANDO LOS METODOS EN LA BD DONDE TARAN QUIEN PODRA SABER");
+           System.out.println("");
+           System.out.println("");
            if(!measureMethodRepository.findAll().isEmpty()){
               return measureMethodRepository.findAll();
            }

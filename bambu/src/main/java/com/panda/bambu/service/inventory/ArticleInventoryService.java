@@ -34,7 +34,10 @@ public class ArticleInventoryService extends TimerTask{
 	OutputService outputService;
 
     public ArticleInventory findById(Long id){
-        return articleIRepository.findById(id).get();
+        if(articleIRepository.findById(id).get() != null){
+            return articleIRepository.findById(id).get();
+        }
+        return null;
     }
         
     public ArticleInventory findByArticle(Article article){
@@ -50,9 +53,10 @@ public class ArticleInventoryService extends TimerTask{
         if(articleService.isArticleAlreadyPresent(article) == true){
             if(article !=null){
                 ArticleInventory newArticle = new ArticleInventory();
-                newArticle.setArticle(article);    
+                newArticle.setArticle(article);
+                newArticle.setMeasureMethod("Promedio Ponderado");
+                newArticle.getInventories().add(inventoryService.create());    
                 articleIRepository.save(newArticle);
-                newArticle.getInventories().add(inventoryService.create());
                 return true;            
             }
         }
@@ -107,6 +111,33 @@ public class ArticleInventoryService extends TimerTask{
     public void deleteAll(){
         articleIRepository.deleteAll();
     }
+    
+    public void modifyMethod(String method){
+        
+        List<Inventory> inventories = null;
+        double unitCost = 0.0;
+        if(!method.isBlank()){
+            for (ArticleInventory article : findAll()) {
+                 article.setMeasureMethod(method);
+                 save(article);
+                 inventories = article.getInventories();
+                 System.out.println("");
+                 System.out.println("");
+                 System.out.println("");
+                 System.out.println("");
+                 System.out.println("SOY YO CAMBIANDO EL METODO" + inventories.size());
+                if(!inventories.isEmpty()){
+                    System.out.println("SiGO AQUI BABY" + inventories.size());
+                    unitCost = inventoryService.modifyMeasureMethodInventory(inventories.get(inventories.size()-1), method);
+                    Article articleI = article.getArticle();
+                    articleI.setUnitCost(unitCost);
+                    articleService.save(articleI);
+                }
+                
+                save(article);
+            }
+        }
+    }
 
     public boolean addEntry(ArticleInventory articleInventory, Entry entry){
                 
@@ -115,14 +146,20 @@ public class ArticleInventoryService extends TimerTask{
 
             Article article = articleInventory.getArticle();
             article.setQuantity(entry.getQuantity()+article.getQuantity());
+            article.setTotalCost(article.getQuantity()*article.getUnitCost());
             articleService.save(article);
+            
+            entry.setTotalCost(entry.getQuantity()*entry.getUnitCost());
 
-            if(articleIRepository.existsById(articleInventory.getId()) == true && !entryService.createEntry(entry)){
-                if(articleInventory.getInventories().isEmpty()){
-                   articleInventory.getInventories().add(inventoryService.create());
+            if(articleIRepository.existsById(articleInventory.getId()) == true && entryService.createEntry(entry) == true){
+               if(articleInventory.getInventories().isEmpty()){
+                    articleInventory.getInventories().add(inventoryService.create());
                 }
-                articleInventory.getArticle().setUnitCost(inventoryService.addEntryInventory(articleInventory.getInventories().get(articleInventory.getInventories().size()-1), entry));
+                
+                double unitCost = inventoryService.addEntryInventory(articleInventory.getInventories().get(articleInventory.getInventories().size()-1), entry, articleInventory.getMeasureMethod());
+                articleInventory.getArticle().setUnitCost(unitCost);
                 articleService.save(articleInventory.getArticle());
+                save(articleInventory);
              return true;
             }
         }
@@ -132,16 +169,16 @@ public class ArticleInventoryService extends TimerTask{
     
     public boolean addOuput(ArticleInventory articleInventory, Output output){
         
+        System.out.println("Salida soyyy id:" + articleInventory.getId());
         Article article = articleInventory.getArticle();
-        if(output != null && output.getQuantity() > 0 && output.getQuantity()<article.getQuantity()){
+        if(output != null && output.getQuantity() > 0 && output.getQuantity() < article.getQuantity()){
             output.setArticle(articleInventory.getArticle());
-            output.setUnitCost(articleInventory.getArticle().getUnitCost());
-            output.setTotalCost(output.getQuantity()*output.getUnitCost());
-
+         
             article.setQuantity(article.getQuantity()-output.getQuantity());
+            article.setTotalCost(article.getQuantity()*article.getUnitCost());
             articleService.save(article);
 
-            if(articleIRepository.existsById(articleInventory.getId()) == true && !outputService.create(output)){
+            if(articleIRepository.existsById(articleInventory.getId()) == true && outputService.create(output) == true){
                 if(articleInventory.getInventories().isEmpty()){
                     articleInventory.getInventories().add(inventoryService.create());
                     articleIRepository.save(articleInventory);
@@ -149,7 +186,7 @@ public class ArticleInventoryService extends TimerTask{
                 output.setArticle(articleInventory.getArticle());
                 outputService.create(output);   
             
-                articleInventory.getArticle().setUnitCost(inventoryService.addOutputInventory(articleInventory.getInventories().get(articleInventory.getInventories().size()-1), output));
+                articleInventory.getArticle().setUnitCost(inventoryService.addOutputInventory(articleInventory.getInventories().get(articleInventory.getInventories().size()-1), output,articleInventory.getMeasureMethod()));
                 articleService.save(articleInventory.getArticle());
                 return true;
             }
@@ -186,4 +223,6 @@ public class ArticleInventoryService extends TimerTask{
              }
              
       }
+    
+
 }

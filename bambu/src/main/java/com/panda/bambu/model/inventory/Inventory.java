@@ -25,9 +25,6 @@ public class Inventory {
     @Column(name = "date")
     private LocalDate date;
 
-    @Column(name = "measure_method")
-    private String measureMethod;
-
     @OneToMany()
     private List<Entry> entries;
     
@@ -59,14 +56,6 @@ public class Inventory {
 
     public void setDate(LocalDate date) {
         this.date = date;
-    }
-
-    public String getMeasureMethod() {
-        return measureMethod;
-    }
-
-    public void setMeasureMethod(String measureMethod) {
-        this.measureMethod = measureMethod;
     }
 
     public List<Entry> getEntries() {
@@ -101,7 +90,6 @@ public class Inventory {
         result = prime * result + ((date == null) ? 0 : date.hashCode());
         result = prime * result + ((entries == null) ? 0 : entries.hashCode());
         result = prime * result + (int) (id ^ (id >>> 32));
-        result = prime * result + ((measureMethod == null) ? 0 : measureMethod.hashCode());
         result = prime * result + ((outputs == null) ? 0 : outputs.hashCode());
         return result;
     }
@@ -132,11 +120,6 @@ public class Inventory {
             return false;
         if (id != other.id)
             return false;
-        if (measureMethod == null) {
-            if (other.measureMethod != null)
-                return false;
-        } else if (!measureMethod.equals(other.measureMethod))
-            return false;
         if (outputs == null) {
             if (other.outputs != null)
                 return false;
@@ -148,7 +131,7 @@ public class Inventory {
     @Override
     public String toString() {
         return "Inventory [balances=" + balances + ", date=" + date + ", entries=" + entries + ", id=" + id
-                + ", measureMethod=" + measureMethod + ", outputs=" + outputs + "]";
+                + ", outputs=" + outputs + "]";
     }
 
 

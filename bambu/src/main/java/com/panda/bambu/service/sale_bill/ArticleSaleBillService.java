@@ -1,5 +1,7 @@
 package com.panda.bambu.service.sale_bill;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.panda.bambu.model.inventory.Output;
@@ -40,6 +42,16 @@ public class ArticleSaleBillService {
          return articleSaleBillRepository.findAll();
      }
      
+     public List<ArticleSaleBill> findByRange(LocalDate dateInicial, LocalDate dateFinal){
+         List<ArticleSaleBill> saleBills = new ArrayList<ArticleSaleBill>();
+         for (ArticleSaleBill articleSaleBill : findAll()) {
+               if(articleSaleBill.getDate().isAfter(dateInicial) && articleSaleBill.getDate().isBefore(dateFinal)){
+                  saleBills.add(articleSaleBill);
+               }
+         }
+         return saleBills;
+     }
+
      public boolean isRepeatCode(ArticleSaleBill articleBill, ArticleSale articleSale){
          
              for(ArticleSale article: articleBill.getArticles()){
@@ -55,20 +67,21 @@ public class ArticleSaleBillService {
            if(articleSaleBillRepository.findByCode(articleBill.getCode()) == null){
               if(!articleBill.getArticles().isEmpty()){
                   for(ArticleSale article: articleBill.getArticles()){
-                      if(article == null || isRepeatCode(articleBill, article)){
+                      if(article == null){
                          return false;   
                       }
-
+                      System.out.println("TOY CREANDO LA FACTURA");
                       if(articleSaleService.create(article) == false){
                          return false;
                       }
 
                       articleSaleService.create(article);
+
                       Output output = new Output();
                       output.setCode(articleBill.getCode());
                       output.setDetail("Venta");
                       output.setQuantity(article.getQuantity());
-                      articleInventoryService.addOuput(articleInventoryService.findByArticle(article.getArticle()), output);
+                      //articleInventoryService.addOuput(articleInventoryService.findById(article.getId()), output);
                   }
 
                    articleSaleBillRepository.save(articleBill);

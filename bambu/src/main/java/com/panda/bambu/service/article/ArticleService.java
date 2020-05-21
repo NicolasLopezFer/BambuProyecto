@@ -5,7 +5,6 @@ import java.util.List;
 import com.panda.bambu.model.article.Article;
 import com.panda.bambu.model.article.ArticleRepository;
 import com.panda.bambu.model.inventory.ArticleInventory;
-import com.panda.bambu.model.inventory.ArticleInventoryRepository;
 import com.panda.bambu.model.inventory.Balance;
 import com.panda.bambu.model.inventory.Entry;
 import com.panda.bambu.model.inventory.Inventory;
@@ -32,6 +31,17 @@ public class ArticleService{
     public Article findByCode(String code){
         return articleRepository.findByCode(code);
     }
+
+    public Article findByPosition(int index){
+        List<Article> articles = findAll();
+        Article article = articles.get(index);
+        
+        if(!articles.isEmpty() && article != null){
+           return article;
+        }
+
+        return article;
+    }
     
     public List<Article> findAll(){
         return articleRepository.findAll();
@@ -50,12 +60,18 @@ public class ArticleService{
         return false;    
     }
     
+    public Article getLastArticleCreate(){
+           
+          List<Article> articles = findAll();
+          return articles.get(articles.size()-1); 
+    }
+
     public Boolean create(Article article) {
         Article articleF=articleRepository.findByCode(article.getCode());
         if(articleF==null){
             //if (article.getCode().matches(".*[a-z].*")){
                 articleRepository.save(article);
-                articleInventoryService.create(article);
+                articleInventoryService.create(getLastArticleCreate());
                 return true;
             //}
         }
@@ -104,29 +120,31 @@ public class ArticleService{
 
     public Boolean delete(Article article) {
         if(articleRepository.existsById(article.getId())){
-            
-            ArticleInventory articuloInventory=articleInventoryService.findByArticle(article);
+    
+            ArticleInventory articuloInventory=articleInventoryService.findById(article.getId());
             if(articuloInventory!=null){
-                articleInventoryService.delete(articuloInventory);
-                articleRepository.delete(article);
-                for(Inventory i:articuloInventory.getInventories()){
-                    for(Entry e:i.getEntries()){
-                        if(e.getArticle().getCode().equals(article.getCode())){
-                            i.getEntries().remove(e);
+                if(articuloInventory.getInventories() != null && !articuloInventory.getInventories().isEmpty()){
+                    for(Inventory i:articuloInventory.getInventories()){
+                        for(Entry e:i.getEntries()){
+                            if(e.getArticle().getCode().equals(article.getCode())){
+                                i.getEntries().remove(e);
+                            }
                         }
-                    }
-                    for(Output o:i.getOutputs()){
-                        if(o.getArticle().getCode().equals(article.getCode())){
-                            i.getOutputs().remove(o);
+                        for(Output o:i.getOutputs()){
+                            if(o.getArticle().getCode().equals(article.getCode())){
+                                i.getOutputs().remove(o);
+                            }
                         }
-                    }
-                    for(Balance b:i.getBalances()){
-                        if(b.getArticle().getCode().equals(article.getCode())){
-                            i.getBalances().remove(b);
+                        for(Balance b:i.getBalances()){
+                            if(b.getArticle().getCode().equals(article.getCode())){
+                                i.getBalances().remove(b);
+                            }
                         }
-                    }
+                   }
+               
                 }
-                articleInventoryService.delete(articleInventoryService.findByArticle(article));
+                articleInventoryService.delete(articuloInventory);
+                System.out.println("HOLAAA BORRANDO ANDO ARTICULO");
                 articleRepository.delete(article);
                 return true;
             }
