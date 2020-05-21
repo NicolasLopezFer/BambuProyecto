@@ -3,6 +3,8 @@
 $(document).ready(function () {
     var table = $('#table-information').DataTable({
         lengthChange: false,
+        paging: false,
+        retrieve: true,
         dom: 'Bfrtip',
         buttons: [{
             extend: 'pdfHtml5',
