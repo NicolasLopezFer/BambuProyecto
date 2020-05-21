@@ -89,7 +89,7 @@
                                     <td>
                                         <a th:href="@{/inventario/encontrar-articulo/(id=${i.getId()})}" class="btn btn-primary eBtn" id="btn-entry" data-toggle="modal" data-target="#entradaModal">Entrada</a>
                                         <a th:href="@{/inventario/encontrar-articulo/(id=${i.getId()})}" class="btn btn-primary sBtn" id="btn-output">Salida</a>
-                                        <a th:href="@{articulos-encontraruno/(id=${i.getArticle().getId()})}" class="btn btn-primary sBtn" >Kardex</a>
+                                        <!--<a th:href="@{kardex/(id=${i.getArticle().getId()})}" class="btn btn-primary sBtn" id="btn-kardex" data-toggle="modal" data-target="#kardexModal" >Kardex</a>-->
                                     </td>
                                   </tr>                               
                             </tbody>
@@ -259,7 +259,46 @@
                     </div>
                 </form>
             </div>   
+
+<!-- Kardex Modal -------------------------------------------------------------------------------------------------------------------------------------------------------->
+            <div class="kardexForm">
+                <form th:action="@{/kardex}" method="post">
+                    <div class="modal fade" id="kardexModal" tabindex="-1" role="dialog" aria-hidden="true" >
+                        <div class="modal-dialog modal-sm" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header" style="height: 0px;">
+                                    <h5 class="modal-title" id="exampleModalLabel">Métodos de Medición</h5>
+                                    <button type="button" class="close" data-dismiss="modal"
+                                        aria-label="Close" style="height: 20px;">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div> 
+                            
+                                <div class="modal-body" style="padding: 40px;">
+                                    <div class="form-group">
+                                        <label for="unitCost" class="col-form-label">Fecha Inicio: 
+                                            </label> <input type="number" class="form-control"
+                                            id="unitCost" name="unitCost" value="" readonly/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="unitCost" class="col-form-label">Fecha Fin: 
+                                            </label> <input type="number" class="form-control"
+                                            id="unitCost" name="unitCost" value="" readonly/>
+                                    </div>
+                                      <input style="height: 10px;" type="number" id="idArticleKardex" name="idArticle" value="" readonly>     
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-dismiss="modal">Cerrar</button>
+                                    <input type="submit" class="btn btn-primary " value="Guardar" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>   
     </body>
+
 
 <!-- Copyright Section ------------------------------------------------------------------------------------------------------------------------------------------------------->
 

@@ -1,5 +1,7 @@
 package com.panda.bambu.service.inventory;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.panda.bambu.model.article.Article;
@@ -7,6 +9,7 @@ import com.panda.bambu.model.inventory.Balance;
 import com.panda.bambu.model.inventory.Entry;
 import com.panda.bambu.model.inventory.Inventory;
 import com.panda.bambu.model.inventory.InventoryRepository;
+import com.panda.bambu.model.inventory.Kardex;
 import com.panda.bambu.model.inventory.MeasureMethod;
 import com.panda.bambu.model.inventory.Output;
 
@@ -67,16 +70,16 @@ public class InventoryService{
                  inventoryRepository.save(inventory);
                  if(method.toUpperCase().equals("FIFO")){
                     unitCost = applyMethodFiFo(inventory);
-                    addBalanceInventoryEntry(inventory, entry);
+                    //addBalanceInventoryEntry(inventory, entry);
                     
                  }
                  else if(method.toUpperCase().equals("LIFO")){
                     unitCost = applyMethodLiFo(inventory);
-                    addBalanceInventoryEntry(inventory, entry);
+                    //addBalanceInventoryEntry(inventory, entry);
                  }
                  else{
                     unitCost = applyMethodPromedioPonderado(inventory);
-                    addBalanceInventoryEntry(inventory, entry);
+                    //addBalanceInventoryEntry(inventory, entry);
                
                   }
                   inventoryRepository.save(inventory);
@@ -99,21 +102,21 @@ public class InventoryService{
                   unitCost = applyMethodFiFo(inventory,output);
                   output.setUnitCost(unitCost);
                   outputService.save(output);
-                  addBalanceInventoryOutput(inventory, output);
+                  //addBalanceInventoryOutput(inventory, output);
                  
                }
                else if(method.toUpperCase().equals("LIFO")){
                   unitCost = applyMethodLiFo(inventory,output);
                   output.setUnitCost(unitCost);
                   outputService.save(output);
-                  addBalanceInventoryOutput(inventory, output);
+                  //addBalanceInventoryOutput(inventory, output);
                   
                }
                else{
                   unitCost = applyMethodPromedioPonderado(inventory);
                   output.setUnitCost(unitCost);
                   outputService.save(output);
-                  addBalanceInventoryOutput(inventory, output);
+                  //addBalanceInventoryOutput(inventory, output);
                
                }
 
@@ -142,7 +145,6 @@ public class InventoryService{
        public boolean addBalanceInventoryEntry(Inventory inventory,Entry entry){
          
          Balance balance;
-         Balance aux;
          int quantity = 0;
          double totalCost = 0.0;
       
@@ -350,6 +352,46 @@ public class InventoryService{
          }
 
          return unitCost;
+      }
+
+      public List<Kardex> createKardex(LocalDate dateInicial, LocalDate dateFinal, Inventory inventory){
+              List<Kardex> kardex = new ArrayList<Kardex>();
+              if(inventory != null){
+                 if(!inventory.getEntries().isEmpty()){
+                    for (Entry entry : inventory.getEntries()) {
+                        if(entry.getDate().isAfter(dateInicial) && entry.getDate().isBefore(dateFinal))
+                        {
+                           Kardex element = new Kardex();
+                           element.setCode(entry.getCode());
+                           element.setQuantity(entry.getQuantity());
+                           element.setTotalCost(entry.getTotalCost());
+                           element.setDetail(entry.getDetail());
+                           element.setUnitCost(entry.getUnitCost());
+                           element.setType("Entrada");
+                           element.setDate(entry.getDate());
+                        }
+                    }
+                  }
+
+                  if(!inventory.getOutputs().isEmpty()){
+                     for (Output output : inventory.getOutputs()) {
+                         if(output.getDate().isAfter(dateInicial) && output.getDate().isBefore(dateFinal))
+                         {
+                            Kardex element = new Kardex();
+                            element.setCode(output.getCode());
+                            element.setQuantity(output.getQuantity());
+                            element.setTotalCost(output.getTotalCost());
+                            element.setDetail(output.getDetail());
+                            element.setUnitCost(output.getUnitCost());
+                            element.setType("Salida");
+                            element.setDate(output.getDate());
+                         }
+                     }
+                 }
+            }
+
+            return kardex;
+         
       }
 
       public boolean save(Inventory inventory){

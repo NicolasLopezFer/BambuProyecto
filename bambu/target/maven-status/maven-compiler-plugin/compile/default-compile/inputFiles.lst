@@ -5,6 +5,7 @@ C:\Users\aulasingenieria\Desktop\IngeSoft\Bambu\local\BambuProyecto\bambu\src\ma
 C:\Users\aulasingenieria\Desktop\IngeSoft\Bambu\local\BambuProyecto\bambu\src\main\java\com\panda\bambu\service\inventory\BalanceService.java
 C:\Users\aulasingenieria\Desktop\IngeSoft\Bambu\local\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\UserRepository.java
 C:\Users\aulasingenieria\Desktop\IngeSoft\Bambu\local\BambuProyecto\bambu\src\main\java\com\panda\bambu\controller\InventoryController.java
+C:\Users\aulasingenieria\Desktop\IngeSoft\Bambu\local\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\inventory\Kardex.java
 C:\Users\aulasingenieria\Desktop\IngeSoft\Bambu\local\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\RoleRepository.java
 C:\Users\aulasingenieria\Desktop\IngeSoft\Bambu\local\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\User.java
 C:\Users\aulasingenieria\Desktop\IngeSoft\Bambu\local\BambuProyecto\bambu\src\main\java\com\panda\bambu\service\return_articles\ArticleReturnService.java
@@ -20,6 +21,7 @@ C:\Users\aulasingenieria\Desktop\IngeSoft\Bambu\local\BambuProyecto\bambu\src\ma
 C:\Users\aulasingenieria\Desktop\IngeSoft\Bambu\local\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\sale_bill\ServiceSaleBill.java
 C:\Users\aulasingenieria\Desktop\IngeSoft\Bambu\local\BambuProyecto\bambu\src\main\java\com\panda\bambu\service\tax\TaxService.java
 C:\Users\aulasingenieria\Desktop\IngeSoft\Bambu\local\BambuProyecto\bambu\src\main\java\com\panda\bambu\service\UserService.java
+C:\Users\aulasingenieria\Desktop\IngeSoft\Bambu\local\BambuProyecto\bambu\src\main\java\com\panda\bambu\controller\ReportArticleSaleBillController.java
 C:\Users\aulasingenieria\Desktop\IngeSoft\Bambu\local\BambuProyecto\bambu\src\main\java\com\panda\bambu\controller\UserController.java
 C:\Users\aulasingenieria\Desktop\IngeSoft\Bambu\local\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\inventory\Balance.java
 C:\Users\aulasingenieria\Desktop\IngeSoft\Bambu\local\BambuProyecto\bambu\src\main\java\com\panda\bambu\service\return_articles\ReturnArticlesService.java
@@ -31,6 +33,7 @@ C:\Users\aulasingenieria\Desktop\IngeSoft\Bambu\local\BambuProyecto\bambu\src\ma
 C:\Users\aulasingenieria\Desktop\IngeSoft\Bambu\local\BambuProyecto\bambu\src\main\java\com\panda\bambu\service\article\ArticleService.java
 C:\Users\aulasingenieria\Desktop\IngeSoft\Bambu\local\BambuProyecto\bambu\src\main\java\com\panda\bambu\service\sale_bill\ServiceSaleService.java
 C:\Users\aulasingenieria\Desktop\IngeSoft\Bambu\local\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\inventory\ArticleInventoryRepository.java
+C:\Users\aulasingenieria\Desktop\IngeSoft\Bambu\local\BambuProyecto\bambu\src\main\java\com\panda\bambu\controller\ReportReturnArticlesController.java
 C:\Users\aulasingenieria\Desktop\IngeSoft\Bambu\local\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\inventory\InventoryRepository.java
 C:\Users\aulasingenieria\Desktop\IngeSoft\Bambu\local\BambuProyecto\bambu\src\main\java\com\panda\bambu\service\inventory\ArticleInventoryService.java
 C:\Users\aulasingenieria\Desktop\IngeSoft\Bambu\local\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\article\Article.java
@@ -42,6 +45,7 @@ C:\Users\aulasingenieria\Desktop\IngeSoft\Bambu\local\BambuProyecto\bambu\src\ma
 C:\Users\aulasingenieria\Desktop\IngeSoft\Bambu\local\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\sale_bill\ServiceSaleBillRepository.java
 C:\Users\aulasingenieria\Desktop\IngeSoft\Bambu\local\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\Role.java
 C:\Users\aulasingenieria\Desktop\IngeSoft\Bambu\local\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\inventory\MeasureMethodRepository.java
+C:\Users\aulasingenieria\Desktop\IngeSoft\Bambu\local\BambuProyecto\bambu\src\main\java\com\panda\bambu\controller\KardexController.java
 C:\Users\aulasingenieria\Desktop\IngeSoft\Bambu\local\BambuProyecto\bambu\src\main\java\com\panda\bambu\service\sale_bill\ServiceSaleBillService.java
 C:\Users\aulasingenieria\Desktop\IngeSoft\Bambu\local\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\inventory\OutputRepository.java
 C:\Users\aulasingenieria\Desktop\IngeSoft\Bambu\local\BambuProyecto\bambu\src\main\java\com\panda\bambu\model\inventory\BalanceRepository.java

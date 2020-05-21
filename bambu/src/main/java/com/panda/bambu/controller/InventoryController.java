@@ -1,7 +1,6 @@
 package com.panda.bambu.controller;
 
 import com.panda.bambu.model.inventory.ArticleInventory;
-import com.panda.bambu.model.inventory.ArticleInventoryRepository;
 import com.panda.bambu.model.inventory.Output;
 import com.panda.bambu.model.inventory.Entry;
 import com.panda.bambu.service.article.ArticleService;
@@ -24,8 +23,6 @@ public class InventoryController {
 	@Autowired
 	ArticleInventoryService articleInventoryService;
 
-	@Autowired
-	ArticleInventoryRepository articleInventoryRepository;
 
 	@Autowired
 	ArticleService articleService;
