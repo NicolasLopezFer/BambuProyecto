@@ -83,14 +83,14 @@ public class ReporteServiciosFamiEmpresaController {
 		return modelAndView;
 	}
 	
-	@RequestMapping(value = "/filtrarAFechasRecibo", method = RequestMethod.POST)
+	@RequestMapping(value = "/filtrarFechasReporteServicio")
 	public ModelAndView filtrarFechasRecibo(@RequestParam(value = "fechaInicio") String fechaInicio, @RequestParam(value = "fechaFin") String fechaFin) 
 	{
 		ModelAndView modelAndView = new ModelAndView();
 		DateTimeFormatter formatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDate dateInicial=LocalDate.parse(fechaInicio,formatter);
 		LocalDate dateFinal=LocalDate.parse(fechaFin,formatter);
-
+		System.out.println("AAAAAAAAAAAAAA");
 		serviReport.clear();
 
 		int ubicacionLocal = 0;

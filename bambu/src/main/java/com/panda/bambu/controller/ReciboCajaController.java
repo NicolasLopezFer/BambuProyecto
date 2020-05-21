@@ -90,6 +90,7 @@ public class ReciboCajaController
 	{
 		return filtrarFechasReciboPost(fechaInicio, fechaFin);
 	}
+	
 	@RequestMapping(value = "/filtrarFechasReciboCaja")
 	public ModelAndView filtrarFechasReciboPost(String fechaInicio,String fechaFin) 
 	{

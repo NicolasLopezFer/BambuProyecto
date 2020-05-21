@@ -61,41 +61,6 @@ $(document).ready(function() {
 });
 
 
-// $(function() {
-// 	$("form[name='saveForm']").validate({
-// 	  rules: {
-// 		code: "required",
-// 		name: "required",
-// 		price: "required"
-// 	  },
-// 	  messages: {
-// 		code: "Por favor ingrese el codigo.",
-// 		name: "Por favor ingrese el nombre.",
-// 		price: "Por favor ingrese el precio."
-// 	  },
-// 	  submitHandler: function(form) {
-// 		form.submit();
-// 	  }
-// 	});	
-//   });
-
-
-// $(document).ready(function() {
-// 	$('.verarticulosBtn').on('click', function(event) {
-// 		event.preventDefault();
-// 	//	var href = $(this).attr('href');
-// 		// alert("asda");
-			
-// 		$('.verArtForm #verArtModal').modal();
-
-// 		//$.get(href, function(id, status) {
-// 		//	$('.verArtForm #id').val(id);
-// 	//	alert("da"+id);
-// 	//	});
-
-// 	});
-// });
-
 $(document).ready(function() {
 	$('.newArtBtn').on('click', function(event) {
 		event.preventDefault();
@@ -118,5 +83,12 @@ $(document).ready(function() {
 		var href = $(this).attr('href');
 		$('#deleteAModal #delRef').attr('href',href);
 		$('#deleteAModal').modal();	
+	});
+});
+
+$(document).ready(function() {
+	$('.ffBtn').on('click', function(event) {
+		event.preventDefault();
+		$('.filtrarFechasReporteServicio #filtrarModal').modal();
 	});
 });
