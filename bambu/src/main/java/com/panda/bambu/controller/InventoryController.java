@@ -74,7 +74,7 @@ public class InventoryController {
 	public ModelAndView modificarMetodo(String method){
 		
 		ModelAndView modelAndView = new ModelAndView();
-		if(!method.isBlank()){
+		if(!method.isEmpty()){
 			articleInventoryService.modifyMethod(method);
 		}
 
