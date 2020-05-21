@@ -1,4 +1,4 @@
-package com.panda.bambu.model.egreso;
+package com.panda.bambu.model.ingreso;
 
 import java.time.LocalDate;
 
@@ -15,7 +15,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 
 @Entity 
-public class Egreso {
+public class Ingreso {
 
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -135,10 +135,10 @@ public class Egreso {
         this.elaborador = elaborador;
     }
 
-    public Egreso() {
+    public Ingreso() {
     }
 
-	public Egreso(int numeroComprobante, String nombrePagado, long identificacion, double suma,
+	public Ingreso(int numeroComprobante, String nombrePagado, long identificacion, double suma,
 			String concepto, String descripcion, String elaborador, Boolean aprobado,LocalDate fecha, MetodoPago metodoPago) {
         this.numeroComprobante = numeroComprobante;
 		this.fecha = fecha;

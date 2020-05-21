@@ -62,10 +62,10 @@ public class EgresosController
 		ModelAndView modelAndView = new ModelAndView();
 		//articleRepository.save(a);
 		if(egresoService.modify(a)) {
-			modelAndView.addObject("responseMessage", "Articulo editado Exitosamente!");	
+			modelAndView.addObject("responseMessage", "Egreso editado Exitosamente!");	
 			System.out.println("Articulo guardado Exitosamente!");
 		}else {
-			modelAndView.addObject("responseMessage", "Existen errores al editado el articulo");
+			modelAndView.addObject("responseMessage", "Existen errores al editado el egreso");
 			System.out.println("NO SE GUARDO");
 		}
 		modelAndView.setViewName("redirect:/egreso");
