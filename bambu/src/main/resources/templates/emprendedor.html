@@ -71,7 +71,7 @@
 			</div>
 			<!-- Masthead Subheading-->
 			<p class="masthead-subheading font-weight-light mb-0">Control
-				financiera para FamiEmpresas</p>
+				financiero para FamiEmpresas</p>
 		</div>
 	</header>
 
@@ -151,7 +151,39 @@
 						</div>
 						<!-- Portfolio Grid Items-->
 						<div class="row d-flex justify-content-center">
-							<!-- Portfolio Item Factura de ventas-->
+							<!-- Portfolio Item Ingresos-->
+							<div class="col-md-5 col-md-3 mb-5">
+								<div class="portfolio-item mx-auto" data-toggle="modal"
+									onclick="window.location.href='devoluciones';">
+									<div
+										class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+										<div
+											class="portfolio-item-caption-content text-center text-white">
+											<p>Ingresos</p>
+											</i>
+										</div>
+									</div>
+									<img class="img-personalized"
+										th:src="@{/img/shopping-cart-ingresos.png}" alt="" />
+								</div>
+							</div>
+							<!-- Portfolio Item Egresos-->
+							<div class="col-md-5 col-md-3 mb-5">
+								<div class="portfolio-item mx-auto" data-toggle="modal"
+									onclick="window.location.href='egreso';">
+									<div
+										class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+										<div
+											class="portfolio-item-caption-content text-center text-white">
+											<p>Egresos</p>
+											</i>
+										</div>
+									</div>
+									<img class="img-personalized"
+										th:src="@{/img/shopping-cart-egresos.png}" alt="" />
+								</div>
+							</div>
+							<!-- Portfolio Item Factura de articulos-->
 							<div class="col-md-5 col-md-3 mb-5">
 								<div class="portfolio-item mx-auto" data-toggle="modal"
 									onclick="window.location.href='facturadeventa';">
@@ -159,26 +191,26 @@
 										class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
 										<div
 											class="portfolio-item-caption-content text-center text-white">
-											<p>Facturas de venta</p>
+											<p>Facturas de articulos</p>
 										</div>
 									</div>
 									<img class="img-personalized" th:src="@{/img/bill.png}" alt="" />
 
 								</div>
 							</div>
-							<!-- Portfolio Item Comprobantes de pago-->
+							<!-- Portfolio Item Factura de servicios-->
 							<div class="col-md-5 col-md-3 mb-5">
-								<div class="portfolio-item mx-auto"
-									onclick="window.location.href='egreso'">
+								<div class="portfolio-item mx-auto" data-toggle="modal"
+									onclick="window.location.href='serviFacturaForm';">
 									<div
 										class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
 										<div
 											class="portfolio-item-caption-content text-center text-white">
-											<p>Comprobantes de egreso</p>
+											<p>Facturas de servicios</p>
 										</div>
 									</div>
-									<img class="img-personalized" th:src="@{/img/pencil.png}"
-										alt="" />
+									<img class="img-personalized" th:src="@{/img/car-wash.png}" alt="" />
+
 								</div>
 							</div>
 							<!-- Portfolio Item Recibos de caja-->
@@ -192,7 +224,7 @@
 											<p>Recibos de caja
 										</div>
 									</div>
-									<img class="img-personalized" th:src="@{/img/basket.png}"
+									<img class="img-personalized" th:src="@{/img/money.png}"
 										alt="" />
 								</div>
 							</div>
@@ -205,9 +237,10 @@
 										<div
 											class="portfolio-item-caption-content text-center text-white">
 											<p>Devoluciones</p>
+											</i>
 										</div>
 									</div>
-									<img class="img-personalized" th:src="@{/img/return.png}"
+									<img class="img-personalized" th:src="@{/img/delivery-truck.png}"
 										alt="" />
 								</div>
 							</div>
