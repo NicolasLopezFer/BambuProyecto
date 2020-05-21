@@ -492,8 +492,9 @@ mark,
 }
 
 .img-personalized{
-  max-width: 60%;
+  max-width: 50%;
   height: auto;
+  vertical-align: middle;
 }
 
 .img-thumbnail {

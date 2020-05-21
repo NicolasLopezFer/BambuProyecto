@@ -162,7 +162,39 @@
 						</div>
 						<!-- Portfolio Grid Items-->
 						<div class="row d-flex justify-content-center">
-							<!-- Portfolio Item Factura de ventas-->
+							<!-- Portfolio Item Ingresos-->
+							<div class="col-md-5 col-md-3 mb-5">
+								<div class="portfolio-item mx-auto" data-toggle="modal"
+									onclick="window.location.href='devoluciones';">
+									<div
+										class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+										<div
+											class="portfolio-item-caption-content text-center text-white">
+											<p>Ingresos</p>
+											</i>
+										</div>
+									</div>
+									<img class="img-personalized"
+										th:src="@{/img/shopping-cart-ingresos.png}" alt="" />
+								</div>
+							</div>
+							<!-- Portfolio Item Egresos-->
+							<div class="col-md-5 col-md-3 mb-5">
+								<div class="portfolio-item mx-auto" data-toggle="modal"
+									onclick="window.location.href='egreso';">
+									<div
+										class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+										<div
+											class="portfolio-item-caption-content text-center text-white">
+											<p>Egresos</p>
+											</i>
+										</div>
+									</div>
+									<img class="img-personalized"
+										th:src="@{/img/shopping-cart-egresos.png}" alt="" />
+								</div>
+							</div>
+							<!-- Portfolio Item Factura de articulos-->
 							<div class="col-md-5 col-md-3 mb-5">
 								<div class="portfolio-item mx-auto" data-toggle="modal"
 									onclick="window.location.href='facturadeventa';">
@@ -170,26 +202,26 @@
 										class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
 										<div
 											class="portfolio-item-caption-content text-center text-white">
-											<p>Facturas de venta</p>
+											<p>Facturas de articulos</p>
 										</div>
 									</div>
 									<img class="img-personalized" th:src="@{/img/bill.png}" alt="" />
 
 								</div>
 							</div>
-							<!-- Portfolio Item Comprobantes de pago-->
+							<!-- Portfolio Item Factura de servicios-->
 							<div class="col-md-5 col-md-3 mb-5">
-								<div class="portfolio-item mx-auto"
-									onclick="window.location.href='egreso'">
+								<div class="portfolio-item mx-auto" data-toggle="modal"
+									onclick="window.location.href='serviFacturaForm';">
 									<div
 										class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
 										<div
 											class="portfolio-item-caption-content text-center text-white">
-											<p>Comprobantes de egreso</p>
+											<p>Facturas de servicios</p>
 										</div>
 									</div>
-									<img class="img-personalized" th:src="@{/img/pencil.png}"
-										alt="" />
+									<img class="img-personalized" th:src="@{/img/car-wash.png}" alt="" />
+
 								</div>
 							</div>
 							<!-- Portfolio Item Recibos de caja-->
@@ -203,7 +235,7 @@
 											<p>Recibos de caja
 										</div>
 									</div>
-									<img class="img-personalized" th:src="@{/img/basket.png}"
+									<img class="img-personalized" th:src="@{/img/money.png}"
 										alt="" />
 								</div>
 							</div>
@@ -219,7 +251,7 @@
 											</i>
 										</div>
 									</div>
-									<img class="img-personalized" th:src="@{/img/return.png}"
+									<img class="img-personalized" th:src="@{/img/delivery-truck.png}"
 										alt="" />
 								</div>
 							</div>
@@ -379,9 +411,7 @@
 	<!-- Seccion Informes-->
 	<section class="page-section bg-primary text-white mb-0" id="modelos">
 		<div class="row">
-			<div class="col-lg-2 ml-auto">
-							
-			</div>
+			<div class="col-lg-2 ml-auto"></div>
 			<div class="col-lg-4 border-right d-flex justify-content-center">
 				<div class="container">
 					<!-- About Section Heading-->
@@ -397,22 +427,18 @@
 					</div>
 					<!-- About Section Content-->
 					<div class="row">
-						<div class="col-lg-1 ml-auto">
-							
-						</div>
+						<div class="col-lg-1 ml-auto"></div>
 						<div class="col-md-11 mr-auto">
 							<p class="lead1"></p>
-							<a class="btn btn-outline-secondary btn-m js-scroll-trigger btn-igual"
-								href="">Estado de situación financiera</a> <a
-								class="btn btn-outline-secondary btn-m js-scroll-trigger btn-igual" href="">Estado
-								de perdidas y ganancias</a>
-								<a
+							<a
+								class="btn btn-outline-secondary btn-m js-scroll-trigger btn-igual "
+								 href="#myModal" data-toggle="modal">Estado de situación financiera </a> <a
+								class="btn btn-outline-secondary btn-m js-scroll-trigger btn-igual"
+								 href="#myModal" data-toggle="modal">Estado de perdidas y ganancias</a> <a
 								class="btn btn-outline-secondary btn-m js-scroll-trigger btn-igual"
 								href="kardex">Generar Kardex</a>
 						</div>
-						<div class="col-lg-0 ml-auto">
-							
-						</div>
+						<div class="col-lg-0 ml-auto"></div>
 					</div>
 				</div>
 			</div>
@@ -431,29 +457,22 @@
 					</div>
 					<!-- About Section Content-->
 					<div class="row">
-						<div class="col-lg-3 ml-auto">
-							
-						</div>
+						<div class="col-lg-3 ml-auto"></div>
 						<div class="col-lg-7 mr-auto" id="paraCentrar">
 							<p class="lead1"></p>
-							 <a
+							<a
 								class="btn btn-outline-secondary btn-m js-scroll-trigger btn-igual"
-								href="articulos">Articulos</a>
-								<a
+								href="articulos">Articulos</a> <a
 								class="btn btn-outline-secondary btn-m js-scroll-trigger btn-igual"
-								href="serviciosform">Servicios</a>
-								<a class="btn btn-outline-secondary btn-m js-scroll-trigger btn-igual"
-								href="inventario">Manejo de inventario</a> 
+								href="serviciosform">Servicios</a> <a
+								class="btn btn-outline-secondary btn-m js-scroll-trigger btn-igual"
+								href="inventario">Manejo de inventario</a>
 						</div>
-						<div class="col-lg-2 ml-auto">
-							
-						</div>
+						<div class="col-lg-2 ml-auto"></div>
 					</div>
 				</div>
 			</div>
-			<div class="col-lg-2 ml-auto">
-							
-			</div>
+			<div class="col-lg-2 ml-auto"></div>
 		</div>
 	</section>
 
@@ -471,9 +490,7 @@
 
 	<!-- Portfolio Modals-->
 	<!-- Portfolio Modal 1-->
-	<div class="portfolio-modal modal fade" id="portfolioModal1"
-		tabindex="-1" role="dialog" aria-labelledby="portfolioModal1Label"
-		aria-hidden="true">
+	<div class="modal fade" id="portfolioModal1"  role="dialog">
 		<div class="modal-dialog modal-xl" role="document">
 			<div class="modal-content">
 				<button class="close" type="button" data-dismiss="modal"
@@ -512,7 +529,26 @@
 		</div>
 	</div>
 
-
+	<!-- Modal -->
+	<div id="myModal" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+	
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Modal Header</h4>
+	      </div>
+	      <div class="modal-body">
+	        <p>Some text in the modal.</p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	      </div>
+	    </div>
+	
+	  </div>
+	</div>
 
 
 	<!-- Bootstrap core JS-->
