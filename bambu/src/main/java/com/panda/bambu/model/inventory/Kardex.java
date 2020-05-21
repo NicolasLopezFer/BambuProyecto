@@ -4,7 +4,6 @@ import java.time.LocalDate;
 
 public class Kardex 
 {
-
     private Long id;
     
     private String code;
@@ -95,6 +94,7 @@ public class Kardex
     public String getType(){
         return this.type;
     }
+    
     public void setType(String type){
         this.type = type;
     }

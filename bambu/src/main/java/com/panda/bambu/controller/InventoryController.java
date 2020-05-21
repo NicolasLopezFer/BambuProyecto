@@ -33,7 +33,6 @@ public class InventoryController {
 		modelAndView.addObject("inventory", articleInventoryService.findAll());
 		modelAndView.setViewName("inventario");
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		System.out.println(auth.getName());
 		return modelAndView;
 	}
 	
@@ -46,12 +45,11 @@ public class InventoryController {
 
 	@RequestMapping(value = "/entradaInventario", method = RequestMethod.POST)
 	public ModelAndView entradaInventario(long idArticle, Entry entry ) {
-	    System.out.println("ENTRADA" + idArticle);
+
 		ModelAndView modelAndView = new ModelAndView();      
         	
 		if (articleInventoryService.addEntry(articleInventoryService.findById(idArticle), entry) == true) {
 			modelAndView.addObject("responseMessage", "Entrada exitosa!");
-			System.out.println("Entrada exitosa!");
 		} 
 
 		modelAndView.setViewName("redirect:/inventario");
@@ -62,22 +60,12 @@ public class InventoryController {
 	@RequestMapping(value = "/salidaInventario",  method = RequestMethod.POST)
 	public ModelAndView salidaInventario( long idArticle, Output output ){
 		
-		System.out.println("Salida" + idArticle);
-		
+
 		ModelAndView modelAndView = new ModelAndView();
-		articleInventoryService.addOuput(articleInventoryService.findById(idArticle),output); 
-		if(articleInventoryService.addOuput(articleInventoryService.findById(idArticle),output) == true) 
-		{
-			System.out.println("We do it");
-		}
-		/*if( id > 0 && output != null ){
-		   if(articleInventoryService.addOuput(articleInventoryService.findById(id),output) == true) 
-		   {
-				modelAndView.addObject("responseMessage", "Entrada exitosa!");	
-				System.out.println("Entrada exitosa!");
-				System.out.println("No entrada" + output.getCode());
-		   }
-		}*/
+		articleInventoryService.addOuput(articleInventoryService.findById(idArticle),output);
+
+		articleInventoryService.addOuput(articleInventoryService.findById(idArticle),output);
+
 		modelAndView.setViewName("redirect:/inventario");
 		return modelAndView;
 	}
@@ -86,7 +74,6 @@ public class InventoryController {
 	public ModelAndView modificarMetodo(String method){
 		
 		ModelAndView modelAndView = new ModelAndView();
-        System.out.println("SOY METODO" + method);
 		if(!method.isEmpty()){
 			articleInventoryService.modifyMethod(method);
 		}

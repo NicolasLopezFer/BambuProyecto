@@ -20,26 +20,20 @@ public class ReturnArticles {
 	@Column(name = "id")
     private Long id; 
     
-
 	@Column(name = "code", unique=true)
     private String code;
-
 
     @Column(name = "date")
     private LocalDate date;
 
-
     @Column(name = "customer_name")
     private String customer_name;
-
 
     @Column(name = "id_customer")
     private String idCustomer;
    
-
     @Column(name = "sale_return")
     private Boolean saleReturn;
-
 
     @Column(name = "buy_return")
     private Boolean buyReturn;

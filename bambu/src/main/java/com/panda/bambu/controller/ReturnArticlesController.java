@@ -14,8 +14,6 @@ import com.panda.bambu.model.return_articles.ReturnArticles;
 import com.panda.bambu.model.sale_bill.ArticleSaleBill;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,7 +40,7 @@ public class ReturnArticlesController {
 
 	String code = "";
 	String name_customer = "";
-	Integer idCustomer = null;
+	String idCustomer = null;
 	LocalDate date = null;
 
 
@@ -64,17 +62,13 @@ public class ReturnArticlesController {
 		modelAndView.addObject("saleBillsEdit", saleBills);
 
 		modelAndView.setViewName("devoluciones");
-		
-		//IMPORTANTE
-		//Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		//System.out.println(auth.getName());
 
 		return modelAndView;
 	}
 
 	@RequestMapping(value = "/manetenerInformacion", method = RequestMethod.GET)
 	@ResponseBody
-	public void mantenerInformacion(String code, String name, int nit, String date){
+	public void mantenerInformacion(String code, String name, String nit, String date){
 		 this.code = code;
 		 this.name_customer = name;
 		 this.idCustomer = nit;
@@ -108,9 +102,6 @@ public class ReturnArticlesController {
 		}
 
         returns.add(articleReturn);
-		System.out.println();
-		System.out.println();
-		System.out.println("LLEGUEEEE");
 		modelAndView.setViewName("redirect:/devoluciones");
 		return modelAndView;
 	}
@@ -121,9 +112,6 @@ public class ReturnArticlesController {
 		
 		ArticleReturn articleReturn = null;
 
-    	System.out.println();
-		System.out.println();
-		System.out.println("LLEGUEEEE EDIT "+index);
         change = Integer.parseInt(index);
 		if(!index.isEmpty()) {
 		   return returns.get(Integer.parseInt(index));
@@ -149,10 +137,6 @@ public class ReturnArticlesController {
 			}
 			
 			articleL = returns.get(change);
-
-			System.out.println();
-			System.out.println();
-			System.out.println("LLEGUEEEE A EDITAR LA DEVO´" +change);
 			modelAndView.setViewName("redirect:/devoluciones");
 
 			articleL.setArticle(article);
@@ -174,9 +158,6 @@ public class ReturnArticlesController {
 	@ResponseBody
 	public int obtenerArticuloEliminarDevolucion(String index){
 
-    	System.out.println();
-		System.out.println();
-		System.out.println("LLEGUEEEE DELETE "+index);
         int i = -1;
 		if(!index.isEmpty()) {
 		   i = Integer.parseInt(index);
@@ -213,17 +194,16 @@ public class ReturnArticlesController {
 				returnArticle.setBuyReturn(true);
 				   
 			}
-
+            System.out.println(date + " aaaaaaaaaaaaaaaaADDDDDDDDDD" + idCustomer);
+            returnArticle.setIdCustomer(idCustomer);
+			returnArticle.setDate(date);
 			returnArticle.setArticles(returns);
 
 			this.code = "";
 			this.name_customer = "";
 			this.idCustomer = null;
 			this.date = null;
-			System.out.println("HIJOLE LLEGUE" + returns.size());
 			if(returnArticlesService.create(returnArticle) == true){
-			   System.out.println("HIJOLE LLEGUE");
-			   System.out.println("HIJOLE LLEGUE A DEVOLUCION");
 			   returns.clear();
 			}
 		}

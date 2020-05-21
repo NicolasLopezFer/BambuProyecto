@@ -45,9 +45,11 @@ public class ArticleSaleBillService {
      public List<ArticleSaleBill> findByRange(LocalDate dateInicial, LocalDate dateFinal){
          List<ArticleSaleBill> saleBills = new ArrayList<ArticleSaleBill>();
          for (ArticleSaleBill articleSaleBill : findAll()) {
+             if(articleSaleBill.getDate() != null){
                if(articleSaleBill.getDate().isAfter(dateInicial) && articleSaleBill.getDate().isBefore(dateFinal)){
                   saleBills.add(articleSaleBill);
                }
+             }
          }
          return saleBills;
      }
@@ -70,7 +72,6 @@ public class ArticleSaleBillService {
                       if(article == null){
                          return false;   
                       }
-                      System.out.println("TOY CREANDO LA FACTURA");
                       if(articleSaleService.create(article) == false){
                          return false;
                       }

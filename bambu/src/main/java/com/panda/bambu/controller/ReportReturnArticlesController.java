@@ -23,10 +23,10 @@ public class ReportReturnArticlesController {
 	@ResponseBody
 	public ModelAndView  reporteFactura(@RequestParam(value = "fechaInicio") String fechaInicio, @RequestParam(value = "fechaFin") String fechaFin){
         ModelAndView modelAndView = new ModelAndView();
-        System.out.println("HOLAAAAAA REPORTEES" );
-       LocalDate date = LocalDate.parse(fechaInicio);
-       LocalDate dateF = LocalDate.parse(fechaFin);
-       returnArticlesService.findByRange(date, dateF);
+  
+        LocalDate date = LocalDate.parse(fechaInicio);
+        LocalDate dateF = LocalDate.parse(fechaFin);
+        returnArticlesService.findByRange(date, dateF);
         modelAndView.addObject("returns",returnArticlesService.findAll());
 		modelAndView.setViewName("reporte-devoluciones");
 		return modelAndView;          

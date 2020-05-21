@@ -4,10 +4,8 @@ function change() {
 	var name = $('.customer-name').val();
 	var nit = $('#nitFacturaDeVenta').val();
 	var code = $('#numeroFacturaDeVenta').val();
-	alert(name+"dsdsds");
 	var url = '/factura-de-venta-articulos/manetenerInformacion/?code='+code+'&name='+
 	name+'&nit='+nit+'&date='+date+'&dateEx='+dateEx;
-	console.log(url);
 	$.get(url);
 
 };
@@ -23,7 +21,6 @@ $(document).on('click', '#btn-addTax', function(event) {
 		var nameTax = $('#articleModal .modal-body #selectTax').val();
 		var href = '/factura-de-venta-articulos/insertarImpuesto/?name='
 		var url = href + nameTax ;
-		console.log(url);
 		$.get(url, function(tax, status) {
 			 var name = tax.name;
 			 var value = tax.value;
@@ -60,7 +57,6 @@ $(document).on('click', '#btn-delete-tax', function(event)  {
 	 
 	var href = '/factura-de-venta-articulos/eliminarImpuesto/?name='
     var url = href + nameTax ;
-    console.log(url);
     $.get(url);
 	
 	$(this).closest('tr').remove();
@@ -87,9 +83,7 @@ $(document).on('click', '#selectArticle', function() {
 	if(index != 0){
 		var href = '/factura-de-venta-articulos/obtenerPrecioArticulo/?index='
 		var url = href + index ;
-		console.log(url);
 		$.get(url, function(price, status) {
-			console.log(price);
 			$('#articleModal .modal-body #price').val(price);
 			$('#articleModal .modal-body #idArticle').val(index);
 			
@@ -104,17 +98,16 @@ $(document).on('click', '#selectArticle', function() {
 				}
 				
 				var urlI = '/factura-de-venta-articulos/obtenerImpuestos'
-				console.log(urlI);
 				$.get(urlI, function(taxes, status) {
-					console.log(taxes[0].name);
+	
 					if(taxes != NaN){
 					   var totalTaxes = 0;
 					   taxes.forEach(function(tax, index) {
 						  totalTaxes += (total * (tax.value/100));
-						  console.log(totalTaxes);
+						
 						});
 						total += totalTaxes;
-						console.log('soy total' + total);
+					
 					}
 					$('#articleModal  .modal-body #total').val(total);
 				});
@@ -169,7 +162,7 @@ $(document).on('click', '#articleModal .modal-body #discount', function() {
 });
 
 
-$(function() {
+/*$(function() {
 	$("form[name='newArticle']").validate({
 	  rules: {
 		quantity: "required",
@@ -184,7 +177,7 @@ $(function() {
 		form.submit();
 	  }
 	});
-  });
+  });*/
 
 //-- Edit Article Modal -----------------------------------------------------------------------------------------
 function validationTotal(){
@@ -202,17 +195,17 @@ function validationTotal(){
 				
 				var i = $('#editArticleModal .modal-body #indexArticle').val();
 				var urlI = '/factura-de-venta-articulos/obtenerImpuestosArticulo/?index='+ i;
-				console.log(urlI);
+	
 				$.get(urlI, function(taxes, status) {
 					if(taxes != NaN){
 					   var totalTaxes = 0;
 					   taxes.forEach(function(tax, index) {
 						  totalTaxes += (total * (tax.value/100));
-						  console.log(totalTaxes);
+		
 						});
 						total += totalTaxes;
 						$('#editArticleModal  .modal-body #taxEdit').val(totalTaxes);
-						console.log('soy total' + total);
+				
 					}
 					$('#editArticleModal  .modal-body #totalEdit').val(total);
 				});
@@ -249,7 +242,7 @@ $(document).on('click', '#btn-editArticle', function(event) {
 
         var hrefI = '/factura-de-venta-articulos/obtenerImpuestosArticulo/?index='
 		var url = hrefI + indexA ;
-		console.log(url);
+
 		$.get(url, function(taxes, status) {
 			 if(taxes != NaN){
 				taxes.forEach(function(tax, index) {
@@ -274,9 +267,7 @@ $(document).on('click', '#selectArticleEdit', function() {
 	if(index != 0){
 		var href = '/factura-de-venta-articulos/obtenerPrecioArticulo/?index='
 		var url = href + index ;
-		console.log(url);
 		$.get(url, function(price, status) {
-			console.log(price);
 			$('#editArticleModal .modal-body #priceEdit').val(price);
 			$('#editArticleModal .modal-body #idArticleEdit').val(index);
             validationTotal();			
@@ -319,7 +310,6 @@ $(document).on('click', '#btn-addTaxEdit', function(event) {
 		var nameTax = $('#editArticleModal .modal-body #selectTaxEdit').val();
 		var i = $('#editArticleModal .modal-body #indexArticle').val();
 		var url = '/factura-de-venta-articulos/insertarImpuestoArticulo/?'+'index='+ i +'&name=' + nameTax;
-		console.log(url);
 		$.get(url, function(tax, status) {
 			 var name = tax.name;
 			 var value = tax.value;
@@ -339,12 +329,10 @@ $(document).on('click', '#editArticleModal .modal-body #btn-delete-tax-edit', fu
     var nameTax = $(this).closest('tr')  
                        .find('#td-nameEdit')   
 					   .text();   
-	 
-	console.log('el impuesto es' +nameTax);		   				       
+	 	   				       
 	var i = $('#editArticleModal .modal-body #indexArticle').val();
 	var href = '/factura-de-venta-articulos/eliminarImpuestoArticulo/?'+'index='+ i +'&name=' + nameTax;
     var url = href;
-    console.log(url);
     $.get(url);
 	
 	$(this).closest('tr').remove();
@@ -353,7 +341,7 @@ $(document).on('click', '#editArticleModal .modal-body #btn-delete-tax-edit', fu
     
 });
 
-$(function() {
+/*$(function() {
 	$("form[name='editArticle']").validate({
 	  rules: {
 		quantityEdit: "required",
@@ -368,7 +356,7 @@ $(function() {
 		form.submit();
 	  }
 	});
-  });
+  });*/
 
 //-- Delete Article Modal -----------------------------------------------------------------------------------------
 $(document).on('click', '#btn-deleteArticle', function(event) {

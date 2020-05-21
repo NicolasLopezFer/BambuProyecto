@@ -127,11 +127,12 @@ public class ArticleInventoryService extends TimerTask{
                  System.out.println("");
                  System.out.println("SOY YO CAMBIANDO EL METODO" + inventories.size());
                 if(!inventories.isEmpty()){
-                    System.out.println("SiGO AQUI BABY" + inventories.size());
                     unitCost = inventoryService.modifyMeasureMethodInventory(inventories.get(inventories.size()-1), method);
                     Article articleI = article.getArticle();
-                    articleI.setUnitCost(unitCost);
-                    articleService.save(articleI);
+                    if(unitCost > 0.0){
+                        articleI.setUnitCost(unitCost);
+                    }
+                     articleService.save(articleI);
                 }
                 
                 save(article);
@@ -169,7 +170,6 @@ public class ArticleInventoryService extends TimerTask{
     
     public boolean addOuput(ArticleInventory articleInventory, Output output){
         
-        System.out.println("Salida soyyy id:" + articleInventory.getId());
         Article article = articleInventory.getArticle();
         if(output != null && output.getQuantity() > 0 && output.getQuantity() < article.getQuantity()){
             output.setArticle(articleInventory.getArticle());

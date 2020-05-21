@@ -89,7 +89,7 @@
                                     <td>
                                         <a th:href="@{/inventario/encontrar-articulo/(id=${i.getId()})}" class="btn btn-primary eBtn" id="btn-entry" data-toggle="modal" data-target="#entradaModal">Entrada</a>
                                         <a th:href="@{/inventario/encontrar-articulo/(id=${i.getId()})}" class="btn btn-primary sBtn" id="btn-output">Salida</a>
-                                        <!--<a th:href="@{kardex/(id=${i.getArticle().getId()})}" class="btn btn-primary sBtn" id="btn-kardex" data-toggle="modal" data-target="#kardexModal" >Kardex</a>-->
+                                        <a th:href="@{/kardex/(id=${i.getArticle().getId()})}" class="btn btn-primary" id="btn-kardex" data-toggle="modal" data-target="#kardexModal" >Kardex</a>
                                     </td>
                                   </tr>                               
                             </tbody>

@@ -3,10 +3,8 @@ function change() {
 	var name = $('#clienteFacturaDeVenta').val();
 	var nit = $('#nitFacturaDeVenta').val();
 	var code = $('#numeroFacturaDeVenta').val();
-	alert(name+"dsdsds");
 	var url = '/devoluciones/manetenerInformacion/?code='+code+'&name='+
 	name+'&nit='+nit+'&date='+date;
-	console.log(url);
 	$.get(url);
 
 };
@@ -35,9 +33,7 @@ $(document).on('click', '#selectArticle', function() {
 	if(index != 0){
 		var href = '/devoluciones/obtenerPrecioArticulo/?index='
 		var url = href + index ;
-		console.log(url);
 		$.get(url, function(price, status) {
-			console.log(price);
 			$('#articleModal .modal-body #price').val(price);
 			$('#articleModal .modal-body #idArticle').val(index);
 			
@@ -77,7 +73,6 @@ $(document).on('click', '#articleModal .modal-body .quantity', function() {
 });
 
 $(document).on('click', '#articleModal .modal-body #selectNSale', function() {
-	console.log("factura");
 	if($('#articleModal .modal-body #selectNSale').val()!= 'Seleccione'){
 		var code = $('#articleModal .modal-body #selectNSale').val();
 		$('#articleModal .modal-body #nSale').val(code);
@@ -86,7 +81,7 @@ $(document).on('click', '#articleModal .modal-body #selectNSale', function() {
 });
 
 
-$(function() {
+/*$(function() {
 	$("form[name='newArticle']").validate({
 	  rules: {
 		quantity: "required",
@@ -101,9 +96,13 @@ $(function() {
 		form.submit();
 	  }
 	});
-  });
+  });*/
 
 //-- Edit Article Modal -----------------------------------------------------------------------------------------
+$(document).on('click', '#btn-editArticle', function(event) {
+    change();
+}); 
+
 $(document).on('click', '#btn-editArticle', function(event) {
 	event.preventDefault();
 	change();
@@ -126,14 +125,13 @@ $(document).on('click', '#btn-editArticle', function(event) {
 		$('#editArticleModal .modal-body #motiveEdit').val(article.motive);
 
 		if(article.nSale != ""){
-			$('#editArticleModal .modal-body #saleBillsEdit option').each(function(){ 
+			$('#editArticleModal .modal-body #selectNSaleEdit option').each(function(){ 
 				if($(this).val() == article.nSale){
-					alert($(this).val());
 					$(this).attr('selected','selected');
 				}
 			  
 		   });
-		   var indexSale = $('#saleBillsEdit').prop('selectedIndex');
+		   var indexSale = $('#selectNSaleEdit').prop('selectedIndex');
 		   $('#editArticleModal .modal-body #nSaleEdit').val(indexSale);
 		}
 		
@@ -146,9 +144,8 @@ $(document).on('click', '#selectArticleEdit', function() {
 	if(index != 0){
 		var href = '/devoluciones/obtenerPrecioArticulo/?index='
 		var url = href + index ;
-		console.log(url);
+
 		$.get(url, function(price, status) {
-			console.log(price);
 			$('#editArticleModal .modal-body #priceEdit').val(price);
 			$('#editArticleModal .modal-body #idArticleEdit').val(index);
 
@@ -186,7 +183,7 @@ $(document).on('click', '#editArticleModal .modal-body #selectNSaleEdit', functi
 	}    
 });
 
-$(function() {
+/*$(function() {
 	$("form[name='editArticle']").validate({
 	  messages: {
 		quantity: "Por favor ingrese la cantidad del artículo a devolver.",
@@ -197,9 +194,14 @@ $(function() {
 		form.submit();
 	  }
 	});
-  });
+  });*/
 
 //-- Delete Article Modal -----------------------------------------------------------------------------------------
+$(document).on('click', '#btn-deleteArticle', function(event) {
+    change();
+}); 
+
+
 $(document).on('click', '#btn-deleteArticle', function(event) {
 	event.preventDefault();
 	change();

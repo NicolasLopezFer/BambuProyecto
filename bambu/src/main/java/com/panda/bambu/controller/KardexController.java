@@ -30,20 +30,15 @@ public class KardexController {
 	ArticleInventoryService articleInventoryService;
     
     
+
+
     @GetMapping()
     @ResponseBody
-	public ModelAndView kardexInventory(Long idArticle, String dateI, String dateF) {
+	public ModelAndView kardexInventory() {
         ModelAndView modelAndView = new ModelAndView();
-        ArticleInventory article = articleInventoryService.findById(idArticle);
-        if(article.getInventories()!=null && !article.getInventories().isEmpty()){
-            LocalDate dateInicial = LocalDate.parse(dateI);
-            LocalDate dateFinal = LocalDate.parse(dateF);
-            List<Kardex> kardex = inventoryService.createKardex(dateInicial, dateFinal, article.getInventories().get(0));
-            modelAndView.addObject("kardex", kardex);
-            modelAndView.setViewName("kardex");
-        }
-       
-		return modelAndView;
+        modelAndView.setViewName("kardex");
+
+        return modelAndView;
     }
     
 

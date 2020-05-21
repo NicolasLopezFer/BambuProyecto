@@ -13,7 +13,6 @@ $(document).on('click', '#btn-output', function(event) {
 $(document).on('click', '#salidaModal .modal-body #quantity', function() {
 	var typingTimer;
 	var doneTypingInterval = 1000;
-	alert("holi");
 	$('#salidaModal .modal-body #quantity').keyup(function(){
 		clearTimeout(typingTimer);
 		if ($('#salidaModal .modal-body #quantity').val()) {
