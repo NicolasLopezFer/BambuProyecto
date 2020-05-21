@@ -87,7 +87,7 @@ public class InventoryController {
 		
 		ModelAndView modelAndView = new ModelAndView();
         System.out.println("SOY METODO" + method);
-		if(!method.isBlank()){
+		if(!method.isEmpty()){
 			articleInventoryService.modifyMethod(method);
 		}
 

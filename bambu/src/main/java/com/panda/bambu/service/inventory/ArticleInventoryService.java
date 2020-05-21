@@ -116,7 +116,7 @@ public class ArticleInventoryService extends TimerTask{
         
         List<Inventory> inventories = null;
         double unitCost = 0.0;
-        if(!method.isBlank()){
+        if(!method.isEmpty()){
             for (ArticleInventory article : findAll()) {
                  article.setMeasureMethod(method);
                  save(article);

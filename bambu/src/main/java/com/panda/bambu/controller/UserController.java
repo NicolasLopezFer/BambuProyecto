@@ -12,6 +12,7 @@ import com.panda.bambu.model.article.Article;
 import com.panda.bambu.model.article.ArticleRepository;
 import com.panda.bambu.service.UserService;
 import com.panda.bambu.service.article.ArticleService;
+import com.panda.bambu.service.company.CompanyService;
 import com.panda.bambu.service.return_articles.ReturnArticlesService;
 import com.panda.bambu.service.inventory.ArticleInventoryService;
 

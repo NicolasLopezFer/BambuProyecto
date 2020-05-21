@@ -72,7 +72,7 @@ public class ReportesController
         else if(tipoReporte.equals("facturaServicio"))
             rv = new RedirectView("filtrarFechasFacturaServicio",true);
         else if(tipoReporte.equals("devolucion"))
-            rv = new RedirectView("filtrarFechasDevolucion",true); 
+            rv = new RedirectView("reporte-devoluciones",true); 
         else if(tipoReporte.equals("ingreso"))
             rv = new RedirectView("filtrarAFechasRecibo",true);
         else if(tipoReporte.equals("ingreYegre"))
@@ -80,7 +80,7 @@ public class ReportesController
         else if(tipoReporte.equals("servicios"))
             rv = new RedirectView("filtrarFechasReporteServicio",true);
         else if(tipoReporte.equals("facturaArticulo"))
-            rv = new RedirectView("filtrarAFechasRecibo",true);
+            rv = new RedirectView("reporte-factura-articulos",true);
         else if(tipoReporte.equals("inventario"))
             rv = new RedirectView("filtrarAFechasRecibo",true);
         rv.addStaticAttribute("fechaInicio",fechaInicio);
