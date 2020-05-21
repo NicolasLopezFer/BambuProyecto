@@ -14,8 +14,6 @@ import com.panda.bambu.model.sale_bill.ArticleSaleBill;
 import com.panda.bambu.model.tax.Tax;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -149,7 +147,6 @@ public class ArticleSaleBillController {
 					  taxesA.add(newTax);
 				}
 				articlesTaxes.add(taxesA);
-				System.out.println(" puzAAAAAAAAAAAAAAAAAAAeba" +" " + articlesTaxes.size());
 			}
 		   
 		   
@@ -176,9 +173,6 @@ public class ArticleSaleBillController {
         articleSale.setTax(totalTax);
 		taxes.clear();
 		this.total += articleSale.getTotal();
-		System.out.println();
-		System.out.println();
-		System.out.println("LLEGUEEEE" + articleSale.getQuantity() + " pueba" +" ");
 		modelAndView.setViewName("redirect:/factura-de-venta-articulos");
 		return modelAndView;
 	}
@@ -188,12 +182,7 @@ public class ArticleSaleBillController {
 	public ArticleSale obtenerArticuloFactura(int index){
 		
 		ArticleSale articleSale = null;
-
-    	System.out.println();
-		System.out.println();
-		System.out.println("LLEGUEEEE EDIT "+index);
 		change = index;
-		System.out.println("VAMOS A EDITAR ESTAN MONDA "+ taxes.size());
 		if(index >= 0) {
 		   return articlesSaleBill.get(index);
 		}
@@ -207,9 +196,6 @@ public class ArticleSaleBillController {
 		
 		List<Tax> taxes = null;
 
-    	System.out.println();
-		System.out.println();
-		System.out.println("LLEGUEEEE EDIT IMPUESTO "+index);
         change = index;
 		if(index >= 0 && !articlesTaxes.isEmpty()) {
 		   return articlesTaxes.get(index);
@@ -222,10 +208,8 @@ public class ArticleSaleBillController {
 	@ResponseBody
 	public Tax insertarImpuestoArticulo(int index,String name){
 		   
-		   System.out.println("AQUIIIIIIIIIIIIII TOY TAX ADD EDIT" + name);
 		   Tax tax = taxService.findByName(name);
 		   if(!name.isEmpty() && !articlesTaxes.isEmpty() && tax!=null){
-			  System.out.println("AQUIIIIIIIIIIIIII TOY AÑADIENDO TAX EN EL EDITAR PROBANDO :)");
 			  articlesTaxes.get(index).add(tax);
 			  return tax;
 		   
@@ -236,14 +220,10 @@ public class ArticleSaleBillController {
 	@RequestMapping(value = "/eliminarImpuestoArticulo", method = RequestMethod.GET)
 	@ResponseBody
 	public void eliminarImpuestoArticulo(int index,String name){
-		System.out.println("AQUIIIIIIIIIIIIII TOY " + articlesTaxes.get(index).get(0) + name);
 		   if(!name.isEmpty() && !articlesTaxes.isEmpty()){
-			  System.out.println("AQUIIIIIIIIIIIIII TOY PROBANDO :)");
 			  for (int i = 0; i < articlesTaxes.get(index).size(); i++) {
-			   	   System.out.println("AQUIIIIIIIIIIIIII TOY :)");
 				   if(articlesTaxes.get(index).get(i).getName().equals(name)){
 					  articlesTaxes.get(index).remove(i);
-					  System.out.println("AQUIIIIIIIIIIIIII TOY :)");
 					  return;
 				   }
 			  }
@@ -266,10 +246,6 @@ public class ArticleSaleBillController {
 			
 			articleList = articlesSaleBill.get(change);
 
-			System.out.println();
-			System.out.println();
-			System.out.println("LLEGUEEEE A EDITAR LA FACTYRAAA EN SERIO ENTR´" +change + articleSale.getTotal());
-
 			articleList.setArticle(article);
 			articleList.setQuantity(articleSale.getQuantity());
 			articleList.setDiscount(articleSale.getDiscount());
@@ -277,12 +253,6 @@ public class ArticleSaleBillController {
 			articleList.setTotal(articleSale.getTotal());
 	    }
 		
-		
-		
-		System.out.println();
-		System.out.println();
-		System.out.println("LLEGUEEEE A EDITAR LA FACTURA");
-		modelAndView.setViewName("redirect:/factura-de-venta-articulos");
 		
 		return modelAndView;
 	}
@@ -292,9 +262,6 @@ public class ArticleSaleBillController {
 	@ResponseBody
 	public int obtenerArticuloEliminarDevolucion(String index){
 
-    	System.out.println();
-		System.out.println();
-		System.out.println("LLEGUEEEE DELETE "+index);
         int i = -1;
 		if(!index.isEmpty()) {
 		   i = Integer.parseInt(index);

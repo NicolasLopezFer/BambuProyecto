@@ -338,7 +338,7 @@ public class InventoryService{
          
          List<Entry> entries = inventory.getEntries();
          double unitCost = 0.0;
-
+         
          if(!entries.isEmpty()){
             for (Entry entry: entries){
                  if(entry.getQuantity() > 0){

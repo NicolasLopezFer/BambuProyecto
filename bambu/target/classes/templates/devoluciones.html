@@ -79,14 +79,14 @@
                             </div>
                             <div class="control-group">
                                 <div class="form-group floating-label-form-group controls mb-0 pb-2" id="container-nit" style="height: 50px;">
-                                    <label>NIT o C.C</label><input class="form-control" th:value="${idCustomer}"  id="nitFacturaDeVenta" type="number" placeholder="NIT O C.C" name="idCostumer" required="required" data-validation-required-message="Por favor ingrese NIT o CC"/>
+                                    <label>NIT o C.C</label><input class="form-control" th:value="${idCustomer}"  id="nitFacturaDeVenta" type="text" placeholder="NIT O C.C" required="required" data-validation-required-message="Por favor ingrese NIT o CC"/>
                                     <p class="help-block text-danger"></p>
                                 </div>
                             </div>
                         </div>
                         <div class="text-center col-md-6" id="container-right">
                             <div class="control-group">
-                                <div class="form-group floating-label-form-group controls mb-0 pb-2" id="container-date" style="height: 50px; float: right;">
+                                <div class="form-group floating-label-form-group controls mb-0 pb-2" id="container-date" style="height: 55px; float: right;">
                                     <label for="fechaFacturaDeVenta">Fecha</label><input placeholder="Fecha" type="text" onfocus="(this.type='date')" th:value="${dateReturn}" class="form-control" id="fechaFacturaDeVenta" />
                                     <p class="help-block text-danger"></p>
                                 </div>
@@ -171,7 +171,7 @@
                     <div class="modal-body">
                         <div class="form-group">
                            <input style="height: 10px;" type="number" name="idArticle" id="idArticle" value="" readonly hidden>
-                           <input style="height: 10px;" type="text" name="nSale" id="nSale" value="" readonly >
+                           <input style="height: 10px;" type="text" name="nSale" id="nSale" value="" readonly hidden>
                         </div> 
                         <div class="form-group">
                             <label for="selectArticle">Artículo:</label>
@@ -185,7 +185,7 @@
                         <div class="form-group">
                             <label for="value" class="col-form-label">Precio: 
                                 </label> <input type="number" class="form-control"
-                                id="price" name="price" value="" readonly/>
+                                id="price" name="price" value="" readonly />
                         </div>
                         <div class="form-group">
                             <label for="quantity" class="col-form-label">Cantidad: 
@@ -204,8 +204,8 @@
                         </div>     
                         <div class="form-group">
                             <label for="selectNSale">No. Factura:</label>
-                            <select id="selectNSale" class="form-control">
-                              <option selected>Seleccione</option>
+                            <select id="selectNSale" class="form-control" name="selectNSale" required>
+                              <option value="" selected>Seleccione</option>
                               <div th:each="i :${saleBills}">
                                 <option th:text="${i.getCode()}"></option>
                               </div>
@@ -274,8 +274,8 @@
                         </div>     
                         <div class="form-group">
                             <label for="selectNSaleEdit">No. Factura:</label>
-                            <select id="selectNSaleEdit" class="form-control">
-                              <option selected>Seleccione</option>
+                            <select id="selectNSaleEdit" class="form-control" name="selectNSaleEdit" required>
+                              <option value="" selected>Seleccione</option>
                               <div th:each="i :${saleBills}">
                                 <option th:text="${i.getCode()}"></option>
                               </div>

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -21,11 +22,11 @@ public class ReportArticleSaleBillController {
 
     @GetMapping()
 	@ResponseBody
-	public ModelAndView  reporteFactura(String dateInicial, String dateFinal){
+	public ModelAndView  reporteFactura(@RequestParam(value = "fechaInicio") String fechaInicio, @RequestParam(value = "fechaFin") String fechaFin){
         ModelAndView modelAndView = new ModelAndView();
-        System.out.println("HOLAAAAAA REPORTEES" + articleSaleBillService.findAll().get(0).getCustomer_name() );
-        LocalDate date = LocalDate.parse(dateInicial);
-        LocalDate dateF = LocalDate.parse(dateFinal);
+
+        LocalDate date = LocalDate.parse(fechaInicio);
+        LocalDate dateF = LocalDate.parse(fechaFin);
         modelAndView.addObject("saleBills", articleSaleBillService.findByRange(date, dateF));
 		modelAndView.setViewName("reporte-factura-articulos");
 		return modelAndView;          
