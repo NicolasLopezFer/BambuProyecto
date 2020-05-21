@@ -42,14 +42,9 @@ public class InventoryController {
 	
 	@RequestMapping(value = "/encontrar-articulo", method = RequestMethod.GET)
 	@ResponseBody
-	public ModelAndView encontrarArticuloInventario(long id) {
-		//enviarSalida(articleInventoryService.findById(id));
+	public ArticleInventory encontrarArticuloInventario(long id) {
 		ArticleInventory article = articleInventoryService.findById(id);
-		ModelAndView modelAndView = new ModelAndView();   
-		modelAndView.addObject("input-id-entry", article.getId());
-		modelAndView.addObject("input-id-name", article.getArticle().getName());
-
-		return modelAndView;
+		return article;
 	}
 
 	@RequestMapping(value = "/entradaInventario", method = RequestMethod.POST)

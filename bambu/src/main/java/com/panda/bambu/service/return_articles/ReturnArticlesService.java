@@ -1,5 +1,7 @@
 package com.panda.bambu.service.return_articles;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.panda.bambu.model.inventory.ArticleInventory;
@@ -41,6 +43,16 @@ public class ReturnArticlesService {
     public boolean existById(Long id){
         return returnArticlesRepository.existsById(id);
 
+    }
+
+    public List<ReturnArticles> findByRange(LocalDate dateInicial, LocalDate dateFinal){
+        List<ReturnArticles> returns = new ArrayList<ReturnArticles>();
+        for (ReturnArticles returnArticles : findAll()) {
+              if(returnArticles.getDate().isAfter(dateInicial) && returnArticles.getDate().isBefore(dateFinal)){
+                 returns.add(returnArticles);
+              }
+        }
+        return returns;
     }
     
     public boolean addInventoryEntry(ArticleReturn article){
@@ -92,31 +104,34 @@ public class ReturnArticlesService {
     }
 
     public boolean create(ReturnArticles returnArticles){
-           
+        System.out.println("TOY GUARDANDOOOOO");
            if(returnArticles != null && !returnArticles.getArticles().isEmpty() ){
+            System.out.println("TOY GUARDANDOOOOO");
               if(returnArticles.getSaleReturn() == true){
                  for ( ArticleReturn article: returnArticles.getArticles()){
-                       if(addInventoryEntry(article) == false){
-                          return false; 
-                       }
-                       else{
-                           articleReturnService.save(article);
-                       }
+                    System.out.println("SERVIR2");
+                       //if(addInventoryEntry(article) == false){
+                         // return false; 
+                       //}
+                       //else{
+                           articleReturnService.create(article);
+                       //}
                            
                   }
                }
                else if(returnArticles.getBuyReturn() == true){
+                System.out.println("TOY GUARDANDOOOOO QUIEN DABE");
                         for ( ArticleReturn article: returnArticles.getArticles() ){
-                              if(addInventoryOutput(article) == false){
-                                 return false; 
-                              }
-                              else{
-                                 articleReturnService.save(article);
-                              }
+                              //if(addInventoryOutput(article) == false){
+                                // return false; 
+                              //}
+                              //else{
+                                 articleReturnService.create(article);
+                             // }
                         }
 
                }
-               
+               System.out.println("TOY GUARDANDOOOOO");
                returnArticlesRepository.save(returnArticles);
                return true;
            }

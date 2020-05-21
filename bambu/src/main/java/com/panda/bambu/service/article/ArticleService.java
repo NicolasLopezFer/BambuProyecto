@@ -120,29 +120,31 @@ public class ArticleService{
 
     public Boolean delete(Article article) {
         if(articleRepository.existsById(article.getId())){
-            
-            ArticleInventory articuloInventory=articleInventoryService.findByArticle(article);
+    
+            ArticleInventory articuloInventory=articleInventoryService.findById(article.getId());
             if(articuloInventory!=null){
-                articleInventoryService.delete(articuloInventory);
-                articleRepository.delete(article);
-                for(Inventory i:articuloInventory.getInventories()){
-                    for(Entry e:i.getEntries()){
-                        if(e.getArticle().getCode().equals(article.getCode())){
-                            i.getEntries().remove(e);
+                if(articuloInventory.getInventories() != null && !articuloInventory.getInventories().isEmpty()){
+                    for(Inventory i:articuloInventory.getInventories()){
+                        for(Entry e:i.getEntries()){
+                            if(e.getArticle().getCode().equals(article.getCode())){
+                                i.getEntries().remove(e);
+                            }
                         }
-                    }
-                    for(Output o:i.getOutputs()){
-                        if(o.getArticle().getCode().equals(article.getCode())){
-                            i.getOutputs().remove(o);
+                        for(Output o:i.getOutputs()){
+                            if(o.getArticle().getCode().equals(article.getCode())){
+                                i.getOutputs().remove(o);
+                            }
                         }
-                    }
-                    for(Balance b:i.getBalances()){
-                        if(b.getArticle().getCode().equals(article.getCode())){
-                            i.getBalances().remove(b);
+                        for(Balance b:i.getBalances()){
+                            if(b.getArticle().getCode().equals(article.getCode())){
+                                i.getBalances().remove(b);
+                            }
                         }
-                    }
+                   }
+               
                 }
-                articleInventoryService.delete(articleInventoryService.findByArticle(article));
+                articleInventoryService.delete(articuloInventory);
+                System.out.println("HOLAAA BORRANDO ANDO ARTICULO");
                 articleRepository.delete(article);
                 return true;
             }

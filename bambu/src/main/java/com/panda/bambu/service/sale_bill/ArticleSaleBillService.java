@@ -1,5 +1,7 @@
 package com.panda.bambu.service.sale_bill;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.panda.bambu.model.inventory.Output;
@@ -40,6 +42,16 @@ public class ArticleSaleBillService {
          return articleSaleBillRepository.findAll();
      }
      
+     public List<ArticleSaleBill> findByRange(LocalDate dateInicial, LocalDate dateFinal){
+         List<ArticleSaleBill> saleBills = new ArrayList<ArticleSaleBill>();
+         for (ArticleSaleBill articleSaleBill : findAll()) {
+               if(articleSaleBill.getDate().isAfter(dateInicial) && articleSaleBill.getDate().isBefore(dateFinal)){
+                  saleBills.add(articleSaleBill);
+               }
+         }
+         return saleBills;
+     }
+
      public boolean isRepeatCode(ArticleSaleBill articleBill, ArticleSale articleSale){
          
              for(ArticleSale article: articleBill.getArticles()){

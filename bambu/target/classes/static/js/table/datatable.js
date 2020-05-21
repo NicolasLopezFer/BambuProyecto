@@ -1,11 +1,14 @@
 
-
-
 //DataTable JQuery
 $(document).ready(function () {
     var table = $('#table-information').DataTable({
         lengthChange: false,
-        select: false,
+        dom: 'Bfrtip',
+        buttons: [{
+            extend: 'pdfHtml5',
+            orientation: 'landscape',
+            pageSize: 'LEGAL',
+        },'excel','colvis'],
         language: {
             "decimal": "",
             "emptyTable": "No hay información",
@@ -23,6 +26,7 @@ $(document).ready(function () {
             }
         }
     });
+
 });   
 
 

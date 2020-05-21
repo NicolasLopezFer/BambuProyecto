@@ -1,5 +1,4 @@
-$(document).ready(function() {
-	$('#btn-output').on('click', function(event) {
+$(document).on('click', '#btn-output', function(event) {
 		event.preventDefault();
 		var href = $(this).attr('href');
 		$.get(href, function(articulo, status) {
@@ -8,16 +7,35 @@ $(document).ready(function() {
             $('#salidaModal .modal-body #unitCost').val(articulo.article.unitCost);
         });
         $('#salidModal').modal();	
-	});
 });
 
-$(document).ready(function() {
-	$('#salidaModal .modal-body #quantity').on('click', function(event) {
-		event.preventDefault();
-        total =  $('#salidaModal .modal-body #quantity').val() * $('#salidaModal .modal-body #unitCost').val();
-        $('#salidaModal .modal-body #totalCost').val(total);
+
+$(document).on('click', '#salidaModal .modal-body #quantity', function() {
+	var typingTimer;
+	var doneTypingInterval = 1000;
+	alert("holi");
+	$('#salidaModal .modal-body #quantity').keyup(function(){
+		clearTimeout(typingTimer);
+		if ($('#salidaModal .modal-body #quantity').val()) {
+		typingTimer = setTimeout(doneTyping, doneTypingInterval);
+		}
 	});
+	function doneTyping () {
+		var quantity = $('#salidaModal .modal-body #quantity').val();
+		if(quantity > 0){
+		   var total =  quantity * $('#salidaModal .modal-body #unitCost').val();
+		   $('#salidaModal .modal-body #totalCost').val(total);
+		}
+		else{
+			$('#salidaModal .modal-body #totalCost').val(0);
+		} 
+		
+	}  
 });
+
+
+
+
 
 
 /*

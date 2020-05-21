@@ -34,7 +34,10 @@ public class ArticleInventoryService extends TimerTask{
 	OutputService outputService;
 
     public ArticleInventory findById(Long id){
-        return articleIRepository.findById(id).get();
+        if(articleIRepository.findById(id).get() != null){
+            return articleIRepository.findById(id).get();
+        }
+        return null;
     }
         
     public ArticleInventory findByArticle(Article article){

@@ -96,7 +96,7 @@ public class ReturnArticlesController {
 	@RequestMapping(value = "/agregarArticulo", method = RequestMethod.POST)
 	public ModelAndView agregarArticuloDevolucion(int idArticle, String nSale, ArticleReturn articleReturn){
 		ModelAndView modelAndView = new ModelAndView();  
-		Article article = articleService.findAll().get(idArticle);
+		Article article = articleService.findAll().get(idArticle-1);
 		ArticleSaleBill saleBill = articleSaleBillService.findByCode(nSale);
 		
 		if(article != null) {
@@ -135,7 +135,7 @@ public class ReturnArticlesController {
 	@RequestMapping(value = "/editarArticulo", method = RequestMethod.POST)
 	public ModelAndView editarArticuloDevolucion(int idArticle, String nSale, ArticleReturn articleReturn){
 		ModelAndView modelAndView = new ModelAndView();  
-		Article article = articleService.findAll().get(idArticle);
+		Article article = articleService.findAll().get(idArticle-1);
 		ArticleSaleBill saleBill = articleSaleBillService.findByCode(nSale);
 		ArticleReturn articleL = null;
 
@@ -215,9 +215,16 @@ public class ReturnArticlesController {
 			}
 
 			returnArticle.setArticles(returns);
+
+			this.code = "";
+			this.name_customer = "";
+			this.idCustomer = null;
+			this.date = null;
+			System.out.println("HIJOLE LLEGUE" + returns.size());
 			if(returnArticlesService.create(returnArticle) == true){
 			   System.out.println("HIJOLE LLEGUE");
 			   System.out.println("HIJOLE LLEGUE A DEVOLUCION");
+			   returns.clear();
 			}
 		}
 		modelAndView.setViewName("redirect:/devoluciones");

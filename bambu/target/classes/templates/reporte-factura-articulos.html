@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Reporte Factura Articulos</title>
+        
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.12.1/js/all.js" crossorigin="anonymous"></script>
+        
+        <!--JQUERY-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+
+        <!-- DataTables CSS -->
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.bootstrap4.min.css">
+      
+        <!-- Return CSS -->
+        <link href="css/return_articles/returns.css" rel="stylesheet" type="text/css"  />
+
+        <!--<script type="text/javascript" th:src="@{/js/devoluciones.js}"
+            src="static/js/devoluciones.js"></script>-->
+        
+        
+
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand js-scroll-trigger" href="#page-top">BAMBÚ</a><button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu <i class="fas fa-bars"></i></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="emprendedor">Atras</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#perfil">Perfil</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#cerrarsesion">Cerrar sesión</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+        <!-- Portfolio Section-->
+        <section class="page-section portfolio" id="modulos">
+            <div class="container">
+                <!-- Portfolio Section Heading-->
+                <p>  </p>
+                <p>  </p>
+                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0" id="title">Reporte de Factura de Artículos</h2>
+                <!-- Icon Divider-->
+                <div class="divider-custom" id="container-design">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-circle" id="icon"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+<!-- -------------------------------------------------------------------------------------------------------------------------------------------------------->
+                <!-- Portfolio Grid Items-->
+      
+
+                     <br>
+                     <br>
+                     <br>  
+                    <!-- Portfolio tabla Busqueda-->
+                    <div class="con" style="width:100%">
+                        <table class="table table-hover table-bordered results" id="table-information">
+                        <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Código</th>
+                                <th>Nombre del Cliente</th>
+                                <th>NIT O C.C</th>
+                                <th>Vencimiento</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+
+                        <!--Información base de datos-->
+                        <tbody>
+                            <tr th:each="i, iter :${saleBills}">
+                                <td th:text="${i.getDate()}"></td>
+                                <td th:text="${i.getCode()}"></td>
+                                <td th:text="${i.getCustomer_name()}"></td>
+                                <td th:text="${i.getIdCustomer()}"></td>
+                                <td th:text="${i.getExpiration()}"></td>
+                                <td th:text="${i.getTotal()}"></td>
+                            </tr>
+                        </tbody>
+                        </table>   
+                    </div>                          
+        </div>
+    </section>    
+
+
+<!-- Copyright Section ------------------------------------------------------------------------------------------------------------------------------------------------------->
+        
+        <!-- Bootstrap core JS-->
+    
+        <!--JQUERY DataTable-->  
+        <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>     
+        <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+     
+
+        <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
+        <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.bootstrap4.min.js"></script>
+        <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+        <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+        <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+        <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js"></script>
+        <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.print.min.js"></script>
+        <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.colVis.min.js"></script>
+        
+
+        <!-- DataTable JS -->
+        <script type="text/javascript" th:src="@{/js/table/datatable.js}" src="static/js/table/datatable.js"></script>
+
+        </body>
+
+</html>

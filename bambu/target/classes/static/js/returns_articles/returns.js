@@ -51,6 +51,15 @@ $(document).on('click', '#selectArticle', function() {
 	}    
 });
 
+$(document).on('click', '#selectNSale', function() {
+	var index = $("#selectNSale").prop('selectedIndex');
+	if(index != 0){
+	
+		$('#articleModal  .modal-body #nSale').val();
+			
+	}    
+});
+
 $(document).on('click', '#articleModal .modal-body .quantity', function() {
 	var typingTimer;
 	var doneTypingInterval = 1000;
@@ -68,12 +77,14 @@ $(document).on('click', '#articleModal .modal-body .quantity', function() {
 });
 
 $(document).on('click', '#articleModal .modal-body #selectNSale', function() {
-	if($('#selectNSale').val()!= 'Seleccione'){
-		var code = $('#articleModal .modal-body #selectNSale').prop('selectedIndex');
+	console.log("factura");
+	if($('#articleModal .modal-body #selectNSale').val()!= 'Seleccione'){
+		var code = $('#articleModal .modal-body #selectNSale').val();
 		$('#articleModal .modal-body #nSale').val(code);
 
 	}    
 });
+
 
 $(function() {
 	$("form[name='newArticle']").validate({

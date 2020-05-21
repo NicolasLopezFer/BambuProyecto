@@ -171,7 +171,7 @@
                     <div class="modal-body">
                         <div class="form-group">
                            <input style="height: 10px;" type="number" name="idArticle" id="idArticle" value="" readonly hidden>
-                           <input style="height: 10px;" type="text" name="nSale" id="nSale" value="" readonly hidden>
+                           <input style="height: 10px;" type="text" name="nSale" id="nSale" value="" readonly >
                         </div> 
                         <div class="form-group">
                             <label for="selectArticle">Artículo:</label>
@@ -211,6 +211,7 @@
                               </div>
                             </select>
                         </div>
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary"
@@ -272,7 +273,7 @@
                                 id="motiveEdit" name="motive" value="" required/>
                         </div>     
                         <div class="form-group">
-                            <label for="selectNSale">No. Factura:</label>
+                            <label for="selectNSaleEdit">No. Factura:</label>
                             <select id="selectNSaleEdit" class="form-control">
                               <option selected>Seleccione</option>
                               <div th:each="i :${saleBills}">
@@ -324,7 +325,7 @@
         </div>
     </form>
 </div>
-
+<input type="button" onclick="window.location.href='reporte-factura-articulos';">
 <!-- Copyright Section ------------------------------------------------------------------------------------------------------------------------------------------------------->
 
         <section class="copyright py-4 text-center text-white">

@@ -1,4 +1,13 @@
 /* Title Page */
+#btn-methods{
+    height: 40px;
+    width: 210px;
+    padding: 5px 0px 0px;
+    font-size: large;
+    text-align: center ;
+    margin-left: -22px;
+}
+
 #title{
     font-size: 40px;
     margin-top: -15px;

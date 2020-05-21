@@ -6,8 +6,13 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Inventario</title>
+
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.12.1/js/all.js" crossorigin="anonymous"></script>
+        
+        <!--JQUERY-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
         <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
@@ -16,33 +21,11 @@
 
         <!-- DataTables CSS -->
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
-        
+              
         <!-- Inventory CSS -->
         <link href="css/inventory/inventory.css" rel="stylesheet" type="text/css"  />
         
-        <!--JQUERY-->
-        <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-        
-        <!--JQUERY DataTable-->       
-        <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-        <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-       
-   
-        <!-- DataTable JS -->
-        <script type="text/javascript" th:src="@{/js/table/datatable.js}" src="static/js/table/datatable.js"></script>
           
-        <!-- Modal Entry JS -->
-        <script type="text/javascript" th:src="@{/js/inventory/inventory.js}" src="static/js/inventory/inventory.js"></script>
-         
-        <!-- Modal Output JS -->
-        <script type="text/javascript" th:src="@{/js/inventory/output.js}" src="static/js/inventory/output.js"></script>
-
-         <!-- Modal Entry JS -->
-         <script type="text/javascript" th:src="@{/js/inventory/entry.js}" src="static/js/inventory/entry.js"></script>
 
             
     </head>
@@ -116,7 +99,9 @@
                   </div>
                 </div>
             </div>
-            
+
+
+<!-- Add Entry Modal -------------------------------------------------------------------------------------------------------------------------------------------------------->
             <div class="entradaForm">
                 <form th:action="@{inventario/entradaInventario}" method="post">
                     <div class="modal fade" id="entradaModal" tabindex="-1" role="dialog"
@@ -175,6 +160,7 @@
                 </form>
             </div>
 
+<!-- Add Ouput Modal -------------------------------------------------------------------------------------------------------------------------------------------------------->
             <div class="salidaForm">
                 <form th:action="@{inventario/salidaInventario}" method="post">
                     <div class="modal fade" id="salidaModal" tabindex="-1" role="dialog"
@@ -224,7 +210,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"
-                                        data-dismiss="modal">Close</button>
+                                        data-dismiss="modal">Cerrar</button>
                                     <input type="submit" class="btn btn-primary " value="Guardar" />
                                 </div>
                             </div>
@@ -232,7 +218,9 @@
                     </div>
                 </form>
             </div>
-            
+
+
+<!-- Change Method Modal -------------------------------------------------------------------------------------------------------------------------------------------------------->
             <div class="metodoForm">
                 <form th:action="@{inventario/modificarMetodo}" method="post">
                     <div class="modal fade" id="metodoModal" tabindex="-1" role="dialog" aria-hidden="true" >
@@ -273,7 +261,40 @@
             </div>   
     </body>
 
-     <!-- Modal Entry JS -->
-     <script type="text/javascript" th:src="@{/js/inventory/entry.js}" src="static/js/inventory/entry.js"></script>
+<!-- Copyright Section ------------------------------------------------------------------------------------------------------------------------------------------------------->
+
+
+<!-- Script Section ------------------------------------------------------------------------------------------------------------------------------------------------------->
+
+            <!-- Bootstrap core JS-->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+            <!-- Third party plugin JS-->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+            
+            <!-- Modal Inventory JS -->
+            <script type="text/javascript" th:src="@{/js/inventory/inventory.js}" src="static/js/inventory/inventory.js"></script>
+         
+            <!-- Modal Output JS -->
+            <script type="text/javascript" th:src="@{/js/inventory/output.js}" src="static/js/inventory/output.js"></script>
+
+            <!-- Modal Entry JS -->
+            <script type="text/javascript" th:src="@{/js/inventory/entry.js}" src="static/js/inventory/entry.js"></script>
+
+            <!-- Validation JS -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.14.0/jquery.validate.min.js"></script>       
+           
+            <!-- Core theme JS-->
+            <script src="js/scripts.js"></script>
+    
+            <!--JQUERY DataTable-->       
+            <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+            <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+              
+            <!-- DataTable JS -->
+            <script type="text/javascript" th:src="@{/js/table/datatable.js}" src="static/js/table/datatable.js"></script>
+
+    
 
 </html>
