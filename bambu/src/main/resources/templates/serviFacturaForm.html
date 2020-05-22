@@ -26,13 +26,17 @@
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="css/styles.css" rel="stylesheet" />
 
+ <!-- Top CSS -->
+ <link href="css/top.css" rel="stylesheet" type="text/css"  />
+
 <!-- Nuestro JS servicio -->
 <script type="text/javascript" th:src="@{/js/servicebill.js}"
 	src="static/js/servicebill.js"></script>
+ <!-- DataTables CSS -->
+ <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
+        
 </head>
-<!-- DataTable JS -->
-<script type="text/javascript" th:src="@{/js/table/datatable.js}" src="static/js/table/datatable.js"></script>
-          
+         
 
 <body id="page-top">
 	<!-- Navigation-->
@@ -72,11 +76,11 @@
                 <!-- Portfolio Section Heading-->
                 <p>  </p>
                 <p>  </p>
-                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Factura de servicio</h2>
+                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0" id="title">Factura de servicio</h2>
                 <!-- Icon Divider-->
                 <div class="divider-custom">
                     <div class="divider-custom-line"></div>
-                    <div class="divider-custom-icon"><i class="fas fa-circle"></i></div>
+                    <div class="divider-custom-icon"><i class="fas fa-circle" id="icon"></i></div>
                     <div class="divider-custom-line"></div>
                 </div>
     
@@ -263,5 +267,14 @@
 	<script src="assets/mail/contact_me.js"></script>
 	<!-- Core theme JS-->
 	<script src="js/scripts.js"></script>
+
+	  <!--JQUERY DataTable-->       
+	  <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+	  <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+		
+	  <!-- DataTable JS -->
+	  <script type="text/javascript" th:src="@{/js/table/datatable.js}" src="static/js/table/datatable.js"></script>
+
 </body>
 </html>
