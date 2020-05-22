@@ -34,7 +34,9 @@
 	src="static/js/servicebill.js"></script>
  <!-- DataTables CSS -->
  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
-        
+<!-- Inventory CSS -->
+<link href="css/return_articles/returns.css" rel="stylesheet" type="text/css"  />
+
 </head>
          
 
@@ -89,34 +91,45 @@
                 <div class="row">
                     <div class="text-center col-md-6">
                         <div class="form-group">
-                            <label for="numFact" class="col-form-label">Numero Facutura:
+							<div class="form-group floating-label-form-group controls mb-0 pb-2" id="container-number" style="height: 50px;">
+                            <label>Número Factura
                             </label> <input th:name="numFact" type="number" class="form-control"
-                                id="numFact" name="numFact" value="" />
+							id="numeroFacturaDeVenta" name="numFact" value="" placeholder="Número Factura"/>
+                            </div>
                         </div>
                         <div class="form-group">
-                            <label for="nombreCliente" class="col-form-label">Nombre Cliente:</label> <input
-                                type="text" class="form-control" id="nombreCliente" name="nombreCliente"
-                                value="" />
+							<div class="form-group floating-label-form-group controls mb-0 pb-2" id="container-customer" style="height: 50px;">
+                            <label>Nombre Cliente</label> <input
+                                type="text" class="form-control" id="clienteFacturaDeVenta"  name="nombreCliente" placeholder="Nombre Cliente"
+								value="" />
+							</div>
                         </div>
                         <div class="form-group">
-                            <label for="nitcc" class="col-form-label">NIT o CC:
-                            </label> <input type="number" class="form-control"
-                                id="nitcc" name="nitcc" value="" />
-                        </div>
-                    </div>
+							<div class="form-group floating-label-form-group controls mb-0 pb-2" id="container-nit" style="height: 50px;">
+                            <label>NIT o CC
+                            </label> <input type="number" class="form-control" placeholder="NIT O CC"
+									id="nitFacturaDeVenta" name="nitcc" value="" />
+							</div>
+						</div>
+					</div>
                     <div class="text-center col-md-6">
                         <div class="form-group">
-                            <label for="fechaInicio" class="col-form-label">Fecha Factura:
-                            </label> <input type="date" class="form-control"
-                                id="fechaInicio" name="fechaInicio" value="" />
+							<div class="form-group floating-label-form-group controls mb-0 pb-2" id="container-date" style="height: 55px; float: right;">
+                            <label>Fecha Factura
+                            </label> <input placeholder="Fecha" type="text" onfocus="(this.type='date')" class="form-control vencimiento" id="fechaFacturaDeVenta"
+								 name="fechaInicio" value="" />
+							</div>	
                         </div>
                         <div class="form-group">
-                            <label for="fechaVencimiento" class="col-form-label">Fecha Vencimiento:
-                            </label> <input type="date" class="form-control"
-                                id="fechaVencimiento" name="fechaVenci" value="" />
+							<div class="form-group floating-label-form-group controls mb-0 pb-2" id="container-date" style="height: 55px; float: right;" >
+                            <label>Fecha Vencimiento
+                            </label> <input placeholder="Fecha Vencimiento" type="text" class="form-control" id="fechaFacturaDeVenta"  onfocus="(this.type='date')"
+								 name="fechaVenci" value="" />
+							</div>
                         </div>
                     </div>
-    
+				<br>
+				<br>
                 </div>
                     <span class="counter pull-right"></span>
                     <table class="table table-hover table-bordered results" id = "tablaSaleService">
@@ -189,7 +202,7 @@
                                                 value="" />
                                         </div>
                                         <div class="form-group">
-                                            <label for="cantidad" class="col-form-label">Cantidad:
+							                 <label for="cantidad" class="col-form-label">Cantidad:
                                             </label> <input type="number" class="form-control"
                                                 id="cantidad" name="cantidad" value="" />
                                         </div>
