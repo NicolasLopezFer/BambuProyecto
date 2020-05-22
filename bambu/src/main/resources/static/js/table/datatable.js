@@ -20,6 +20,9 @@ $(document).ready(function () {
             "processing": "Procesando...",
             "search": "Buscar:",
             "zeroRecords": "Sin resultados encontrados",
+            buttons: {
+                colvis: 'Columna Visible'
+            },
             "paginate": {
                 "first": "Primero",
                 "last": "Ultimo",

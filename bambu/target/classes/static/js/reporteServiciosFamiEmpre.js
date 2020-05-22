@@ -7,7 +7,7 @@ $(document).ready(function () {
             extend: 'pdfHtml5',
             orientation: 'landscape',
             pageSize: 'LEGAL'
-        },'excel'],
+        },'excel','colvis'],
         select: false,
         language: {
             "decimal": "",
@@ -18,6 +18,9 @@ $(document).ready(function () {
             "processing": "Procesando...",
             "search": "Buscar:",
             "zeroRecords": "Sin resultados encontrados",
+            buttons: {
+                colvis: 'Columna Visible'
+            },
             "paginate": {
                 "first": "Primero",
                 "last": "Ultimo",

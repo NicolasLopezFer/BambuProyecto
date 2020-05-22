@@ -29,7 +29,7 @@ body{
 
 .form-group input{
     height: 42px;
-    font-size: 18px;
+    font-size: 16px;
     border:0;
     padding-left: 54px;
     border-radius: 5px;
@@ -39,7 +39,7 @@ body{
     font-family: "Font Awesome\ 5 Free";
     position: absolute;
     left: 28px;
-    font-size: 22px;
+    font-size: 20px;
     padding-top:4px;
 }
 

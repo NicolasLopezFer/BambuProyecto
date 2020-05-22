@@ -70,7 +70,7 @@
                      <br>  
                     <!-- Portfolio tabla Busqueda-->
                     <div class="con" style="width:100%">
-                        <table class="table table-hover table-bordered results" id="table-information">
+                        <table class="table table-hover table-bordered results" id="table-information"  style="border-top:5px solid #fff;">
                         <thead>
                             <tr>
                                 <th>Fecha</th>
@@ -88,7 +88,10 @@
                                 <td th:text="${i.getCode()}"></td>
                                 <td th:text="${i.getCustomer_name()}"></td>
                                 <td th:text="${i.getIdCustomer()}"></td>
-                                <td th:text="${i.getSaleReturn()}"></td>
+                                <td>
+                                    <span th:if="${i.getSaleReturn() == true}">Venta</span>
+                                    <span th:unless="${i.getSaleReturn() == true}">Compra</span>
+                                </td>
                             </tr>
                         </tbody>
                         </table>   

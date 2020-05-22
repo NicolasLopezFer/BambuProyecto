@@ -29,6 +29,14 @@
 <!-- Nuestro JS servicio -->
 <script type="text/javascript" th:src="@{/js/servicios.js}"
 	src="static/js/servicios.js"></script>
+
+<!-- Top CSS -->
+<link href="css/top.css" rel="stylesheet" type="text/css"  />
+
+ <!-- DataTables CSS -->
+ <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
+        
+
 </head>
 <!-- DataTable JS -->
           
@@ -65,30 +73,29 @@
 
 
 	<!-- Portfolio Section-->
-	<section class="page-section portfolio">
+	<section class="page-section portfolio" id="modulos">
 		<div class="container">
-			<br> <br>
 			<!-- Portfolio Section Heading-->
 			<h2
-				class="page-section-heading text-center text-uppercase text-secondary mb-0">Servicios</h2>
+				class="page-section-heading text-center text-uppercase text-secondary mb-0" id="title">Servicios</h2>
 			<!-- Icon Divider-->
-			<div class="divider-custom">
+			<div class="divider-custom" id="container-design">
 				<div class="divider-custom-line"></div>
 				<div class="divider-custom-icon">
-					<i class="fas fa-star"></i>
+					<i class="fas fa-star" id="icon"></i>
 				</div>
 				<div class="divider-custom-line"></div>
 			</div>
 			<!-- Portfolio Grid Items-->
 			<div class="row">
-				<div class="text-center col-md-6">
+				<div class="text-center col-md-4">
 					<!-- Portfolio Item Nuevo Articulo-->
 					<a class="btn btn-primary btn-s js-scroll-trigger nBtn"><i
 						class="fas fa-plus"></i> Nuevo Servicio </a>
                 </div>
 				<div class="text-center col-md-6">
 					<!-- Portfolio Item Nuevo Articulo-->
-                    <a class="btn btn-primary btn-s js-scroll-trigger ffBtn"><i
+                    <a class="btn btn-primary btn-s js-scroll-trigger ffBtn" style="margin-left: 520px;"><i
                         ></i> Reporte 
                     </a>
                 </div>
@@ -332,5 +339,15 @@
 	<script src="js/scripts.js"></script>
 	<!-- Validation JS -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.14.0/jquery.validate.min.js"></script>
+
+
+    <!--JQUERY DataTable-->       
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+          
+    <!-- DataTable JS -->
+    <script type="text/javascript" th:src="@{/js/table/datatable.js}" src="static/js/table/datatable.js"></script>
+
 </body>
 </html>
