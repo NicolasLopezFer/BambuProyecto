@@ -1,5 +1,7 @@
 package com.panda.bambu.service.inventory;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.panda.bambu.model.article.Article;
@@ -7,6 +9,7 @@ import com.panda.bambu.model.inventory.Balance;
 import com.panda.bambu.model.inventory.Entry;
 import com.panda.bambu.model.inventory.Inventory;
 import com.panda.bambu.model.inventory.InventoryRepository;
+import com.panda.bambu.model.inventory.Kardex;
 import com.panda.bambu.model.inventory.MeasureMethod;
 import com.panda.bambu.model.inventory.Output;
 
@@ -46,70 +49,74 @@ public class InventoryService{
            
            Inventory newInventory = new Inventory();
            inventoryRepository.save(newInventory);
-
-           return newInventory;
+           
+           return getLastInventoryCreate();
 
       }
+
+      public Inventory getLastInventoryCreate(){
+
+             List<Inventory> inventories = findAllInventories();
+             return inventories.get(inventories.size()-1);
+      }
       
-      public double addEntryInventory(Inventory inventory, Entry entry){
+      public double addEntryInventory(Inventory inventory, Entry entry, String method){
           
           double unitCost = 0.0;
         
           if(entry != null && inventory != null ){
               if(inventoryRepository.existsById(inventory.getId()) == true){
                  inventory.getEntries().add(entry);
-                 String method = inventory.getMeasureMethod();
+                 inventoryRepository.save(inventory);
                  if(method.toUpperCase().equals("FIFO")){
                     unitCost = applyMethodFiFo(inventory);
-                    addBalanceInventoryEntry(inventory, entry);
-                 
+                    //addBalanceInventoryEntry(inventory, entry);
+                    
                  }
                  else if(method.toUpperCase().equals("LIFO")){
                     unitCost = applyMethodLiFo(inventory);
-                    addBalanceInventoryEntry(inventory, entry);
+                    //addBalanceInventoryEntry(inventory, entry);
                  }
                  else{
                     unitCost = applyMethodPromedioPonderado(inventory);
-                    addBalanceInventoryEntry(inventory, entry);
+                    //addBalanceInventoryEntry(inventory, entry);
                
                   }
-                  inventory.getEntries().add(entry);
                   inventoryRepository.save(inventory);
                   return unitCost;                                              
                } 
-
+            
           }
 
           return unitCost;
           
       }
 
-      public double addOutputInventory(Inventory inventory, Output output){
+      public double addOutputInventory(Inventory inventory, Output output, String method){
         
         double unitCost = 0.0;
-
+              
         if(output != null && inventory != null ){
            if(inventoryRepository.existsById(inventory.getId()) == true){
-               String method = inventory.getMeasureMethod();
                if(method.toUpperCase().equals("FIFO")){
                   unitCost = applyMethodFiFo(inventory,output);
                   output.setUnitCost(unitCost);
                   outputService.save(output);
-                  addBalanceInventoryOutput(inventory, output);
+                  //addBalanceInventoryOutput(inventory, output);
                  
                }
                else if(method.toUpperCase().equals("LIFO")){
                   unitCost = applyMethodLiFo(inventory,output);
                   output.setUnitCost(unitCost);
                   outputService.save(output);
-                  addBalanceInventoryOutput(inventory, output);
+                  //addBalanceInventoryOutput(inventory, output);
                   
                }
                else{
                   unitCost = applyMethodPromedioPonderado(inventory);
                   output.setUnitCost(unitCost);
                   outputService.save(output);
-                  addBalanceInventoryOutput(inventory, output);
+                  //addBalanceInventoryOutput(inventory, output);
                
                }
 
@@ -138,9 +145,9 @@ public class InventoryService{
        public boolean addBalanceInventoryEntry(Inventory inventory,Entry entry){
          
          Balance balance;
-         Balance aux;
          int quantity = 0;
          double totalCost = 0.0;
+      
 
          if(inventory != null ){
             if(inventoryRepository.existsById(inventory.getId()) == true){
@@ -148,17 +155,21 @@ public class InventoryService{
                   balance = new Balance(entry.getQuantity(),entry.getTotalCost());
                   balanceService.create(balance, entry.getArticle());
                   inventory.getBalances().add(balance);
-
+                  save(inventory);
                   return true;
                }
                else{
                   
-                  aux = inventory.getBalances().get(inventory.getBalances().size()-1);
-                  quantity = aux.getQuantity() + entry.getQuantity();
-                  totalCost = aux.getTotalCost() + entry.getTotalCost();
+                 // aux = inventory.getBalances().get(inventory.getBalances().size()-1);
+                 // quantity = aux.getQuantity() + entry.getQuantity();
+                 // totalCost = aux.getTotalCost() + entry.getTotalCost();
+                 // Cambiar flujo
+                  quantity = entry.getQuantity() + entry.getArticle().getQuantity();
+                  totalCost = quantity * entry.getArticle().getUnitCost();
                   balance = new Balance(quantity,totalCost);
                   balanceService.create(balance, entry.getArticle());
                   inventory.getBalances().add(balance);
+                  save(inventory);
                   return true;
 
                }
@@ -187,10 +198,11 @@ public class InventoryService{
                   
                   aux = inventory.getBalances().get(inventory.getBalances().size()-1);
                   quantity = aux.getQuantity() - output.getQuantity();
-                  totalCost = aux.getTotalCost() - output.getTotalCost();
+                  totalCost = aux.getQuantity() * output.getUnitCost();
                   balance = new Balance(quantity,totalCost);
                   balanceService.create(balance, output.getArticle());
                   inventory.getBalances().add(balance);
+                  save(inventory);
                   return true;
 
                }
@@ -204,31 +216,42 @@ public class InventoryService{
       }
 
           
-      public boolean modifyMeasureMethodInventory(Inventory inventory, String method){
-         
-           List<MeasureMethod> methods = measureMethodService.findAllMethods();
-           if(!methods.isEmpty() && !method.isEmpty() && inventory  != null){
+      public double modifyMeasureMethodInventory(Inventory inventory, String method){
+           
+           double unitCost = 0.0;
+           System.out.println("METODOS WILLIE");
+           List<MeasureMethod> methods = measureMethodService.findAll();
+           System.out.println("");
+           System.out.println("");
+           System.out.println("");
+           System.out.println("");
+           System.out.println("METODOS WILLIE" + methods.get(0));
+           System.out.println("");
+           System.out.println("");
+           System.out.println("");
+           if(methods != null && !methods.isEmpty() && !method.isEmpty() && inventory  != null){
               for(MeasureMethod m: methods){
                   if(m.getName().toUpperCase().equals(method.toUpperCase())){
-                     inventory.setMeasureMethod(method);
-                     inventoryRepository.save(inventory);
 
                      if(method.toUpperCase().equals("FIFO")){
-                        applyMethodFiFo(inventory);
+                        unitCost = applyMethodFiFo(inventory);
+                        return unitCost;
                      }
                      else if(method.toUpperCase().equals("LIFO")){
-                         applyMethodLiFo(inventory);
+                         System.out.println("SOOOOY LFO ");
+                         unitCost = applyMethodLiFo(inventory);
+                         return unitCost;
                      }
                      else{
-                         applyMethodPromedioPonderado(inventory);
+                         unitCost = applyMethodPromedioPonderado(inventory);
+                         return unitCost;
                      }
 
-                     return true;
                   }
                }  
            }
 
-          return false;         
+          return unitCost;         
        }
 
        
@@ -236,9 +259,9 @@ public class InventoryService{
          
          List<Entry> entries = inventory.getEntries();
          double unitCost = 0.0;
-
+         
          if(!entries.isEmpty()){
-            for (Entry entry: inventory.getEntries()){
+            for (Entry entry : entries){
                   int quantityE = entry.getQuantityMethod(); 
                   if( quantityE != 0){
                       unitCost = entry.getUnitCost();
@@ -315,10 +338,13 @@ public class InventoryService{
          
          List<Entry> entries = inventory.getEntries();
          double unitCost = 0.0;
-
+         
          if(!entries.isEmpty()){
             for (Entry entry: entries){
-                 unitCost += entry.getUnitCost();
+                 if(entry.getQuantity() > 0){
+                    unitCost += entry.getUnitCost();
+                 }
+                 
             }
             unitCost = unitCost/entries.size();  
             return unitCost;
@@ -326,6 +352,46 @@ public class InventoryService{
          }
 
          return unitCost;
+      }
+
+      public List<Kardex> createKardex(LocalDate dateInicial, LocalDate dateFinal, Inventory inventory){
+              List<Kardex> kardex = new ArrayList<Kardex>();
+              if(inventory != null){
+                 if(!inventory.getEntries().isEmpty()){
+                    for (Entry entry : inventory.getEntries()) {
+                        if(entry.getDate().isAfter(dateInicial) && entry.getDate().isBefore(dateFinal))
+                        {
+                           Kardex element = new Kardex();
+                           element.setCode(entry.getCode());
+                           element.setQuantity(entry.getQuantity());
+                           element.setTotalCost(entry.getTotalCost());
+                           element.setDetail(entry.getDetail());
+                           element.setUnitCost(entry.getUnitCost());
+                           element.setType("Entrada");
+                           element.setDate(entry.getDate());
+                        }
+                    }
+                  }
+
+                  if(!inventory.getOutputs().isEmpty()){
+                     for (Output output : inventory.getOutputs()) {
+                         if(output.getDate().isAfter(dateInicial) && output.getDate().isBefore(dateFinal))
+                         {
+                            Kardex element = new Kardex();
+                            element.setCode(output.getCode());
+                            element.setQuantity(output.getQuantity());
+                            element.setTotalCost(output.getTotalCost());
+                            element.setDetail(output.getDetail());
+                            element.setUnitCost(output.getUnitCost());
+                            element.setType("Salida");
+                            element.setDate(output.getDate());
+                         }
+                     }
+                 }
+            }
+
+            return kardex;
+         
       }
 
       public boolean save(Inventory inventory){

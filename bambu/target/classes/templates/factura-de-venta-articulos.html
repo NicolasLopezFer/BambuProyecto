@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Factura de venta</title>
+
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.12.1/js/all.js" crossorigin="anonymous"></script>
+        
+        <!--JQUERY-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+
+        
+        <!-- DataTables CSS -->
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
+        
+        <!-- Inventory CSS -->
+        <link href="css/return_articles/returns.css" rel="stylesheet" type="text/css"  />
+
+    </head>
+    <body id="page-top">
+          <!-- Navigation-->
+          <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand js-scroll-trigger" href="#page-top">BAMBÚ</a><button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu <i class="fas fa-bars"></i></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="emprendedor">Atras</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#perfil">Perfil</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#cerrarsesion">Cerrar sesión</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+        <!-- Portfolio Section-->
+        <section class="page-section portfolio" id="modulos">
+            <div class="container">
+                <!-- Portfolio Section Heading-->
+                <p>  </p>
+                <p>  </p>
+                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0" id="title">Factura de Venta</h2>
+                <!-- Icon Divider-->
+                <div class="divider-custom" id="container-design">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-circle" id="icon"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+<!-- -------------------------------------------------------------------------------------------------------------------------------------------------------->
+                <!-- Portfolio Grid Items-->
+                    <div class="row">
+                        <div class="text-center col-md-6">
+                          <form th:action="@{/factura-de-venta-articulos/crearFacturaArticulos}" method="post">
+                            <div class="control-group">
+                                <div class="form-group floating-label-form-group controls mb-0 pb-2" id="container-number" style="height: 50px;">
+                                    <label>Código</label><input class="form-control" id="numeroFacturaDeVenta" type="text" placeholder="Código" name="code" th:value="${code}" required="required" data-validation-required-message="Por favor ingrese número factura de venta"/>
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <div class="form-group floating-label-form-group controls mb-0 pb-2" id="container-customer" style="height: 50px;">
+                                    <label>Cliente</label><input class="form-control customer-name" id="clienteFacturaDeVenta" type="message" placeholder="Cliente" name="customer_name" th:value="${customer}" required="required" data-validation-required-message="Por favor ingrese cliente"/>
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <div class="form-group floating-label-form-group controls mb-0 pb-2" id="container-nit" style="height: 50px;">
+                                    <label>NIT o C.C</label><input class="form-control" id="nitFacturaDeVenta" type="number" placeholder="NIT O C.C" name="idCustomer" th:value="${idCustomer}" required="required" data-validation-required-message="Por favor ingrese NIT o CC"/>
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center col-md-6">
+                            <div class="control-group">
+                                <div class="form-group floating-label-form-group controls mb-0 pb-2" id="container-date" style="height: 55px; float: right;">
+                                    <label for="fechaFacturaDeVenta">Fecha</label>
+                                    <input placeholder="Fecha" type="text" onfocus="(this.type='date')" class="form-control vencimiento" id="fechaFacturaDeVenta" name="dateSaleBill" required th:value="${date}"/>
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <div class="form-group floating-label-form-group controls mb-0 pb-2" id="container-date" style="height: 55px; float: right;" >
+                                    <label for="fechaFacturaDeVenta">Vencimiento</label>
+                                    <input placeholder="Vencimiento" type="text" onfocus="(this.type='date')" class="form-control" id="fechaFacturaDeVenta" name="dateExpiration" th:value="${dateEx}"/>
+                                    <p class="help-block text-danger"></p>
+                        
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+               
+                    <!-- Portfolio Agregar Articulo-->
+                    <br>
+                    <br>
+                    <div class="row">
+                        <div class="text-center col-md-1">
+                            <input type="button" class="btn btn-primary eBtn" id="btn-AddArticle" data-toggle="modal" data-target="#articleModal" value="Agregar Artículo">
+                        </div>
+                    </div>
+                    <br>
+                       
+                    <!-- Portfolio tabla Busqueda-->
+                    <div class="con" style="width:100%">
+                        <table class="table table-hover table-bordered results" id="table-information">
+                        <thead>
+                            <tr>
+                                <th>Articulo</th>
+                                <th>Cantidad</th>
+                                <th>Descuento</th>
+                                <th>Impuesto</th>
+                                <th>Total</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+
+                        <!--Información base de datos-->
+                        <tbody>
+                            <tr th:each="i, iter :${articlesSaleBill}">
+                                <td th:text="${i.getArticle().getName()}"></td>
+                                <td th:text="${i.getQuantity()}"></td>
+                                <td th:text="${i.getDiscount()}"></td>
+                                <td th:text="${i.getTax()}"></td>
+                                <td th:text="${i.getTotal()}"></td>
+                                <td>
+                                    <button th:href="@{/factura-de-venta-articulos/obtenerArticulo/(index=${iter.index})}" class="btn btn-primary" id="btn-editArticle" data-toggle="modal" data-target="#editArticleModal" ><i class="fa fa-edit"></i></button>
+                                    <button th:href="@{/factura-de-venta-articulos/obtenerArticuloEliminar/(index=${iter.index})}" class="btn btn-primary" id="btn-deleteArticle" data-toggle="modal" data-target="#deleteArticleModal" ><i class="fa fa-trash"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                        </table>   
+                    </div>
+                    <br>
+                    <div class="form-group" style="float: right;">
+                        <label for="selectArticle" style="float: left; padding-right:10px; padding-top: 5px;">Total $:         </label>
+                       <input type ="number" name="total" th:value="${total}" class="form-control" readonly style="width: 165px; height: 35px;"/>
+                       <p></p>
+                    </div>
+                    <p></p>
+                    <div>
+                       <input type="submit" class="btn btn-primary form-control" id="btn-saveSaleBill" value="Guardar" style="width: 100px; padding-left: 10px;">
+                       <p></p>
+                    </div>
+                </div>
+              </form>                                
+            </div>
+        </div>
+    </section>    
+
+<!-- Add Article Modal -------------------------------------------------------------------------------------------------------------------------------------------------------->
+<div class="articleForm">
+    <form th:action="@{/factura-de-venta-articulos/agregarArticulo}" method="post" name="newArticle" >
+        <div class="modal fade" id="articleModal" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Artículo</h5>
+                        <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                           <input style="height: 10px;" type="number" name="idArticle" id="idArticle" value="" readonly hidden>
+                        </div> 
+                        <div class="form-group">
+                            <label for="selectArticle">Artículo:</label>
+                            <select id="selectArticle" name="selectArticle" class="form-control" required>
+                              <option value="" selected>Seleccione</option>
+                              <div th:each="i :${articles}">
+                              <option id="optionArticle" th:text="${i.getName()}"></option>
+                              </div>
+                             </select>
+                        </div> 
+                        <div class="form-group">
+                            <label for="value" class="col-form-label">Precio: 
+                                </label> <input type="number" class="form-control"
+                                id="price" name="price" value="" readonly/>
+                        </div>
+                        <div class="form-group">
+                            <label for="quantity" class="col-form-label">Cantidad: 
+                                </label> <input min="0" type="number" class="form-control quantity"
+                                id="quantity" name="quantity" value="" required/>
+                        </div>
+                        <div class="form-group">
+                            <label for="discount" class="col-form-label">Descuento (%): </label> 
+                                <input type="number" min="0" max="100" class="form-control"
+                                 id="discount" name="discount" value="0"/>
+                        </div> 
+                        <div class="form-group">
+                            <label for="selectTax">Impuesto (%):</label>
+                            <select id="selectTax" class="form-control" style="width: 50%;">
+                              <option selected value="">Seleccione</option>
+                              <div th:each="i :${taxes}">
+                                <option th:text="${i.getName()}"></option>
+                              </div>
+                            </select>
+                            <button type="button" class="btn btn-primary" id="btn-addTax" style=" margin-top: -70px; margin-left: 260px;">Añadir</button>
+                        </div> 
+                        
+                        <table class="table table-hover table-bordered results" id="tableTaxes">
+                            <thead>
+                                <tr>
+                                    <th>Impuesto</th>
+                                    <th>Valor (%) </th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+    
+                            <!--Información base de datos-->
+                            <tbody>
+                            </tbody>
+                            </table>   
+
+                        <div class="form-group">
+                            <label for="value" class="col-form-label">Total: 
+                                </label> <input type="number" class="form-control"
+                                id="total" name="total" value="" readonly/>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary"
+                            data-dismiss="modal">Cerrar</button>
+                        <input type="submit" class="btn btn-primary " value="Añadir" id="addArticle" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- Edit Article Modal ------------------------------------------------------------------------------------------------------------------------------------------------------->
+<div class="editArticleForm">
+    <form th:action="@{/factura-de-venta-articulos/editarArticulo}" method="post" name="editArticle">
+        <div class="modal fade" id="editArticleModal" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Artículo</h5>
+                        <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                           <input style="height: 10px;" type="number" name="indexArticle" id="indexArticle" value="" readonly hidden>
+                           <input style="height: 10px;" type="number" name="idArticle" id="idArticleEdit" value="" readonly hidden>
+                           <input style="height: 10px;" type="number" name="tax" id="taxEdit" value="" readonly hidden>
+                        </div> 
+                        <div class="form-group">
+                            <label for="selectArticleEdit">Artículo:</label>
+                            <select id="selectArticleEdit" name="selectArticleEdit" class="form-control" required>
+                              <option value="" selected>Seleccione</option>
+                              <div th:each="i :${articles}">
+                              <option id="optionArticle" th:text="${i.getName()}"></option>
+                              </div>
+                             </select>
+                        </div> 
+                        <div class="form-group">
+                            <label for="value" class="col-form-label">Precio: 
+                                </label> <input type="number" class="form-control"
+                                id="priceEdit" name="priceEdit" value="" readonly/>
+                        </div>
+                        <div class="form-group">
+                            <label for="quantity" class="col-form-label">Cantidad: 
+                                </label> <input min="0" type="number" class="form-control quantity"
+                                id="quantityEdit" name="quantity" value="" required/>
+                        </div>
+                        <div class="form-group">
+                            <label for="discount" class="col-form-label">Descuento (%): </label> 
+                                <input type="number" min="0" max="100" class="form-control"
+                                 id="discountEdit" name="discount" value="0"/>
+                        </div> 
+                        <div class="form-group">
+                            <label for="selectTaxEdit">Impuesto (%):</label>
+                            <select id="selectTaxEdit" class="form-control" style="width: 50%;">
+                              <option selected value="">Seleccione</option>
+                              <div th:each="i :${taxes}">
+                                <option th:text="${i.getName()}"></option>
+                              </div>
+                            </select>
+                            <button type="button" class="btn btn-primary" id="btn-addTaxEdit" style=" margin-top: -70px; margin-left: 260px;">Añadir</button>
+                        </div> 
+                        
+                        <table class="table table-hover table-bordered results" id="tableTaxesEdit">
+                            <thead>
+                                <tr>
+                                    <th>Impuesto</th>
+                                    <th>Valor (%) </th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+    
+                            <!--Información base de datos-->
+                            <tbody>
+                            </tbody>
+                            </table>   
+
+                        <div class="form-group">
+                            <label for="value" class="col-form-label">Total: 
+                                </label> <input type="number" class="form-control"
+                                id="totalEdit" name="total" value="" readonly/>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary"
+                            data-dismiss="modal">Cerrar</button>
+                        <input type="submit" class="btn btn-primary " value="Editar" id="ediArticle" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- Delete Article Modal ------------------------------------------------------------------------------------------------------------------------------------------------------->
+<div class="deleteArticleForm">
+    <form th:action="@{/factura-de-venta-articulos/eliminarArticulo}" method="post" name="deleteArticle"> 
+        <div class="modal fade" id="deleteArticleModal" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Eliminar Artículo</h5>
+                        <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="padding-top: 5px; height: 100px;">
+                        <div class="form-group">
+                           <input style="height: 10px;" type="number" name="index" id="indexDelete" value="" readonly hidden>
+                        </div> 
+                        <div class="form-group">
+                            <label >¿Esta seguro que desea eliminar este artículo?</label>
+                        </div> 
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary"
+                            data-dismiss="modal">No</button>
+                        <input type="submit" class="btn btn-danger" value="Si" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- Copyright Section ------------------------------------------------------------------------------------------------------------------------------------------------------->
+
+        <section class="copyright py-4 text-center text-white">
+            <div class="container"><small>Copyright © BAMBÚ 2020</small></div>
+        </section>
+        <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes)-->
+        <div class="scroll-to-top d-lg-none position-fixed">
+            <a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top"><i class="fa fa-chevron-up"></i></a>
+        </div>
+
+        
+        <!-- Bootstrap core JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+        <!-- Third party plugin JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+        
+        <!-- Sale Bill JS -->
+        <script type="text/javascript" th:src="@{/js/articles_sale_bill/sale_bill.js}" src="static/js/articles_sale_bill/sale_bill.js"></script>
+      
+        <!-- Validation JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.14.0/jquery.validate.min.js"></script>       
+       
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+
+        <!--JQUERY DataTable-->       
+        <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+          
+        <!-- DataTable JS -->
+        <script type="text/javascript" th:src="@{/js/table/datatable.js}" src="static/js/table/datatable.js"></script>
+
+        </body>
+    </body>
+</html>

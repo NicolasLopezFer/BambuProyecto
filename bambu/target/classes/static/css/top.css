@@ -1,0 +1,27 @@
+/* Title Page */
+#title{
+    font-size: 40px;
+    margin-top: -15px;
+}
+
+/* Container Design Title Page */
+.divider-custom{
+    height: 12px;
+}
+
+.divider-custom-icon{
+    margin-top: -15px;
+}
+
+#icon{
+    height: 20px;
+}
+
+/* Navigation Bar */
+#mainNav{
+    height: 60px;
+}
+
+.paginate{
+    margin-left:1px ;
+}

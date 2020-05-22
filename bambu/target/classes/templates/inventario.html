@@ -6,26 +6,37 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Inventario</title>
+
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.12.1/js/all.js" crossorigin="anonymous"></script>
+        
+        <!--JQUERY-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
         <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
 
-        <!-- Nuestro Iniventario-->
-        <script type="text/javascript" th:src="@{/js/inventario.js}"
-	        src="static/js/inventario.js"></script>
+        <!-- DataTables CSS -->
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
+              
+        <!-- Inventory CSS -->
+        <link href="css/inventory/inventory.css" rel="stylesheet" type="text/css"  />
+        
+          
+
+            
     </head>
     <body id="page-top">
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand js-scroll-trigger" href="#page-top">BAMBÚ</a><button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu <i class="fas fa-bars"></i></button>
+                <a class="navbar-brand js-scroll-trigger" href="emprendedor">BAMBÚ</a><button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu <i class="fas fa-bars"></i></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="emprendedor">Atras</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="javascript:history.back()">Atras</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#perfil">Perfil</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#cerrarsesion">Cerrar sesión</a></li>
                     </ul>
@@ -40,65 +51,59 @@
                 <!-- Portfolio Section Heading-->
                 <p>  </p>
                 <p>  </p>
-                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">inventarios</h2>
+                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0" id="title">inventarios</h2>
                 <!-- Icon Divider-->
                 <div class="divider-custom">
                     <div class="divider-custom-line"></div>
-                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                    <div class="divider-custom-icon"><i class="fas fa-star" id="icon-star"></i></div>
                     <div class="divider-custom-line"></div>
                 </div>
                 <!-- Portfolio Grid Items-->
-                <div class="row">
-                    <div class="text-center col-md-12">
-                    
-                    <!-- Portfolio Item Kardex-->
-                        <a class="btn btn-primary btn-m js-scroll-trigger" href="kardex">Kardex</a>
-                    
+                <div class="row" >
+                    <div class="col-md-12">                   
                     <!-- Portfolio Item Medidas-->
-                        <a class="btn btn-primary btn-m js-scroll-trigger" href="metodosMedicion">Métodos de medición</a>
+                        <a class="btn btn-primary btn-m js-scroll-trigger" id="btn-methods" data-toggle="modal" data-target="#metodoModal">Métodos de medición</a>
                     </div>
-
-
-                    <!-- Portfolio tabla Busqueda-->
                     
-                    <div class="form-group pull-right">
-                        <input type="text" class="search form-control" placeholder="¿Qué buscas?">
+                    <div class="content" style="width:100%">
+                        <table id="table-information" class="table table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Código</th>
+                                    <th>Articulo</th>
+                                    <th>Cantidad disponible</th>
+                                    <th>Costo unitario</th>
+                                    <th>Costo total</th>
+                                    <th>Precio de venta</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead> 
+                            <tbody>
+                                <tr th:each="i :${inventory}">
+                                    <td th:text="${i.getArticle().getCode()}"></td>
+                                    <td th:text="${i.getArticle().getName()}"></td>
+                                    <td th:text="${i.getArticle().getQuantity()}"></td>
+                                    <td th:text="${i.getArticle().getUnitCost()}"></td>
+                                    <td th:text="${i.getArticle().getTotalCost()}"></td>
+                                    <td th:text="${i.getArticle().getSalePrice()}"></td>
+                                    <td>
+                                        <a th:href="@{/inventario/encontrar-articulo/(id=${i.getId()})}" class="btn btn-primary eBtn" id="btn-entry" data-toggle="modal" data-target="#entradaModal">Entrada</a>
+                                        <a th:href="@{/inventario/encontrar-articulo/(id=${i.getId()})}" class="btn btn-primary sBtn" id="btn-output">Salida</a>
+                                        <a th:href="@{/kardex/(id=${i.getArticle().getId()})}" class="btn btn-primary" id="btn-kardex" data-toggle="modal" data-target="#kardexModal" >Kardex</a>
+                                    </td>
+                                  </tr>                               
+                            </tbody>
+                        </table>
                     </div>
-                    <span class="counter pull-right"></span>
-                    <table class="table table-hover table-bordered results">
-                      <thead>
-                        <tr>
-                            <th>Código</th>
-                            <th>Articulo</th>
-                            <th>Cantidad disponible</th>
-                            <th>Costo unitario</th>
-                            <th>Costo total</th>
-                            <th>Precio de venta</th>
-                            <th>Acciones</th>
-                        </tr>
-                      </thead>
-                      <!--Información base de datos-->
-                      <tbody>
-                          <tr th:each="i :${inventory}">
-                            <td th:text="${i.getArticle().getCode()}"></td>
-                            <td th:text="${i.getArticle().getName()}"></td>
-                            <td th:text="${i.getArticle().getQuantity()}"></td>
-                            <td th:text="${i.getArticle().getUnitCost()}"></td>
-                            <td th:text="${i.getArticle().getTotalCost()}"></td>
-                            <td th:text="${i.getArticle().getSalePrice()}"></td>
-                            <td>
-                                <a th:href="@{articulos-encontraruno/(id=${i.getArticle().getId()})}" class="btn btn-primary eBtn" >Entrada</a>
-                                <a th:href="@{articulos-encontraruno/(id=${i.getArticle().getId()})}" class="btn btn-primary sBtn" >Salida</a>
-                            </td>
-                          </tr>
-                      </tbody>
-                    </table>
+                 
                   </div>
                 </div>
             </div>
 
+
+<!-- Add Entry Modal -------------------------------------------------------------------------------------------------------------------------------------------------------->
             <div class="entradaForm">
-                <form th:action="@{/entradaInventario}" method="post">
+                <form th:action="@{inventario/entradaInventario}" method="post">
                     <div class="modal fade" id="entradaModal" tabindex="-1" role="dialog"
                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
@@ -112,39 +117,36 @@
                                 </div>
                                 <div class="modal-body">
                                     <div class="form-group">
-                                        <label for="nombre" class="col-form-label">Nombre Articulo:</label> <input
-                                            type="text" class="form-control" id="nombre" name="nombre"
-                                            value="" readonly/>
+                                       <input type="number" class="form-control" th:id="input-id-entry" name="idArticle" value="" readonly hidden/>
+                                    </div>       
+                                    <div class="form-group">
+                                        <label for="input-name" class="col-form-label">Nombre Articulo:</label> 
+                                        <input type="text" class="form-control" th:id="input-name-entry" readonly/>
                                     </div>
                                     <div class="form-group">
-                                        <label for="date" class="col-form-label">Fecha:</label> <input
-                                            type="date" class="form-control" id="date" name="date"
-                                            value=""/>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="code" class="col-form-label">Codigo:
-                                            </label> <input type="text" class="form-control" id="code"
+                                        <label for="codeEntry" class="col-form-label">Codigo:
+                                            </label> <input type="text" class="form-control" id="codeEntry"
                                             name="code" value="" />
                                     </div>
                                     <div class="form-group">
-                                        <label for="detalle" class="col-form-label">Detalles: 
+                                        <label for="detailEntry" class="col-form-label">Detalles: 
                                             </label> <input type="message" class="form-control"
-                                            id="detalle" name="detalle" value="" />
+                                            id="detailEntry" name="detail" value="" />
                                     </div>
                                     <div class="form-group">
-                                        <label for="cantidad" class="col-form-label">Cantidad: 
-                                            </label> <input type="text" class="form-control"
-                                            id="cantidad" name="cantidad" value="" />
+                                        <label for="quantityEntry" class="col-form-label">Cantidad: 
+                                            </label> <input type="number" class="form-control"
+                                            id="quantityEntry" name="quantity" value="" />
                                     </div>
                                     <div class="form-group">
-                                        <label for="costoUnitario" class="col-form-label">Costo Unitario: 
-                                            </label> <input type="text" class="form-control"
-                                            id="costoUnitario" name="costoUnitario" value="" readonly/>
+                                        <label for="unitCostEntry" class="col-form-label">Costo Unitario: 
+                                            </label> <input type="number" step = "any" class="form-control"
+                                            id="unitCostEntry" name="unitCost" value=""/>
                                     </div>
                                     <div class="form-group">
-                                        <label for="costoTotal" class="col-form-label">Costo Total: 
-                                            </label> <input type="text" class="form-control"
-                                            id="costoTotal" name="costoTotal" value="" readonly/>
+                                        <label for="totalCostEntry" class="col-form-label">Costo Total: 
+                                            </label> <input type="number" step = "any" class="form-control"
+                                            id="totalCostEntry" name="totalCost" value="" readonly/>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -158,9 +160,9 @@
                 </form>
             </div>
 
-
+<!-- Add Ouput Modal -------------------------------------------------------------------------------------------------------------------------------------------------------->
             <div class="salidaForm">
-                <form th:action="@{/salidaInventario}" method="post">
+                <form th:action="@{inventario/salidaInventario}" method="post">
                     <div class="modal fade" id="salidaModal" tabindex="-1" role="dialog"
                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
@@ -174,44 +176,41 @@
                                 </div>
                                 <div class="modal-body">
                                     <div class="form-group">
-                                        <label for="nombres" class="col-form-label">Nombre Articulo:</label> <input
-                                            type="text" class="form-control" id="nombres" name="nombres"
-                                            value="" readonly/>
+                                       <input type="number" class="form-control" id="input-id" name="idArticle" value="" readonly hidden/>
+                                    </div>       
+                                    <div class="form-group">
+                                        <label for="input-name" class="col-form-label">Nombre Articulo:</label> 
+                                        <input type="text" class="form-control" id="input-name" readonly/>
                                     </div>
                                     <div class="form-group">
-                                        <label for="dates" class="col-form-label">Fecha:</label> <input
-                                            type="date" class="form-control" id="dates" name="dates"
-                                            value=""/>
+                                        <label for="code" class="col-form-label">Codigo:
+                                            </label> <input type="text" class="form-control" id="code"
+                                            name="code" value="" />
                                     </div>
                                     <div class="form-group">
-                                        <label for="codes" class="col-form-label">Codigo:
-                                            </label> <input type="text" class="form-control" id="codes"
-                                            name="codes" value="" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="detalles" class="col-form-label">Detalles: 
+                                        <label for="detail" class="col-form-label">Detalles: 
                                             </label> <input type="message" class="form-control"
-                                            id="detalles" name="detalles" value="" />
+                                            id="detail" name="detail" value="" />
                                     </div>
                                     <div class="form-group">
-                                        <label for="cantidads" class="col-form-label">Cantidad: 
-                                            </label> <input type="text" class="form-control"
-                                            id="cantidads" name="cantidads" value="" />
+                                        <label for="quantity" class="col-form-label">Cantidad: 
+                                            </label> <input type="number" class="form-control"
+                                            id="quantity" name="quantity" value="" />
                                     </div>
                                     <div class="form-group">
-                                        <label for="costoUnitarios" class="col-form-label">Costo Unitario: 
-                                            </label> <input type="text" class="form-control"
-                                            id="costoUnitarios" name="costoUnitarios" value="" readonly/>
+                                        <label for="unitCost" class="col-form-label">Costo Unitario: 
+                                            </label> <input type="number" class="form-control"
+                                            id="unitCost" name="unitCost" value="" readonly/>
                                     </div>
                                     <div class="form-group">
-                                        <label for="costoTotals" class="col-form-label">Costo Total: 
-                                            </label> <input type="text" class="form-control"
-                                            id="costoTotals" name="costoTotals" value="" readonly/>
+                                        <label for="totalCost" class="col-form-label">Costo Total: 
+                                            </label> <input type="number" class="form-control"
+                                            id="totalCost" name="totalCost" value="" readonly/>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"
-                                        data-dismiss="modal">Close</button>
+                                        data-dismiss="modal">Cerrar</button>
                                     <input type="submit" class="btn btn-primary " value="Guardar" />
                                 </div>
                             </div>
@@ -220,27 +219,121 @@
                 </form>
             </div>
 
-        </section>
-        
-        <!-- Copyright Section-->
-        <section class="copyright py-4 text-center text-white">
-            <div class="container"><small>Copyright © BAMBÚ 2020</small></div>
-        </section>
-        <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes)-->
-        <div class="scroll-to-top d-lg-none position-fixed">
-            <a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top"><i class="fa fa-chevron-up"></i></a>
-        </div>
 
-        
-        <!-- Bootstrap core JS-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-        <!-- Third party plugin JS-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-        <!-- Contact form JS-->
-        <script src="assets/mail/jqBootstrapValidation.js"></script>
-        <script src="assets/mail/contact_me.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
+<!-- Change Method Modal -------------------------------------------------------------------------------------------------------------------------------------------------------->
+            <div class="metodoForm">
+                <form th:action="@{inventario/modificarMetodo}" method="post">
+                    <div class="modal fade" id="metodoModal" tabindex="-1" role="dialog" aria-hidden="true" >
+                        <div class="modal-dialog modal-sm" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header" style="height: 0px;">
+                                    <h5 class="modal-title" id="exampleModalLabel">Métodos de Medición</h5>
+                                    <button type="button" class="close" data-dismiss="modal"
+                                        aria-label="Close" style="height: 20px;">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div> 
+                            
+                                <div class="modal-body" style="padding: 40px;">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="ch-avarage">
+                                        <label class="form-check-label" id="avarage" for="ch-avarage">Promedio Ponderado</label>
+                                    </div> 
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="ch-fifo">
+                                        <label class="form-check-label" id="fifo" for="ch-fifo">FiFo</label>
+                                      </div>  
+                                      <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="ch-lifo">
+                                        <label class="form-check-label" id="lifo" for="ch-lifo">LiFo</label>
+                                      </div>
+                                      <input style="height: 10px;" type="text" class="form-check-input" id="method" name="method" value="" readonly hidden>     
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-dismiss="modal">Cerrar</button>
+                                    <input type="submit" class="btn btn-primary " value="Guardar" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>   
+
+<!-- Kardex Modal -------------------------------------------------------------------------------------------------------------------------------------------------------->
+            <div class="kardexForm">
+                <form th:action="@{/kardex}" method="post">
+                    <div class="modal fade" id="kardexModal" tabindex="-1" role="dialog" aria-hidden="true" >
+                        <div class="modal-dialog modal-sm" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header" style="height: 0px;">
+                                    <h5 class="modal-title" id="exampleModalLabel">Métodos de Medición</h5>
+                                    <button type="button" class="close" data-dismiss="modal"
+                                        aria-label="Close" style="height: 20px;">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div> 
+                            
+                                <div class="modal-body" style="padding: 40px;">
+                                    <div class="form-group">
+                                        <label for="unitCost" class="col-form-label">Fecha Inicio: 
+                                            </label> <input type="number" class="form-control"
+                                            id="unitCost" name="unitCost" value="" readonly/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="unitCost" class="col-form-label">Fecha Fin: 
+                                            </label> <input type="number" class="form-control"
+                                            id="unitCost" name="unitCost" value="" readonly/>
+                                    </div>
+                                      <input style="height: 10px;" type="number" id="idArticleKardex" name="idArticle" value="" readonly>     
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-dismiss="modal">Cerrar</button>
+                                    <input type="submit" class="btn btn-primary " value="Guardar" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>   
     </body>
+
+
+<!-- Copyright Section ------------------------------------------------------------------------------------------------------------------------------------------------------->
+
+
+<!-- Script Section ------------------------------------------------------------------------------------------------------------------------------------------------------->
+
+            <!-- Bootstrap core JS-->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+            <!-- Third party plugin JS-->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+            
+            <!-- Modal Inventory JS -->
+            <script type="text/javascript" th:src="@{/js/inventory/inventory.js}" src="static/js/inventory/inventory.js"></script>
+         
+            <!-- Modal Output JS -->
+            <script type="text/javascript" th:src="@{/js/inventory/output.js}" src="static/js/inventory/output.js"></script>
+
+            <!-- Modal Entry JS -->
+            <script type="text/javascript" th:src="@{/js/inventory/entry.js}" src="static/js/inventory/entry.js"></script>
+
+            <!-- Validation JS -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.14.0/jquery.validate.min.js"></script>       
+           
+            <!-- Core theme JS-->
+            <script src="js/scripts.js"></script>
+    
+            <!--JQUERY DataTable-->       
+            <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+            <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+              
+            <!-- DataTable JS -->
+            <script type="text/javascript" th:src="@{/js/table/datatable.js}" src="static/js/table/datatable.js"></script>
+
+    
+
 </html>

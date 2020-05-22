@@ -98,6 +98,7 @@ public class Article {
 
     public void setUnitCost(double unitCost) {
         this.unitCost = unitCost;
+        this.totalCost = this.unitCost*this.quantity;
     }
 
     public double getTotalCost() {

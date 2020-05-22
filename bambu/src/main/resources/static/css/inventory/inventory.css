@@ -1,0 +1,54 @@
+@charset "UTF-8";
+
+#select-method{
+    width: 20%;
+}
+
+#btn-methods{
+    height: 40px;
+    width: 210px;
+    padding: 5px 0px 0px;
+    font-size: large;
+    text-align: center ;
+    margin-left: -22px;
+}
+
+/* Table */
+
+/* Title Page */
+#title{
+    font-size: 40px;
+    margin-top: -15px;
+}
+
+/* Container Design Title Page */
+#container-design{
+    height: 12px;
+}
+
+#container-star{
+    margin-top: -15px;
+}
+
+#icon-star{
+    height: 20px;
+}
+
+/* Navigation Bar */
+#mainNav{
+    height: 60px;
+}
+
+/* Section Copyright */
+#section-copyright{
+    height: 20px;
+    padding: 0px 0px 0px;
+    margin-top: 88px;
+}
+
+#container-copyright{
+    height: 10px;
+    padding-top: 0px;
+    height: 10px;
+    margin-top: -10px;
+}

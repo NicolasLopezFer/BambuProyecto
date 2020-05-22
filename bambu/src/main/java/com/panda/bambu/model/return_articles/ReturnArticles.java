@@ -20,27 +20,21 @@ public class ReturnArticles {
 	@Column(name = "id")
     private Long id; 
     
-    @NotNull(message="Code is compulsory")
 	@Column(name = "code", unique=true)
     private String code;
 
-    @NotNull(message="Date is compulsory")
     @Column(name = "date")
     private LocalDate date;
 
-    @NotNull(message="Customer Name is compulsory")
     @Column(name = "customer_name")
     private String customer_name;
 
-    @NotNull(message="id is compulsory")
     @Column(name = "id_customer")
     private String idCustomer;
    
-    @NotNull(message="Sale Return is compulsory")
     @Column(name = "sale_return")
     private Boolean saleReturn;
 
-    @NotNull(message="Buy Return is compulsory")
     @Column(name = "buy_return")
     private Boolean buyReturn;
 

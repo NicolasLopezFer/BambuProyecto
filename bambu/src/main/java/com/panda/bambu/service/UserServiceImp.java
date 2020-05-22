@@ -1,5 +1,8 @@
 package com.panda.bambu.service;
+import com.panda.bambu.model.company.Company;
 
+
+import com.panda.bambu.service.company.CompanyService;
 import java.util.Arrays;
 import java.util.HashSet;
 
@@ -10,10 +13,13 @@ import com.panda.bambu.model.RoleRepository;
 //import com.panda.bambu.dto.ChangePasswordForm;
 import com.panda.bambu.model.User;
 import com.panda.bambu.model.UserRepository;
+import com.panda.bambu.model.company.Company;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import com.panda.bambu.model.User;
 
 
 @Service
@@ -41,4 +47,21 @@ public class UserServiceImp implements UserService {
 			return false;
 		return true;
 	}
+	
+	
+	@Override
+	public boolean addCompany(Company company){
+		CompanyService newcompa =new CompanyService();
+        if(newcompa.isCompanyAlreadyPresent(company)== true){
+            if(company !=null){
+                User user = new User();
+                user.getCompanyList().add(company);
+                return true;            
+            }
+        }
+        return false;    
+	}
+    
 }
+
+

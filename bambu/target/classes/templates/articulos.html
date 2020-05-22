@@ -26,18 +26,21 @@
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="css/styles.css" rel="stylesheet" />
 
-<!-- Nuestro JS articulos -->
-<script type="text/javascript" th:src="@{/js/articulos.js}"
-	src="static/js/articulos.js"></script>
+<!-- DataTables CSS -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
+        
+ <!-- Return CSS -->
+ <link href="css/return_articles/returns.css" rel="stylesheet" type="text/css"  />
+
 </head>
 
 <body id="page-top">
-	<!-- Navigation-->
+	<!-- Navigation--> 
 	<nav
 		class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top"
 		id="mainNav">
 		<div class="container">
-			<a class="navbar-brand js-scroll-trigger" href="#page-top">BAMBÚ</a>
+			<a class="navbar-brand js-scroll-trigger" href="emprendedor">BAMBÚ</a>
 			<button
 				class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded"
 				type="button" data-toggle="collapse" data-target="#navbarResponsive"
@@ -49,7 +52,7 @@
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item mx-0 mx-lg-1"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-						href="emprendedor">Atras</a></li>
+						href="javascript:history.back()">Atras</a></li>
 					<li class="nav-item mx-0 mx-lg-1"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
 						href="#perfil">Perfil</a></li>
@@ -65,33 +68,28 @@
 	<!-- Portfolio Section-->
 	<section class="page-section portfolio">
 		<div class="container">
-			<!-- Portfolio Section Heading-->
-			<h2
-				class="page-section-heading text-center text-uppercase text-secondary mb-0">articulos</h2>
-			<!-- Icon Divider-->
-			<div class="divider-custom">
-				<div class="divider-custom-line"></div>
-				<div class="divider-custom-icon">
-					<i class="fas fa-star"></i>
+			  <!-- Portfolio Section-->
+				<p>  </p>
+				<p>  </p>
+				<h2 class="page-section-heading text-center text-uppercase text-secondary mb-0" id="title">Artículos</h2>
+				<!-- Icon Divider-->
+				<div class="divider-custom" id="container-design">
+					<div class="divider-custom-line"></div>
+					<div class="divider-custom-icon"><i class="fas fa-star" id="icon"></i></div>
+					<div class="divider-custom-line"></div>
 				</div>
-				<div class="divider-custom-line"></div>
-			</div>
 			<!-- Portfolio Grid Items-->
 			<div class="row">
-				<div class="text-center col-md-12">
+				<div class="col-md-12">
 					<!-- Portfolio Item Nuevo Articulo-->
-					<a class="btn btn-primary btn-m js-scroll-trigger nBtn"><i
+					<a class="btn btn-primary btn-m js-scroll-trigger nBtn" id="btn-methods"><i
 						class="fas fa-plus"></i> Nuevo Articulo </a>
 				</div>
 				<span th:utext="${responseMessage}"></span>
 				<!-- Portfolio tabla Busqueda-->
 
-				<div class="form-group pull-right">
-					<input type="text" class="search form-control"
-						placeholder="¿Qué buscas?">
-				</div>
-				<span class="counter pull-right"></span>
-				<table class="table table-hover table-bordered results">
+			 <div class="content" style="width:100%">
+				<table  class="table table-hover table-bordered results" id="table-information">
 					<thead>
 						<tr>
 							<th>Código</th>
@@ -119,13 +117,7 @@
 						</tr>
 					</tbody>
 				</table>
-				<!--<ul class="nav nav-pills">
-					<li class="nav-item"
-						th:each="i: ${#numbers.sequence(0,articulosEmpresa.totalPages-1)}">
-						<a th:href="@{/(page=${i})}" th:text="@{i}" class="nav-link"
-						th:classappend="${paginaActual}==${i}?'active':''"></a>
-					</li>
-				</ul>-->
+			 </div>
 			</div>
 		</div>
 		<div class="editForm">
@@ -145,22 +137,28 @@
 								<div class="form-group">
 									<label for="code" class="col-form-label">Codigo:</label> <input
 										type="text" class="form-control" id="code" name="code"
-										value="" readonly />
+										value="" readonly required/>
 								</div>
 								<div class="form-group">
 									<label for="name" class="col-form-label">Nombre
 										Articulo:</label> <input type="text" class="form-control" id="name"
-										name="name" value="" />
+										name="name" value="" required/>
 								</div>
 								<div class="form-group">
 									<label for="salePrice" class="col-form-label">Precio de
 										venta:</label> <input type="number" class="form-control"
-										id="salePrice" name="salePrice" value="" />
+										id="salePrice" name="salePrice" value="" required/>
 								</div>
+								<input type="number" class="form-control"
+										id="quantity" name="quantity" value="" readonly hidden/>
+								<input type="number" class="form-control"
+										id="totalCost" name="totalCost" value="" readonly hidden/>
+								<input type="number" class="form-control"
+										id="unitCost" name="unitCost" value="" readonly hidden/>
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-secondary"
-									data-dismiss="modal">Close</button>
+									data-dismiss="modal">Cerrar</button>
 								<input type="submit" class="btn btn-primary " value="Guardar" />
 							</div>
 						</div>
@@ -187,23 +185,38 @@
 								<div class="form-group">
 									<label for="code" class="col-form-label">Codigo:</label> <input
 										type="text" class="form-control" id="code" name="code"
-										value="" />
+										value="" required/>
 								</div>
 								<div class="form-group">
-									<label for="name" class="col-form-label">Nombre
-										Articulo:</label> <input type="text" class="form-control" id="name"
-										name="name" value="" />
+									<label for="name" class="col-form-label">Nombre:
+										</label> <input type="text" class="form-control" id="name"
+										name="name" value="" required/>
+								</div>
+								<div class="form-group">
+									<label for="quantity" class="col-form-label">Cantidad:
+										</label> <input type="text" class="form-control" id="quantity"
+										name="quantity" value="" required/>
+								</div>
+								<div class="form-group">
+									<label for="unitCost" class="col-form-label">Costo Unitario:
+										</label>
+										<input type="text" class="form-control" id="unitCost"
+										name="unitCost" value=""   min="0.00" max="10000.00" step="0.01" required/>
 								</div>
 								<div class="form-group">
 									<label for="salePrice" class="col-form-label">Precio de
 										venta:</label> <input type="number" class="form-control"
-										id="salePrice" name="salePrice" value="" />
+										id="salePrice" name="salePrice" value="" required/>
+								</div>
+								<div class="form-group">
+									<label for="totalCost" class="col-form-label">Costo Total:
+										</label> <input type="text" class="form-control" id="totalCost"
+										name="totalCost" value="" required readonly/>
 								</div>
 							</div>
-
 							<div class="modal-footer">
 								<button type="button" class="btn btn-secondary"
-									data-dismiss="modal">Close</button>
+									data-dismiss="modal">Cerrar</button>
 								<input type="submit" class="btn btn-primary " value="Guardar" />
 							</div>
 						</div>
@@ -213,9 +226,9 @@
 		</div>
 
 		<div class='deleteForm'>
-			<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog"
+			<div class="modal fade" id="deleteArticleModal"  tabindex="-1" role="dialog"
 				aria-labelledby="exampleModalLabel" aria-hidden="true">
-				<div class="modal-dialog" role="document">
+				<div class="modal-dialog modal-sm" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
 							<h5 class="modal-title" id="exampleModalLabel">Borrar Articulo</h5>
@@ -224,11 +237,14 @@
 								<span aria-hidden="true">&times;</span>
 							</button>
 						</div>
-						<div class="modal-body">
-							<p class="alert alert-danger">
-								¿Estas seguro que quieres borrar este artículo?
-							</p>
-						</div>
+							<div class="modal-body" style="padding-top: 5px; height: 100px;">
+								<div class="form-group">
+								   <input style="height: 10px;" type="number" name="index" id="indexDelete" value="" readonly hidden>
+								</div> 
+								<div class="form-group">
+									<label >¿Esta seguro que desea eliminar este artículo?</label>
+								</div> 
+							</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary"
 								data-dismiss="modal">No</button>
@@ -256,18 +272,31 @@
 	</div>
 
 
-	<!-- Bootstrap core JS-->
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-	<!-- Third party plugin JS-->
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-	<!-- Contact form JS-->
-	<script src="assets/mail/jqBootstrapValidation.js"></script>
-	<script src="assets/mail/contact_me.js"></script>
-	<!-- Core theme JS-->
-	<script src="js/scripts.js"></script>
+<!-- Bootstrap core JS-->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<!-- Third party plugin JS-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+
+<!-- Modal Article JS -->
+<script type="text/javascript" th:src="@{/js/articulos.js}"	src="static/js/articulos.js"></script>
+
+<!-- Validation JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.14.0/jquery.validate.min.js"></script>       
+
+<!-- Core theme JS-->
+<script src="js/scripts.js"></script>
+
+<!--JQUERY DataTable-->       
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  
+<!-- DataTable JS -->
+<script type="text/javascript" th:src="@{/js/table/datatable.js}" src="static/js/table/datatable.js"></script>
+
+
+
 </body>
 </html>

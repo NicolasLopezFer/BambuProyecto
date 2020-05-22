@@ -6,24 +6,39 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Devoluciones</title>
+        
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.12.1/js/all.js" crossorigin="anonymous"></script>
+        
+        <!--JQUERY-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
         <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+
+        <!-- DataTables CSS -->
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
+        
+        <!-- Return CSS -->
+        <link href="css/return_articles/returns.css" rel="stylesheet" type="text/css"  />
+
         <!--<script type="text/javascript" th:src="@{/js/devoluciones.js}"
-	        src="static/js/devoluciones.js"></script>-->
+            src="static/js/devoluciones.js"></script>-->
+        
+        
+
     </head>
     <body id="page-top">
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand js-scroll-trigger" href="#page-top">BAMBÚ</a><button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu <i class="fas fa-bars"></i></button>
+                <a class="navbar-brand js-scroll-trigger" href="emprendedor">BAMBÚ</a><button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu <i class="fas fa-bars"></i></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="emprendedor">Atras</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="javascript:history.back()">Atras</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#perfil">Perfil</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#cerrarsesion">Cerrar sesión</a></li>
                     </ul>
@@ -38,143 +53,281 @@
                 <!-- Portfolio Section Heading-->
                 <p>  </p>
                 <p>  </p>
-                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Devoluciones</h2>
+                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0" id="title">Devoluciones</h2>
                 <!-- Icon Divider-->
-                <div class="divider-custom">
+                <div class="divider-custom" id="container-design">
                     <div class="divider-custom-line"></div>
-                    <div class="divider-custom-icon"><i class="fas fa-circle"></i></div>
+                    <div class="divider-custom-icon"><i class="fas fa-circle" id="icon"></i></div>
                     <div class="divider-custom-line"></div>
                 </div>
 <!-- -------------------------------------------------------------------------------------------------------------------------------------------------------->
-                <form name="formularioNuevo" th:action="@{/devoluciones}" method="post">
-                    <input type="text" id="code">code</input>
-                    <input type="text" id="date">date</input>
-                    <input type="text" id="customer_name">customer_name</input>
-                    <input type="text" id="idCustomer">idCustomer</input>
-                    <input type="text" id="saleReturn">saleReturn</input>
-                    <input type="text" id="buyReturn">buyReturn</input>
-                    <input type="text" id="articles">articles</input>
-                </form>
-<!-- -------------------------------------------------------------------------------------------------------------------------------------------------------->
-
                 <!-- Portfolio Grid Items-->
                     <div class="row">
-                        
+                      <form th:action="@{/devoluciones/crearDevolucion}" method="post" style="width: 100%;" >
                         <div class="text-center col-md-6">
                             <div class="control-group">
-                                <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                                    <label>Número</label><input class="form-control" id="numeroFacturaDeVenta" type="number" placeholder="Número" required="required" data-validation-required-message="Por favor ingrese número factura de venta"/>
+                                <div class="form-group floating-label-form-group controls mb-0 pb-2" id="container-number" style="height: 50px;">
+                                    <label>Código</label><input class="form-control" th:value="${codeReturn}" id="numeroFacturaDeVenta" type="text" placeholder="Código" name="code" required="required" data-validation-required-message="Por favor ingrese número factura de venta"/>
                                     <p class="help-block text-danger"></p>
                                 </div>
                             </div>
                             <div class="control-group">
-                                <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                                    <label>Cliente</label><input class="form-control" id="clienteFacturaDeVenta" type="message" placeholder="Cliente" required="required" data-validation-required-message="Por favor ingrese cliente"/>
+                                <div class="form-group floating-label-form-group controls mb-0 pb-2" id="container-customer" style="height: 50px;">
+                                    <label>Cliente</label><input class="form-control" th:value="${customerReturn}" id="clienteFacturaDeVenta" type="message" placeholder="Cliente" name="customer_name" required="required" data-validation-required-message="Por favor ingrese cliente"/>
                                     <p class="help-block text-danger"></p>
                                 </div>
                             </div>
                             <div class="control-group">
-                                <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                                    <label>NIT o C.C</label><input class="form-control" id="nitFacturaDeVenta" type="number" placeholder="NIT O C.C" required="required" data-validation-required-message="Por favor ingrese NIT o CC"/>
+                                <div class="form-group floating-label-form-group controls mb-0 pb-2" id="container-nit" style="height: 50px;">
+                                    <label>NIT o C.C</label><input class="form-control" th:value="${idCustomer}"  id="nitFacturaDeVenta" type="text" placeholder="NIT O C.C" required="required" data-validation-required-message="Por favor ingrese NIT o CC"/>
                                     <p class="help-block text-danger"></p>
                                 </div>
                             </div>
                         </div>
-                        <div class="text-center col-md-6">
-                            Fecha
+                        <div class="text-center col-md-6" id="container-right">
                             <div class="control-group">
-                                <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                                    <label></label><input class="form-control" id="fechaFacturaDeVenta" type="date" required="required" data-validation-required-message="Por favor ingrese fecha." />
+                                <div class="form-group floating-label-form-group controls mb-0 pb-2" id="container-date" style="height: 55px; float: right;">
+                                    <label for="fechaFacturaDeVenta">Fecha</label><input placeholder="Fecha" type="text" onfocus="(this.type='date')" th:value="${dateReturn}" class="form-control" id="fechaFacturaDeVenta" />
                                     <p class="help-block text-danger"></p>
                                 </div>
                             </div>
-                            <p></p>
-                            <p></p>
-                            <div class="form-check">
-                                <input type="checkbox" class="resizedTextbox" id="checkDevolucionDeCompra">
-                                <label class="form-check-label" for="exampleCheck1"><p style="font-size:30px">Devolución de compra</p></label>
+                            <div class="form-check" id="container-buy">
+                                <input type="checkbox" id="checkDevolucionDeCompra" name="buyReturn">
+                                <label class="form-check-label" for="checkDevolucionDeCompra">Devolución de compra</label>
                             </div>
-                            <div class="form-check">
-                                <input type="checkbox" class="resizedTextbox" id="checkDevolucionDeCompra">
-                                <label class="form-check-label" for="exampleCheck1"><p style="font-size:30px">Devolución de venta</p></label>
+                            <div class="form-check" id="container-sale">
+                                <input type="checkbox" id="checkDevolucionDeVenta"  name="saleReturn">
+                                <label class="form-check-label" for="checkDevolucionDeVenta">Devolución de venta</label>
                             </div>
+                            <input type="number" id="typeReturn"  name="typeReturn" readonly hidden>
                         </div>
 
                     </div>
-
-                    
-                    <!-- Portfolio tabla Busqueda-->
-                    <div class="form-group pull-right">
-                        <input type="text" class="search form-control" placeholder="¿Qué buscas?">
-                    </div>
-                    <span class="counter pull-right"></span>
-                    <table class="table table-hover table-bordered results" id="myTable">
-                      <thead>
-                        <tr>
-                            <th>Código</th>
-                            <th>Articulo</th>
-                            <th>Cantidad</th>
-                            <th>Motivo</th>
-                            <th>Valor</th>
-                            <th>No. factura</th>
-                        </tr>
-                      </thead>
-
-                      <!--Información base de datos-->
-                      <tbody>
-                        <form name="formularioNuevo" th:action="@{/devoluciones}" th:object="${ra}" method="post">
-                            <td><input type="text" id="code" ><br></td>
-                            <td><input type="text" id="" ><br></td>
-                            <td><input type="text" id="" ><br></td>
-                            <td><input type="text" id="" ><br></td>
-                            <td><input type="text" id="" ><br></td>
-                            <td><input type="text" id="" ><br></td>
-                      </tbody>
-                    </table>
-                      
-                  </div>
-                </div>
-                <!-- Portfolio total y aceptar-->
-                <div class="row">
-                    <div class="text-center col-md-4"></div>
-                    <div class="text-center col-md-4"></div>
-                    <div class="text-center col-md-4">
-                        <p>  </p>
-                        <input type="submit" class="btn btn-primary " value="Aceptar" />
-                    </div>
-                </div>
-
                
+                    <!-- Portfolio Agregar Articulo-->
+                    <br>
+                    <br>
+                    <div class="row">
+                        <div class="text-center col-md-1">
+                            <input type="button" class="btn btn-primary eBtn" id="btn-AddArticle" data-toggle="modal" data-target="#articleModal" value="Agregar Artículo">
+                        </div>
+                    </div>
+                    <br>
+                       
+                    <!-- Portfolio tabla Busqueda-->
+                    <div class="con" style="width:100%">
+                        <table class="table table-hover table-bordered results" id="table-information">
+                        <thead>
+                            <tr>
+                                <th>Articulo</th>
+                                <th>Cantidad</th>
+                                <th>Motivo</th>
+                                <th>Valor</th>
+                                <th>No. factura</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
 
-                
-            </div>
-        </section>
-        <section>        
-            <div class="row">
-            <div class="text-center col-md-12">
-                <form action="#" th:action="@{/devoluciones-crear}" th:object="${ra}" method="post">
-                    <table>
-                        <tr>
-                            <td>ID:</td>
-                            <td><input type="text" th:field="*{id}" /></td>
-                            <td th:if="${#fields.hasErrors('name')}" th:errors="*{id}">Name Error</td>
-                        </tr>
-                        <tr>
-                            <td>Codigo:</td>
-                            <td><input type="text" th:field="*{code}" /></td>
-                            <td th:if="${#fields.hasErrors('code')}" th:errors="*{code}">Age Error</td>
-                        </tr>
-                        <tr>
-                            <td><button type="submit">Submit</button></td>
-                        </tr>
-                    </table>
-                </form>
+                        <!--Información base de datos-->
+                        <tbody>
+                            <tr th:each="i, iter :${returns}">
+                                <td th:text="${i.getArticle().getName()}"></td>
+                                <td th:text="${i.getQuantity()}"></td>
+                                <td th:text="${i.getMotive()}"></td>
+                                <td th:text="${i.getValue()}"></td>
+                                <td th:text="${i.getnSale()}"></td>
+                                <td>
+                                    <button th:href="@{/devoluciones/obtenerArticulo/(index=${iter.index})}" class="btn btn-primary" id="btn-editArticle" data-toggle="modal" data-target="#editArticleModal" ><i class="fa fa-edit"></i></button>
+                                    <button th:href="@{/devoluciones/obtenerArticuloEliminar/(index=${iter.index})}" class="btn btn-primary" id="btn-deleteArticle" data-toggle="modal" data-target="#deleteArticleModal" ><i class="fa fa-trash"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                        </table>   
+                    </div>
+                    <br>
+                    <div class="form-group" style="float: right;">
+                        <input type="submit" class="btn btn-primary form-control" id="btn-saveReturn" value="Guardar" style="width: 100px; padding-left: 10px;">
+                    </div>
+                  </form>   
+                </div>                             
             </div>
         </div>
-    </section>
+    </section>    
 
-        
-        <!-- Copyright Section-->
+<!-- Add Article Modal -------------------------------------------------------------------------------------------------------------------------------------------------------->
+<div class="articleForm">
+    <form th:action="@{/devoluciones/agregarArticulo}" method="post" name="newArticle">
+        <div class="modal fade" id="articleModal" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Artículo Devolución</h5>
+                        <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                           <input style="height: 10px;" type="number" name="idArticle" id="idArticle" value="" readonly hidden>
+                           <input style="height: 10px;" type="text" name="nSale" id="nSale" value="" readonly hidden>
+                        </div> 
+                        <div class="form-group">
+                            <label for="selectArticle">Artículo:</label>
+                            <select id="selectArticle" name="selectArticle" class="form-control" required>
+                              <option value="" selected>Seleccione</option>
+                              <div th:each="i :${articles}">
+                              <option id="optionArticle" th:text="${i.getName()}"></option>
+                              </div>
+                             </select>
+                        </div> 
+                        <div class="form-group">
+                            <label for="value" class="col-form-label">Precio: 
+                                </label> <input type="number" class="form-control"
+                                id="price" name="price" value="" readonly />
+                        </div>
+                        <div class="form-group">
+                            <label for="quantity" class="col-form-label">Cantidad: 
+                                </label> <input type="number" class="form-control quantity"
+                                id="quantity" name="quantity" value="" required/>
+                        </div>
+                        <div class="form-group">
+                            <label for="value" class="col-form-label">Valor Total: 
+                                </label> <input type="number" class="form-control"
+                                id="value" name="value" value="" readonly/>
+                        </div>
+                        <div class="form-group">
+                            <label for="motive" class="col-form-label">Motivo: 
+                                </label> <input type="message" class="form-control"
+                                id="motive" name="motive" value="" required/>
+                        </div>     
+                        <div class="form-group">
+                            <label for="selectNSale">No. Factura:</label>
+                            <select id="selectNSale" class="form-control" name="selectNSale" required>
+                              <option value="" selected>Seleccione</option>
+                              <div th:each="i :${saleBills}">
+                                <option th:text="${i.getCode()}"></option>
+                              </div>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary"
+                            data-dismiss="modal">Cerrar</button>
+                        <input type="submit" class="btn btn-primary " value="Añadir" id="addArticle" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- Edit Article Modal ------------------------------------------------------------------------------------------------------------------------------------------------------->
+<div class="editArticleForm">
+    <form th:action="@{/devoluciones/editarArticulo}" method="post" name="editArticle"> 
+        <div class="modal fade" id="editArticleModal" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Artículo Devolución</h5>
+                        <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                           <input style="height: 10px;" type="number" name="idArticle" id="idArticleEdit" value="" readonly hidden>
+                           <input style="height: 10px;" type="text" name="nSale" id="nSaleEdit" value="" readonly hidden>
+                        </div> 
+                        <div class="form-group">
+                            <label for="selectArticle">Artículo:</label>
+                            <select id="selectArticleEdit" name="selectArticle" class="form-control" required>
+                              <option value="" selected>Seleccione</option>
+                              <div th:each="i :${articles}">
+                              <option id="optionArticle" th:text="${i.getName()}"></option>
+                              </div>
+                             </select>
+                        </div> 
+                        <div class="form-group">
+                            <label for="value" class="col-form-label">Precio: 
+                                </label> <input type="number" class="form-control"
+                                id="priceEdit" name="price" value="" readonly/>
+                        </div>
+                        <div class="form-group">
+                            <label for="quantity" class="col-form-label">Cantidad: 
+                                </label> <input type="number" class="form-control quantity"
+                                id="quantityEdit" name="quantity" value="" required/>
+                        </div>
+                        <div class="form-group">
+                            <label for="value" class="col-form-label">Valor Total: 
+                                </label> <input type="number" class="form-control"
+                                id="valueEdit" name="value" value="" readonly/>
+                        </div>
+                        <div class="form-group">
+                            <label for="motive" class="col-form-label">Motivo: 
+                                </label> <input type="message" class="form-control"
+                                id="motiveEdit" name="motive" value="" required/>
+                        </div>     
+                        <div class="form-group">
+                            <label for="selectNSaleEdit">No. Factura:</label>
+                            <select id="selectNSaleEdit" class="form-control" name="selectNSaleEdit" required>
+                              <option value="" selected>Seleccione</option>
+                              <div th:each="i :${saleBills}">
+                                <option th:text="${i.getCode()}"></option>
+                              </div>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary"
+                            data-dismiss="modal">Cerrar</button>
+                        <input type="submit" class="btn btn-primary " value="Editar" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- Delete Article Modal ------------------------------------------------------------------------------------------------------------------------------------------------------->
+<div class="deleteArticleForm">
+    <form th:action="@{/devoluciones/eliminarArticulo}" method="post" name="deleteArticle"> 
+        <div class="modal fade" id="deleteArticleModal" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Eliminar Artículo</h5>
+                        <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="padding-top: 5px; height: 100px;">
+                        <div class="form-group">
+                           <input style="height: 10px;" type="number" name="index" id="indexDelete" value="" readonly hidden>
+                        </div> 
+                        <div class="form-group">
+                            <label >¿Esta seguro que desea eliminar este artículo?</label>
+                        </div> 
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary"
+                            data-dismiss="modal">No</button>
+                        <input type="submit" class="btn btn-danger" value="Si" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<input type="button" onclick="window.location.href='reporte-factura-articulos';">
+<!-- Copyright Section ------------------------------------------------------------------------------------------------------------------------------------------------------->
+
         <section class="copyright py-4 text-center text-white">
             <div class="container"><small>Copyright © BAMBÚ 2020</small></div>
         </section>
@@ -189,14 +342,24 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
         <!-- Third party plugin JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-        <!-- Contact form JS-->
-        <script src="assets/mail/jqBootstrapValidation.js"></script>
-        <script src="assets/mail/contact_me.js"></script>
+        
+        <!-- Modal Article JS -->
+        <script type="text/javascript" th:src="@{/js/returns_articles/returns.js}" src="static/js/returns_articles/returns.js"></script>
+      
+        <!-- Validation JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.14.0/jquery.validate.min.js"></script>       
+       
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
-        <!-- Core sweet alert -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 
+        <!--JQUERY DataTable-->       
+        <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+          
+        <!-- DataTable JS -->
+        <script type="text/javascript" th:src="@{/js/table/datatable.js}" src="static/js/table/datatable.js"></script>
 
-    </body>
+        </body>
+
 </html>

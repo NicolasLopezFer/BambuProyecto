@@ -14,8 +14,7 @@ public class MeasureMethodService {
       @Autowired
       MeasureMethodRepository measureMethodRepository;
 
-      public List<MeasureMethod> findAllMethods(){
-
+      public List<MeasureMethod> findAll(){
            if(!measureMethodRepository.findAll().isEmpty()){
               return measureMethodRepository.findAll();
            }
